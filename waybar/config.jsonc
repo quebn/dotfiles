@@ -25,7 +25,6 @@
     "on-click": "activate",
     "format": "{icon}",
     "format-icons": {
-      //
       "1":  "",
       "2":  "",
       "3":  "",
@@ -35,14 +34,14 @@
       "7":  "",
       "8":  "",
       "9":  "",
-      "10": "",
+      "10": ""
     },
     "persistent-workspaces": {
       "1":  [],
       "2":  [],
       "3":  [],
       "4":  [],
-      "5":  [],
+      "5":  []
     }
   },
 
@@ -95,7 +94,7 @@
       "phone": "",
       "portable": "",
       "car": "",
-      "default": ["", "", ""]
+      "default": ["", " ", " "]
     }
   },
 
@@ -157,7 +156,7 @@
     "escape": true//,
     //"exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null", // Script in resources folder
     //"exec": "$HOME/.config/waybar/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
-  },
+  }
   // "clock#date": {
       // "format": " {:%A, %B %d, %Y}"
       // "format": "{:%A, %B %d, %Y}"
