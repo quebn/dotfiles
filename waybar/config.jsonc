@@ -9,6 +9,7 @@
   // "spacing": 4,
   "modules-left": ["clock", "tray", "hyprland/workspaces"],
   // "modules-center": ["hyprland/workspaces"],
+  // "modules-center": ["hyprland/workspaces"],
   "modules-right": [
     "network",
     // "bluetooth",
@@ -18,6 +19,11 @@
     "pulseaudio",
     "backlight"
   ],
+  
+  "hyprland/window": {
+    "format": "{}",
+    "max-length": 40
+  },
 
   "hyprland/workspaces": {
     "disable-scroll": true,
@@ -53,7 +59,7 @@
   "clock": {
     //"format": " {:%R   %d/%m - %A, %B %d, %Y}",
     //"format": " {:%R   %d/%m/%y}",
-    "format": " {:%R   %d/%m}",
+    "format": " {:%R   %m/%d}",
     "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
   },
 
@@ -82,6 +88,7 @@
     "format": "{icon} {volume}",
     "tooltip": false,
     "format-muted": " ミュート",
+    "min-length":6,
     //"on-click": "pamixer -t",
     //"on-click-right": "pavucontrol",
     //"on-scroll-up": "pamixer -i 5",

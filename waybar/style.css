@@ -150,7 +150,7 @@ window#waybar.empty #window {
   color: @iris;
   border-radius: 8px 0px 0px 8px;
   border-right: 0px;
-  min-width: 8px;
+  /*min-width: 8px;*/
 }
 
 #battery {
