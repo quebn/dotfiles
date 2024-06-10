@@ -159,3 +159,14 @@ window#waybar.empty #window {
   margin-right: 10px;
   border-left: 0px;
 }
+
+#custom-spotify {
+  margin-top: 10px;
+  border-radius: 8px;
+  opacity: 0.85;
+  color: @foam;
+  background: black;
+  padding-left:  10px;
+  padding-right: 10px;
+  border: 2px solid @gold;
+}

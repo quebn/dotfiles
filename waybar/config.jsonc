@@ -9,7 +9,7 @@
   // "spacing": 4,
   "modules-left": ["clock", "tray", "hyprland/workspaces"],
   // "modules-center": ["hyprland/workspaces"],
-  // "modules-center": ["hyprland/workspaces"],
+  "modules-center": ["custom/spotify"],
   "modules-right": [
     "network",
     // "bluetooth",
@@ -157,29 +157,33 @@
     "return-type": "json",
     "max-length": 45,
     "format-icons": {
-      "spotify": "",
+      "spotify": " ",
       "default": "🎜"
     },
     "escape": true//,
     //"exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null", // Script in resources folder
     //"exec": "$HOME/.config/waybar/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
-  }
+  },
   // "clock#date": {
       // "format": " {:%A, %B %d, %Y}"
       // "format": "{:%A, %B %d, %Y}"
   // }
-  //"custom/spotify": {
-  //  "exec-if": "pgrep spotify",
-  //  "exec": "/usr/bin/python3 ~/.config/waybar/scripts/mediaplayer.py --player spotify",
-  //  "format": " {}",
-  //  "return-type": "json",
-  //  "on-click": "playerctl play-pause",
-  //  "escape": true,
-  //  "max-length": 40,
-  //  "on-click": "playerctl -p spotify play-pause",
-  //  "on-click-right": "killall spotify",
-  //  "smooth-scrolling-threshold": 10, // This value was tested using a trackpad, it should be lowered if using a mouse.
-  //  "on-scroll-up": "playerctl -p spotify next",
-  //  "on-scroll-down": "playerctl -p spotify previous"
-  //}
+  "custom/spotify": {
+    "exec-if": "pgrep spotify",
+    "exec": "/usr/bin/python3 ~/.config/waybar/scripts/mediaplayer.py --player spotify",
+    //"format": " {}",
+    "format": "{icon} {}",
+    "return-type": "json",
+    "format-icons": {
+      "spotify": " "
+    },
+    //"on-click": "playerctl play-pause",
+    "escape": true,
+    "max-length": 40,
+    "on-click": "playerctl -p spotify play-pause",
+    "on-click-right": "killall spotify",
+    "smooth-scrolling-threshold": 10, // This value was tested using a trackpad, it should be lowered if using a mouse.
+    "on-scroll-up": "playerctl -p spotify next",
+    "on-scroll-down": "playerctl -p spotify previous"
+  }
 }
