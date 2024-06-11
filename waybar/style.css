@@ -71,7 +71,7 @@ tooltip {
 }
 
 #memory {
-  color: #3e8fb0;
+  color: @foam;
   border-left: 0px;
   border-right: 0px;
 }
@@ -154,7 +154,7 @@ window#waybar.empty #window {
 }
 
 #battery {
-  color: @foam;
+  color: @rose;
   border-radius: 0 8px 8px 0;
   margin-right: 10px;
   border-left: 0px;
@@ -168,5 +168,5 @@ window#waybar.empty #window {
   background: black;
   padding-left:  10px;
   padding-right: 10px;
-  border: 2px solid @gold;
+  border: 2px solid @base;
 }

@@ -172,11 +172,12 @@
     "exec-if": "pgrep spotify",
     "exec": "/usr/bin/python3 ~/.config/waybar/scripts/mediaplayer.py --player spotify",
     //"format": " {}",
-    "format": "{icon} {}",
+    "format": "󰎇 {}",
+    //"format": " {}",
     "return-type": "json",
-    "format-icons": {
-      "spotify": " "
-    },
+    //"format-icons": {
+    //  "spotify": " "
+    //},
     //"on-click": "playerctl play-pause",
     "escape": true,
     "max-length": 40,
