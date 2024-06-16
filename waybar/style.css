@@ -40,7 +40,7 @@ tooltip {
 
 #workspaces button.urgent {
   color: black;
-  background: @pine;
+  background: @foam;
   border-radius: 8px;
 }
 
@@ -134,6 +134,7 @@ window#waybar.empty #window {
 }
 
 #clock {
+  /* color: @text; */
   color: @text;
   background: @pine;
   border-radius: 8px;
