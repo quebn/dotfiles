@@ -6,7 +6,7 @@ window {
     color: #e0def4;
     font-family: '0xProto Nerd Font';
     font-size: 20px;
-    opacity: 0.85;
+    /* opacity: 0.85; */
 }
 
 #input {

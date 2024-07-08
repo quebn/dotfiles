@@ -23,5 +23,7 @@ ktrashrc
 qt6ct/
 session/
 chromium/
+go/
+QtProject.conf
 *.log
 *.list

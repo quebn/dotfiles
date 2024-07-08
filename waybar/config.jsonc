@@ -7,14 +7,20 @@
   "gtk-layer-shell": true,
   "height": 45,
   // "spacing": 4,
-  "modules-left": ["clock", "tray", "hyprland/workspaces"],
-  // "modules-center": ["hyprland/workspaces"],
+  "modules-left": [
+    "custom/arch", 
+    "clock", 
+    "tray", 
+    "hyprland/workspaces"],
+  //"modules-left": ["clock", "tray", "custom/spotify"],
+  //"modules-center": ["hyprland/workspaces"],
   "modules-center": ["custom/spotify"],
   "modules-right": [
     "network",
     // "bluetooth",
     "temperature",
     "memory",
+    "cpu",
     "battery",
     "pulseaudio",
     "backlight"
@@ -48,6 +54,11 @@
       "3":  [],
       "4":  [],
       "5":  []
+      //"6":  [],
+      //"7":  [],
+      //"8":  [],
+      //"9":  [],
+      //"10": []
     }
   },
 
@@ -62,7 +73,7 @@
   },
 
   "backlight": {
-    "format": "{icon} {percent}",
+    "format": "{icon}{percent}",
     "format-icons": ["󰃞 ", "󰃟 ", "󰃠 "],
     "min-length": 6
   },
@@ -118,9 +129,17 @@
     "format-critical": " {temperatureC}°C"
   },
 
+  "cpu": {
+    "interval": 10,
+    "format": "  {}%",
+    "tooltip": true,
+    "tooltip-format": "CPU - {usage} usage",
+    "on-click": "kitty --start-as=fullscreen --title btop sh -c 'btop'"
+  },
+
   "memory": {
     "interval": 30,
-    "format": "  {}%",
+    "format": "  {}%",
     "tooltip": true,
     "tooltip-format": "Memory - {used:0.1f}GB used",
     "on-click": "kitty --start-as=fullscreen --title btop sh -c 'btop'"
@@ -146,6 +165,13 @@
     "tooltip-format-connected": " {device_enumerate}",
     "tooltip-format-enumerate-connected": "{device_alias}"
     //"on-click-right": "blueman-manager"
+  },
+
+  "custom/arch": {
+    "format":"󰣇 ",
+    "tooltip": false,
+    //"tooltip-format": "ArchLinux",
+    "icon-size": 15
   },
 
   "custom/media": {
