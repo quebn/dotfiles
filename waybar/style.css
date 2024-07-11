@@ -179,8 +179,8 @@ window#waybar.empty #window {
   margin-left: 15px;
   margin-top: 10px;
   border-radius: 8px;
-  color: @pine;
-  padding-left:  13px;
+  color: @foam;
+  padding-left:  14px;
   padding-right: 10px;
   background: black;
   border: 2px solid @pine;
