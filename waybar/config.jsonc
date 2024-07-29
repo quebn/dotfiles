@@ -131,9 +131,9 @@
 
   "cpu": {
     "interval": 10,
-    "format": "  {}%",
+    "format": "  {usage}%",
     "tooltip": true,
-    "tooltip-format": "CPU - {usage} usage",
+    //"tooltip-format": "CPU - {usage} usage",
     "on-click": "kitty --start-as=fullscreen --title btop sh -c 'btop'"
   },
 
