@@ -10,8 +10,13 @@ My dotfiles for linux, heavily themed around rose-pine.
 - Laucher: [wofi](https://hg.sr.ht/~scoopta/wofi)
 
 ## Screenshots
+Wallpaper w/ Waybar
 ![image](https://github.com/user-attachments/assets/b1967a08-9026-4fa6-9186-f057fad7e51b)
+Neovim w/ Kitty
 ![image](https://github.com/user-attachments/assets/777976aa-a565-4916-b8f6-69138890a455)
+Neovim, Neofetch, and Lazygit
 ![image](https://github.com/user-attachments/assets/50ea9023-d13f-4a1d-820e-f7a47ec3eab7)
+Browser
 ![image](https://github.com/user-attachments/assets/a10df110-b2f8-4ff3-9510-d48f6041afb4)
+Spotify
 ![image](https://github.com/user-attachments/assets/d43b2639-1bf4-4a7f-8656-f190f0c40236)
