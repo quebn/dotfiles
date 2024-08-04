@@ -25,5 +25,6 @@ session/
 chromium/
 go/
 QtProject.conf
+kitty/unicode-input-favorites.conf
 *.log
 *.list
