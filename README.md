@@ -17,6 +17,6 @@ Neovim w/ Kitty
 Neovim, Neofetch, and Lazygit
 ![image](https://github.com/user-attachments/assets/50ea9023-d13f-4a1d-820e-f7a47ec3eab7)
 Browser
-![image](https://github.com/user-attachments/assets/a10df110-b2f8-4ff3-9510-d48f6041afb4)
+![image](https://github.com/user-attachments/assets/74d00e08-3da9-4e0c-86ef-d31d0461d4fb)
 Spotify
 ![image](https://github.com/user-attachments/assets/d43b2639-1bf4-4a7f-8656-f190f0c40236)
