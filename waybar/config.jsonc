@@ -67,9 +67,14 @@
     "spacing": 5
   },
 
+  // "clock#date": {
+      // "format": " {:%A, %B %d, %Y}"
+      // "format": "{:%A, %B %d, %Y}"
+  // }
   "clock": {
     "format": " {:%R   %m/%d}",
-    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
+    //"tooltip-format": "<big>{:%Y %B}</big>\n<tt>{calendar}</tt>"
+    "tooltip-format": "<big>{:%A} - {ordinal_date}</big>\n<tt>{calendar}</tt>"
   },
 
   "backlight": {
@@ -186,10 +191,6 @@
     //"exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null", // Script in resources folder
     //"exec": "$HOME/.config/waybar/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
   },
-  // "clock#date": {
-      // "format": " {:%A, %B %d, %Y}"
-      // "format": "{:%A, %B %d, %Y}"
-  // }
   "custom/spotify": {
     "exec-if": "pgrep spotify",
     "exec": "/usr/bin/python3 ~/.config/waybar/scripts/mediaplayer.py --player spotify",
