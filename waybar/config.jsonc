@@ -17,7 +17,7 @@
   "modules-center": ["custom/spotify"],
   "modules-right": [
     "network",
-    // "bluetooth",
+    //"bluetooth",
     "temperature",
     "memory",
     "cpu",
@@ -185,7 +185,7 @@
     "max-length": 45,
     "format-icons": {
       "spotify": " ",
-      "default": "🎜"
+      "default": " "
     },
     "escape": true//,
     //"exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null", // Script in resources folder
