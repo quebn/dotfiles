@@ -10,8 +10,10 @@
   "modules-left": [
     "custom/arch", 
     "clock", 
-    "tray", 
-    "hyprland/workspaces"],
+    //"keyboard-state",
+    "tray",
+    "hyprland/workspaces"
+  ],
   //"modules-left": ["clock", "tray", "custom/spotify"],
   //"modules-center": ["hyprland/workspaces"],
   "modules-center": ["custom/spotify"],
@@ -26,6 +28,7 @@
     "backlight"
   ],
   
+  // TODO: Polish this and bring it back
   "hyprland/window": {
     "format": "{}",
     "max-length": 40
@@ -37,6 +40,16 @@
     "on-click": "activate",
     "format": "{icon}",
     "format-icons": {
+      //"1": "⼀",
+      //"2": "二",
+      //"3": "三",
+      //"4": "四",
+      //"5": "五",
+      //"6": "六",
+      //"7": "七",
+      //"8": "八",
+      //"9": "九",
+      //"10": "十"
       "1":  "",
       "2":  "",
       "3":  "",
@@ -209,5 +222,13 @@
     "smooth-scrolling-threshold": 10, // This value was tested using a trackpad, it should be lowered if using a mouse.
     "on-scroll-up": "playerctl -p spotify next",
     "on-scroll-down": "playerctl -p spotify previous"
+  },
+
+  "keyboard-state": {
+    "capslock": true,
+    "format": "{icon}",
+    "format-icons": {
+      "locked": ""
+    } 
   }
 }

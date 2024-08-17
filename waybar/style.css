@@ -51,6 +51,7 @@ tooltip {
 }
 
 #custom-power_profile,
+#keyboard-state,
 #window,
 #clock,
 #battery,
@@ -185,6 +186,20 @@ window#waybar.empty #window {
   background: black;
   border: 2px solid @pine;
   font-family: "0xProto Nerd Font";
+}
+
+#keyboard-state label.capslock.locked{
+  margin-left: 15px;
+  margin-top: 10px;
+  border-radius: 8px;
+  color: @gold;
+  padding-left:  14px;
+  padding-right: 10px;
+  background: black;
+  border: 2px solid @pine;
+  /*
+  font-family: "0xProto Nerd Font";
+  */
 }
 
 #custom-spotify {
