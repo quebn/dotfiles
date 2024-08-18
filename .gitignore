@@ -23,6 +23,7 @@ ktrashrc
 qt6ct/
 session/
 chromium/
+google-chrome/
 go/
 QtProject.conf
 kitty/unicode-input-favorites.conf
