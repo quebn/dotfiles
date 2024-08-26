@@ -3,7 +3,7 @@
 * {
   border: none;
   border-radius: 0;
-  font-family: "JetBrainsMono NFM ExtraBold";
+  font-family: "JetBrainsMono NL ExtraBold";
   font-weight: bold;
   font-size: 1rem;
   min-height: 0;
@@ -29,7 +29,7 @@ tooltip {
 }
 
 #workspaces button.active {
-  color: @text;
+  color: @rose;
 }
 
 #workspaces button.focused {
@@ -96,12 +96,23 @@ tooltip {
   color: @love;
 }
 
+#pulseaudio {
+  color: @iris;
+  border-radius: 8px 0px 0px 8px;
+  border-right: 0px;
+  margin-right: 0px;
+  padding-right: 0px;
+  font-family: "0xProto Nerd Font";
+  /*min-width: 8px;*/
+}
 #backlight {
   color: @text;
   border-radius: 0px 8px 8px 0px;
   border-left: 0px;
   margin-right: 15px;
   padding-left: 0px;
+  margin-left: 0px;
+  font-family: "0xProto Nerd Font";
 }
 
 #tray {
@@ -128,12 +139,12 @@ tooltip {
 
 #window {
   border-radius: 8px;
-  margin-left: 30px;
-  margin-right: 30px;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
 window#waybar.empty {
-  background-color: black;
+  background-color: transparent;
 }
 
 window#waybar.empty #window {
@@ -144,13 +155,38 @@ window#waybar.empty #window {
   background-color: transparent;
 }
 
-#clock {
-  /* color: @text; */
-  color: @text;
-  background: @pine;
-  border-radius: 8px;
-  margin-left: 10px;
+#custom-arch{
+  margin-left: 15px;
+  margin-top: 10px;
+  border-radius: 8px 0 0 8px;
+  /* 
+   * border-radius: 8px; 
+   * padding-right: 10px;
+   * */
+  color: @rose;
+  padding-left:  14px;
+  background: black;
   border: 2px solid @pine;
+  border-right: 0px;
+  margin-right: 0px;
+  font-family: "0xProto Nerd Font";
+}
+
+#clock {
+  /* 
+   * color: @text; 
+   * */
+  border-radius: 0 8px 8px 0;
+  color: @text;
+  padding-left: 10px;
+  padding-right: 10px;
+  background: black;
+  /* 
+   * border-radius: 8px;
+   * margin-left: 9px;
+   * */
+  border: 2px solid @pine;
+  border-left: 0px;
 }
 
 #network {
@@ -160,13 +196,6 @@ window#waybar.empty #window {
   padding-left: 10px;
 }
 
-#pulseaudio {
-  color: @iris;
-  border-radius: 8px 0px 0px 8px;
-  border-right: 0px;
-  padding-right: 0px;
-  /*min-width: 8px;*/
-}
 
 #battery {
   color: @rose;
@@ -176,17 +205,6 @@ window#waybar.empty #window {
   border-left: 0px;
 }
 
-#custom-arch{
-  margin-left: 15px;
-  margin-top: 10px;
-  border-radius: 8px;
-  color: @foam;
-  padding-left:  14px;
-  padding-right: 10px;
-  background: black;
-  border: 2px solid @pine;
-  font-family: "0xProto Nerd Font";
-}
 
 #keyboard-state label.capslock.locked{
   margin-left: 15px;
@@ -210,4 +228,5 @@ window#waybar.empty #window {
   padding-left:  10px;
   padding-right: 10px;
   border: 2px solid @pine;
+  font-family: "0xProto Nerd Font";
 }

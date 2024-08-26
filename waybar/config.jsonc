@@ -13,10 +13,12 @@
     //"keyboard-state",
     "tray",
     "hyprland/workspaces"
+    //"hyprland/window"
   ],
   //"modules-left": ["clock", "tray", "custom/spotify"],
   //"modules-center": ["hyprland/workspaces"],
   "modules-center": ["custom/spotify"],
+  //"modules-center": ["hyprland/window"],
   "modules-right": [
     "network",
     //"bluetooth",
@@ -30,8 +32,10 @@
   
   // TODO: Polish this and bring it back
   "hyprland/window": {
-    "format": "{}",
-    "max-length": 40
+    "format": "",
+    "max-length": 40,
+    "icon":true
+    
   },
 
   "hyprland/workspaces": {
@@ -78,6 +82,7 @@
   "tray": {
     "icon-size": 15,
     "spacing": 5
+    //"show-passive-items": true
   },
 
   // "clock#date": {
@@ -85,7 +90,7 @@
       // "format": "{:%A, %B %d, %Y}"
   // }
   "clock": {
-    "format": " {:%R   %m/%d}",
+    "format": "󰥔 {:%R  %m/%d}",
     //"tooltip-format": "<big>{:%Y %B}</big>\n<tt>{calendar}</tt>"
     "tooltip-format": "<big>{:%A} - {ordinal_date}</big>\n<tt>{calendar}</tt>"
   },
@@ -103,30 +108,28 @@
       "critical": 20
     },
     "format": "{icon} {capacity}%",
-    "format-charging": " {capacity}%",
+    "format-charging": "󰂄 {capacity}%",
     "format-plugged": " {capacity}%",
     "format-alt": "{time} {icon}",
     "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󱈑"]
+    //"format-icons": ["󰂎","󱊡","󱊢","󱊣"]
   },
 
   "pulseaudio": {
     "format": "{icon} {volume}",
     "tooltip": false,
-    "format-muted": " ミュート",
+    "format-muted": " Muted",
     "min-length":6,
-    //"on-click": "pamixer -t",
-    //"on-click-right": "pavucontrol",
-    //"on-scroll-up": "pamixer -i 5",
-    //"on-scroll-down": "pamixer -d 5",
     "scroll-step": 5,
     "format-icons": {
-      "headphone": " ",
-      "hands-free": " ",
-      "headset": " ",
+      "headphone": "",
+      "hands-free": "",
+      "headset": "",
       "phone": " ",
       "portable": " ",
       "car": " ",
-      "default": [" ", " ", " "]
+      //"default": ["", " ", " "]
+      "default": ["󰕿", "󰖀", "󰕾"]
     }
   },
 
@@ -134,9 +137,6 @@
     "format": "{format_source}",
     "format-source": " {volume}%",
     "format-source-muted": "  Muted",
-    // "on-click": "pamixer --default-source -t",
-    // "on-scroll-up": "pamixer --default-source -i 4",
-    // "on-scroll-down": "pamixer --default-source -d 4",
     "scroll-step": 5
   },
 
@@ -149,7 +149,7 @@
 
   "cpu": {
     "interval": 10,
-    "format": "  {usage}%",
+    "format": " {usage}%",
     "tooltip": true,
     //"tooltip-format": "CPU - {usage} usage",
     "on-click": "kitty --start-as=fullscreen --title btop sh -c 'btop'"
@@ -157,7 +157,7 @@
 
   "memory": {
     "interval": 30,
-    "format": "  {}%",
+    "format": " {}%",
     "tooltip": true,
     "tooltip-format": "Memory - {used:0.1f}GB used",
     "on-click": "kitty --start-as=fullscreen --title btop sh -c 'btop'"
@@ -208,7 +208,7 @@
     "exec-if": "pgrep spotify",
     "exec": "/usr/bin/python3 ~/.config/waybar/scripts/mediaplayer.py --player spotify",
     //"format": " {}",
-    "format": "󰎇 {}",
+    "format": "{}",
     //"format": " {}",
     "return-type": "json",
     //"format-icons": {
