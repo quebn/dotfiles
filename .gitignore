@@ -1,3 +1,4 @@
+Android*Open*Source*Project/
 Thunar/
 Electron/
 dconf/
@@ -26,7 +27,10 @@ session/
 chromium/
 google-chrome/
 go/
+StardewValley/
 QtProject.conf
 kitty/unicode-input-favorites.conf
+*.dirs
+*.locale
 *.log
 *.list
