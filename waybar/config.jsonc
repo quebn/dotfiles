@@ -95,23 +95,20 @@
   // }
   "clock": {
     "interval": 60,
-    "format": "<big>󰥔</big> {0:%R}   {0:%m/%d}",
+    "format": "<big>󰥔</big> {0:%R}  {0:%m/%d}",
     //"format": "<span color='#f6c177'><big>󰥔</big> {0:%R}</span>   {0:%m/%d}",
     "timezone": "Asia/Manila",
     "tooltip-format": "<big>{:%z %Z}</big>\n<tt>{calendar}</tt>",
     "calendar": {
       "format": {
-        "months":     "<span><b>{}</b></span>",
-        "days":       "<span><b>{}</b></span>",
-        "weeks":      "<span><b>W{}</b></span>",
-        "weekdays":   "<span><b>{}</b></span>",
-        "today":      "<span color='#eb6f92'><b>{}</b></span>"
+        "today": "<span color='#eb6f92'><b><u>{}</u></b></span>"
       }
     }
   },
 
   "backlight": {
     "format": "<big>{icon}</big>{percent}",
+    "tooltip": false,
     "format-icons": ["󰃞 ", "󰃟 ", "󰃠 "],
     "min-length": 6
   },

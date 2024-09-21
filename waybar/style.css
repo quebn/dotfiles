@@ -103,6 +103,7 @@ tooltip {
   margin-right: 0px;
   padding-right: 0px;
 }
+
 #backlight {
   color: @text;
   border-radius: 0px 8px 8px 0px;
@@ -110,6 +111,7 @@ tooltip {
   margin-right: 15px;
   padding-left: 0px;
   margin-left: 0px;
+  font-family: "JetBrainsMono NL ExtraBold Mono";
 }
 
 #tray {
