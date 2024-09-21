@@ -3,7 +3,6 @@
 * {
   border: none;
   border-radius: 0;
-  font-family: "JetBrainsMono NL ExtraBold";
   font-weight: bold;
   font-size: 1rem;
   min-height: 0;
@@ -64,6 +63,7 @@ tooltip {
 #memory,
 #cpu,
 #backlight {
+  font-family: "JetBrainsMono NL ExtraBold";
   background: black;
   padding: 0px 5px;
   /* margin: 3px 0px; */
@@ -102,8 +102,6 @@ tooltip {
   border-right: 0px;
   margin-right: 0px;
   padding-right: 0px;
-  font-family: "0xProto Nerd Font";
-  /*min-width: 8px;*/
 }
 #backlight {
   color: @text;
@@ -112,7 +110,6 @@ tooltip {
   margin-right: 15px;
   padding-left: 0px;
   margin-left: 0px;
-  font-family: "0xProto Nerd Font";
 }
 
 #tray {
@@ -141,6 +138,9 @@ tooltip {
   border-radius: 8px;
   margin-left: 10px;
   margin-right: 10px;
+  padding-right: 10px;
+  padding-left: 10px;
+  font-family: "0xProto Nerd Font";
 }
 
 window#waybar.empty {
@@ -151,7 +151,6 @@ window#waybar.empty #window {
   padding: 0px;
   margin: 0px;
   border: 0px;
-  /*  background-color: rgba(66,66,66,0.5); */ /* transparent */
   background-color: transparent;
 }
 

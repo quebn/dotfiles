@@ -1,13 +1,13 @@
-# Quebn Dotfiles
+# My Dotfiles
 My dotfiles for linux, heavily themed around rose-pine.
 
-## What I use atm.
+## What I use ATM.
 - Tiling Window Manager: [Hyprland](https://hyprland.org/)
 - Status Bar: [Waybar](https://github.com/Alexays/Waybar)
 - Text Editor: Neovim - configured by me
 - Terminal: [kitty](https://github.com/kovidgoyal/kitty)
 - Shell: Zsh (with [p10k](https://github.com/romkatv/powerlevel10k))
-- Laucher: [wofi](https://hg.sr.ht/~scoopta/wofi)
+- Launcher: [wofi](https://hg.sr.ht/~scoopta/wofi)
 
 ## Screenshots
 Wallpaper w/ Waybar
