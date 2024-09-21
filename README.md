@@ -4,7 +4,7 @@ My dotfiles for linux, heavily themed around rose-pine.
 ## What I use ATM.
 - Tiling Window Manager: [Hyprland](https://hyprland.org/)
 - Status Bar: [Waybar](https://github.com/Alexays/Waybar)
-- Text Editor: Neovim - configured by me
+- Text Editor: [Neovim](https://github.com/neovim/neovim)
 - Terminal: [kitty](https://github.com/kovidgoyal/kitty)
 - Shell: Zsh (with [p10k](https://github.com/romkatv/powerlevel10k))
 - Launcher: [wofi](https://hg.sr.ht/~scoopta/wofi)

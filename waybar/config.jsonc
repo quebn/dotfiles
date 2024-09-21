@@ -128,7 +128,7 @@
   },
 
   "pulseaudio": {
-    "format": "<big>{icon}</big> {volume}",
+    "format": "{icon} {volume}",
     "tooltip": false,
     "format-muted": "  Muted",
     "min-length":6,
@@ -141,7 +141,7 @@
       "portable": " ",
       "car": " ",
       //"default": ["", " ", " "]
-      "default": ["󰕿", "󰖀", "󰕾"]
+      "default": ["<small>󰕿</small>", "<big>󰖀</big>", "<big>󰕾</big>"]
     }
   },
 
