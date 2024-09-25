@@ -6,18 +6,16 @@
   "passthrough": false,
   "gtk-layer-shell": true,
   "height": 45,
-  // "spacing": 4,
   "modules-left": [
-    "custom/arch", 
+    "custom/arch",  
     "clock", 
     "tray",
     "hyprland/workspaces"
   ],
-  //"modules-center": ["custom/spotify"],
   "modules-center": ["hyprland/window", "custom/spotify"],
   "modules-right": [
+    //"keyboard-state",
     "network",
-    //"bluetooth",
     "temperature",
     "memory",
     "cpu",
@@ -33,11 +31,14 @@
     "max-length": 40,
     "rewrite": {
       "Mozilla Firefox": " Mozilla Firefox",
-      "kitty": "<small> </small>Terminal - Kitty",
+      "kitty": " Terminal - Kitty",
       "(.*) - Thunar": " Thunar",
       "(.*) - Google Chrome": " Google Chrome",
       "Spotify Premium": "󰓇 Spotify",
-      "Zen Browser": " Zen Firefox"
+      "Zen Browser": " Zen Firefox",
+      "Steam Big Picture Mode": "󰓓 Steam",
+      "Steam": "󰓓 Steam",
+      "Discord": "  Discord"
     }
   },
 
@@ -46,18 +47,7 @@
     "all-outputs": true,
     "on-click": "activate",
     "format": "{icon}",
-    //"format": "<big>{icon}</big>",
     "format-icons": {
-      //"1": "⼀",
-      //"2": "二",
-      //"3": "三",
-      //"4": "四",
-      //"5": "五",
-      //"6": "六",
-      //"7": "七",
-      //"8": "八",
-      //"9": "九",
-      //"10": "十"
       "1":  "",
       "2":  "",
       "3":  "",
@@ -75,28 +65,17 @@
       "3":  [],
       "4":  [],
       "5":  []
-      //"6":  [],
-      //"7":  [],
-      //"8":  [],
-      //"9":  [],
-      //"10": []
     }
   },
 
   "tray": {
     "icon-size": 15,
     "spacing": 5
-    //"show-passive-items": true
   },
 
-  // "clock#date": {
-      // "format": " {:%A, %B %d, %Y}"
-      // "format": "{:%A, %B %d, %Y}"
-  // }
   "clock": {
     "interval": 60,
-    "format": "<big>󰥔</big> {0:%R}  {0:%m/%d}",
-    //"format": "<span color='#f6c177'><big>󰥔</big> {0:%R}</span>   {0:%m/%d}",
+    "format": "<big>󱑂</big> {0:%R} • {0:%A, %m/%d}",
     "timezone": "Asia/Manila",
     "tooltip-format": "<big>{:%z %Z}</big>\n<tt>{calendar}</tt>",
     "calendar": {
@@ -107,9 +86,9 @@
   },
 
   "backlight": {
-    "format": "<big>{icon}</big>{percent}",
+    "format": "<big>{icon}</big> {percent}",
     "tooltip": false,
-    "format-icons": ["󰃞 ", "󰃟 ", "󰃠 "],
+    "format-icons": ["󰃞", "󰃟", "󰃠"],
     "min-length": 6
   },
 
@@ -134,13 +113,12 @@
     "min-length":6,
     "scroll-step": 5,
     "format-icons": {
-      "headphone": "",
-      "hands-free": "",
-      "headset": "",
+      "headphone": "<big></big>",
+      "hands-free": "<big></big>",
+      "headset": "<big></big>",
       "phone": " ",
       "portable": " ",
       "car": " ",
-      //"default": ["", " ", " "]
       "default": ["<small>󰕿</small>", "<big>󰖀</big>", "<big>󰕾</big>"]
     }
   },
@@ -161,7 +139,7 @@
 
   "cpu": {
     "interval": 10,
-    "format": " {usage}%",
+    "format": "<big> </big> {usage}%",
     "tooltip": true,
     //"tooltip-format": "CPU - {usage} usage",
     "on-click": "kitty --start-as=fullscreen --title btop sh -c 'btop'"
@@ -169,7 +147,7 @@
 
   "memory": {
     "interval": 30,
-    "format": " {}%",
+    "format": "<big> </big> {}%",
     "tooltip": true,
     "tooltip-format": "Memory - {used:0.1f}GB used",
     "on-click": "kitty --start-as=fullscreen --title btop sh -c 'btop'"
@@ -177,7 +155,7 @@
 
   "network": {
     // "interface": "wlp2*", // (Optional) To force the use of this interface
-    "format-wifi": "<big>󰖩 </big>{signalStrength}%",
+    "format-wifi": "<big>󰖩</big> {signalStrength}%",
     //"format-wifi": "󰤨 {signalStrength}%",
     "format-ethernet": "{ipaddr}/{cidr} 󱂇 ",
     "tooltip-format": "{essid} - {ifname} via {gwaddr} 󱂇 ",
@@ -202,29 +180,11 @@
     "tooltip": false
   },
 
-  "custom/media": {
-    "format": "{icon} {}",
-    "return-type": "json",
-    "max-length": 45,
-    "format-icons": {
-      "spotify": " ",
-      "default": " "
-    },
-    "escape": true//,
-    //"exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null", // Script in resources folder
-    //"exec": "$HOME/.config/waybar/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
-  },
   "custom/spotify": {
     "exec-if": "pgrep spotify",
     "exec": "/usr/bin/python3 ~/.config/waybar/scripts/mediaplayer.py --player spotify",
-    //"format": " {}",
     "format": "{}",
-    //"format": " {}",
     "return-type": "json",
-    //"format-icons": {
-    //  "spotify": " "
-    //},
-    //"on-click": "playerctl play-pause",
     "escape": true,
     "max-length": 40,
     "on-click": "playerctl -p spotify play-pause",
@@ -238,7 +198,9 @@
     "capslock": true,
     "format": "{icon}",
     "format-icons": {
-      "locked": ""
+      "locked": " CAPS",
+      //"unlocked": " "
+      "unlocked": ""
     } 
   }
 }
