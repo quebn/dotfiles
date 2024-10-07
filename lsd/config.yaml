@@ -3,6 +3,8 @@ color:
     theme: custom
 
 icons:
-    when: always
-    theme: fancy
+    when: auto
     separator: " "
+
+sorting:
+    dir-grouping: first

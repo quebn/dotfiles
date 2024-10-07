@@ -3,7 +3,6 @@ name:
   .cargo: 
   .emacs.d: 
   a.out:  
-  Agent:
 extension:
   go: 
   hs: 

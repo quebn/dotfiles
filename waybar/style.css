@@ -62,6 +62,7 @@ tooltip {
 #tray,
 #memory,
 #cpu,
+#disk,
 #backlight {
   font-family: "JetBrainsMono NL ExtraBold";
   background: black;
@@ -164,7 +165,7 @@ window#waybar.empty #window {
    * border-radius: 10px; 
    * padding-right: 10px;
    * */
-  color: @rose;
+  color: @foam;
   padding-left:  14px;
   background: black;
   border: 2px solid @pine;
@@ -179,7 +180,7 @@ window#waybar.empty #window {
    * */
   border-radius: 0 10px 10px 0;
   color: @text;
-  padding-left: 10px;
+  padding-left: 5px;
   padding-right: 10px;
   background: black;
   /* 
@@ -206,6 +207,11 @@ window#waybar.empty #window {
   border-left: 0px;
 }
 
+#disk {
+  color: @foam;
+  border-left: 0px;
+  border-right: 0px;
+}
 
 #keyboard-state {
   padding: 0px;

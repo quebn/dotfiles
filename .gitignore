@@ -6,8 +6,6 @@ discord/
 flutter/
 gtk-3.0/
 gtk-4.0/
-htop/
-nemo/
 nvim/
 pulse/
 libreoffice/
@@ -17,13 +15,6 @@ vlc/
 xfce4/
 yay/
 bluetuith/
-kde.org/
-kdeglobals
-kiorc
-kservicemenurc
-ktrashrc
-qt6ct/
-session/
 chromium/
 google-chrome/
 go/
