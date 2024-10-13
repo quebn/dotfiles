@@ -1,11 +1,12 @@
+# Directories
 Android*Open*Source*Project/
 Thunar/
 Electron/
 dconf/
 discord/
 flutter/
-gtk-3.0/
-gtk-4.0/
+#gtk-3.0/
+#gtk-4.0/
 nvim/
 pulse/
 libreoffice/
@@ -22,9 +23,12 @@ google-chrome/
 go/
 StardewValley/
 QtProject.conf
-kitty/unicode-input-favorites.conf
+
+# Files
 *.dirs
 *.locale
 *.log
 *.list
 spotify-launcher.conf
+kitty/unicode-input-favorites.conf
+
