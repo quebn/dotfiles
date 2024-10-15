@@ -11,18 +11,18 @@ My dotfiles for linux, heavily themed around rose-pine.
 
 ## Screenshots
 Wallpaper w/ Waybar
-![image](assets/images/desktop.png)
+![image](./assets/images/desktop.png)
 Wofi
-![image](assets/images/wofi.png)
+![image](./assets/images/wofi.png)
 Neovim w/ Kitty
-![image](assets/images/editor.png)
+![image](./assets/images/editor.png)
 Neovim, Neofetch, and Lazygit
-![image](assets/images/environment.png)
+![image](./assets/images/environment.png)
 Process Manager
-![image](assets/images/btop.png)
+![image](./assets/images/btop.png)
 Thunar File Manager
-![image](assets/images/thunar.png)
+![image](./assets/images/thunar.png)
 Browser
-![image](assets/images/browser.png)
+![image](./assets/images/browser.png)
 Spotify
-![image](assets/images/spotify.png)
+![image](./assets/images/spotify.png)
