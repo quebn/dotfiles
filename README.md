@@ -18,6 +18,8 @@ Neovim w/ Kitty
 ![image](assets/images/editor.png)
 Neovim, Neofetch, and Lazygit
 ![image](assets/images/environment.png)
+Process Manager
+![image](assets/images/btop.png)
 Thunar File Manager
 ![image](assets/images/thunar.png)
 Browser

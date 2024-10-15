@@ -1,6 +1,6 @@
 [global]
     height = 300
-    width = 300
+    width = 400
 
     # offset = 5x5
     offset = 25x20
@@ -35,19 +35,18 @@
 
     background = "#000000"
     foreground = "#e0def4"
+    frame_color = "#31748f"
     timeout = 5
 
 [urgency_low]
-    highlight = "#ebbcba"
-    frame_color = "#ebbcba"
-    default_icon = "dialog-information"
-    format = "<b><span foreground='#ebbcba'>%s</span></b>\n%b"
-
-[urgency_normal]
     highlight = "#31748f"
-    frame_color = "#31748f"
     default_icon = "dialog-information"
     format = "<b><span foreground='#31748f'>%s</span></b>\n%b"
+
+[urgency_normal]
+    highlight = "#ebbcba"
+    default_icon = "dialog-information"
+    format = "<b><span foreground='#ebbcba'>%s</span></b>\n%b"
 
 [urgency_critical]
     highlight = "#eb6f92"
