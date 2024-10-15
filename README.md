@@ -1,6 +1,11 @@
 # My Dotfiles
 My dotfiles for linux, heavily themed around rose-pine.
 
+> [!CAUTION]
+> This repository has some config and scripts that may break some defaults.
+> Do not clone if not the owner of this repository. 
+
+
 ## What I use ATM.
 - Tiling Window Manager: [Hyprland](https://hyprland.org/)
 - Status Bar: [Waybar](https://github.com/Alexays/Waybar)
