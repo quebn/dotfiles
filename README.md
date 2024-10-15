@@ -2,7 +2,7 @@
 My dotfiles for linux, heavily themed around rose-pine.
 
 > [!CAUTION]
-> This repository has some config and scripts that may break some defaults.
+> This repository has some config and scripts that may break some defaults.\
 > Do not clone if not the owner of this repository. 
 
 
