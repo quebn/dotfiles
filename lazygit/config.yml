@@ -3,3 +3,13 @@ gui:
     selectedLineBgColor:
       - black
   nerdFontsVersion: "3"
+  spinner:
+    frames:
+    - "⣼"
+    - "⣹"
+    - "⢻"
+    - "⠿"
+    - "⡟"
+    - "⣏"
+    - "⣧"
+    - "⣶"
