@@ -29,7 +29,7 @@
   "hyprland/window": {
     "format": "{initialTitle}",
     "separate-outputs":true,
-    "max-length": 40,
+    "max-length": 30,
     "rewrite": {
       "Mozilla Firefox": " Mozilla Firefox",
       "kitty": " Terminal - Kitty",
@@ -192,7 +192,7 @@
     "format": "{}",
     "return-type": "json",
     "escape": true,
-    "max-length": 40,
+    "max-length": 30,
     "on-click": "playerctl -p spotify play-pause",
     "on-click-right": "killall spotify",
     "smooth-scrolling-threshold": 10, // This value was tested using a trackpad, it should be lowered if using a mouse.
