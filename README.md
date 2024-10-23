@@ -20,9 +20,9 @@ Wallpaper w/ Waybar
 Wofi
 ![image](./assets/screenshots/wofi.png)
 Neovim w/ Kitty
-![image](./assets/screenshots/editor.png)
+![image](./assets/screenshots/neovim.png)
 Neovim, Neofetch, and Lazygit
-![image](./assets/screenshots/environment.png)
+![image](./assets/screenshots/dev.png)
 Process Manager
 ![image](./assets/screenshots/btop.png)
 Thunar File Manager
@@ -30,4 +30,4 @@ Thunar File Manager
 Browser
 ![image](./assets/screenshots/browser.png)
 Spotify
-![image](./assets/screenshots/spotify.png)
+![image](./assets/screenshots/spotify_2.png)
