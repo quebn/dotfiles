@@ -22,7 +22,7 @@ Wofi
 Neovim w/ Kitty
 ![image](./assets/screenshots/neovim.png)
 Neovim, Neofetch, and Lazygit
-![image](./assets/screenshots/dev.png)
+![image](./assets/screenshots/env.png)
 Process Manager
 ![image](./assets/screenshots/btop.png)
 Thunar File Manager
