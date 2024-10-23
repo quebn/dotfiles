@@ -1,0 +1,50 @@
+[core]
+    pager = delta
+
+[user]
+	name = Quebn
+	email = gonzalesquebin@gmail.com
+
+[init]
+    defaultBranch = main
+
+[merge]
+    conflictStyle = zdiff3
+
+[interactive]
+    diffFilter = delta --color-only
+
+[delta]
+    navigate = true
+    dark = true
+    right-arrow = >
+    commit-decoration-style = none
+    grep-file-style = "yellow"
+    grep-line-number-style = "yellow"
+    keep-plus-minus-markers = true
+    line-numbers = true
+    line-numbers-minus-style = "red"
+    line-numbers-plus-style = "green"
+    line-numbers-left-style = "#908caa"
+    line-numbers-right-style = "#908caa"
+    line-numbers-left-format = " {nm:>1} ┊"
+    line-numbers-zero-style = "#908caa"
+    minus-emph-style = "red" underline bold
+    minus-empty-line-marker-style = normal "red"
+    minus-style = "red"
+    plus-emph-style =  "green" underline bold
+    plus-empty-line-marker-style = normal "green"
+    plus-style = "green"
+    whitespace-error-style = "black" "white"
+    zero-style = "#908caa"
+    file-decoration-style = "cyan" overline
+    file-added-label = [+]
+    file-copied-label = [=]
+    file-modified-label = [~]
+    file-removed-label = [-]
+    file-renamed-label = [*]
+    file-style = "cyan" bold
+    hunk-header-decoration-style = none
+    hunk-header-file-style = "yellow"
+    hunk-header-line-number-style = "yellow"
+    hunk-header-style = file line-number "yellow"

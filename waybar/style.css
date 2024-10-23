@@ -1,4 +1,42 @@
-@import "./rose-pine.css";
+@define-color base            #191724;
+@define-color surface         #1f1d2e;
+@define-color overlay         #26233a;
+
+@define-color muted           #6e6a86;
+@define-color subtle          #908caa;
+@define-color text            #e0def4;
+
+@define-color love            #eb6f92;
+@define-color gold            #f6c177;
+@define-color rose            #ebbcba;
+@define-color pine            #31748f;
+@define-color foam            #9ccfd8;
+@define-color iris            #c4a7e7;
+
+@define-color highlightLow    #21202e;
+@define-color highlightMed    #403d52;
+@define-color highlightHigh   #524f67;
+
+/*:root {*/
+/*  --base:            #191724;*/
+/*  --surface:         #1f1d2e;*/
+/*  --overlay:         #26233a;*/
+/**/
+/*  --muted:           #6e6a86;*/
+/*  --subtle:          #908caa;*/
+/*  --text:            #e0def4;*/
+/**/
+/*  --love:            #eb6f92;*/
+/*  --gold:            #f6c177;*/
+/*  --rose:            #ebbcba;*/
+/*  --pine:            #31748f;*/
+/*  --foam:            #9ccfd8;*/
+/*  --iris:            #c4a7e7;*/
+/**/
+/*  --highlightLow:    #21202e;*/
+/*  --highlightMed:   #403d52;*/
+/*  --highlightHigh:   #524f67;*/
+/*}*/
 
 * {
   border: none;
@@ -14,20 +52,27 @@ window#waybar {
 }
 
 tooltip {
-  background: black;
+  background-color: black;
   border-radius: 8px;
-  border-width: 2px;
-  border-style: solid;
-  border-color: @pine;
+  border: 2px solid @highlightHigh;
 }
 
 #workspaces button {
   padding: 5px;
-  color: @highlightMed;
+  color: @muted;
   margin-right: 5px;
 }
 
 #workspaces button.active {
+  color: @rose;
+}
+
+#workspaces button.empty {
+  border-radius: 8px;
+  color: @highlightMed;
+}
+
+#workspaces button.empty.active {
   color: @rose;
 }
 
@@ -37,7 +82,6 @@ tooltip {
   border-radius: 10px;
 }
 
-/* https://google.com */
 #workspaces button.urgent {
   color: black;
   background: @rose;
@@ -45,12 +89,20 @@ tooltip {
 }
 
 #workspaces button:hover {
+  border-radius: 8px;
+  background: @surface;
+  color: @text;
+}
+
+#workspaces button.active:hover {
+  border-radius: 8px;
   background: @surface;
   color: @rose;
-  border-radius: 8px;
 }
 
 #custom-power_profile,
+#custom-spotify,
+#custom-os,
 #window,
 #clock,
 #battery,
@@ -67,10 +119,8 @@ tooltip {
   font-family: "JetBrainsMono NL ExtraBold";
   background: black;
   padding: 0px 5px;
-  /* margin: 3px 0px; */
   margin-top: 10px;
-  /*border: 2px solid black;*/
-  border: 2px solid @pine;
+  border: 2px solid @base;
 }
 
 #cpu {
@@ -112,7 +162,7 @@ tooltip {
   margin-right: 15px;
   padding-left: 0px;
   margin-left: 0px;
-  font-family: "JetBrainsMono NL ExtraBold Mono";
+  font-family: "JetBrainsMono NL ExtraBold";
 }
 
 #tray {
@@ -143,7 +193,7 @@ tooltip {
   margin-right: 10px;
   padding-right: 10px;
   padding-left: 10px;
-  font-family: "0xProto Nerd Font";
+  font-family: "0xProto Mono";
 }
 
 window#waybar.empty {
@@ -157,37 +207,22 @@ window#waybar.empty #window {
   background-color: transparent;
 }
 
-#custom-arch{
+#custom-os {
   margin-left: 15px;
-  margin-top: 10px;
   border-radius: 10px 0 0 10px;
-  /* 
-   * border-radius: 10px; 
-   * padding-right: 10px;
-   * */
-  color: @foam;
+  color: @rose;
   padding-left:  14px;
-  background: black;
-  border: 2px solid @pine;
   border-right: 0px;
   margin-right: 0px;
-  font-family: "0xProto Nerd Font";
+  font-family: "Symbols Nerd Font";
 }
 
 #clock {
-  /* 
-   * color: @text; 
-   * */
   border-radius: 0 10px 10px 0;
   color: @text;
   padding-left: 5px;
   padding-right: 10px;
   background: black;
-  /* 
-   * border-radius: 10px;
-   * margin-left: 9px;
-   * */
-  border: 2px solid @pine;
   border-left: 0px;
 }
 
@@ -214,33 +249,10 @@ window#waybar.empty #window {
   border-right: 0px;
 }
 
-#keyboard-state {
-  padding: 0px;
-  margin: 0px;
-  border-radius: 0px;
-  border: 0px;
-  background: transparent;
-}
-
-#keyboard-state label.capslock.locked{
-  background: black;
-  margin-top: 10px;
-  border: 2px solid @pine;
-  padding-right: 10px;
-  padding-left: 10px;
-  font-family: "0xProto Nerd Font";
-  margin-right: 10px;
-  border-radius: 10px;
-  color: @text;
-}
-
 #custom-spotify {
-  margin-top: 10px;
   border-radius: 10px;
   color: @foam;
-  background: black;
   padding-left:  10px;
   padding-right: 10px;
-  border: 2px solid @pine;
-  font-family: "0xProto Nerd Font";
+  font-family: "JetBrainsMono NL ExtraBold";
 }

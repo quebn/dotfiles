@@ -3,16 +3,18 @@ Android*Open*Source*Project/
 Thunar/
 Electron/
 dconf/
+composer/
+unity3d/
 discord/
 flutter/
-#gtk-3.0/
-#gtk-4.0/
+alacritty/
 nvim/
 pulse/
 libreoffice/
 spotify/
 systemd/
 vlc/
+obs-studio/
 xfce4/
 xsettingsd/
 nwg-look/
@@ -22,6 +24,7 @@ chromium/
 google-chrome/
 go/
 StardewValley/
+tmux/plugins/
 QtProject.conf
 
 # Files

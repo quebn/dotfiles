@@ -1,0 +1,64 @@
+#  FONT
+
+# NOTE: try this on future updates. currently terrible at v1.
+# 0xProto
+# font-family = "0xProto"
+# font-style = "Regular"
+# font-style-italic = "Italic"
+# font-style-bold = "Bold"
+# font-style-bold-italic = "ExtraBold Italic"
+
+# JetBrains Mono
+font-family = "JetBrains Mono"
+font-style = "Bold"
+font-style-italic = "Bold Italic"
+font-style-bold = "ExtraBold"
+font-style-bold-italic = "ExtraBold Italic"
+font-feature = -calt
+
+# IBM Plex
+# font-family = "IBM Plex Mono"
+# font-style = "SemiBold"
+# font-style-italic = "SemiBold Italic"
+# font-style-bold = "Bold"
+# font-style-bold-italic = "Bold Italic"
+adjust-cell-height = -15%
+
+font-synthetic-style = true
+
+font-size = 12
+font-thicken = true
+adjust-box-thickness = 20%
+adjust-cursor-thickness = 2
+adjust-underline-thickness = 20%
+adjust-cell-width = 1
+freetype-load-flags = true
+font-codepoint-map = U+F5D0-U+F60D="Flog Symbols"
+
+# WINDOW
+window-decoration = false
+window-padding-x = 0
+window-padding-y = 0
+window-padding-color = background
+window-padding-balance = true
+# window-vsync = true
+
+gtk-adwaita = false
+shell-integration-features = no-cursor,sudo,title
+resize-overlay = never
+grapheme-width-method = legacy
+gtk-single-instance = true
+
+# MOUSE
+mouse-hide-while-typing = true
+
+# COlORS
+theme = rose-pine
+background = #000000
+background-opacity = .8
+palette = 2=#31748f
+palette = 10=#31748f
+palette = 4=#9ccfd8
+palette = 12=#9ccfd8
+selection-background = #403d52
+cursor-color = #e0def4

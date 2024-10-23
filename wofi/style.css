@@ -2,25 +2,20 @@ window {
     margin: 0px;
     background-color: black;
     border-radius: 0px;
-    border: 2px solid #31748f;
+    border: 2px solid #524f67;
     color: #e0def4;
-    font-family: '0xProto Nerd Font';
+    font-family: "0xProto";
     font-size: 20px;
     border-radius: 8px;
-    /* 
-        opacity: 0.85; 
-     * */
 }
 
 #input {
     margin: 5px;
-    border-radius: 0px;
     border: 2px solid #31748f;
-    border-radius: 0px;
-    color: #e0def4;
+    border-radius: 8px;
+    color: #ebbcba;
     background-color: #191724;
     opacity: 1; 
-    border-radius: 0px;
 }
 
 #inner-box {
@@ -46,20 +41,21 @@ window {
     margin: 5px;
     border: none;
     color: #e0def4;
-} 
+}
 
 #entry:selected {
-    background-color: #ebbcba;
+    background-color: #403d52;
     opacity: 1;
-    color: #232136;
-    border-radius: 3px;;
+    color: #e0def4;
+    border-radius: 8px;;
+    font-weight: bold;
     outline: none;
 }
 
 #entry:selected * {
-    background-color: #ebbcba;
+    background-color: #403d52;
     opacity: 1;
-    color: #232136;
-    border-radius: 0px;;
+    color: #e0def4;
+    border-radius: 8px;;
     outline: none;
 }

@@ -7,33 +7,34 @@
   "gtk-layer-shell": true,
   "height": 45,
   "modules-left": [
-    "custom/arch",  
-    "clock", 
-    "tray",
-    "hyprland/workspaces"
+    "custom/os",
+    "clock",
+    "hyprland/workspaces",
+    "tray"
   ],
-  "modules-center": ["hyprland/window", "custom/spotify"],
+  "modules-center": [
+    "custom/spotify"
+    //"hyprland/window",
+  ],
   "modules-right": [
-    //"keyboard-state",
-    "network",
+    "network", // NOTE: disable because network now shows when hyprland is launched with uwsm.
+    //"disk", // NOTE: use disk now instead of network.
     "temperature",
     "memory",
-    //"disk",
     "cpu",
     "battery",
     "pulseaudio",
     "backlight"
   ],
   
-  // TODO: Polish this and bring it back
   "hyprland/window": {
     "format": "{initialTitle}",
     "separate-outputs":true,
     "max-length": 30,
     "rewrite": {
       "Mozilla Firefox": " Mozilla Firefox",
-      "kitty": " Terminal - Kitty",
-      "(.*) - Thunar": " Thunar",
+      "kitty": " Terminal: Kitty",
+      "(.*) - Thunar": "  Thunar",
       "(.*) - Google Chrome": " Google Chrome",
       "Spotify Premium": "󰓇 Spotify",
       "Zen Browser": " Zen Firefox",
@@ -47,18 +48,9 @@
     "disable-scroll": true,
     "all-outputs": true,
     "on-click": "activate",
-    "format": "{icon}",
+    "format": "<small>{icon}</small>",
     "format-icons": {
-      "1":  "",
-      "2":  "",
-      "3":  "",
-      "4":  "",
-      "5":  "",
-      "6":  "",
-      "7":  "",
-      "8":  "",
-      "9":  "",
-      "10": ""
+      "default": ""
     },
     "persistent-workspaces": {
       "1":  [],
@@ -76,7 +68,7 @@
 
   "clock": {
     "interval": 60,
-    "format": "<big>󱑂</big> {0:%R} • {0:%A, %m/%d}",
+    "format": "󱑂 {0:%R} • {0:%A, %m/%d}",
     "timezone": "Asia/Manila",
     "tooltip-format": "<big>{:%z %Z}</big>\n<tt>{calendar}</tt>",
     "calendar": {
@@ -100,7 +92,7 @@
       "critical": 20
     },
     "format": "{icon} {capacity}%",
-    "format-charging": "󰂄 {capacity}%",
+    "format-charging": " {capacity}%",
     "format-plugged": " {capacity}%",
     "format-alt": "{time} {icon}",
     "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󱈑"]
@@ -110,7 +102,7 @@
   "pulseaudio": {
     "format": "{icon} {volume}",
     "tooltip": false,
-    "format-muted": "  Muted",
+    "format-muted": " M",
     "min-length":6,
     "scroll-step": 5,
     "format-icons": {
@@ -127,7 +119,7 @@
   "pulseaudio#microphone": {
     "format": "{format_source}",
     "format-source": " {volume}%",
-    "format-source-muted": "  Muted",
+    "format-source-muted": " Muted",
     "scroll-step": 5
   },
 
@@ -140,7 +132,7 @@
 
   "cpu": {
     "interval": 15,
-    "format": "<big> </big> {usage}%",
+    "format": " {usage}%",
     "tooltip": true,
     //"tooltip-format": "CPU - {usage} usage",
     "on-click": "kitty --start-as=fullscreen --title btop sh -c 'btop'"
@@ -148,7 +140,7 @@
 
   "memory": {
     "interval": 30,
-    "format": "<big> </big> {}%",
+    "format": " {}%",
     "tooltip": true,
     "tooltip-format": "Memory - {used:0.1f}GB used",
     "on-click": "kitty --start-as=fullscreen --title btop sh -c 'btop'"
@@ -156,10 +148,9 @@
 
   "disk": {
     "interval": 30,
-    "format": "<big></big> {used}",
+    "format": "󰑹 {percentage_free}%",
     "unit": "GB",
-    "tooltip": true,
-    "tooltip-format": "{free} Available Free Storage"
+    "tooltip-format": "{free} Available Storage \n{used} Storage Used"
   },
 
   "network": {
@@ -181,9 +172,10 @@
     //"on-click-right": "blueman-manager"
   },
 
-  "custom/arch": {
-    "format":"<big>󰣇 </big>",
-    "tooltip": false
+  "custom/os": {
+    "format":"󰣇 ",
+    "tooltip": false,
+    "on-click": "wofi"
   },
 
   "custom/spotify": {
@@ -192,21 +184,11 @@
     "format": "{}",
     "return-type": "json",
     "escape": true,
-    "max-length": 30,
+    "max-length": 40,
     "on-click": "playerctl -p spotify play-pause",
     "on-click-right": "killall spotify",
     "smooth-scrolling-threshold": 10, // This value was tested using a trackpad, it should be lowered if using a mouse.
     "on-scroll-up": "playerctl -p spotify next",
     "on-scroll-down": "playerctl -p spotify previous"
-  },
-
-  "keyboard-state": {
-    "capslock": true,
-    "format": "{icon}",
-    "format-icons": {
-      "locked": " CAPS",
-      //"unlocked": " "
-      "unlocked": ""
-    } 
   }
 }

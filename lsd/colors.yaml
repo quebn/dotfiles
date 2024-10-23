@@ -1,28 +1,28 @@
-user: 3
-group: 6
+user: dark_red
+group: yellow
 permission:
-  read: 2
-  write: 3
-  exec: 1
-  exec-sticky: 5
-  no-access: 8
-  octal: 6
-  acl: 4
-  context: 4
+  read: green
+  write: yellow
+  exec: red
+  exec-sticky: magenta
+  no-access: dark_grey
+  octal: cyan
+  acl: blue
+  context: blue
 date:
-  hour-old: 2
-  day-old: 2
-  older: 2
+  hour-old: green
+  day-old: dark_grey
+  older: dark_grey
 size:
-  none: 8
-  small: 7
-  medium: 3 
-  large: 1
+  none: dark_grey
+  small: cyan
+  medium: yellow
+  large: red
 inode:
   valid: 2
   invalid: 9
 links:
-  valid: 13
+  valid: magenta
   invalid: 1
 tree-edge: 7
 git-status:
