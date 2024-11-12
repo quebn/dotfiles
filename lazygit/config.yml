@@ -3,6 +3,7 @@ gui:
     selectedLineBgColor:
       - black
   nerdFontsVersion: "3"
+  statusPanelView: allBranchesLog
   spinner:
     frames:
     - "⣼"
@@ -13,3 +14,8 @@ gui:
     - "⣏"
     - "⣧"
     - "⣶"
+
+git:
+  paging:
+    colorArg: always
+    pager: "delta --dark --paging=never --line-numbers --hyperlinks"

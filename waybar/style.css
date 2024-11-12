@@ -5,6 +5,7 @@
   border-radius: 0;
   font-weight: bold;
   font-size: 1rem;
+  font-family: "JetBrainsMono NFM ExtraBold";
   min-height: 0;
 }
 
@@ -45,9 +46,9 @@ tooltip {
 }
 
 #workspaces button:hover {
-  background: @surface;
-  color: @rose;
   border-radius: 8px;
+  background: @surface;
+  color: @text;
 }
 
 #custom-power_profile,

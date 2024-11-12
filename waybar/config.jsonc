@@ -31,12 +31,12 @@
     "separate-outputs":true,
     "max-length": 30,
     "rewrite": {
-      "Mozilla Firefox": " Mozilla Firefox",
-      "kitty": " Terminal - Kitty",
+      "Mozilla Firefox": "  Mozilla Firefox",
+      "kitty": "<big> </big>Terminal - Kitty",
       "(.*) - Thunar": " Thunar",
       "(.*) - Google Chrome": " Google Chrome",
       "Spotify Premium": "󰓇 Spotify",
-      "Zen Browser": " Zen Firefox",
+      "Zen Browser": "  Zen Firefox",
       "Steam Big Picture Mode": "󰓓 Steam",
       "Steam": "󰓓 Steam",
       "Discord": "  Discord"
@@ -47,9 +47,9 @@
     "disable-scroll": true,
     "all-outputs": true,
     "on-click": "activate",
-    "format": "{icon}",
+    "format": "<small>{icon}</small>",
     "format-icons": {
-      "1":  "",
+      "1":  "",
       "2":  "",
       "3":  "",
       "4":  "",
@@ -76,7 +76,7 @@
 
   "clock": {
     "interval": 60,
-    "format": "<big>󱑂</big> {0:%R} • {0:%A, %m/%d}",
+    "format": "󱑂 {0:%R} • {0:%A, %m/%d}",
     "timezone": "Asia/Manila",
     "tooltip-format": "<big>{:%z %Z}</big>\n<tt>{calendar}</tt>",
     "calendar": {
@@ -140,7 +140,7 @@
 
   "cpu": {
     "interval": 15,
-    "format": "<big> </big> {usage}%",
+    "format": " {usage}%",
     "tooltip": true,
     //"tooltip-format": "CPU - {usage} usage",
     "on-click": "kitty --start-as=fullscreen --title btop sh -c 'btop'"
@@ -148,7 +148,7 @@
 
   "memory": {
     "interval": 30,
-    "format": "<big> </big> {}%",
+    "format": " {}%",
     "tooltip": true,
     "tooltip-format": "Memory - {used:0.1f}GB used",
     "on-click": "kitty --start-as=fullscreen --title btop sh -c 'btop'"
@@ -182,7 +182,7 @@
   },
 
   "custom/arch": {
-    "format":"<big>󰣇 </big>",
+    "format":"󰣇 ",
     "tooltip": false
   },
 
