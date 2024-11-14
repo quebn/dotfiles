@@ -14,7 +14,6 @@
   ],
   "modules-center": ["hyprland/window", "custom/spotify"],
   "modules-right": [
-    //"keyboard-state",
     "network",
     "temperature",
     "memory",
@@ -31,12 +30,12 @@
     "separate-outputs":true,
     "max-length": 30,
     "rewrite": {
-      "Mozilla Firefox": "  Mozilla Firefox",
-      "kitty": "<big> </big>Terminal - Kitty",
+      "Mozilla Firefox": " Mozilla Firefox",
+      "kitty": " Terminal: Kitty",
       "(.*) - Thunar": "  Thunar",
       "(.*) - Google Chrome": " Google Chrome",
       "Spotify Premium": "󰓇 Spotify",
-      "Zen Browser": "  Zen Firefox",
+      "Zen Browser": " Zen Firefox",
       "Steam Big Picture Mode": "󰓓 Steam",
       "Steam": "󰓓 Steam",
       "Discord": "  Discord"
@@ -198,15 +197,5 @@
     "smooth-scrolling-threshold": 10, // This value was tested using a trackpad, it should be lowered if using a mouse.
     "on-scroll-up": "playerctl -p spotify next",
     "on-scroll-down": "playerctl -p spotify previous"
-  },
-
-  "keyboard-state": {
-    "capslock": true,
-    "format": "{icon}",
-    "format-icons": {
-      "locked": " CAPS",
-      //"unlocked": " "
-      "unlocked": ""
-    } 
   }
 }
