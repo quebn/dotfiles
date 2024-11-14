@@ -33,7 +33,7 @@
     "rewrite": {
       "Mozilla Firefox": "  Mozilla Firefox",
       "kitty": "<big> </big>Terminal - Kitty",
-      "(.*) - Thunar": " Thunar",
+      "(.*) - Thunar": "  Thunar",
       "(.*) - Google Chrome": " Google Chrome",
       "Spotify Premium": "󰓇 Spotify",
       "Zen Browser": "  Zen Firefox",
