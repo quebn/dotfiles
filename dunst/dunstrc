@@ -3,7 +3,7 @@
     width = 400
 
     # offset = 5x5
-    offset = 25x20
+    offset = 25x35
 
     # Scale factor. It is auto-detected if value is 0.
     scale = 0

@@ -109,7 +109,7 @@
   "pulseaudio": {
     "format": "{icon} {volume}",
     "tooltip": false,
-    "format-muted": "  Muted",
+    "format-muted": " M",
     "min-length":6,
     "scroll-step": 5,
     "format-icons": {
@@ -126,7 +126,7 @@
   "pulseaudio#microphone": {
     "format": "{format_source}",
     "format-source": " {volume}%",
-    "format-source-muted": "  Muted",
+    "format-source-muted": " Muted",
     "scroll-step": 5
   },
 
