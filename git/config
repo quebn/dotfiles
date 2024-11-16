@@ -2,6 +2,11 @@
 	name = Quebn
 	email = gonzalesquebin@gmail.com
 
+[init]
+    defaultBranch = main
+[merge]
+    conflictStyle = diff3
+
 [interactive]
     diffFilter = delta --color-only
 
