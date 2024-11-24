@@ -2,6 +2,8 @@ gui:
   theme:
     selectedLineBgColor:
       - black
+    inactiveBorderColor:
+      - "#6e6a86"
   nerdFontsVersion: "3"
   statusPanelView: allBranchesLog
   spinner:

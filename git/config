@@ -1,3 +1,6 @@
+[core]
+    pager = delta
+
 [user]
 	name = Quebn
 	email = gonzalesquebin@gmail.com
@@ -6,7 +9,7 @@
     defaultBranch = main
 
 [merge]
-    conflictStyle = diff3
+    conflictStyle = zdiff3
 
 [interactive]
     diffFilter = delta --color-only

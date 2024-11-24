@@ -12,7 +12,10 @@
     "tray",
     "hyprland/workspaces"
   ],
-  "modules-center": ["hyprland/window", "custom/spotify"],
+  "modules-center": [
+    //"hyprland/window",
+    "custom/spotify"
+  ],
   "modules-right": [
     "network",
     "temperature",
@@ -24,7 +27,6 @@
     "backlight"
   ],
   
-  // TODO: Polish this and bring it back
   "hyprland/window": {
     "format": "{initialTitle}",
     "separate-outputs":true,
@@ -191,7 +193,7 @@
     "format": "{}",
     "return-type": "json",
     "escape": true,
-    "max-length": 30,
+    "max-length": 40,
     "on-click": "playerctl -p spotify play-pause",
     "on-click-right": "killall spotify",
     "smooth-scrolling-threshold": 10, // This value was tested using a trackpad, it should be lowered if using a mouse.
