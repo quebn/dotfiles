@@ -184,7 +184,8 @@
 
   "custom/arch": {
     "format":"󰣇 ",
-    "tooltip": false
+    "tooltip": false,
+    "on-click": "wofi"
   },
 
   "custom/spotify": {
