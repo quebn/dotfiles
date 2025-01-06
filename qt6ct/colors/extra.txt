@@ -1,0 +1,4 @@
+[ColorScheme]
+active_colors=  #cdd6f4,     #45475a, #585b70, #313244, #11111b, #181825, #cdd6f4,     #cdd6f4,  #cdd6f4,     #1e1e2e, #181825, #11111b, #89b4fa, #11111b,    #89b4fa,     #b4befe,   #181825, #ffffff, #1e1e2e, #cdd6f4, #6c7086
+inactive_colors=#7f849c, #1e1e2e,     #45475a, #313244, #11111b, #181825, #7f849c, #cdd6f4,  #7f849c, #1e1e2e, #181825, #11111b, #313244,              #7f849c, #7f849c, #7f849c,   #181825, #ffffff, #1e1e2e, #cdd6f4, #6c7086
+disabled_colors=#6c7086, #313244, #45475a, #313244, #11111b, #181825, #6c7086, #cdd6f4,  #6c7086, #1e1e2e, #181825, #11111b, #181825,                #6c7086, #a9bcdb,   #c7cceb, #181825, #ffffff, #1e1e2e, #cdd6f4, #6c7086

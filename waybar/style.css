@@ -53,8 +53,8 @@ window#waybar {
 
 tooltip {
   background-color: black;
-  border-radius: 8px;
-  border: 2px solid @highlightHigh;
+  border: 2px solid @highlightLow ;
+  /*border-radius: 8px;*/
 }
 
 #workspaces button {
