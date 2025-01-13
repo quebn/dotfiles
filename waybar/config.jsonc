@@ -186,7 +186,7 @@
     "escape": true,
     "max-length": 40,
     "on-click": "playerctl -p spotify play-pause",
-    "on-click-right": "killall spotify",
+    //"on-click-right": "killall spotify", // NOTE: disable because exit should be done in tray.
     "smooth-scrolling-threshold": 10, // This value was tested using a trackpad, it should be lowered if using a mouse.
     "on-scroll-up": "playerctl -p spotify next",
     "on-scroll-down": "playerctl -p spotify previous"

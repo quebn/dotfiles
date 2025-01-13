@@ -1,5 +1,6 @@
 [core]
     pager = delta
+    editor = nvim
 
 [user]
 	name = Quebn
