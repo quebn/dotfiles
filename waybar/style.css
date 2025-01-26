@@ -222,7 +222,6 @@ window#waybar.empty #window {
   color: @text;
   padding-left: 5px;
   padding-right: 10px;
-  background: black;
   border-left: 0px;
 }
 
