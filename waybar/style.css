@@ -6,6 +6,7 @@
 @define-color subtle          #908caa;
 @define-color text            #e0def4;
 
+@define-color night           #000000;
 @define-color love            #eb6f92;
 @define-color gold            #f6c177;
 @define-color rose            #ebbcba;
@@ -47,12 +48,12 @@
 }
 
 window#waybar {
-  background: rgba(0, 0, 0, 0);
+  background: transparent;
   color: @text;
 }
 
 tooltip {
-  background-color: black;
+  background-color: @night;
   border: 2px solid @highlightLow ;
   /*border-radius: 8px;*/
 }
@@ -83,7 +84,7 @@ tooltip {
 }
 
 #workspaces button.urgent {
-  color: black;
+  color: @night;
   background: @rose;
   border-radius: 8px;
 }
@@ -117,7 +118,7 @@ tooltip {
 #disk,
 #backlight {
   font-family: "JetBrainsMono NL ExtraBold";
-  background: black;
+  background: @night;
   padding: 0px 5px;
   margin-top: 10px;
   border: 2px solid @base;
@@ -174,7 +175,6 @@ tooltip {
 }
 
 #workspaces {
-  background: black;
   border-radius: 10px;
   margin-left: 10px;
   padding-right: 0px;

@@ -13,8 +13,8 @@
     "tray"
   ],
   "modules-center": [
-    "custom/spotify"
     //"hyprland/window",
+    "custom/spotify"
   ],
   "modules-right": [
     "network", // NOTE: disable because network now shows when hyprland is launched with uwsm.
@@ -28,20 +28,20 @@
   ],
   
   "hyprland/window": {
-    "format": "{initialTitle}",
+    "format": "{title}",
     "separate-outputs":true,
-    "max-length": 30,
-    "rewrite": {
-      "Mozilla Firefox": " Mozilla Firefox",
-      "kitty": " Terminal: Kitty",
-      "(.*) - Thunar": "  Thunar",
-      "(.*) - Google Chrome": " Google Chrome",
-      "Spotify Premium": "󰓇 Spotify",
-      "Zen Browser": " Zen Firefox",
-      "Steam Big Picture Mode": "󰓓 Steam",
-      "Steam": "󰓓 Steam",
-      "Discord": "  Discord"
-    }
+    "max-length": 30
+    //"rewrite": {
+    //  "Mozilla Firefox": " Mozilla Firefox",
+    //  "kitty": " Terminal: Kitty",
+    //  "(.*) - Thunar": "  Thunar",
+    //  "(.*) - Google Chrome": " Google Chrome",
+    //  "Spotify Premium": "󰓇 Spotify",
+    //  "Zen Browser": " Zen Firefox",
+    //  "Steam Big Picture Mode": "󰓓 Steam",
+    //  "Steam": "󰓓 Steam",
+    //  "Discord": "  Discord"
+    //}
   },
 
   "hyprland/workspaces": {
