@@ -21,7 +21,7 @@ nwg-look/
 yay/
 bluetuith/
 chromium/
-google-chrome/
+google-chrome/*
 go/
 StardewValley/
 tmux/plugins/
@@ -36,4 +36,8 @@ zen/
 *.list
 spotify-launcher.conf
 kitty/unicode-input-favorites.conf
+
+# Whitelist
+!google-chrome/themes
+
 
