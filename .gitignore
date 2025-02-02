@@ -34,6 +34,7 @@ zen/
 *.locale
 *.log
 *.list
+google-chrome/themes/*/*.pak
 spotify-launcher.conf
 kitty/unicode-input-favorites.conf
 

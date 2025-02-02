@@ -4,9 +4,6 @@
   "manifest_version": 3,
 
   "theme": {
-    "images": {
-      "theme_ntp_background": "images/city-rain-alt.jpg"
-    },
     "colors": {
       "theme_frame": [0, 0, 0],
       "theme_toolbar": [0, 0, 0],
