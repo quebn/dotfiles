@@ -18,27 +18,6 @@
 @define-color highlightMed    #403d52;
 @define-color highlightHigh   #524f67;
 
-/*:root {*/
-/*  --base:            #191724;*/
-/*  --surface:         #1f1d2e;*/
-/*  --overlay:         #26233a;*/
-/**/
-/*  --muted:           #6e6a86;*/
-/*  --subtle:          #908caa;*/
-/*  --text:            #e0def4;*/
-/**/
-/*  --love:            #eb6f92;*/
-/*  --gold:            #f6c177;*/
-/*  --rose:            #ebbcba;*/
-/*  --pine:            #31748f;*/
-/*  --foam:            #9ccfd8;*/
-/*  --iris:            #c4a7e7;*/
-/**/
-/*  --highlightLow:    #21202e;*/
-/*  --highlightMed:   #403d52;*/
-/*  --highlightHigh:   #524f67;*/
-/*}*/
-
 * {
   border: none;
   border-radius: 0;
@@ -60,12 +39,12 @@ tooltip {
 
 #workspaces button {
   padding: 5px;
-  color: @muted;
+  color: @pine;
   margin-right: 5px;
 }
 
 #workspaces button.active {
-  color: @rose;
+  color: @foam;
 }
 
 #workspaces button.empty {
@@ -74,7 +53,7 @@ tooltip {
 }
 
 #workspaces button.empty.active {
-  color: @rose;
+  color: @foam;
 }
 
 #workspaces button.focused {
@@ -85,20 +64,20 @@ tooltip {
 
 #workspaces button.urgent {
   color: @night;
-  background: @rose;
+  background: @pine;
   border-radius: 8px;
 }
 
 #workspaces button:hover {
   border-radius: 8px;
-  background: @surface;
-  color: @text;
+  background: @overlay;
+  color: @pine;
 }
 
 #workspaces button.active:hover {
   border-radius: 8px;
-  background: @surface;
-  color: @rose;
+  background: @overlay;
+  color: @foam;
 }
 
 #custom-power_profile,
