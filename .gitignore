@@ -1,4 +1,6 @@
 # Directories
+.*/
+arduino/
 Android*Open*Source*Project/
 Thunar/
 Electron/
@@ -8,7 +10,6 @@ unity3d/
 discord/
 flutter/
 alacritty/
-nvim/
 pulse/
 libreoffice/
 spotify/
@@ -37,6 +38,9 @@ zen/
 google-chrome/themes/*/*.pak
 spotify-launcher.conf
 kitty/unicode-input-favorites.conf
+
+#symlinks
+nvim
 
 # Whitelist
 !google-chrome/themes
