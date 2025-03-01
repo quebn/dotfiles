@@ -24,6 +24,7 @@
   font-weight: bold;
   font-size: 1rem;
   min-height: 0;
+  font-family: "Symbols Nerd Font", "JetBrainsMono NL ExtraBold";
 }
 
 window#waybar {
@@ -31,10 +32,16 @@ window#waybar {
   color: @text;
 }
 
+
 tooltip {
+  box-shadow: none;
   background-color: @night;
-  border: 2px solid @highlightLow ;
-  /*border-radius: 8px;*/
+  border: 2px solid @highlightLow;
+  /* border-radius: 8px; */
+}
+
+#workspaces * {
+  font-family: "JetBrainsMono NL ExtraBold";
 }
 
 #workspaces button {
@@ -96,11 +103,14 @@ tooltip {
 #cpu,
 #disk,
 #backlight {
-  font-family: "JetBrainsMono NL ExtraBold";
   background: @night;
   padding: 0px 5px;
   margin-top: 10px;
   border: 2px solid @base;
+}
+
+#temperature {
+  font-family: "JetBrainsMono NL ExtraBold";
 }
 
 #cpu {
@@ -197,6 +207,7 @@ window#waybar.empty #window {
 }
 
 #clock {
+  font-family: "JetBrainsMono NL ExtraBold";
   border-radius: 0 10px 10px 0;
   color: @text;
   padding-left: 5px;
@@ -214,6 +225,7 @@ window#waybar.empty #window {
 
 
 #battery {
+  font-family: "JetBrainsMono NL ExtraBold";
   color: @rose;
   padding-right: 10px;
   border-radius: 0 10px 10px 0;

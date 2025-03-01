@@ -3,7 +3,7 @@ My dotfiles for linux, heavily themed around rose-pine.
 
 > [!CAUTION]
 > This repository has some config and scripts that requires additional configuration files not available publicly.\
-> Do not clone if you do not know what you are doing. 
+> Clone with caution.
 
 ## What I use ATM.
 - Tiling Window Manager: [Hyprland](https://hyprland.org/)
