@@ -49,3 +49,5 @@
     hunk-header-file-style = "yellow"
     hunk-header-line-number-style = "yellow"
     hunk-header-style = file line-number "yellow"
+[column]
+	ui = auto

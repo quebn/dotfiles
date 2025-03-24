@@ -3,6 +3,7 @@
 arduino/
 Android*Open*Source*Project/
 Thunar/
+Element/
 Electron/
 dconf/
 composer/
@@ -29,6 +30,7 @@ tmux/plugins/
 skypeforlinux/
 QtProject.conf
 zen/
+cava/shaders/
 
 # Files
 *.dirs
