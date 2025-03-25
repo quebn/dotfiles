@@ -128,7 +128,8 @@
     "thermal-zone": 1,
     "format": " {temperatureC}°C",
     "critical-threshold": 80,
-    "format-critical": " {temperatureC}°C"
+    "format-critical": " {temperatureC}°C",
+    "tooltip-format": "TEMP: {temperatureC}°C"
   },
 
   "cpu": {
@@ -157,10 +158,10 @@
   "network": {
     "format-wifi": " {signalStrength}%",
     "format-ethernet": "{ipaddr}/{cidr}  ",
-    "tooltip-format": "<span color='#eb6f92'>{essid}</span>:  <span color='#9ccfd8'><big></big> {bandwidthUpBytes}</span>  •  <span color='#c4a7e7'><big></big> {bandwidthDownBytes}</span>",
+    "tooltip-format": "<span color='#eb6f92'>{essid}</span>: <span color='#9ccfd8'><big></big> {bandwidthUpBytes}</span> • <span color='#c4a7e7'><big></big> {bandwidthDownBytes}</span>",
     "format-linked": "{ifname} (No IP) 󱂇 ",
-    "format-disconnected": "<big>󰤮 </big>0%"
-    //"on-click-right": "~/.config/rofi/bin/network"
+    "format-disconnected": "<big>󰤮 </big>0%",
+    "on-click": "nm-connection-editor"
   },
 
   "bluetooth": {

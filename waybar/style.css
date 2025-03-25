@@ -34,10 +34,10 @@ window#waybar {
 
 
 tooltip {
-  box-shadow: none;
   background-color: @night;
-  border: 2px solid @highlightLow;
-  /* border-radius: 8px; */
+  border: 2px solid @highlightHigh;
+  padding: 8px;
+  border-radius: 6px;
 }
 
 #workspaces * {
@@ -45,7 +45,7 @@ tooltip {
 }
 
 #workspaces button {
-  padding: 5px;
+  padding: 7px;
   color: @pine;
   margin-right: 5px;
 }
