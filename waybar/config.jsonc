@@ -97,7 +97,7 @@
     "format-plugged": " {capacity}%",
     "format-alt": "{time} {icon}",
     "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󱈑"]
-    //"format-icons": ["󰂎","󱊡","󱊢","󱊣"]
+    // "format-icons": ["󰂎","󱊡","󱊢","󱊣"]
   },
 
   "pulseaudio": {
@@ -156,12 +156,14 @@
   },
 
   "network": {
-    "format-wifi": " {signalStrength}%",
+    "format-wifi": "{icon} {signalStrength}%",
     "format-ethernet": "{ipaddr}/{cidr}  ",
     "tooltip-format": "<span color='#eb6f92'>{essid}</span>: <span color='#9ccfd8'><big></big> {bandwidthUpBytes}</span> • <span color='#c4a7e7'><big></big> {bandwidthDownBytes}</span>",
-    "format-linked": "{ifname} (No IP) 󱂇 ",
-    "format-disconnected": "<big>󰤮 </big>0%",
-    "on-click": "nm-connection-editor"
+    "format-linked": "{ifname} (No IP) 󰲝 ",
+    "format-disconnected": "󰤮 0%",
+    "on-click": "nm-connection-editor",
+    "format-icons": [ "󰤯", "󰤟", "󰤢", "󰤥", "󰤨" ]
+    // "format-icons": [ "󰣾", "󰣴", "󰣶", "󰣸", "󰣺" ]
   },
 
   "bluetooth": {

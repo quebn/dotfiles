@@ -40,8 +40,16 @@ tooltip {
   border-radius: 6px;
 }
 
+#workspaces {
+  background: @night;
+  padding: 0px;
+  margin-top: 10px;
+  border: 2px solid @base;
+}
+
 #workspaces * {
   font-family: "JetBrainsMono NL ExtraBold";
+  box-shadow: none;
 }
 
 #workspaces button {
@@ -64,27 +72,18 @@ tooltip {
 }
 
 #workspaces button.focused {
-  color: @subtle;
-  background: @love;
-  border-radius: 10px;
+  color: @love;
+  border-radius: 8px;
 }
 
 #workspaces button.urgent {
-  color: @night;
-  background: @pine;
-  border-radius: 8px;
+  color: @gold;
 }
 
 #workspaces button:hover {
   border-radius: 8px;
   background: @overlay;
-  color: @pine;
-}
-
-#workspaces button.active:hover {
-  border-radius: 8px;
-  background: @overlay;
-  color: @foam;
+  /* color: @foam; */
 }
 
 #custom-power_profile,
@@ -97,7 +96,6 @@ tooltip {
 #network,
 #bluetooth,
 #temperature,
-#workspaces,
 #tray,
 #memory,
 #cpu,
@@ -230,6 +228,7 @@ window#waybar.empty #window {
   padding-right: 10px;
   border-radius: 0 10px 10px 0;
   margin-right: 10px;
+  padding-left: 6px;
   border-left: 0px;
 }
 
