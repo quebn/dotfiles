@@ -102,18 +102,19 @@
 
   "pulseaudio": {
     "format": "{icon} {volume}",
-    "tooltip": false,
-    "format-muted": " M",
-    "min-length":6,
+    "format-muted": "  0",
+    "format-bluetooth": "󱡒  {volume}",
+    "min-length": 6,
     "scroll-step": 5,
     "format-icons": {
-      "headphone": "<big></big>",
-      "hands-free": "<big></big>",
-      "headset": "<big></big>",
+      "phone-muted": " ",
+      "headphone": " ",
+      "hands-free": "󱡒 ",
+      "headset": " ",
       "phone": " ",
       "portable": " ",
       "car": " ",
-      "default": ["<small>󰕿</small>", "<big>󰖀</big>", "<big>󰕾</big>"]
+      "default": [" ", " "]
     }
   },
 

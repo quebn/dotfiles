@@ -1,5 +1,5 @@
 [global]
-    height = (150 , 400)
+    height = (80, 400)
     width = 400
 
     # offset = 5x5
