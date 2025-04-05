@@ -159,6 +159,7 @@ tooltip {
   padding-right: 10px;
   margin-left: 10px;
   margin-right: 0px;
+  /* transition: all 200ms; */
 }
 
 #workspaces {

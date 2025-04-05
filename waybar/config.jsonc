@@ -180,7 +180,7 @@
   "custom/os": {
     "format":"󰣇 ",
     "tooltip": false,
-    "on-click": "wofi"
+    "on-click": "rofi -show drun" // TODO: set this to powerprofile
   },
 
   "custom/spotify": {
