@@ -1,13 +1,14 @@
 /*****----- Configuration -----*****/
 * {
-    background:     #000000FF;
+    background:     #000000E6;
     background-alt: #26233AFF;
     foreground:     #E0DEF4FF;
     selected:       #31748FFF;
     active:         #31748FFF;
     urgent:         #EB6F92FF;
+    rose:           #EBBCBAFF;
+    foam:           #9CCFD8FF;
     font: "0xProto Bold 13";
-    // font-weight: bold;
 }
 
 configuration {
@@ -116,9 +117,9 @@ listview {
 
 scrollbar {
     handle-width:                5px;
-    handle-color:                @selected;
+    handle-color:                @foam;
     border-radius:               0px;
-    background-color:            @background;
+    background-color:            transparent;
 }
 
 /*****----- Elements -----*****/
@@ -136,28 +137,28 @@ element {
 }
 
 element normal.normal {
-    background-color:            @background;
+    background-color:            transparent;
     text-color:                  @foreground;
 }
 
 element alternate.normal {
-    background-color:            @background;
+    background-color:            transparent;
     text-color:                  @foreground;
 }
 
 element selected.normal {
-    border:                      0px 5px 0px 5px;
+    border:                      0px 8px 0px 8px;
     border-radius:               8px;
     border-color:                @selected;
     background-color:            @background-alt;
-    text-color:                  @selected;
+    text-color:                  @rose;
 }
 
 element-icon {
     padding:                     0px 0px 0px 10px;
     background-color:            transparent;
     text-color:                  inherit;
-    size:                        32px;
+    size:                        36px;
     cursor:                      inherit;
 }
 
