@@ -69,7 +69,7 @@
   "clock": {
     "interval": 60,
     //"format": "<span color='#c4a7e7'><big>󱑂 </big></span>{0:%R} • {0:%A, %m/%d}",
-    "format": "<big>󱑂 </big>{0:%R} • {0:%A, %m/%d}",
+    "format": " {0:%R} • {0:%A, %m/%d}",
     "timezone": "Asia/Manila",
     "tooltip-format": "<big>{:%z %Z}</big>\n<tt>{calendar}</tt>",
     "calendar": {
@@ -129,8 +129,7 @@
     "thermal-zone": 1,
     "format": " {temperatureC}°C",
     "critical-threshold": 80,
-    "format-critical": " {temperatureC}°C",
-    "tooltip-format": "TEMP: {temperatureC}°C"
+    "tooltip-format": " TEMP: {temperatureC}°C"
   },
 
   "cpu": {
