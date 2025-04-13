@@ -22,7 +22,7 @@
 @define-color window_bg_color #000000;
 @define-color window_fg_color #e0def4;
 
-@define-color view_bg_color #1f1d2e;
+@define-color view_bg_color #000000;
 @define-color view_fg_color #e0def4;
 
 @define-color headerbar_bg_color #000000;
