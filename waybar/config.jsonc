@@ -13,7 +13,6 @@
     "tray"
   ],
   "modules-center": [
-    //"hyprland/window",
     "custom/spotify"
   ],
   "modules-right": [
@@ -26,23 +25,6 @@
     "pulseaudio",
     "backlight"
   ],
-
-  "hyprland/window": {
-    "format": "{title}",
-    "separate-outputs":true,
-    "max-length": 30
-    //"rewrite": {
-    //  "Mozilla Firefox": " Mozilla Firefox",
-    //  "kitty": " Terminal: Kitty",
-    //  "(.*) - Thunar": "  Thunar",
-    //  "(.*) - Google Chrome": " Google Chrome",
-    //  "Spotify Premium": "󰓇 Spotify",
-    //  "Zen Browser": " Zen Firefox",
-    //  "Steam Big Picture Mode": "󰓓 Steam",
-    //  "Steam": "󰓓 Steam",
-    //  "Discord": "  Discord"
-    //}
-  },
 
   "hyprland/workspaces": {
     "disable-scroll": true,
