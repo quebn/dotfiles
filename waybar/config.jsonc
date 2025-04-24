@@ -13,7 +13,8 @@
     "tray"
   ],
   "modules-center": [
-    "custom/spotify"
+    "hyprland/window"
+    // "custom/spotify"
   ],
   "modules-right": [
     "network", // NOTE: disable because network now shows when hyprland is launched with uwsm.
@@ -25,6 +26,22 @@
     "pulseaudio",
     "backlight"
   ],
+
+  "hyprland/window": {
+    "format": "{class}",
+    "separate-outputs":true,
+    "max-length": 40,
+    "rewrite": {
+      "kitty": " Kitty Terminal",
+      "nemo": " Nemo File Manager",
+      "google-chrome": " Google Chrome",
+      "Spotify Premium": "󰓇 Spotify",
+      "zen": "󰖟 Zen Browser",
+      "Steam Big Picture Mode": "󰓓 Steam Big Picture Mode",
+      "Steam": "󰓓 Steam",
+      "Discord": " Discord"
+    }
+  },
 
   "hyprland/workspaces": {
     "disable-scroll": true,
