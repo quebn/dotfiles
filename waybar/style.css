@@ -153,7 +153,7 @@ tooltip {
 }
 
 #tray {
-  border-radius: 8;
+  border-radius: 8px;
   padding-left: 10px;
   padding-right: 10px;
   margin-left: 10px;
@@ -162,7 +162,7 @@ tooltip {
 }
 
 #workspaces {
-  border-radius: 8;
+  border-radius: 8px;
   margin-left: 10px;
 }
 
