@@ -39,7 +39,9 @@
       "zen": "󰖟 Zen Browser",
       "Steam Big Picture Mode": "󰓓 Steam Big Picture Mode",
       "Steam": "󰓓 Steam",
-      "Discord": " Discord"
+      "Discord": " Discord",
+      "(.*)Celluloid": " Celluloid",
+      "(.*).obsproject.(.*)": "󱜠 OBS Studio"
     }
   },
 
