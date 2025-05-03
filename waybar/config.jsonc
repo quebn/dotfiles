@@ -40,8 +40,10 @@
       "Steam Big Picture Mode": "󰓓 Steam Big Picture Mode",
       "Steam": "󰓓 Steam",
       "Discord": " Discord",
+      "spotify": "󰓇 Spotify",
       "(.*)Celluloid": " Celluloid",
-      "(.*).obsproject.(.*)": "󱜠 OBS Studio"
+      "(.*).obsproject.(.*)": "󱜠 OBS Studio",
+      "blueman(.*)": "󰂯 Blueman Manager"
     }
   },
 
