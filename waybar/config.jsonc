@@ -36,13 +36,13 @@
       "nemo": " Nemo File Manager",
       "google-chrome": " Google Chrome",
       "Spotify Premium": "󰓇 Spotify",
-      "zen": "󰖟 Zen Browser",
+      "zen": "<big>󰺕 </big>Zen Browser",
       "Steam Big Picture Mode": "󰓓 Steam Big Picture Mode",
       "Steam": "󰓓 Steam",
       "Discord": " Discord",
       "spotify": "󰓇 Spotify",
       "(.*)Celluloid": " Celluloid",
-      "(.*).obsproject.(.*)": "󱜠 OBS Studio",
+      "(.*).obsproject.(.*)": "󰣆 OBS Studio",
       "blueman(.*)": "󰂯 Blueman Manager"
     }
   },

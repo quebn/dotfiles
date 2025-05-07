@@ -33,6 +33,7 @@ configstore/
 zen/
 cava/shaders/
 GIMP/
+nextjs-nodejs/
 
 # Files
 *.dirs
