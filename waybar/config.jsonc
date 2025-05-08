@@ -43,7 +43,8 @@
       "spotify": "󰓇 Spotify",
       "(.*)Celluloid": " Celluloid",
       "(.*).obsproject.(.*)": "󰣆 OBS Studio",
-      "blueman(.*)": "󰂯 Blueman Manager"
+      "blueman(.*)": "󰂯 Blueman Manager",
+      "swappy": "<big>󱇤 </big>Swappy"
     }
   },
 
