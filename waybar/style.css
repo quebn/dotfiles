@@ -34,7 +34,7 @@ window#waybar {
 
 
 tooltip {
-  background-color: @night;
+  background-color: rgba(0, 0, 0, 0.9);
   border: 2px solid @highlightLow;
   padding: 8px;
   border-radius: 6px;
