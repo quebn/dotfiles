@@ -45,7 +45,9 @@
       "(.*).obsproject.(.*)": "󰣆 OBS Studio",
       "blueman(.*)": "󰂯 Blueman Manager",
       "swappy": "<big>󱇤 </big>Swappy",
-      "gimp(.*)": "<big> </big>GIMP"
+      "gimp(.*)": "<big> </big>GIMP",
+      "(.*).pavucontrol": "<big> </big>Pavucontrol",
+      "(.*).Nautilus": "<big> </big> Nautilus"
     }
   },
 
@@ -110,6 +112,7 @@
     "format-bluetooth": "󱡒  {volume}",
     "min-length": 6,
     "scroll-step": 5,
+    "on-click": "pavucontrol",
     "format-icons": {
       "phone-muted": " ",
       "headphone": " ",

@@ -1,39 +1,115 @@
+@define-color night #000000;
+@define-color base #191724;
+@define-color surface #1f1d2e;
+@define-color overlay #26233a;
+@define-color muted #6e6a86;
+@define-color subtle #908caa;
+@define-color text #e0def4;
+@define-color love #eb6f92;
+@define-color gold #f6c177;
+@define-color rose #ebbcba;
+@define-color foam #9ccfd8;
+@define-color pine #31748f;
+@define-color iris #c4a7e7;
 
-@define-color accent_bg_color #31748f;
-@define-color accent_fg_color #000000;
-@define-color accent_color #31748f;
+@define-color highlight_low #21202e;
+@define-color highlight_med #403d52;
+@define-color highlight_high #524f67;
 
-@define-color destructive_bg_color #eb6f92; 
-@define-color destructive_fg_color #000000;
-@define-color destructive_color #eb6f92;
+@define-color accent_bg_color @pine;
+@define-color accent_fg_color @night;
+@define-color accent_color @pine;
 
-@define-color success_bg_color #9ccfd8;
-@define-color success_fg_color #e0def4;
-@define-color success_color #9ccfd8;
+@define-color destructive_bg_color @love;
+@define-color destructive_fg_color @night;
+@define-color destructive_color @love;
 
-@define-color warning_bg_color #f6c177;
-@define-color warning_fg_color #e0def4;
-@define-color warning_color #f6c177;
+@define-color success_bg_color @foam;
+@define-color success_fg_color @text;
+@define-color success_color @foam;
 
-@define-color error_bg_color #eb6f92;
-@define-color error_fg_color #e0def4;
-@define-color error_color #eb6f92;
+@define-color warning_bg_color @gold;
+@define-color warning_fg_color @text;
+@define-color warning_color @gold;
 
-@define-color window_bg_color #000000;
-@define-color window_fg_color #e0def4;
+@define-color error_bg_color @love;
+@define-color error_fg_color @text;
+@define-color error_color @love;
 
-@define-color view_bg_color #000000;
-@define-color view_fg_color #e0def4;
+@define-color window_bg_color @night;
+@define-color window_fg_color @text;
 
-@define-color headerbar_bg_color #000000;
-@define-color headerbar_fg_color #e0def4;
-@define-color headerbar_backdrop_color @window_bg_color;
-@define-color headerbar_shade_color #000000;
+@define-color view_bg_color @night;
+@define-color view_fg_color @text;
+
+@define-color headerbar_bg_color @night;
+@define-color headerbar_fg_color @text;
+@define-color headerbar_backdrop_color @night;
+@define-color headerbar_shade_color @night;
 
 
-@define-color card_bg_color #191724;
-@define-color card_fg_color #e0def4;
-@define-color card_shade_color #191724;
+@define-color card_bg_color @base;
+@define-color card_fg_color @text;
+@define-color card_shade_color @pine;
 
-@define-color popover_bg_color #1f1d2e;
-@define-color popover_fg_color #e0def4;
+@define-color dialog_bg_color @night;
+@define-color dialog_fg_color @text;
+
+@define-color popover_bg_color @base;
+@define-color popover_border_color @overlay;
+@define-color popover_fg_color @text;
+
+placessidebar, placessidebar:backdrop {
+  background-color: @night;
+}
+
+.navigation-sidebar {
+  background-color: @night;
+}
+
+headerbar, headerbar:backdrop, headerbar:disabled {
+  background-color: @night;
+}
+
+.nautilus-window:backdrop {
+  background-color: @night;
+}
+
+.view:selected, GtkHTML:selected,
+.view:selected:focus, GtkHTML:selected:focus,
+.grid-child:selected,
+GtkFlowBox .grid-child:selected,
+GtkLabel:selected,
+.gtkstyle-fallback:selected,
+*:selected,
+:focus:selected {
+  background-color: @pine;
+  color: @night;
+}
+
+iconview,
+.view {
+  color: @text;
+}
+
+iconview:disabled,
+.view:disabled {
+  color: @muted;
+}
+
+.grid-child:hover {
+  background-color: @pine;
+}
+
+textview text {
+  background-color: @night;
+}
+
+*:focus {
+  outline-color: alpha(currentColor, 0.1);
+}
+
+textview border {
+  background-color: @night;
+  color: @highlight_high;
+}
