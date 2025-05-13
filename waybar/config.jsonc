@@ -47,7 +47,14 @@
       "swappy": "<big>󱇤 </big>Swappy",
       "gimp(.*)": "<big> </big>GIMP",
       "(.*).pavucontrol": "<big> </big>Pavucontrol",
-      "(.*).Nautilus": "<big> </big> Nautilus"
+      "(.*).Nautilus": "<big> </big> Nautilus",
+      "libreoffice-startcenter": "<big> </big>LibreOffice",
+      "libreoffice-writer": "<big> </big>LibreOffice Writer",
+      "libreoffice-calc": "<big> </big>LibreOffice Calc",
+      "libreoffice-base": "<big> </big>LibreOffice Base",
+      "libreoffice-draw": "<big> </big>LibreOffice Draw",
+      "libreoffice-impress": "<big> </big>LibreOffice Impress",
+      "libreoffice-math": "<big> </big>LibreOffice Math"
     }
   },
 
