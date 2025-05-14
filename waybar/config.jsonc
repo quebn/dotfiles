@@ -109,7 +109,7 @@
     "format": "<big>{icon}</big> {capacity}%",
     "format-charging": " {capacity}%",
     "format-plugged": " {capacity}%",
-    "format-alt": "{time} {icon}",
+    "format-alt": "{icon} {time}",
     "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󱈑"]
   },
 
