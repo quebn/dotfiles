@@ -54,7 +54,8 @@
       "libreoffice-base": "<big> </big>LibreOffice Base",
       "libreoffice-draw": "<big> </big>LibreOffice Draw",
       "libreoffice-impress": "<big> </big>LibreOffice Impress",
-      "libreoffice-math": "<big> </big>LibreOffice Math"
+      "libreoffice-math": "<big> </big>LibreOffice Math",
+      "com.viber.Viber": "<big> </big>Viber"
     }
   },
 
