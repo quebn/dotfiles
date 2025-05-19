@@ -51,3 +51,5 @@
     hunk-header-style = file line-number "yellow"
 [column]
 	ui = auto
+[credential]
+	helper = libsecret
