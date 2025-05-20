@@ -1,0 +1,10 @@
+[[database]]
+Name = "First Commonwealth"
+Provider = "mysql"
+DBName = "first-commonwealth"
+URL = "mysql://test:localhost@localhost:3306/first-commonwealth"
+[[database]]
+Name = "MySQL"
+Provider = "mysql"
+DBName = "mysql"
+URL = "mysql://test:localhost@localhost:3306/mysql"
