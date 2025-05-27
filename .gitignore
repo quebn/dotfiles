@@ -1,5 +1,9 @@
 # Directories
 .*/
+freerdp/
+filezilla/
+lazysql/
+autostart/
 arduino/
 Android*Open*Source*Project/
 Thunar/
@@ -34,7 +38,9 @@ zen/
 cava/shaders/
 GIMP/
 nextjs-nodejs/
-bruno/
+Postman/
+openvpn/
+remmina/
 
 # Files
 *.dirs
