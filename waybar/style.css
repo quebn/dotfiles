@@ -229,7 +229,7 @@ window#waybar.empty #window {
 }
 
 #disk {
-  color: @foam;
+  color: @iris;
   border-left: 0px;
   border-right: 0px;
 }

@@ -9,6 +9,7 @@
     rose:           #EBBCBAFF;
     foam:           #9CCFD8FF;
     font: "0xProto Bold 13";
+    terminal: "kitty";
 }
 
 configuration {
