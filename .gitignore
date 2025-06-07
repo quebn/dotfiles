@@ -1,6 +1,7 @@
 # Directories
 .*/
 freerdp/
+kdeconnect/
 filezilla/
 lazysql/
 autostart/

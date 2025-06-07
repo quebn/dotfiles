@@ -1,0 +1,5 @@
+{
+  "music_dir": "/home/quebn/Music/lofi",
+  "loop": true,
+  "rpc_port": ":42069"
+}
