@@ -54,3 +54,5 @@
 	ui = auto
 [credential]
 	helper = libsecret
+[diff]
+	external = delta

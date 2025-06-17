@@ -13,8 +13,8 @@
     "tray"
   ],
   "modules-center": [
-    "hyprland/window"
-    // "custom/spotify"
+    // "hyprland/window"
+    "custom/spotify"
   ],
   "modules-right": [
     "network", // NOTE: disable because network now shows when hyprland is launched with uwsm.

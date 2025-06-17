@@ -42,6 +42,8 @@ nextjs-nodejs/
 Postman/
 openvpn/
 remmina/
+Sqlectron/
+sqlectron/
 
 # Files
 *.dirs
