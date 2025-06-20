@@ -236,8 +236,15 @@ window#waybar.empty #window {
 
 #custom-spotify {
   border-radius: 8px;
-  color: @foam;
   padding-left:  10px;
   padding-right: 10px;
   font-family: "JetBrainsMono NL ExtraBold";
+}
+
+#custom-spotify.play {
+  color: @foam;
+}
+
+#custom-spotify.stop {
+  color: @subtle;
 }

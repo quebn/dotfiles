@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+
 import argparse
 import logging
 import sys
@@ -12,12 +13,12 @@ from gi.repository import Playerctl, GLib
 logger = logging.getLogger(__name__)
 
 
-def write_output(text, player):
+def write_output(text, player, state):
     logger.info("Writing output")
 
     output = {
         "text": text,
-        "class": "custom-" + player.props.player_name,
+        "class": state,
         "alt": player.props.player_name,
     }
 
@@ -33,6 +34,7 @@ def on_play(player, status, manager):
 def on_metadata(player, metadata, manager):
     logger.info("Received new metadata")
     track_info = ""
+    player_state = ""
 
     if (
         player.props.player_name == "spotify"
@@ -41,17 +43,17 @@ def on_metadata(player, metadata, manager):
     ):
         track_info = "AD PLAYING"
     elif player.get_artist() != "" and player.get_title() != "":
-        track_info = "{artist} - {title}".format(
+        track_info = "󰎇 {artist} - {title}".format(
             artist=player.get_artist(), title=player.get_title()
         )
     else:
         track_info = player.get_title()
 
     if player.props.status != "Playing" and track_info:
-        track_info = " " + track_info
-    else: 
-        track_info = "󰎇 " + track_info
-    write_output(track_info, player)
+        player_state = "stop"
+    else:
+        player_state = "play"
+    write_output(track_info, player, player_state)
 
 
 def on_player_appeared(manager, player, selected_player=None):
