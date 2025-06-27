@@ -1,19 +1,18 @@
 {
-  "layer": "top",
+  "layer": "bottom",
   "position": "top",
-  "mod": "dock",
+  "mode": "dock",
   "exclusive": true,
   "passthrough": false,
   "gtk-layer-shell": true,
   "height": 45,
   "modules-left": [
-    "custom/os",
+    "hyprland/window",
     "clock",
     "hyprland/workspaces",
     "tray"
   ],
   "modules-center": [
-    // "hyprland/window"
     "custom/spotify"
   ],
   "modules-right": [
@@ -28,35 +27,23 @@
   ],
 
   "hyprland/window": {
-    "format": "{class}",
-    "separate-outputs":true,
-    "max-length": 40,
-    "rewrite": {
-      "kitty": " Kitty Terminal",
-      "nemo": " Nemo File Manager",
-      "google-chrome": " Google Chrome",
-      "Spotify Premium": "󰓇 Spotify",
-      "zen": "<big>󰺕 </big>Zen Browser",
-      "Steam Big Picture Mode": "󰓓 Steam Big Picture Mode",
-      "Steam": "󰓓 Steam",
-      "Discord": " Discord",
-      "spotify": "󰓇 Spotify",
-      "(.*)Celluloid": " Celluloid",
-      "(.*).obsproject.(.*)": "󰣆 OBS Studio",
-      "blueman(.*)": "󰂯 Blueman Manager",
-      "swappy": "<big>󱇤 </big>Swappy",
-      "gimp(.*)": "<big> </big>GIMP",
-      "(.*).pavucontrol": "<big> </big>Pavucontrol",
-      "(.*).Nautilus": "<big> </big> Nautilus",
-      "libreoffice-startcenter": "<big> </big>LibreOffice",
-      "libreoffice-writer": "<big> </big>LibreOffice Writer",
-      "libreoffice-calc": "<big> </big>LibreOffice Calc",
-      "libreoffice-base": "<big> </big>LibreOffice Base",
-      "libreoffice-draw": "<big> </big>LibreOffice Draw",
-      "libreoffice-impress": "<big> </big>LibreOffice Impress",
-      "libreoffice-math": "<big> </big>LibreOffice Math",
-      "com.viber.Viber": "<big> </big>Viber",
-      "bruno": "<big>󰩃 </big>Bruno"
+    "format": "󰣇 ",
+    "icon": false,
+    "separate-outputs": true,
+    "tooltip-format": "{title}",
+    "tooltip": true,
+    "on-click": "rofi -show drun"
+  },
+
+  "power-profiles-daemon": {
+    "format": "{icon}",
+    "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
+    "tooltip": true,
+    "format-icons": {
+      "default": "",
+      "performance": "",
+      "balanced": "",
+      "power-saver": ""
     }
   },
 
@@ -78,7 +65,7 @@
   },
 
   "tray": {
-    "icon-size": 15,
+    "icon-size": 16,
     "spacing": 5
   },
 
@@ -173,8 +160,8 @@
 
   "network": {
     "format-wifi": "{icon} {signalStrength}%",
-    "format-ethernet": "{ipaddr}/{cidr}  ",
-    "tooltip-format": "<span color='#eb6f92'>{essid}</span>: <span color='#9ccfd8'><big></big> {bandwidthUpBytes}</span> • <span color='#c4a7e7'><big></big> {bandwidthDownBytes}</span>",
+    "format-ethernet": "  {signalStrength}%",
+    "tooltip-format": " <span color='#eb6f92'>{essid}</span>\n<span color='#9ccfd8'><big></big> {bandwidthUpBytes}</span> • <span color='#c4a7e7'><big></big> {bandwidthDownBytes}</span>",
     "format-linked": "{ifname} (No IP) 󰲝 ",
     "format-disconnected": "󰤮 0%",
     "on-click": "nm-connection-editor",
@@ -189,13 +176,6 @@
     "tooltip-format": "{device_alias}",
     "tooltip-format-connected": " {device_enumerate}",
     "tooltip-format-enumerate-connected": "{device_alias}"
-    //"on-click-right": "blueman-manager"
-  },
-
-  "custom/os": {
-    "format":"󰣇 ",
-    "tooltip": false,
-    "on-click": "rofi -show drun" // TODO: set this to powerprofile
   },
 
   "custom/spotify": {
@@ -206,8 +186,7 @@
     "escape": true,
     "max-length": 40,
     "on-click": "playerctl -p spotify play-pause",
-    //"on-click-right": "killall spotify", // NOTE: disable because exit should be done in tray.
-    "smooth-scrolling-threshold": 10, // This value was tested using a trackpad, it should be lowered if using a mouse.
+    "smooth-scrolling-threshold": 2, // This value was tested using a trackpad, it should be lowered if using a mouse.
     "on-scroll-up": "playerctl -p spotify next",
     "on-scroll-down": "playerctl -p spotify previous"
   }
