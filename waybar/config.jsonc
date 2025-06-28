@@ -9,6 +9,7 @@
   "modules-left": [
     "hyprland/window",
     "clock",
+    "power-profiles-daemon",
     "hyprland/workspaces",
     "tray"
   ],
@@ -36,14 +37,14 @@
   },
 
   "power-profiles-daemon": {
-    "format": "{icon}",
+    "format": " {icon} ",
     "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
     "tooltip": true,
     "format-icons": {
-      "default": "",
-      "performance": "",
-      "balanced": "",
-      "power-saver": ""
+      "default": "<big>󱐋</big>",
+      "performance": "<big>󱐋</big>",
+      "balanced": "", //  
+      "power-saver": " 󰌪"
     }
   },
 
@@ -65,14 +66,14 @@
   },
 
   "tray": {
-    "icon-size": 16,
+    "icon-size": 14,
     "spacing": 5
   },
 
   "clock": {
     "interval": 60,
     //"format": "<span color='#c4a7e7'><big>󱑂 </big></span>{0:%R} • {0:%A, %m/%d}",
-    "format": " {0:%R} • {0:%A, %m/%d}",
+    "format": "{0:%R} • {0:%A, %m/%d}",
     "timezone": "Asia/Manila",
     "tooltip-format": "<big>{:%z %Z}</big>\n<tt>{calendar}</tt>",
     "calendar": {
@@ -83,7 +84,7 @@
   },
 
   "backlight": {
-    "format": "<big>{icon}</big> {percent}",
+    "format": "{icon} {percent}",
     "tooltip": false,
     "format-icons": ["󰃞", "󰃟", "󰃠"],
     "min-length": 6
