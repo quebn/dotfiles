@@ -1,3 +1,4 @@
+# vi: ft=config
 [global]
     height = (80, 400)
     width = 400
@@ -38,6 +39,8 @@
     frame_color = "#21202e"
     # frame_color = "#191724"
     timeout = 5
+    enable_markup = yes
+    mouse_left_click = do_action
 
 [urgency_low]
     highlight = "#31748f"
