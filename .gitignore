@@ -44,6 +44,8 @@ openvpn/
 remmina/
 Sqlectron/
 sqlectron/
+godot/
+qalculate/
 
 # Files
 *.dirs
