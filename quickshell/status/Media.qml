@@ -1,0 +1,83 @@
+import "root:/"
+import "root:/components"
+import "root:/services"
+import "root:/functions/string_utils.js" as StringUtils
+import QtQuick
+import QtQuick.Layouts
+import Quickshell
+import Quickshell.Io
+import Quickshell.Services.Mpris
+import Quickshell.Hyprland
+
+Item {
+    id: root
+    property bool borderless: false
+    readonly property MprisPlayer activePlayer: MprisController.activePlayer
+    readonly property string cleanedTitle: StringUtils.cleanMusicTitle(activePlayer?.trackTitle) || qsTr("No media")
+
+    Layout.fillHeight: true
+    implicitWidth: rowLayout.implicitWidth + rowLayout.spacing * 2
+    implicitHeight: Appearance.sizes.bar_height
+
+    Timer {
+        running: activePlayer?.playbackState == MprisPlaybackState.Playing
+        interval: 1000
+        repeat: true
+        onTriggered: activePlayer.positionChanged()
+    }
+
+    MouseArea {
+        anchors.fill: parent
+        acceptedButtons: Qt.MiddleButton | Qt.BackButton | Qt.ForwardButton | Qt.RightButton | Qt.LeftButton
+        onPressed: (event) => {
+            if (event.button === Qt.MiddleButton) {
+                activePlayer.togglePlaying();
+            } else if (event.button === Qt.BackButton) {
+                activePlayer.previous();
+            } else if (event.button === Qt.ForwardButton || event.button === Qt.RightButton) {
+                activePlayer.next();
+            } else if (event.button === Qt.LeftButton) {
+                Hyprland.dispatch("global quickshell:mediaControlsToggle")
+            }
+        }
+    }
+
+    RowLayout { // Real content
+        id: rowLayout
+
+        spacing: 4
+        anchors.fill: parent
+
+        CircularProgress {
+            Layout.alignment: Qt.AlignVCenter
+            Layout.leftMargin: rowLayout.spacing
+            line_width: 2
+            value: activePlayer?.position / activePlayer?.length
+            size: 26
+            secondaryColor: Appearance.colors.gutter
+            primaryColor: Appearance.colors.foreground
+
+            MaterialSymbol {
+                anchors.centerIn: parent
+                fill: 1
+                text: activePlayer?.isPlaying ? "music_note" : "pause"
+                iconSize: Appearance.font.pixelSize.normal
+                color: Appearance.colors.foreground
+            }
+
+        }
+
+        StyledText {
+            width: rowLayout.width - (CircularProgress.size + rowLayout.spacing * 2)
+            Layout.alignment: Qt.AlignVCenter
+            Layout.fillWidth: true // Ensures the text takes up available space
+            Layout.rightMargin: rowLayout.spacing
+            horizontalAlignment: Text.AlignHCenter
+            elide: Text.ElideRight // Truncates the text on the right
+            color: Appearance.colors.foreground
+            text: `${cleanedTitle}${activePlayer?.trackArtist ? ' • ' + activePlayer.trackArtist : ''}`
+        }
+
+    }
+
+}
