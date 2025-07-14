@@ -63,6 +63,7 @@ Item {
 
     MouseArea {
         anchors.fill: parent
+        cursorShape: Qt.PointingHandCursor
         acceptedButtons: Qt.BackButton
         onPressed: (event) => {
             if (event.button === Qt.BackButton) {
@@ -98,7 +99,7 @@ Item {
                 topRightRadius: radiusRight
                 bottomRightRadius: radiusRight
 
-                color: ColorUtils.transparentize(Appearance.colors.gutter, 0.4)
+                color: Appearance.colors.gutter_alt
                 opacity: (workspaceOccupied[index] && !(!activeWindow?.activated && monitor.activeWorkspace?.id === index+1)) ? 1 : 0
 
                 Behavior on opacity {
@@ -176,27 +177,24 @@ Item {
                     property var biggestWindow: HyprlandData.biggestWindowForWorkspace(button.workspaceValue)
                     property var mainAppIconSource: Quickshell.iconPath(AppSearch.guessIcon(biggestWindow?.class), "image-missing")
 
-                    // StyledText { // Workspace number text
-                    //     opacity: GlobalStates.workspaceShowNumbers
-                    //         || ((Config.options?.bar.workspaces.alwaysShowNumbers && (!Config.options?.bar.workspaces.showAppIcons || !workspaceButtonBackground.biggestWindow || GlobalStates.workspaceShowNumbers))
-                    //         || (GlobalStates.workspaceShowNumbers && !Config.options?.bar.workspaces.showAppIcons)
-                    //         )  ? 1 : 0
-                    //     z: 3
-                    //     anchors.centerIn: parent
-                    //     horizontalAlignment: Text.AlignHCenter
-                    //     verticalAlignment: Text.AlignVCenter
-                    //     font.pixelSize: Appearance.font.pixelSize.small - ((text.length - 1) * (text !== "10") * 2)
-                    //     text: `${button.workspaceValue}`
-                    //     elide: Text.ElideRight
-                    //     color: (monitor.activeWorkspace?.id == button.workspaceValue) ?
-                    //         Appearance.colors.foreground :
-                    //         (workspaceOccupied[index] ? Appearance.colors.primary :
-                    //             Appearance.colors.gutter)
-                    //
-                    //     Behavior on opacity {
-                    //         animation: Appearance.animation.elementMoveFast.numberAnimation.createObject(this)
-                    //     }
-                    // }
+                    StyledText { // Workspace number text
+                        visible: false
+                        z: 3
+                        anchors.centerIn: parent
+                        horizontalAlignment: Text.AlignHCenter
+                        verticalAlignment: Text.AlignVCenter
+                        font.pixelSize: Appearance.font.pixelSize.small - ((text.length - 1) * (text !== "10") * 2)
+                        text: `${button.workspaceValue}`
+                        elide: Text.ElideRight
+                        color: (monitor.activeWorkspace?.id == button.workspaceValue) ?
+                            Appearance.colors.foreground :
+                            (workspaceOccupied[index] ? Appearance.colors.primary :
+                                Appearance.colors.gutter)
+
+                        Behavior on opacity {
+                            animation: Appearance.animation.elementMoveFast.numberAnimation.createObject(this)
+                        }
+                    }
                     Rectangle { // Dot instead of ws number
                         id: wsDot
                         opacity: (Config.options?.bar.workspaces.alwaysShowNumbers
@@ -265,7 +263,7 @@ Item {
                                 ColorOverlay {
                                     anchors.fill: desaturatedIcon
                                     source: desaturatedIcon
-                                    color: ColorUtils.transparentize(wsDot.color, 0.9)
+                                    color: wsDot.color
                                 }
                             }
                         }

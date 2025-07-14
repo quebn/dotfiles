@@ -127,7 +127,7 @@ Scope {
         RowLayout {
           id: middle_section
           anchors.centerIn: parent
-          spacing:  8
+          spacing: 8
 
           BarGroup {
             id: center_left_group
@@ -138,6 +138,7 @@ Scope {
               alwaysShowAllResources: true
               Layout.fillWidth: true
             }
+
             Media {
               visible: true
               Layout.fillWidth: true
@@ -154,7 +155,6 @@ Scope {
               bar: bar_root
               Layout.fillHeight: true
               MouseArea {
-                // Right-click to toggle overview
                 anchors.fill: parent
                 acceptedButtons: Qt.RightButton
 
@@ -193,6 +193,11 @@ Scope {
               //   Layout.alignment: Qt.AlignVCenter
               // }
               //
+              NetworkSignal {
+                visible: true
+                Layout.alignment: Qt.AlignVCenter
+              }
+
               BatteryIndicator {
                 visible: true
                 Layout.alignment: Qt.AlignVCenter
@@ -360,6 +365,7 @@ Scope {
               //   }
               // }
 
+
               SysTray {
                 bar: bar_root
                 visible: true
@@ -367,10 +373,17 @@ Scope {
                 Layout.fillHeight: true
               }
 
+              MaterialSymbol {
+                text: Bluetooth.bluetoothConnected ? "bluetooth_connected" : Bluetooth.bluetoothEnabled ? "bluetooth" : "bluetooth_disabled"
+                iconSize: Appearance.font.pixelSize.larger
+                color: Appearance.colors.foreground
+              }
+
               Item {
                 Layout.fillWidth: true
                 Layout.fillHeight: true
               }
+
 
               // Weather
               // Loader {

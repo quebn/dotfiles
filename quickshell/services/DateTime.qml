@@ -21,7 +21,7 @@ Singleton {
     }
 
     Timer {
-        interval: 10
+        interval: 60000
         running: true
         repeat: true
         onTriggered: {
@@ -40,7 +40,7 @@ Singleton {
             if (hours > 0) formatted += `${formatted ? ", " : ""}${hours}h`
             if (minutes > 0 || !formatted) formatted += `${formatted ? ", " : ""}${minutes}m`
             uptime = formatted
-            interval = Config.options?.resources?.updateInterval ?? 3000
+            interval = 60000
         }
     }
 

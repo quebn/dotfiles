@@ -9,7 +9,9 @@ ShellRoot {
 
   property bool bar: true
   property bool corners: true
+  property bool mediaControls: true
 
   LazyLoader { active: root.bar; component: Bar {} }
   LazyLoader { active: root.corners; component: ScreenCorners {} }
+  LazyLoader { active: root.mediaControls; component: MediaControls {} }
 }

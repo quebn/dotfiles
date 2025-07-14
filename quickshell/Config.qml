@@ -6,7 +6,7 @@ import Quickshell.Io
 
 Singleton {
     id: root
-    property string filePath: "/home/quebn/.config/quickshell/config.json"
+    property string filePath: Directories.shellConfigPath
     property alias options: configOptionsJsonAdapter
 
     function setNestedValue(nestedKey, value) {

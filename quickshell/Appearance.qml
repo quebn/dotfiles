@@ -18,7 +18,7 @@ Singleton {
     colortheme: QtObject {
         property color base:             "#000000"
         property color surface:          "#110D12"
-        property color overlay:          "#161217"
+        property color overlay:          "#121212"
         property color base_alt:         "#191724"
         property color surface_alt:      "#1f1d2e"
         property color overlay_alt:      "#26233a"
@@ -40,12 +40,16 @@ Singleton {
         property color background: colortheme.base
         property color foreground: colortheme.text
         property color gutter: colortheme.highlight_medium
+        property color gutter_alt: colortheme.highlight_low
         property color layer1: colortheme.surface
         property color layer2: colortheme.overlay
+        property color layer1_alt: colortheme.surface_alt
+        property color layer2_alt: colortheme.overlay_alt
         property color hint: colortheme.subtle
         property color hover: colortheme.foam
         property color primary: colortheme.pine
         property color secondary: colortheme.rose
+        property color tertiary: colortheme.foam
         property color border: colortheme.highlight_high
         property color black: colortheme.base
         property color white: colortheme.text
@@ -185,6 +189,7 @@ Singleton {
         property real hyprland_gaps_out: 10
         property real fabShadowRadius: 5
         property real fabHoveredShadowRadius: 7
+        property real elevationMargin: 10
     }
 
     animationCurves: QtObject {

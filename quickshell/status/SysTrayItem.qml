@@ -1,5 +1,4 @@
 import "root:/"
-import "root:/functions/color_utils.js" as ColorUtils
 import QtQuick
 import QtQuick.Layouts
 import Quickshell
@@ -20,9 +19,9 @@ MouseArea {
     implicitWidth: trayItemWidth
     onClicked: (event) => {
         switch (event.button) {
-        case Qt.LeftButton:
-            item.activate();
-            break;
+        // case Qt.LeftButton:
+        //     item.activate();
+        //     break;
         case Qt.RightButton:
             if (item.hasMenu) menu.open();
             break;

@@ -25,7 +25,7 @@ Scope {
     readonly property real widgetHeight: Appearance.sizes.mediaControlsHeight
     property real contentPadding: 13
     property real popupRounding: Appearance.rounding.screenRounding - Appearance.sizes.elevationMargin + 1
-    property real artRounding: Appearance.rounding.verysmall
+    property real artRounding: Appearance.rounding.corner
     property list<real> visualizerPoints: []
 
     property bool hasPlasmaIntegration: false
@@ -54,7 +54,7 @@ Scope {
             for (let j = i + 1; j < players.length; ++j) {
                 let p2 = players[j];
                 if (p1.trackTitle && p2.trackTitle &&
-                    (p1.trackTitle.includes(p2.trackTitle) 
+                    (p1.trackTitle.includes(p2.trackTitle)
                         || p2.trackTitle.includes(p1.trackTitle))
                         || (p1.position - p2.position <= 2 && p1.length - p2.length <= 2)) {
                     group.push(j);
@@ -108,8 +108,8 @@ Scope {
             WlrLayershell.namespace: "quickshell:mediaControls"
 
             anchors {
-                top: !Config.options.bar.bottom
-                bottom: Config.options.bar.bottom
+                top: true
+                bottom: false
                 left: true
             }
             mask: Region {

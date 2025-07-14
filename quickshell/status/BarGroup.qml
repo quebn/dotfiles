@@ -20,7 +20,7 @@ Item {
             topMargin: 4
             bottomMargin: 4
         }
-        color: Appearance.colors.layer1
+        color: Appearance.colors.layer2
         radius: Appearance.rounding.corner
     }
 

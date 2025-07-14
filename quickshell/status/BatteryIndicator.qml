@@ -10,6 +10,7 @@ import Quickshell.Services.UPower
 Item {
     id: root
     property bool borderless: Config.options.bar.borderless
+    property color mainColor: Appearance.colors.yellow
     readonly property var chargeState: Battery.chargeState
     readonly property bool isCharging: Battery.isCharging
     readonly property bool isPluggedIn: Battery.isPluggedIn
@@ -40,7 +41,7 @@ Item {
             value: percentage
             size: 26
             secondaryColor: Appearance.colors.gutter
-            primaryColor: Appearance.colors.magenta
+            primaryColor: mainColor
             fill: !isCharging
 
             // battery_0_bar
@@ -51,13 +52,13 @@ Item {
                 fill: 1
                 text: "battery_full"
                 iconSize: Appearance.font.pixelSize.normal
-                color: Appearance.colors.magenta
+                color: mainColor
             }
 
         }
         StyledText {
             Layout.alignment: Qt.AlignVCenter
-            color: Appearance.colors.magenta
+            color: mainColor
             text: `${Math.round(percentage * 100)}%`
         }
 
@@ -79,7 +80,7 @@ Item {
             id: boltIcon
             text: "bolt"
             iconSize: Appearance.font.pixelSize.large
-            color: Appearance.colors.magenta
+            color: mainColor
             visible: isCharging
             onVisibleChanged: {
                 if (!visible) boltIconLoader.active = false

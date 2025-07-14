@@ -11,14 +11,14 @@ Item {
     property color main_color
     property bool shown: true
     clip: true
-    visible: width > 0 && height > 0
-    implicitWidth: resourceRowLayout.x < 0 ? 0 : childrenRect.width
+    visible: true
+    implicitWidth: childrenRect.width
     implicitHeight: childrenRect.height
 
     RowLayout {
         spacing: 4
         id: resourceRowLayout
-        x: shown ? 0 : -resourceRowLayout.width
+        x: 0
 
         CircularProgress {
             Layout.alignment: Qt.AlignVCenter

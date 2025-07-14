@@ -17,7 +17,7 @@ Item {
         spacing: 4
 
         StyledText {
-            font.pixelSize: Appearance.font.pixelSize.normal
+            font.pixelSize: Appearance.font.pixelSize.large
             color: Appearance.colors.foreground
             text: DateTime.time
         }
@@ -25,7 +25,7 @@ Item {
         StyledText {
             visible: true
             font.pixelSize: Appearance.font.pixelSize.large
-            color: Appearance.colors.foreground
+            color: Appearance.colors.secondary
             text: "•"
         }
 

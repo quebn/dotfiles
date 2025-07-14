@@ -12,7 +12,7 @@ Item {
     readonly property HyprlandMonitor monitor: Hyprland.monitorFor(statusbar.screen)
     readonly property Toplevel active_window: ToplevelManager.activeToplevel
 
-    property string active_window_address: `0x${active_window.HyprlandToplevel.address}`
+    property string active_window_address: `0x${active_window?.HyprlandToplevel?.address}`
     property bool is_monitor_focus: HyprlandData.activeWorkspace?.monitor == monitor.name
     property var largest_window: HyprlandData.biggestWindowForWorkspace(HyprlandData.monitors[root.monitor.id]?.activeWorkspace.id)
 

@@ -7,6 +7,7 @@ import QtQuick.Layouts
 import Quickshell
 import Quickshell.Io
 import Quickshell.Services.Mpris
+import Quickshell.Hyprland
 
 Item {
     id: root
@@ -15,6 +16,13 @@ Item {
     implicitWidth: row_layout.implicitWidth + row_layout.anchors.leftMargin + row_layout.anchors.rightMargin
     implicitHeight: 32
 
+    MouseArea {
+        anchors.fill: parent
+        acceptedButtons: Qt.LeftButton
+        onPressed: (event) => {
+            Hyprland.dispatch("exec kitty --start-as=fullscreen --title btop sh -c 'btop'")
+        }
+    }
     RowLayout {
         id: row_layout
 
@@ -30,20 +38,19 @@ Item {
             shown: true
         }
 
-        // Resource {
-        //     icon_name: "swap_horiz"
-        //     percentage: ResourceUsage.swap_used_percentage
-        //     main_color: Appearance.colors.magenta
-        //     shown: root.alwaysShowAllResources
-        //     Layout.leftMargin: shown ? 4 : 0
-        // }
+        Resource {
+            visible: false
+            icon_name: "swap_horiz"
+            percentage: ResourceUsage.swap_used_percentage
+            main_color: Appearance.colors.magenta
+            Layout.leftMargin: 4
+        }
 
         Resource {
             icon_name: "memory"
             percentage: ResourceUsage.cpu_usage
             main_color: Appearance.colors.green
             shown: true
-            Layout.leftMargin: shown ? 4 : 0
         }
 
     }

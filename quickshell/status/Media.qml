@@ -16,12 +16,13 @@ Item {
     readonly property string cleanedTitle: StringUtils.cleanMusicTitle(activePlayer?.trackTitle) || qsTr("No media")
 
     Layout.fillHeight: true
-    implicitWidth: rowLayout.implicitWidth + rowLayout.spacing * 2
+    // Layout.fillWidth: true
+    implicitWidth: parent.width * .5
     implicitHeight: Appearance.sizes.bar_height
 
     Timer {
         running: activePlayer?.playbackState == MprisPlaybackState.Playing
-        interval: 1000
+        interval: 5000
         repeat: true
         onTriggered: activePlayer.positionChanged()
     }
@@ -31,13 +32,13 @@ Item {
         acceptedButtons: Qt.MiddleButton | Qt.BackButton | Qt.ForwardButton | Qt.RightButton | Qt.LeftButton
         onPressed: (event) => {
             if (event.button === Qt.MiddleButton) {
-                activePlayer.togglePlaying();
+                activePlayer.next();
             } else if (event.button === Qt.BackButton) {
                 activePlayer.previous();
             } else if (event.button === Qt.ForwardButton || event.button === Qt.RightButton) {
-                activePlayer.next();
-            } else if (event.button === Qt.LeftButton) {
                 Hyprland.dispatch("global quickshell:mediaControlsToggle")
+            } else if (event.button === Qt.LeftButton) {
+                activePlayer.togglePlaying();
             }
         }
     }
@@ -50,7 +51,6 @@ Item {
 
         CircularProgress {
             Layout.alignment: Qt.AlignVCenter
-            Layout.leftMargin: rowLayout.spacing
             line_width: 2
             value: activePlayer?.position / activePlayer?.length
             size: 26
