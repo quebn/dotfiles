@@ -38,7 +38,7 @@ Singleton {
             swap_free = Number(text_mem_info.match(/SwapFree: *(\d+)/)?.[1] ?? 0)
 
             // Parse CPU usage
-            // TODO: make and average cpu usage.
+            // TODO: make average cpu usage.
             const text_stat = fileStat.text()
             const cpu_line = text_stat.match(/^cpu\s+(\d+)\s+(\d+)\s+(\d+)\s+(\d+)\s+(\d+)\s+(\d+)\s+(\d+)/)
             if (cpu_line) {

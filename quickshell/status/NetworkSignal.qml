@@ -8,7 +8,7 @@ import Quickshell.Io
 
 Item {
     id: root
-    property color mainColor: Appearance.colors.red
+    property color mainColor: Appearance.colors.magenta
     readonly property real networkStrength: Network.networkStrength
     readonly property real percentage: networkStrength * 0.01
     implicitWidth: rowLayout.implicitWidth + rowLayout.spacing * 2

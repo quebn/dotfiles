@@ -15,7 +15,7 @@ Item {
 
     height: parent.height
     implicitWidth: rowLayout.implicitWidth
-    Layout.leftMargin: Appearance.rounding.corner
+    Layout.rightMargin: rowLayout.spacing
 
     RowLayout {
         id: rowLayout
@@ -33,16 +33,6 @@ Item {
                 item: modelData
             }
 
-        }
-
-        StyledText {
-            Layout.alignment: Qt.AlignVCenter
-            font.pixelSize: Appearance.font.pixelSize.larger
-            color: Appearance.colors.foreground
-            text: " "
-            visible: {
-                SystemTray.items.values.length > 0
-            }
         }
 
     }

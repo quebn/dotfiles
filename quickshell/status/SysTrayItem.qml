@@ -19,9 +19,12 @@ MouseArea {
     implicitWidth: trayItemWidth
     onClicked: (event) => {
         switch (event.button) {
-        // case Qt.LeftButton:
-        //     item.activate();
-        //     break;
+        case Qt.LeftButton:
+            item.activate();
+            if (item.hasMenu) {
+                menu.open();
+            }
+            break;
         case Qt.RightButton:
             if (item.hasMenu) menu.open();
             break;
@@ -32,12 +35,12 @@ MouseArea {
     QsMenuAnchor {
         id: menu
 
+
+        // menu: root.item.menu
+        // anchor.window: this.QsWindow.window
+        //
         menu: root.item.menu
-        anchor.window: bar
-        anchor.rect.x: root.x + bar.width
-        anchor.rect.y: root.y
-        anchor.rect.height: root.height
-        anchor.edges: Edges.Bottom
+        anchor.window: parent
     }
 
     IconImage {

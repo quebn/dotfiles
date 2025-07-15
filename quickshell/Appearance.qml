@@ -14,6 +14,7 @@ Singleton {
     property QtObject rounding
     property QtObject font
     property QtObject sizes
+    readonly property bool transparent: true
 
     colortheme: QtObject {
         property color base:             "#000000"
@@ -37,7 +38,7 @@ Singleton {
     }
 
     colors: QtObject {
-        property color background: colortheme.base
+        property color background: root.transparent ? Qt.rgba(0, 0, 0, .90) : colortheme.base
         property color foreground: colortheme.text
         property color gutter: colortheme.highlight_medium
         property color gutter_alt: colortheme.highlight_low
@@ -46,11 +47,12 @@ Singleton {
         property color layer1_alt: colortheme.surface_alt
         property color layer2_alt: colortheme.overlay_alt
         property color hint: colortheme.subtle
+        property color border: colortheme.highlight_high
+        property color separator: colors.border
         property color hover: colortheme.foam
         property color primary: colortheme.pine
         property color secondary: colortheme.rose
         property color tertiary: colortheme.foam
-        property color border: colortheme.highlight_high
         property color black: colortheme.base
         property color white: colortheme.text
         property color red: colortheme.love

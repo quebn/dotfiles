@@ -2,7 +2,6 @@
 import "root:/"
 import "root:/services"
 import "root:/components"
-import "root:/functions/color_utils.js" as ColorUtils
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
@@ -99,7 +98,7 @@ Item {
                 topRightRadius: radiusRight
                 bottomRightRadius: radiusRight
 
-                color: Appearance.colors.gutter_alt
+                color: Appearance.colors.layer2_alt
                 opacity: (workspaceOccupied[index] && !(!activeWindow?.activated && monitor.activeWorkspace?.id === index+1)) ? 1 : 0
 
                 Behavior on opacity {
@@ -126,7 +125,7 @@ Item {
         property real activeWorkspaceMargin: 2
         implicitHeight: workspaceButtonWidth - activeWorkspaceMargin * 2
         radius: Appearance.rounding.full
-        color: Appearance.colors.primary
+        color: Appearance.colors.blue
         anchors.verticalCenter: parent.verticalCenter
 
         property real idx1: workspaceIndexInGroup
@@ -203,12 +202,12 @@ Item {
                             ) ? 0 : 1
                         visible: opacity > 0
                         anchors.centerIn: parent
-                        width: workspaceButtonWidth * 0.18
+                        width: workspaceButtonWidth * 0.20
                         height: width
                         radius: width / 2
                         color: (monitor.activeWorkspace?.id == button.workspaceValue) ?
-                            Appearance.colors.foreground :
-                            (workspaceOccupied[index] ? Appearance.colors.primary :
+                            Appearance.colors.black :
+                            (workspaceOccupied[index] ? Appearance.colors.blue :
                                 Appearance.colors.gutter)
 
                         Behavior on opacity {
@@ -269,8 +268,6 @@ Item {
                         }
                     }
                 }
-
-
             }
 
         }

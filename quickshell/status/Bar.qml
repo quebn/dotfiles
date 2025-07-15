@@ -379,6 +379,12 @@ Scope {
                 color: Appearance.colors.foreground
               }
 
+              // TODO: when scrolling should display a small window with value of the volume
+              Volume {
+                visible: true
+                Layout.alignment: Qt.AlignVCenter
+              }
+
               Item {
                 Layout.fillWidth: true
                 Layout.fillHeight: true

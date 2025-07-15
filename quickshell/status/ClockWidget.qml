@@ -8,11 +8,11 @@ Item {
     id: root
     property bool borderless: false
     property bool showDate: true
-    implicitWidth: row_layout.implicitWidth
+    implicitWidth: rowLayout.implicitWidth
     implicitHeight: 32
 
     RowLayout {
-        id: row_layout
+        id: rowLayout
         anchors.centerIn: parent
         spacing: 4
 
@@ -25,8 +25,8 @@ Item {
         StyledText {
             visible: true
             font.pixelSize: Appearance.font.pixelSize.large
-            color: Appearance.colors.secondary
-            text: "•"
+            color: Appearance.colors.foreground
+            text: " • "
         }
 
         StyledText {
