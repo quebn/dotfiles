@@ -12,6 +12,6 @@ Text {
         family: Appearance?.font.family.main ?? "sans-serif"
         pixelSize: Appearance?.font.pixelSize.small ?? 16
     }
-    color: Appearance?.materials.on_background ?? "white"
+    color: Appearance?.colors.foreground ?? "white"
     linkColor: Appearance?.colors.magenta
 }

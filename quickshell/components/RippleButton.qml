@@ -12,30 +12,30 @@ import Quickshell.Widgets
 Button {
     id: root
     property bool toggled
-    property string text_button
+    property string textButton
     property real radius: Appearance?.rounding?.button ?? 4
-    property real pressed_radius: root.radius
-    property real effective_radius: root.down ? root.pressed_radius : root.radius
-    property int anim_duration: 1200
-    property bool anim_enabled: true
-    property var action_down // When left clicking (down)
-    property var action_release // When left clicking (release)
-    property var action_alt // When right clicking
-    property var action_midclick // When middle clicking
+    property real pressedRadius: root.radius
+    property real effectiveRadius: root.down ? root.pressedRadius : root.radius
+    property int animDuration: 1200
+    property bool animEnabled: true
+    property var actionDown // When left clicking (down)
+    property var actionRelease // When left clicking (release)
+    property var actionAlt // When right clicking
+    property var actionMidclick // When middle clicking
 
     property color bg: Appearance.colors.background
-    property color bg_hover: root.bg
-    property color bg_toggled: root.bg
-    property color bg_toggled_hover: root.bg
-    property color col_ripple: Appearance.colors.primary
-    property color col_ripple_toggled: Appearance.colors.hover
+    property color bgHover: root.bg
+    property color bgToggled: root.bg
+    property color bgToggledHover: root.bg
+    property color colRipple: Appearance.colors.primary
+    property color colRippleToggled: Appearance.colors.hover
 
     property color buttonColor: root.enabled ? (root.toggled ?
-        (root.hovered ? bg_toggled_hover :
-            bg_toggled) :
-        (root.hovered ? bg_hover :
+        (root.hovered ? bgToggledHover :
+            bgToggled) :
+        (root.hovered ? bgHover :
             bg)) : bg
-    property color ripple_color: root.toggled ? col_ripple_toggled : col_ripple
+    property color ripple_color: root.toggled ? colRippleToggled : colRipple
 
     function start_ripple(x, y) {
         const state_y = button_background.y;
@@ -56,7 +56,7 @@ Button {
     }
 
     component RippleAnim: NumberAnimation {
-        duration: anim_duration
+        duration: animDuration
         easing.type: Appearance?.animation.elementMoveEnter.type
         easing.bezierCurve: Appearance?.animationCurves.standardDecel
     }
@@ -67,30 +67,30 @@ Button {
         acceptedButtons: Qt.LeftButton | Qt.RightButton | Qt.MiddleButton
         onPressed: (event) => {
             if(event.button === Qt.RightButton) {
-                if (root.action_alt) root.action_alt();
+                if (root.actionAlt) root.actionAlt();
                 return;
             }
             if(event.button === Qt.MiddleButton) {
-                if (root.action_midclick) root.action_midclick();
+                if (root.actionMidclick) root.actionMidclick();
                 return;
             }
             root.down = true
-            if (root.action_down) root.action_down();
-            if (!root.anim_enabled) return;
+            if (root.actionDown) root.actionDown();
+            if (!root.animEnabled) return;
             const {x,y} = event
             start_ripple(x, y)
         }
         onReleased: (event) => {
             root.down = false
             if (event.button != Qt.LeftButton) return;
-            if (root.action_release) root.action_release();
+            if (root.actionRelease) root.actionRelease();
             root.click() // Because the MouseArea already consumed the event
-            if (!root.anim_enabled) return;
+            if (!root.animEnabled) return;
             animation_fade.restart();
         }
         onCanceled: (event) => {
             root.down = false
-            if (!root.anim_enabled) return;
+            if (!root.animEnabled) return;
             animation_fade.restart();
         }
     }
@@ -136,7 +136,7 @@ Button {
 
     background: Rectangle {
         id: button_background
-        radius: root.effective_radius
+        radius: root.effectiveRadius
         implicitHeight: 50
 
         color: root.buttonColor
@@ -149,7 +149,7 @@ Button {
             maskSource: Rectangle {
                 width: button_background.width
                 height: button_background.height
-                radius: root.effective_radius
+                radius: root.effectiveRadius
             }
         }
 
@@ -184,6 +184,6 @@ Button {
     }
 
     contentItem: StyledText {
-        text: root.text_button
+        text: root.textButton
     }
 }

@@ -167,7 +167,7 @@ StackView {
 
                             sourceComponent: MaterialSymbol {
                                 text: "chevron_right"
-                                color: item.modelData.enabled ? Colours.palette.m3onSurface : Colours.palette.m3outline
+                                color: item.modelData.enabled ? Colours.color.foreground : Colours.color.hint
                             }
                         }
                     }
@@ -195,11 +195,11 @@ StackView {
                         anchors.rightMargin: -7 * 2
 
                         radius: Appearance.rounding.full
-                        color: Colours.palette.m3secondaryContainer
+                        color: Appearance.colors.foreground
 
                         StateLayer {
                             radius: parent.radius
-                            color: Colours.palette.m3onSecondaryContainer
+                            color: Appearance.colors.foreground
 
                             function onClicked(): void {
                                 root.pop();
@@ -215,13 +215,13 @@ StackView {
                         MaterialSymbol {
                             anchors.verticalCenter: parent.verticalCenter
                             text: "chevron_left"
-                            color: Colours.color.foreground
+                            color: Appearance.colors.foreground
                         }
 
                         StyledText {
                             anchors.verticalCenter: parent.verticalCenter
                             text: qsTr("Back")
-                            color: Colours.color.foreground
+                            color: Appearance.colors.foreground
                         }
                     }
                 }

@@ -365,7 +365,6 @@ Scope {
               //   }
               // }
 
-
               SysTray {
                 bar: bar
                 visible: true

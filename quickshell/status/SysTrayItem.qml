@@ -19,12 +19,12 @@ MouseArea {
     implicitWidth: trayItemWidth
     onClicked: (event) => {
         switch (event.button) {
-        case Qt.LeftButton: {
-            item.activate();
-        } break;
-        case Qt.RightButton: {
-            if (item.hasMenu) menu.open();
-        } break;
+            case Qt.LeftButton: {
+                item.activate();
+            } break;
+            case Qt.RightButton: {
+                if (item.hasMenu) menu.open();
+            } break;
         }
         event.accepted = true;
     }
@@ -57,8 +57,8 @@ MouseArea {
         height: parent.height
     }
 
-    // SysTrayMenu {
-    //     // popouts: root
-    //     trayItem: root.item.menu
-    // }
+    SysTrayMenu {
+        // popouts: root
+        trayItem: root.item.menu
+    }
 }

@@ -1,4 +1,4 @@
-import "root:/component"
+import "root:/components"
 import "root:/services"
 import "root:/"
 import QtQuick

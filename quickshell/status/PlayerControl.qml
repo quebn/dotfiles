@@ -2,7 +2,6 @@ import "root:/"
 import "root:/components"
 import "root:/services"
 import "root:/functions/string_utils.js" as StringUtils
-import "root:/functions/color_utils.js" as ColorUtils
 import "root:/functions/file_utils.js" as FileUtils
 import Qt5Compat.GraphicalEffects
 import QtQuick
@@ -37,9 +36,9 @@ Item { // Player instance
         implicitHeight: 24
 
         property var iconName
-        bg: blendedColors.colSecondaryContainer, 1
-        bg_hover: blendedColors.colSecondaryContainerHover
-        col_ripple: blendedColors.colSecondaryContainerActive
+        bg: blendedColors.colSecondaryContainer
+        bgHover: blendedColors.colSecondaryContainerHover
+        colRipple: blendedColors.colSecondaryContainerActive
 
         contentItem: MaterialSymbol {
             iconSize: Appearance.font.pixelSize.huge
@@ -65,7 +64,7 @@ Item { // Player instance
 
     onArtUrlChanged: {
         if (playerController.artUrl.length == 0) {
-            playerController.artDominantColor = Appearance.colors.layer1
+            playerController.artDominantColor = Appearance.colors.foreground
             return;
         }
         // console.log("PlayerControl: Art URL changed to", playerController.artUrl)
@@ -111,6 +110,7 @@ Item { // Player instance
     StyledRectangularShadow {
         target: background
     }
+
     Rectangle { // Background
         id: background
         anchors.fill: parent
@@ -281,8 +281,8 @@ Item { // Player instance
 
                         radius: playerController.player?.isPlaying ? Appearance?.rounding.corner : size / 2
                         bg: playerController.player?.isPlaying ? blendedColors.colPrimary : blendedColors.colSecondaryContainer
-                        bg_hover: playerController.player?.isPlaying ? blendedColors.colPrimaryHover : blendedColors.colSecondaryContainerHover
-                        col_ripple: playerController.player?.isPlaying ? blendedColors.colPrimaryActive : blendedColors.colSecondaryContainerActive
+                        bgHover: playerController.player?.isPlaying ? blendedColors.colPrimaryHover : blendedColors.colSecondaryContainerHover
+                        colRipple: playerController.player?.isPlaying ? blendedColors.colPrimaryActive : blendedColors.colSecondaryContainerActive
 
                         contentItem: MaterialSymbol {
                             iconSize: Appearance.font.pixelSize.huge
