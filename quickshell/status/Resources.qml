@@ -13,18 +13,19 @@ Item {
     id: root
     property bool borderless: false
     property bool alwaysShowAllResources: false
-    implicitWidth: row_layout.implicitWidth + row_layout.anchors.leftMargin + row_layout.anchors.rightMargin
+    implicitWidth: rowLayout.implicitWidth + rowLayout.anchors.leftMargin + rowLayout.anchors.rightMargin
     implicitHeight: 32
 
     MouseArea {
         anchors.fill: parent
+        cursorShape: Qt.PointingHandCursor
         acceptedButtons: Qt.LeftButton
         onPressed: (event) => {
             Hyprland.dispatch("exec kitty --start-as=fullscreen --title btop sh -c 'btop'")
         }
     }
     RowLayout {
-        id: row_layout
+        id: rowLayout
 
         spacing: 0
         anchors.fill: parent
@@ -32,24 +33,26 @@ Item {
         anchors.rightMargin: 4
 
         Resource {
-            icon_name: "memory_alt"
-            percentage: ResourceUsage.memory_used_percentage
-            main_color: Appearance.colors.cyan
+            // icon_name: "memory_alt"
+            // "view_agenda"
+            iconName: "view_stream"
+            percentage: ResourceUsage.memoryUsedPercentage
+            mainColor: Appearance.colors.cyan
             shown: true
         }
 
         Resource {
             visible: false
-            icon_name: "swap_horiz"
-            percentage: ResourceUsage.swap_used_percentage
-            main_color: Appearance.colors.magenta
+            iconName: "swap_horiz"
+            percentage: ResourceUsage.swapUsedPercentage
+            mainColor: Appearance.colors.magenta
             Layout.leftMargin: 4
         }
 
         Resource {
-            icon_name: "memory"
-            percentage: ResourceUsage.cpu_usage
-            main_color: Appearance.colors.green
+            iconName: "memory"
+            percentage: ResourceUsage.cpuUsage
+            mainColor: Appearance.colors.green
             shown: true
         }
 

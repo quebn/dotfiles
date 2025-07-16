@@ -173,13 +173,15 @@ Singleton {
     }
 
     sizes: QtObject {
-        property real bar_base_height: 40
-        property real bar_height: bar_base_height
-        property real bar_center_side_module_width:  360
-        property real bar_center_side_module_width_short: 280
-        property real barCenterSideModuleWidthHellaShortened: 190
-        property real barShortenScreenWidthThreshold: 1200 // Shorten if screen width is at most this value
-        property real barHellaShortenScreenWidthThreshold: 1000 // Shorten even more...
+        property QtObject bar: QtObject {
+            property real baseHeight: 40
+            property real height: root.sizes.bar.baseHeight
+            property real centerSideModuleWidth: 360
+            property real centerSideModuleWidthShort: 280
+            property real centerSideModuleWidthShortest: 190
+            property real shortenScreenWidthThreshold: 1200
+            property real hellaShortenScreenWidthThreshold: 1000
+        }
         property real sidebarWidth: 460
         property real sidebarWidthExtended: 750
         property real osdWidth: 200

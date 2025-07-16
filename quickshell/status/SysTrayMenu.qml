@@ -11,7 +11,7 @@ import QtQuick.Controls
 StackView {
     id: root
 
-    required property Item popouts
+    // required property Item popouts
     required property QsMenuHandle trayItem
 
     implicitWidth: currentItem.implicitWidth
@@ -43,7 +43,7 @@ StackView {
         spacing: 5
 
         opacity: shown ? 1 : 0
-        scale: shown ? 1 : 0.8
+        scale: 0
 
         Component.onCompleted: shown = true
         StackView.onActivating: shown = true
@@ -115,7 +115,7 @@ StackView {
                                     }));
                                 else {
                                     item.modelData.triggered();
-                                    root.popouts.hasCurrent = false;
+                                    // root.popouts.hasCurrent = false;
                                 }
                             }
                         }
@@ -142,7 +142,7 @@ StackView {
                             anchors.leftMargin: icon.active ? 7 : 0
 
                             text: labelMetrics.elidedText
-                            color: item.modelData.enabled ? Colours.palette.m3onSurface : Colours.palette.m3outline
+                            color: Appearance.colors.foreground
                         }
 
                         TextMetrics {
@@ -165,7 +165,7 @@ StackView {
                             active: item.modelData.hasChildren
                             asynchronous: true
 
-                            sourceComponent: MaterialIcon {
+                            sourceComponent: MaterialSymbol {
                                 text: "chevron_right"
                                 color: item.modelData.enabled ? Colours.palette.m3onSurface : Colours.palette.m3outline
                             }
@@ -212,16 +212,16 @@ StackView {
 
                         anchors.verticalCenter: parent.verticalCenter
 
-                        MaterialIcon {
+                        MaterialSymbol {
                             anchors.verticalCenter: parent.verticalCenter
                             text: "chevron_left"
-                            color: Colours.palette.m3onSecondaryContainer
+                            color: Colours.color.foreground
                         }
 
                         StyledText {
                             anchors.verticalCenter: parent.verticalCenter
                             text: qsTr("Back")
-                            color: Colours.palette.m3onSecondaryContainer
+                            color: Colours.color.foreground
                         }
                     }
                 }

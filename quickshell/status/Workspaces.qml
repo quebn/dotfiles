@@ -1,4 +1,3 @@
-
 import "root:/"
 import "root:/services"
 import "root:/components"
@@ -26,7 +25,7 @@ Item {
     property real workspaceIconSizeShrinked: workspaceButtonWidth * 0.55
     property real workspaceIconOpacityShrinked: 1
     property real workspaceIconMarginShrinked: -4
-    property int workspaceIndexInGroup: (monitor.activeWorkspace?.id - 1) % Config.options.bar.workspaces.shown
+    property int workspaceIndexInGroup: (monitor.activeWorkspace?.id - 1) % 10
 
     // Function to update workspaceOccupied
     function updateWorkspaceOccupied() {
@@ -47,10 +46,23 @@ Item {
     }
 
     implicitWidth: rowLayout.implicitWidth + rowLayout.spacing * 2
-    implicitHeight: Appearance.sizes.bar_height
+    implicitHeight: Appearance.sizes.bar.height
+
+    MouseArea {
+        anchors.fill: parent
+        acceptedButtons: Qt.BackButton
+        cursorShape: Qt.PointingHandCursor
+        // cursorShape: Qt.PointingHandCursor
+        onPressed: (event) => {
+            if (event.button === Qt.BackButton) {
+                Hyprland.dispatch(`togglespecialworkspace`);
+            }
+        }
+    }
 
     // Scroll to switch workspaces
     WheelHandler {
+        // cursorShape: Qt.PointingHandCursor
         onWheel: (event) => {
             if (event.angleDelta.y < 0)
                 Hyprland.dispatch(`workspace r+1`);
@@ -60,17 +72,6 @@ Item {
         acceptedDevices: PointerDevice.Mouse | PointerDevice.TouchPad
     }
 
-    MouseArea {
-        anchors.fill: parent
-        cursorShape: Qt.PointingHandCursor
-        acceptedButtons: Qt.BackButton
-        onPressed: (event) => {
-            if (event.button === Qt.BackButton) {
-                Hyprland.dispatch(`togglespecialworkspace`);
-            }
-        }
-    }
-
     // Workspaces - background
     RowLayout {
         id: rowLayout
@@ -78,7 +79,7 @@ Item {
 
         spacing: 0
         anchors.fill: parent
-        implicitHeight: Appearance.sizes.bar_height
+        implicitHeight: Appearance.sizes.bar.height
 
         Repeater {
             model: Config.options.bar.workspaces.shown
@@ -104,6 +105,7 @@ Item {
                 Behavior on opacity {
                     animation: Appearance.animation.elementMove.numberAnimation.createObject(this)
                 }
+
                 Behavior on radiusLeft {
                     animation: Appearance.animation.elementMove.numberAnimation.createObject(this)
                 }
@@ -157,7 +159,7 @@ Item {
 
         spacing: 0
         anchors.fill: parent
-        implicitHeight: Appearance.sizes.bar_height
+        implicitHeight: Appearance.sizes.bar.height
 
         Repeater {
             model: Config.options.bar.workspaces.shown
@@ -269,9 +271,6 @@ Item {
                     }
                 }
             }
-
         }
-
     }
-
 }

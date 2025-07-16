@@ -1,5 +1,6 @@
 import "root:/"
 import "root:/components"
+
 import QtQuick
 import QtQuick.Layouts
 import Quickshell.Hyprland

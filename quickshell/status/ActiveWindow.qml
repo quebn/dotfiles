@@ -10,11 +10,11 @@ Item {
     id: root
     required property var statusbar
     readonly property HyprlandMonitor monitor: Hyprland.monitorFor(statusbar.screen)
-    readonly property Toplevel active_window: ToplevelManager.activeToplevel
+    readonly property Toplevel activeWindow: ToplevelManager.activeToplevel
 
-    property string active_window_address: `0x${active_window?.HyprlandToplevel?.address}`
-    property bool is_monitor_focus: HyprlandData.activeWorkspace?.monitor == monitor.name
-    property var largest_window: HyprlandData.biggestWindowForWorkspace(HyprlandData.monitors[root.monitor.id]?.activeWorkspace.id)
+    property string activeWindowAddress: `0x${activeWindow?.HyprlandToplevel?.address}`
+    property bool isMonitorFocus: HyprlandData.activeWorkspace?.monitor == monitor.name
+    property var largestWindow: HyprlandData.biggestWindowForWorkspace(HyprlandData.monitors[root.monitor.id]?.activeWorkspace.id)
 
     implicitWidth: colLayout.implicitWidth
 
@@ -31,9 +31,9 @@ Item {
             font.pixelSize: Appearance.font.pixelSize.smaller
             color: Appearance.colors.hint
             elide: Text.ElideRight
-            text: root.is_monitor_focus && root.active_window?.activated && root.largest_window ?
-                root.active_window?.appId :
-                (root.largest_window?.class) ?? qsTr("Desktop")
+            text: root.isMonitorFocus && root.activeWindow?.activated && root.largestWindow ?
+                root.activeWindow?.appId :
+                (root.largestWindow?.class) ?? qsTr("Desktop")
 
         }
 
@@ -42,9 +42,9 @@ Item {
             font.pixelSize: Appearance.font.pixelSize.small
             color: Appearance.colors.foreground
             elide: Text.ElideRight
-            text: root.is_monitor_focus && root.active_window?.activated && root.largest_window ?
-                root.active_window?.title :
-                (root.largest_window?.title) ?? `${qsTr("Workspace")} ${monitor.activeWorkspace?.id}`
+            text: root.isMonitorFocus && root.activeWindow?.activated && root.largestWindow ?
+                root.activeWindow?.title :
+                (root.largestWindow?.title) ?? `${qsTr("Workspace")} ${monitor.activeWorkspace?.id}`
         }
 
     }

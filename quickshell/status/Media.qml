@@ -18,7 +18,7 @@ Item {
     Layout.fillHeight: true
     // Layout.fillWidth: true
     implicitWidth: parent.width * .5
-    implicitHeight: Appearance.sizes.bar_height
+    implicitHeight: Appearance.sizes.bar.height
 
     Timer {
         running: activePlayer?.playbackState == MprisPlaybackState.Playing
@@ -29,6 +29,7 @@ Item {
 
     MouseArea {
         anchors.fill: parent
+        cursorShape: Qt.PointingHandCursor
         acceptedButtons: Qt.MiddleButton | Qt.BackButton | Qt.ForwardButton | Qt.RightButton | Qt.LeftButton
         onPressed: (event) => {
             if (event.button === Qt.MiddleButton) {
@@ -51,7 +52,7 @@ Item {
 
         CircularProgress {
             Layout.alignment: Qt.AlignVCenter
-            line_width: 2
+            lineWidth: 2
             value: activePlayer?.position / activePlayer?.length
             size: 26
             secondaryColor: Appearance.colors.gutter

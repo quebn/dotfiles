@@ -31,7 +31,7 @@ Item {
 
         CircularProgress {
             Layout.alignment: Qt.AlignVCenter
-            line_width: 2
+            lineWidth: 2
             value: percentage
             size: 26
             secondaryColor: Appearance.colors.gutter

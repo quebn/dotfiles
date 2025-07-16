@@ -6,9 +6,10 @@ import Quickshell
 import Quickshell.Io
 
 Item {
-    required property string icon_name
+    required property string iconName
     required property double percentage
-    property color main_color
+    property color mainColor
+    property int iconSize: Appearance.font.pixelSize.normal
     property bool shown: true
     clip: true
     visible: true
@@ -22,25 +23,25 @@ Item {
 
         CircularProgress {
             Layout.alignment: Qt.AlignVCenter
-            line_width: 2
+            lineWidth: 2
             value: percentage
             size: 26
             secondaryColor: Appearance.colors.gutter
-            primaryColor: main_color
+            primaryColor: mainColor
 
             MaterialSymbol {
                 anchors.centerIn: parent
                 fill: 1
-                text: icon_name
-                iconSize: Appearance.font.pixelSize.normal
-                color: main_color
+                text: iconName
+                iconSize: iconSize
+                color: mainColor
             }
 
         }
 
         StyledText {
             Layout.alignment: Qt.AlignVCenter
-            color: main_color
+            color: mainColor
             text: `${Math.round(percentage * 100)}%`
         }
 

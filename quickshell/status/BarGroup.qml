@@ -6,12 +6,12 @@ import QtQuick.Layouts
 
 Item {
     id: root
-    implicitHeight: Appearance.sizes.bar_base_height
-    implicitWidth: row_layout.implicitWidth + padding * 2
-    height: Appearance.sizes.bar_height
+    implicitHeight: Appearance.sizes.bar.baseHeight
+    implicitWidth: rowLayout.implicitWidth + padding * 2
+    height: Appearance.sizes.bar.height
 
     property real padding: 5
-    default property alias items: row_layout.children
+    default property alias items: rowLayout.children
 
     Rectangle {
         id: background
@@ -25,7 +25,7 @@ Item {
     }
 
     RowLayout {
-        id: row_layout
+        id: rowLayout
         anchors {
             verticalCenter: parent.verticalCenter
             left: parent.left

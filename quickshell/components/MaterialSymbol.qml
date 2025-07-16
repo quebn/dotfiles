@@ -21,7 +21,7 @@ Text {
         }
     }
     verticalAlignment: Text.AlignVCenter
-    color: Appearance.materials.on_background
+    color: Appearance.colors.foreground
 
     // Behavior on fill {
     //     NumberAnimation {

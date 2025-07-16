@@ -11,17 +11,17 @@ import QtQuick.Layouts
 import Qt5Compat.GraphicalEffects
 
 Scope {
-  id: bar
+  id: root
 
   Variants {
     model: Quickshell.screens
 
     PanelWindow {
-      id: bar_root
+      id: bar
       property var modelData
       screen: modelData
 
-      readonly property int center_side_module_width: Appearance.sizes.bar_center_side_module_width
+      readonly property int centerSideModuleWidth: Appearance.sizes.bar.centerSideModuleWidth
 
       WlrLayershell.namespace: "quickshell:statusbar"
       color: "transparent"
@@ -33,22 +33,22 @@ Scope {
         right: true
       }
 
-      implicitHeight: Appearance.sizes.bar_height + Appearance.rounding.corner
-      exclusiveZone: Appearance.sizes.bar_base_height
+      implicitHeight: Appearance.sizes.bar.height + Appearance.rounding.corner
+      exclusiveZone: Appearance.sizes.bar.baseHeight
       mask: Region {
-        item: bar_content
+        item: barContent
       }
 
       Item {
-        id: bar_content
+        id: barContent
         anchors {
           right: parent.right
           left: parent.left
           top: parent.top
           bottom: undefined
         }
-        implicitHeight: Appearance.sizes.bar_height
-        height: Appearance.sizes.bar_height
+        implicitHeight: Appearance.sizes.bar.height
+        height: Appearance.sizes.bar.height
 
         Rectangle {
           id: background
@@ -62,16 +62,16 @@ Scope {
         }
         // MARK: left section
         MouseArea {
-          id: bar_left
+          id: barLeft
           anchors.left: parent.left
-          implicitHeight: Appearance.sizes.bar_base_height
-          height: Appearance.sizes.bar_height
-          width: (bar_root.width - middle_section.width) / 2
+          implicitHeight: Appearance.sizes.bar.baseHeight
+          height: Appearance.sizes.bar.height
+          width: (bar.width - middleSection.width) / 2
 
           Item {
             anchors.fill: parent
-            implicitHeight: left_section.implicitHeight
-            implicitWidth: left_section.implicitWidth
+            implicitHeight: leftSection.implicitHeight
+            implicitWidth: leftSection.implicitWidth
 
             // ScrollHint {
             //   reveal: barLeftSideMouseArea.hovered
@@ -83,7 +83,7 @@ Scope {
             // }
 
             RowLayout {
-              id: left_section
+              id: leftSection
               anchors.fill: parent
               spacing: 10
 
@@ -91,9 +91,9 @@ Scope {
                 Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
                 Layout.leftMargin: 10
                 Layout.fillWidth: false
-                property real button_padding: 5
-                implicitWidth: distro_icon.width + button_padding * 2
-                implicitHeight: distro_icon.height + button_padding * 2
+                property real buttonPadding: 5
+                implicitWidth: distroIcon.width + buttonPadding * 2
+                implicitHeight: distroIcon.height + buttonPadding * 2
 
                 radius: Appearance.rounding.full
                 toggled: true
@@ -103,7 +103,7 @@ Scope {
                 }
 
                 CustomIcon {
-                  id: distro_icon
+                  id: distroIcon
                   anchors.centerIn: parent
                   width: 18
                   height: 18
@@ -118,20 +118,20 @@ Scope {
                 Layout.rightMargin: Appearance.rounding.corners
                 Layout.fillWidth: true
                 Layout.fillHeight: true
-                statusbar: bar_root
+                statusbar: bar
               }
             }
           }
         }
         // MARK: Middle section
         RowLayout {
-          id: middle_section
+          id: middleSection
           anchors.centerIn: parent
           spacing: 8
 
           BarGroup {
-            id: center_left_group
-            Layout.preferredWidth: bar_root.center_side_module_width
+            id: centerLeftGroup
+            Layout.preferredWidth: bar.centerSideModuleWidth
             Layout.fillHeight: true
 
             Resources {
@@ -146,13 +146,13 @@ Scope {
           }
 
           BarGroup {
-            id: center_middle_group
+            id: centerMiddleGroup
             padding: workspaces.widgetPadding
             Layout.fillHeight: true
 
             Workspaces {
               id: workspaces
-              bar: bar_root
+              bar: bar
               Layout.fillHeight: true
               MouseArea {
                 anchors.fill: parent
@@ -168,10 +168,10 @@ Scope {
           }
 
           MouseArea {
-            id: center_right_group
-            implicitWidth: center_right_group_content.implicitWidth
-            implicitHeight: center_right_group_content.implicitHeight
-            Layout.preferredWidth: bar_root.center_side_module_width
+            id: centerRightGroup
+            implicitWidth: centerRightGroupContent.implicitWidth
+            implicitHeight: centerRightGroupContent.implicitHeight
+            Layout.preferredWidth: bar.centerSideModuleWidth
             Layout.fillHeight: true
 
             // onPressed: {
@@ -179,11 +179,11 @@ Scope {
             // }
 
             BarGroup {
-              id: center_right_group_content
+              id: centerRightGroupContent
               anchors.fill: parent
 
               ClockWidget {
-                showDate: (Config.options.bar.verbose && bar_root.useShortenedForm < 2)
+                showDate: (Config.options.bar.verbose && bar.useShortenedForm < 2)
                 Layout.alignment: Qt.AlignVCenter
                 Layout.fillWidth: true
               }
@@ -207,12 +207,12 @@ Scope {
         }
         // TODO: right
         MouseArea { // Right side | scroll to change volume
-          id: bar_right
+          id: barRight
 
           anchors.right: parent.right
-          implicitHeight: Appearance.sizes.bar_base_height
-          height: Appearance.sizes.bar_height
-          width: (bar_root.width - middle_section.width) / 2
+          implicitHeight: Appearance.sizes.bar.baseHeight
+          height: Appearance.sizes.bar.height
+          width: (bar.width - middleSection.width) / 2
 
           property bool hovered: false
           // property real lastScrollX: 0
@@ -265,8 +265,8 @@ Scope {
           //
           Item {
             anchors.fill: parent
-            implicitHeight: right_section.implicitHeight
-            implicitWidth: right_section.implicitWidth
+            implicitHeight: rightSection.implicitHeight
+            implicitWidth: rightSection.implicitWidth
 
             // ScrollHint {
             //   reveal: barRightSideMouseArea.hovered
@@ -278,7 +278,7 @@ Scope {
             // }
 
             RowLayout {
-              id: right_section
+              id: rightSection
               anchors.fill: parent
               spacing: 5
               layoutDirection: Qt.RightToLeft
@@ -367,7 +367,7 @@ Scope {
 
 
               SysTray {
-                bar: bar_root
+                bar: bar
                 visible: true
                 Layout.fillWidth: false
                 Layout.fillHeight: true
@@ -397,7 +397,7 @@ Scope {
               //   Layout.fillHeight: true
               //   active: Config.options.bar.weather.enable
               //   sourceComponent: BarGroup {
-              //     implicitHeight: Appearance.sizes.bar_base_height
+              //     implicitHeight: Appearance.sizes.bar.baseHeight
               //     WeatherBar {}
               //   }
               // }
@@ -407,12 +407,12 @@ Scope {
       }
 
       Loader {
-        id: round_decorators
+        id: roundDecorators
         anchors {
           left: parent.left
           right: parent.right
         }
-        y: Appearance.sizes.bar_height
+        y: Appearance.sizes.bar.height
         width: parent.width
         height: Appearance.rounding.corner
         active: true
@@ -420,7 +420,7 @@ Scope {
         sourceComponent: Item {
           implicitHeight: Appearance.rounding.corner
           RoundCorner {
-            id: left_corner
+            id: cornerLeft
             anchors {
               top: parent.top
               bottom: parent.bottom
@@ -430,7 +430,7 @@ Scope {
             corner: RoundCorner.CornerEnum.TopLeft
           }
           RoundCorner {
-            id: right_corner
+            id: cornerRight
             anchors {
               right: parent.right
               top: parent.top

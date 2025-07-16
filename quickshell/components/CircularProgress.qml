@@ -11,15 +11,15 @@ Item {
     id: root
 
     property int size: 30
-    property int line_width: 2
+    property int lineWidth: 2
     property real value: 0
     property color primaryColor: Appearance.colors.primary
     property color secondaryColor: Appearance.colors.foreground
-    property real gap_angle: Math.PI / 9
+    property real gapAngle: Math.PI / 9
     property bool fill: false
-    property int fill_overflow: 2
-    property int animation_duration: 1000
-    property var easing_type: Easing.OutCubic
+    property int fillOverflow: 2
+    property int animDuration: 1000
+    property var easingType: Easing.OutCubic
 
     width: size
     height: size
@@ -52,40 +52,40 @@ Item {
             var ctx = getContext("2d");
             var x = root.width / 2;
             var y = root.height / 2;
-            var radius = root.size / 2 - root.line_width;
-            var start_angle = (Math.PI / 180) * 270;
-            var full_angle = (Math.PI / 180) * (270 + 360);
-            var progress_angle = (Math.PI / 180) * (270 + degree);
+            var radius = root.size / 2 - root.lineWidth;
+            var startAngle = (Math.PI / 180) * 270;
+            var fullAngle = (Math.PI / 180) * (270 + 360);
+            var progressAngle = (Math.PI / 180) * (270 + degree);
             var epsilon = 0.01; // Small angle in radians
 
             ctx.reset();
             if (root.fill) {
                 ctx.fillStyle = root.primary;
                 ctx.beginPath();
-                ctx.arc(x, y, radius + fill_overflow, start_angle, full_angle);
+                ctx.arc(x, y, radius + fillOverflow, startAngle, fullAngle);
                 ctx.fill();
             }
             ctx.lineCap = 'round';
-            ctx.lineWidth = root.line_width;
+            ctx.lineWidth = root.lineWidth;
 
             // Secondary
             ctx.beginPath();
-            ctx.arc(x, y, radius, progress_angle + gap_angle, full_angle - gap_angle);
+            ctx.arc(x, y, radius, progressAngle + gapAngle, fullAngle - gapAngle);
             ctx.strokeStyle = root.secondaryColor;
             ctx.stroke();
 
             // Primary (value indication)
-            var end_angle = progress_angle + (value > 0 ? 0 : epsilon);
+            var endAngle = progressAngle + (value > 0 ? 0 : epsilon);
             ctx.beginPath();
-            ctx.arc(x, y, radius, start_angle, end_angle);
+            ctx.arc(x, y, radius, startAngle, endAngle);
             ctx.strokeStyle = root.primaryColor;
             ctx.stroke();
         }
 
         Behavior on degree {
             NumberAnimation {
-                duration: root.animation_duration
-                easing.type: root.easing_type
+                duration: root.animDuration
+                easing.type: root.easingType
             }
 
         }

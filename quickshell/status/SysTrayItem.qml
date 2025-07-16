@@ -19,15 +19,12 @@ MouseArea {
     implicitWidth: trayItemWidth
     onClicked: (event) => {
         switch (event.button) {
-        case Qt.LeftButton:
+        case Qt.LeftButton: {
             item.activate();
-            if (item.hasMenu) {
-                menu.open();
-            }
-            break;
-        case Qt.RightButton:
+        } break;
+        case Qt.RightButton: {
             if (item.hasMenu) menu.open();
-            break;
+        } break;
         }
         event.accepted = true;
     }
@@ -40,8 +37,16 @@ MouseArea {
         // anchor.window: this.QsWindow.window
         //
         menu: root.item.menu
-        anchor.window: parent
+        anchor.window: bar
+        anchor.rect.x: root.x + bar.width
+        anchor.rect.y: root.y
+        anchor.rect.height: root.height
+        anchor.edges: Edges.Bottom
     }
+
+    // QsMenuHandle {
+    //     id: trayHandle
+    // }
 
     IconImage {
         id: trayIcon
@@ -51,4 +56,9 @@ MouseArea {
         width: parent.width
         height: parent.height
     }
+
+    // SysTrayMenu {
+    //     // popouts: root
+    //     trayItem: root.item.menu
+    // }
 }
