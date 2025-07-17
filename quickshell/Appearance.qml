@@ -47,8 +47,10 @@ Singleton {
         property color layer1Alt: colortheme.surfaceAlt
         property color layer2Alt: colortheme.overlayAlt
         property color hint: colortheme.subtle
-        property color border: colortheme.highlightHigh
+        property color border: colors.layer2Alt
+        property color borderAlt: colortheme.highlightHigh
         property color separator: colors.border
+        property color error: colortheme.love
         property color hover: colortheme.foam
         property color primary: colortheme.pine
         property color secondary: colortheme.rose

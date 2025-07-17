@@ -16,7 +16,7 @@ Item {
 
     height: parent.height
     implicitWidth: rowLayout.implicitWidth
-    Layout.rightMargin: rowLayout.spacing
+    Layout.rightMargin: 4
 
     RowLayout {
         id: rowLayout
@@ -26,16 +26,12 @@ Item {
 
         Repeater {
             model: SystemTray.items
-
             SysTrayItem {
                 required property SystemTrayItem modelData
-
                 bar: root.bar
                 item: modelData
             }
 
         }
-
     }
-
 }

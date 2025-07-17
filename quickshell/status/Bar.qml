@@ -18,9 +18,10 @@ Scope {
 
     PanelWindow {
       id: bar
-      property var modelData
+      property ShellScreen modelData
       screen: modelData
 
+      readonly property var brightnessMonitor: Brightness.getMonitorForScreen(modelData)
       readonly property int centerSideModuleWidth: Appearance.sizes.bar.centerSideModuleWidth
 
       WlrLayershell.namespace: "quickshell:statusbar"
@@ -334,6 +335,15 @@ Scope {
               //         color: rightSidebarButton.colText
               //       }
               //     }
+              //     MaterialSymbol {
+              //       Layout.rightMargin: indicatorsRowLayout.realSpacing
+              //       text: Network.materialSymbol
+              //       iconSize: Appearance.font.pixelSize.larger
+              //       color: rightSidebarButton.colText
+              //     }
+              //   }
+              // }
+
               //     Revealer {
               //       reveal: Audio.source?.audio?.muted ?? false
               //       Layout.fillHeight: true
@@ -351,19 +361,27 @@ Scope {
               //         color: rightSidebarButton.colText
               //       }
               //     }
-              //     MaterialSymbol {
-              //       Layout.rightMargin: indicatorsRowLayout.realSpacing
-              //       text: Network.materialSymbol
-              //       iconSize: Appearance.font.pixelSize.larger
-              //       color: rightSidebarButton.colText
-              //     }
-              //     MaterialSymbol {
-              //       text: Bluetooth.bluetoothConnected ? "bluetooth_connected" : Bluetooth.bluetoothEnabled ? "bluetooth" : "bluetooth_disabled"
-              //       iconSize: Appearance.font.pixelSize.larger
-              //       color: rightSidebarButton.colText
-              //     }
-              //   }
-              // }
+
+              // TODO: add onhover color change
+              MaterialSymbol {
+                Layout.rightMargin: Appearance.sizes.compositorGaps
+                text: Bluetooth.bluetoothConnected ? "bluetooth_connected" : Bluetooth.bluetoothEnabled ? "bluetooth" : "bluetooth_disabled"
+                iconSize: Appearance.font.pixelSize.larger
+                color: Appearance.colors.foreground
+              }
+
+              // TODO: add onhover color change
+              BrightnessControl {
+                visible: true
+                monitor: brightnessMonitor
+                Layout.alignment: Qt.AlignVCenter
+              }
+
+              // TODO: add onhover color change
+              Volume {
+                visible: true
+                Layout.alignment: Qt.AlignVCenter
+              }
 
               SysTray {
                 bar: bar
@@ -372,17 +390,6 @@ Scope {
                 Layout.fillHeight: true
               }
 
-              MaterialSymbol {
-                text: Bluetooth.bluetoothConnected ? "bluetooth_connected" : Bluetooth.bluetoothEnabled ? "bluetooth" : "bluetooth_disabled"
-                iconSize: Appearance.font.pixelSize.larger
-                color: Appearance.colors.foreground
-              }
-
-              // TODO: when scrolling should display a small window with value of the volume
-              Volume {
-                visible: true
-                Layout.alignment: Qt.AlignVCenter
-              }
 
               Item {
                 Layout.fillWidth: true

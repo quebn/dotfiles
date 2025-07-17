@@ -2,7 +2,6 @@
 import "root:/"
 import "root:/components"
 import "root:/services"
-import "root:/functions/color_utils.js" as ColorUtils
 import QtQuick
 import QtQuick.Effects
 import QtQuick.Layouts

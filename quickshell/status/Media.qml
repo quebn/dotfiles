@@ -33,13 +33,13 @@ Item {
         acceptedButtons: Qt.MiddleButton | Qt.BackButton | Qt.ForwardButton | Qt.RightButton | Qt.LeftButton
         onPressed: (event) => {
             if (event.button === Qt.MiddleButton) {
-                activePlayer.next();
+                activePlayer?.next();
             } else if (event.button === Qt.BackButton) {
-                activePlayer.previous();
+                activePlayer?.previous();
             } else if (event.button === Qt.ForwardButton || event.button === Qt.RightButton) {
                 Hyprland.dispatch("global quickshell:mediaControlsToggle")
             } else if (event.button === Qt.LeftButton) {
-                activePlayer.togglePlaying();
+                activePlayer?.togglePlaying();
             }
         }
     }
@@ -61,7 +61,7 @@ Item {
             MaterialSymbol {
                 anchors.centerIn: parent
                 fill: 1
-                text: activePlayer?.isPlaying ? "music_note" : "pause"
+                text: activePlayer ? activePlayer.isPlaying ? "music_note" : "pause" : "music_note"
                 iconSize: Appearance.font.pixelSize.normal
                 color: Appearance.colors.foreground
             }

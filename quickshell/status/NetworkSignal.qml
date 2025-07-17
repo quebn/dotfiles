@@ -49,7 +49,8 @@ Item {
         StyledText {
             Layout.alignment: Qt.AlignVCenter
             color: mainColor
-            text: `${networkStrength}%`
+            text: `${String(networkStrength).padStart(2, "0")}%`
+
         }
 
     }

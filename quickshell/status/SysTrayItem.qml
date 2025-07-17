@@ -57,8 +57,7 @@ MouseArea {
         height: parent.height
     }
 
-    SysTrayMenu {
-        // popouts: root
-        trayItem: root.item.menu
-    }
+    // SysTrayMenu {
+    //     trayItem: root.item.menu
+    // }
 }

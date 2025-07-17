@@ -16,8 +16,8 @@ ProgressBar {
     property real valueBarWidth: 120
     property real valueBarHeight: 4
     property real valueBarGap: 4
-    property color highlightColor: Appearance?.colors.colPrimary ?? "#685496"
-    property color trackColor: Appearance?.m3colors.m3secondaryContainer ?? "#F1D3F9"
+    property color highlightColor: Appearance.colors.primary
+    property color trackColor: Appearance.colors.layer1Alt
     property bool sperm: false // If true, the progress bar will have a wavy fill effect
     property bool animateSperm: true
     property real spermAmplitudeMultiplier: sperm ? 0.5 : 0
@@ -31,7 +31,7 @@ ProgressBar {
     Behavior on value {
         animation: Appearance?.animation.elementMoveEnter.numberAnimation.createObject(this)
     }
-    
+
     background: Item {
         anchors.fill: parent
         implicitHeight: valueBarHeight

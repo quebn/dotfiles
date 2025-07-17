@@ -2,13 +2,19 @@ import "root:/"
 import "root:/components"
 import "root:/services"
 import QtQuick
+import QtQuick.Controls
 import QtQuick.Layouts
 import Quickshell
 import Quickshell.Io
+import Quickshell.Hyprland
+import Quickshell.Wayland
+
 
 Item {
     id: root
     property color mainColor: Appearance.colors.foreground
+    required property var monitor
+
     implicitWidth: rowLayout.implicitWidth + rowLayout.spacing * 2
     implicitHeight: 32
 
@@ -20,23 +26,19 @@ Item {
 
         WheelHandler {
             onWheel: event => {
-                const step = 0.05;
-                if (event.angleDelta.y < 0)
-                Audio.sink.audio.volume -= step;
-                else if (event.angleDelta.y > 0)
-                Audio.sink.audio.volume = Math.min(1, Audio.sink.audio.volume + step);
-                // Store the mouse position and start tracking
-                // barRightSideMouseArea.lastScrollX = event.x;
-                // barRightSideMouseArea.lastScrollY = event.y;
-                // barRightSideMouseArea.trackingScroll = true;
+                if (event.angleDelta.y < 0) {
+                    monitor.setBrightness(monitor.brightness - 0.05);
+                } else if (event.angleDelta.y > 0) {
+                    monitor.setBrightness(monitor.brightness + 0.05);
+                }
             }
             acceptedDevices: PointerDevice.Mouse | PointerDevice.TouchPad
         }
 
         MaterialSymbol {
-            text: "graphic_eq"
+            text: "brightness_6"
             iconSize: Appearance.font.pixelSize.larger
-            color: mainColor
+            color: Appearance.colors.foreground
         }
     }
 }

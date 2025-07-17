@@ -111,7 +111,7 @@ Item { // Notification group area
         anchors.left: parent.left
         width: parent.width
         color: Appearance.colors.background
-        border.color: Appearance.colors.backgroundAlt
+        border.color: Appearance.colors.border
         border.width: 1
         radius: Appearance.rounding.corner
         anchors.leftMargin: root.xOffset

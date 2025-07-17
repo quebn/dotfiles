@@ -74,7 +74,7 @@ Singleton {
         id: monitor
 
         required property ShellScreen screen
-        readonly property bool isDdc: root.ddcMonitors.some(m => m.model === screen.model)
+        readonly property bool isDdc: false
         readonly property string busNum: root.ddcMonitors.find(m => m.model === screen.model)?.busNum ?? ""
         property real brightness
         property bool ready: false

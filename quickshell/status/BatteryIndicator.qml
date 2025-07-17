@@ -59,7 +59,7 @@ Item {
         StyledText {
             Layout.alignment: Qt.AlignVCenter
             color: mainColor
-            text: `${Math.round(percentage * 100)}%`
+            text: `${String(Math.round(percentage * 100)).padStart(2, "0")}%`
         }
 
     }
