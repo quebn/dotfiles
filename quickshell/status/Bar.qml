@@ -100,7 +100,7 @@ Scope {
                 toggled: true
 
                 onPressed: {
-                  Hyprland.dispatch('exec rofi -show drun -run-command "uwsm app -- {cmd}"');
+                  Hyprland.dispatch('exec rofi -show drun -run-command "app2unit {cmd}"');
                 }
 
                 CustomIcon {
