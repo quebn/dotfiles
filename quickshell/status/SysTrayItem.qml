@@ -1,4 +1,6 @@
 import "root:/"
+import "root:/services"
+import "root:/components"
 import QtQuick
 import QtQuick.Layouts
 import Quickshell
@@ -47,10 +49,18 @@ MouseArea {
     // QsMenuHandle {
     //     id: trayHandle
     // }
+    MaterialSymbol {
+        id: trayIconAlt
+        anchors.centerIn: parent
+        visible: root.item.id == "nm-applet"
+        fill: 1
+        text: Network.materialSymbol
+        iconSize: Appearance.font.pixelSize.larger
+    }
 
     IconImage {
         id: trayIcon
-        visible: true
+        visible: root.item.id != "nm-applet"
         source: root.item.icon
         anchors.centerIn: parent
         width: parent.width

@@ -100,7 +100,7 @@ Scope {
                 toggled: true
 
                 onPressed: {
-                  Hyprland.dispatch('exec rofi -show drun');
+                  Hyprland.dispatch('exec rofi -show drun -run-command "uwsm app -- {cmd}"');
                 }
 
                 CustomIcon {
@@ -363,15 +363,16 @@ Scope {
               //     }
 
               // TODO: add onhover color change
-              MaterialSymbol {
-                Layout.rightMargin: Appearance.sizes.compositorGaps
-                text: Bluetooth.bluetoothConnected ? "bluetooth_connected" : Bluetooth.bluetoothEnabled ? "bluetooth" : "bluetooth_disabled"
-                iconSize: Appearance.font.pixelSize.larger
-                color: Appearance.colors.foreground
-              }
+              // MaterialSymbol {
+              //   Layout.rightMargin: Appearance.sizes.compositorGaps
+              //   text: Bluetooth.bluetoothConnected ? "bluetooth_connected" : Bluetooth.bluetoothEnabled ? "bluetooth" : "bluetooth_disabled"
+              //   iconSize: Appearance.font.pixelSize.larger
+              //   color: Appearance.colors.foreground
+              // }
 
               // TODO: add onhover color change
               BrightnessControl {
+              Layout.rightMargin: Appearance.sizes.compositorGaps
                 visible: true
                 monitor: brightnessMonitor
                 Layout.alignment: Qt.AlignVCenter
