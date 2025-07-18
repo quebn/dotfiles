@@ -29,7 +29,8 @@ Item {
                 if (event.angleDelta.y < 0) {
                     monitor.setBrightness(monitor.brightness - 0.05);
                 } else if (event.angleDelta.y > 0) {
-                    monitor.setBrightness(monitor.brightness + 0.05);
+                    let value = monitor.brightness === 0.01 ?  0.04 : 0.05
+                    monitor.setBrightness(monitor.brightness + value);
                 }
             }
             acceptedDevices: PointerDevice.Mouse | PointerDevice.TouchPad

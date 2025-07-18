@@ -36,7 +36,7 @@ Item {
         MaterialSymbol {
             text: "graphic_eq"
             iconSize: Appearance.font.pixelSize.larger
-            color: mainColor
+            color: Audio.sink.audio.volume > 0 ? mainColor : Appearance.colors.hint
         }
     }
 }
