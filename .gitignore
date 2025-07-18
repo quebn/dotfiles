@@ -1,6 +1,7 @@
 # Directories
 .*/
 freerdp/
+session/
 kdeconnect/
 filezilla/
 lazysql/
