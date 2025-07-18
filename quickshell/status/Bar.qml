@@ -1,7 +1,6 @@
-// Bar.qml
-import "root:/"
-import "root:/services"
-import "root:/components"
+import qs
+import qs.services
+import qs.components
 import Quickshell
 import Quickshell.Wayland
 import Quickshell.Hyprland

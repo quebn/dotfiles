@@ -1,5 +1,5 @@
-import "root:/"
-import QtQuick 2.9
+import qs
+import QtQuick
 
 Item {
     id: root
@@ -8,7 +8,7 @@ Item {
     property var corner: RoundCorner.CornerEnum.TopLeft // Default to TopLeft
 
     property int size: 16
-    property color color: "#000000"
+    property color color: Appearance.colors.background
 
     onColorChanged: {
         canvas.requestPaint();

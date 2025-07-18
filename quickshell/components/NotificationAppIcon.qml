@@ -1,4 +1,4 @@
-import "root:/"
+import qs
 import "root:/functions/notification_utils.js" as NotificationUtils
 import Qt5Compat.GraphicalEffects
 import QtQuick

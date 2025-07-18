@@ -1,6 +1,6 @@
-import "root:/components"
-import "root:/services"
-import "root:/"
+import qs
+import qs.components
+import qs.services
 import QtQuick
 
 MouseArea {

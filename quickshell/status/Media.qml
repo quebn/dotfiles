@@ -1,7 +1,7 @@
-import "root:/"
-import "root:/components"
-import "root:/services"
-import "root:/functions/string_utils.js" as StringUtils
+import qs
+import qs.components
+import qs.services
+import qs.functions
 import QtQuick
 import QtQuick.Layouts
 import Quickshell

@@ -1,8 +1,8 @@
 // From https://github.com/end-4/dots-hyprland with modifications
 // License: LGPL-3.0 - A copy can be found in `licenses` folder of repo
 
+import qs
 import QtQuick
-import "root:/"
 
 /**
  * Material 3 circular progress. See https://m3.material.io/components/progress-indicators/specs

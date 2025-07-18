@@ -1,8 +1,7 @@
-import "root:/"
-import "root:/components"
-import "root:/services"
-import "root:/functions/string_utils.js" as StringUtils
-import "root:/functions/file_utils.js" as FileUtils
+import qs
+import qs.components
+import qs.services
+import qs.functions
 import Qt5Compat.GraphicalEffects
 import QtQuick
 import QtQuick.Effects

@@ -1,7 +1,7 @@
 
-import "root:/"
-import "root:/components"
-import "root:/services"
+import qs
+import qs.components
+import qs.services
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts

@@ -1,7 +1,7 @@
-import "root:/"
-import "root:/services"
-import "root:/components"
-import "root:/functions/string_utils.js" as StringUtils
+import qs
+import qs.services
+import qs.components
+import qs.functions
 import "root:/functions/notification_utils.js" as NotificationUtils
 import Qt5Compat.GraphicalEffects
 import QtQuick
@@ -76,7 +76,7 @@ Item { // Notification item area
             easing.bezierCurve: Appearance.animation.elementMove.bezierCurve
         }
         onFinished: () => {
-            Notifications.discardNotification(notificationObject.id);
+            Notifications.discardNotification(notificationObject.notificationId);
         }
     }
 
@@ -269,7 +269,7 @@ Item { // Notification item area
                                 buttonText: modelData.text
                                 urgency: notificationObject.urgency
                                 onClicked: {
-                                    Notifications.attemptInvokeAction(notificationObject.id, modelData.identifier);
+                                    Notifications.attemptInvokeAction(notificationObject.notificationId, modelData.identifier);
                                 }
                             }
                         }

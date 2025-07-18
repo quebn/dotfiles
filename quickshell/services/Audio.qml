@@ -1,4 +1,4 @@
-import "root:/"
+import qs
 import QtQuick
 import Quickshell
 import Quickshell.Services.Pipewire

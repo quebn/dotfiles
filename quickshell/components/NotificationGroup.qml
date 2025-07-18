@@ -1,7 +1,7 @@
-import "root:/"
-import "root:/components"
-import "root:/services"
-import "root:/functions/string_utils.js" as StringUtils
+import qs
+import qs.services
+import qs.components
+import qs.functions
 import "root:/functions/notification_utils.js" as NotificationUtils
 import Qt5Compat.GraphicalEffects
 import QtQuick
@@ -9,7 +9,6 @@ import QtQuick.Controls
 import QtQuick.Effects
 import QtQuick.Layouts
 import Quickshell
-import Quickshell.Io
 import Quickshell.Widgets
 import Quickshell.Hyprland
 import Quickshell.Services.Notifications
@@ -61,7 +60,7 @@ Item { // Notification group area
         onFinished: () => {
             root.notifications.forEach((notif) => {
                 Qt.callLater(() => {
-                    Notifications.discardNotification(notif.id);
+                    Notifications.discardNotification(notif.notificationId);
                 });
             });
         }
