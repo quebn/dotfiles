@@ -76,7 +76,7 @@ Item { // Notification item area
             easing.bezierCurve: Appearance.animation.elementMove.bezierCurve
         }
         onFinished: () => {
-            Notifications.discardNotification(notificationObject.notificationId);
+            Notifications.discardNotification(notificationObject.id);
         }
     }
 
@@ -269,7 +269,7 @@ Item { // Notification item area
                                 buttonText: modelData.text
                                 urgency: notificationObject.urgency
                                 onClicked: {
-                                    Notifications.attemptInvokeAction(notificationObject.notificationId, modelData.identifier);
+                                    Notifications.attemptInvokeAction(notificationObject.id, modelData.identifier);
                                 }
                             }
                         }

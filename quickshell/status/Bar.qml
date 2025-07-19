@@ -23,7 +23,7 @@ Scope {
       readonly property var brightnessMonitor: Brightness.getMonitorForScreen(modelData)
       readonly property int centerSideModuleWidth: Appearance.sizes.bar.centerSideModuleWidth
 
-      WlrLayershell.namespace: "quickshell:statusbar"
+      WlrLayershell.namespace: "quickshell:bar"
       color: "transparent"
 
       anchors {
@@ -192,8 +192,9 @@ Scope {
               //   visible: (Config.options.bar.verbose && barRoot.useShortenedForm === 0)
               //   Layout.alignment: Qt.AlignVCenter
               // }
-              //
-              NetworkSignal {
+
+              // TODO: change to temperature
+              CpuTemperature {
                 visible: true
                 Layout.alignment: Qt.AlignVCenter
               }
@@ -337,14 +338,6 @@ Scope {
               //         color: rightSidebarButton.colText
               //       }
               //     }
-
-              // TODO: add onhover color change
-              // MaterialSymbol {
-              //   Layout.rightMargin: Appearance.sizes.compositorGaps
-              //   text: Bluetooth.bluetoothConnected ? "bluetooth_connected" : Bluetooth.bluetoothEnabled ? "bluetooth" : "bluetooth_disabled"
-              //   iconSize: Appearance.font.pixelSize.larger
-              //   color: Appearance.colors.foreground
-              // }
 
               // TODO: add onhover color change
               BrightnessControl {

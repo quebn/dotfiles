@@ -19,9 +19,9 @@ Singleton {
         property color base:             "#000000"
         property color surface:          "#110D12"
         property color overlay:          "#121212"
-        property color baseAlt:         "#191724"
-        property color surfaceAlt:      "#1f1d2e"
-        property color overlayAlt:      "#26233a"
+        property color baseAlt:          "#191724"
+        property color surfaceAlt:       "#1f1d2e"
+        property color overlayAlt:       "#26233a"
         property color muted:            "#6e6a86"
         property color subtle:           "#908caa"
         property color text:             "#e0def4"
@@ -31,9 +31,9 @@ Singleton {
         property color pine:             "#31748f"
         property color foam:             "#9ccfd8"
         property color iris:             "#c4a7e7"
-        property color highlightLow:    "#21202e"
-        property color highlightMedium: "#403d52"
-        property color highlightHigh:   "#524f67"
+        property color highlightLow:     "#21202e"
+        property color highlightMedium:  "#403d52"
+        property color highlightHigh:    "#524f67"
     }
 
     colors: QtObject {
@@ -47,6 +47,7 @@ Singleton {
         property color layer1Alt: colortheme.surfaceAlt
         property color layer2Alt: colortheme.overlayAlt
         property color hint: colortheme.subtle
+        property color hintAlt: colortheme.muted
         property color border: colors.layer2Alt
         property color borderAlt: colortheme.highlightHigh
         property color separator: colors.border

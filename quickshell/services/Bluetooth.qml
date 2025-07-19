@@ -1,6 +1,7 @@
 pragma Singleton
 pragma ComponentBehavior: Bound
 
+import qs
 import Quickshell;
 import Quickshell.Io;
 import QtQuick;
@@ -16,6 +17,8 @@ Singleton {
     property string bluetoothDeviceAddress: ""
     property bool bluetoothEnabled: false
     property bool bluetoothConnected: false
+    readonly property string materialSymbol: bluetoothConnected ? "bluetooth_connected" : bluetoothEnabled ? "bluetooth" : "bluetooth_disabled"
+    readonly property color mainColor: bluetoothEnabled ? Appearance.colors.foreground : Appearance.colors.hintAlt
 
     function update() {
         updateBluetoothDevice.running = true

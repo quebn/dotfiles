@@ -19,6 +19,7 @@ Singleton {
 	property double swapUsed: swapTotal - swapFree
     property double swapUsedPercentage: swapTotal > 0 ? (swapUsed / swapTotal) : 0
     property double cpuUsage: 0
+    property double cpuTemp: 0
     property var prevCpuStats
 
 	Timer {
@@ -26,10 +27,12 @@ Singleton {
         running: true
         repeat: true
 		onTriggered: {
-            // Reload files
             fileMeminfo.reload()
             fileStat.reload()
+            fileThermal.reload()
 
+            const textTherm = fileThermal.text()
+            cpuTemp = Number(textTherm) / 100000;
             // Parse memory and swap usage
             const textMemInfo = fileMeminfo.text()
             memoryTotal = Number(textMemInfo.match(/MemTotal: *(\d+)/)?.[1] ?? 1)
@@ -60,4 +63,5 @@ Singleton {
 
 	FileView { id: fileMeminfo; path: "/proc/meminfo" }
     FileView { id: fileStat; path: "/proc/stat" }
+    FileView { id: fileThermal; path: "/sys/class/thermal/thermal_zone0/temp" }
 }

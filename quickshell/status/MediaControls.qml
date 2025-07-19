@@ -117,6 +117,7 @@ Scope {
 
             ColumnLayout {
                 id: playerColumnLayout
+                anchors.topMargin: Appearance.sizes.compositorGaps
                 anchors.top: parent.top
                 anchors.bottom: parent.bottom
                 x: (mediaControlsRoot.screen.width / 2)  // Middle of screen

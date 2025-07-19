@@ -114,6 +114,8 @@ Item { // Player instance
         id: background
         anchors.fill: parent
         anchors.margins: Appearance.sizes.elevationMargin
+        border.color: Appearance.colors.border
+        border.width: 1
         color: blendedColors.colLayer0
         radius: Appearance?.rounding.corner
 

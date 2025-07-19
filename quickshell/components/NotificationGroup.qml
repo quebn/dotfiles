@@ -60,7 +60,7 @@ Item { // Notification group area
         onFinished: () => {
             root.notifications.forEach((notif) => {
                 Qt.callLater(() => {
-                    Notifications.discardNotification(notif.notificationId);
+                    Notifications.discardNotification(notif.id);
                 });
             });
         }

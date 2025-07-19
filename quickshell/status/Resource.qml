@@ -11,6 +11,7 @@ Item {
     property color mainColor
     property int iconSize: Appearance.font.pixelSize.normal
     property bool shown: true
+    property string suffix: "%"
     clip: true
     visible: true
     implicitWidth: childrenRect.width
@@ -43,7 +44,7 @@ Item {
             Layout.alignment: Qt.AlignVCenter
             color: mainColor
             // text: `${Math.round(percentage * 100)}%`
-            text: `${String(Math.round(percentage * 100)).padStart(2, "0")}%`
+            text: `${String(Math.round(percentage * 100)).padStart(2, "0")}${suffix}`
         }
 
         Behavior on x {
