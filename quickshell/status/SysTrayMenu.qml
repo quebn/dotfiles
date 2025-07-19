@@ -8,10 +8,32 @@ import Quickshell.Widgets
 import QtQuick
 import QtQuick.Controls
 
+Item {
+    id: root
+    required property bool menuOpen
+    required property QsMenuHandle trayItem
+    implicitWidth: 300
+    implicitHeight: 500
+
+    Rectangle { // Background
+        id: background
+        anchors.fill: parent
+        anchors.margins: Appearance.sizes.elevationMargin
+        border.color: Appearance.colors.border
+        border.width: 1
+        color: Appearance.colors.background
+        radius: Appearance?.rounding.corner
+
+    }
+}
+
+
+/*
 StackView {
     id: root
 
     // required property Item popouts
+    required property bool menuOpen
     required property QsMenuHandle trayItem
 
     implicitWidth: currentItem.implicitWidth
@@ -21,17 +43,17 @@ StackView {
         handle: root.trayItem
     }
 
-    pushEnter: Anim {}
-    pushExit: Anim {}
-    popEnter: Anim {}
-    popExit: Anim {}
-
-    component Anim: Transition {
-        NumberAnimation {
-            duration: 0
-        }
-    }
-
+    // pushEnter: Anim {}
+    // pushExit: Anim {}
+    // popEnter: Anim {}
+    // popExit: Anim {}
+    //
+    // component Anim: Transition {
+    //     NumberAnimation {
+    //         duration: 0
+    //     }
+    // }
+    //
     component SubMenu: Column {
         id: menu
 
@@ -43,29 +65,29 @@ StackView {
         spacing: 5
 
         opacity: shown ? 1 : 0
-        scale: 0
+        scale: 1
 
         Component.onCompleted: shown = true
         StackView.onActivating: shown = true
         StackView.onDeactivating: shown = false
         StackView.onRemoved: destroy()
 
-        Behavior on opacity {
-            NumberAnimation {
-                duration: 400
-                easing.type: Easing.BezierSpline
-                easing.bezierCurve: [0.2, 0, 0, 1, 1, 1]
-            }
-        }
-
-        Behavior on scale {
-            NumberAnimation {
-                duration: 400
-                easing.type: Easing.BezierSpline
-                easing.bezierCurve: [0.2, 0, 0, 1, 1, 1]
-            }
-        }
-
+        // Behavior on opacity {
+        //     NumberAnimation {
+        //         duration: 400
+        //         easing.type: Easing.BezierSpline
+        //         easing.bezierCurve: [0.2, 0, 0, 1, 1, 1]
+        //     }
+        // }
+        //
+        // Behavior on scale {
+        //     NumberAnimation {
+        //         duration: 400
+        //         easing.type: Easing.BezierSpline
+        //         easing.bezierCurve: [0.2, 0, 0, 1, 1, 1]
+        //     }
+        // }
+        //
         QsMenuOpener {
             id: menuOpener
 
@@ -115,7 +137,7 @@ StackView {
                                     }));
                                 else {
                                     item.modelData.triggered();
-                                    // root.popouts.hasCurrent = false;
+                                    targetMenuOpen = false;
                                 }
                             }
                         }
@@ -167,7 +189,7 @@ StackView {
 
                             sourceComponent: MaterialSymbol {
                                 text: "chevron_right"
-                                color: item.modelData.enabled ? Colours.color.foreground : Colours.color.hint
+                                color: item.modelData.enabled ? Appearance.colors.foreground : Appearance.colors.hint
                             }
                         }
                     }
@@ -235,3 +257,5 @@ StackView {
         SubMenu {}
     }
 }
+
+ */

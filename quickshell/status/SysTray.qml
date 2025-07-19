@@ -8,11 +8,11 @@ import Quickshell.Services.SystemTray
 import Quickshell.Wayland
 import Quickshell.Widgets
 
-// TODO: More fancy animation
 Item {
     id: root
 
     required property var bar
+    // property
 
     height: parent.height
     implicitWidth: rowLayout.implicitWidth
@@ -27,9 +27,8 @@ Item {
         Repeater {
             model: SystemTray.items
             SysTrayItem {
-                required property SystemTrayItem modelData
+                id: trayItem
                 bar: root.bar
-                item: modelData
             }
 
         }
