@@ -10,7 +10,7 @@ import Quickshell.Services.UPower
 Item {
     id: root
     property bool borderless: Config.options.bar.borderless
-    property color mainColor: Appearance.colors.yellow
+    property color mainColor: Appearance.colors.foreground
     readonly property var chargeState: Battery.chargeState
     readonly property bool isCharging: Battery.isCharging
     readonly property bool isPluggedIn: Battery.isPluggedIn

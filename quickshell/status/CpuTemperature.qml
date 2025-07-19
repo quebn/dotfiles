@@ -8,7 +8,7 @@ import Quickshell.Io
 
 Item {
     id: root
-    property color mainColor: Appearance.colors.magenta
+    property color mainColor: Appearance.colors.foreground
     readonly property real usage: ResourceUsage.cpuTemp
     readonly property real percentage: usage
     implicitWidth: rowLayout.implicitWidth + rowLayout.spacing * 2

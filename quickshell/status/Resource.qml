@@ -6,12 +6,15 @@ import Quickshell
 import Quickshell.Io
 
 Item {
+    id: root
+
     required property string iconName
     required property double percentage
     property color mainColor
     property int iconSize: Appearance.font.pixelSize.normal
     property bool shown: true
     property string suffix: "%"
+
     clip: true
     visible: true
     implicitWidth: childrenRect.width

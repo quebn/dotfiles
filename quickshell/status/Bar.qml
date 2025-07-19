@@ -195,11 +195,13 @@ Scope {
 
               // TODO: change to temperature
               CpuTemperature {
+                mainColor: Appearance.colors.magenta
                 visible: true
                 Layout.alignment: Qt.AlignVCenter
               }
 
               BatteryIndicator {
+                mainColor: Appearance.colors.yellow
                 visible: true
                 Layout.alignment: Qt.AlignVCenter
               }
