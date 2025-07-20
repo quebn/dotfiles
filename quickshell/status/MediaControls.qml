@@ -111,6 +111,7 @@ Scope {
                 bottom: false
                 left: true
             }
+
             mask: Region {
                 item: playerColumnLayout
             }

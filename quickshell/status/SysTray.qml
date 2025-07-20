@@ -12,7 +12,6 @@ Item {
     id: root
 
     required property var bar
-    // property
 
     height: parent.height
     implicitWidth: rowLayout.implicitWidth

@@ -29,15 +29,11 @@ MouseArea {
                 modelData.activate();
             } break;
             case Qt.MiddleButton: {
-                modelData.activate();
+                modelData.secondaryActivate();
             } break;
             default: {
                 if (!modelData.hasMenu) return;
-                // if (root.prevOpenMenu) {
-                //     root.prevOpenMenu.targetMenuOpen = false;
-                // }
                 root.targetMenuOpen = !root.targetMenuOpen;
-                // root.prevOpenMenu = root;
             } break;
         }
     }
@@ -90,34 +86,6 @@ MouseArea {
         height: parent.height
     }
 
-    QsMenuAnchor {
-        id: menuAnchor
-        menu: modelData.menu
-        anchor.window: bar
-    }
-
-    // property var rightclickMenu: TooltipItem {
-    //     id: rightclickMenu
-    //     tooltip: bar.tooltip
-    //     owner: root
-    //
-    //     isMenu: true
-    //     show: root.targetMenuOpen
-    //     animateSize: !(menuContentLoader?.item?.animating ?? false)
-    //
-    //     onClose: root.targetMenuOpen = false;
-    //
-    //     Loader {
-    //         id: menuContentLoader
-    //         active: root.targetMenuOpen || rightclickMenu.visible || root.containsMouse
-    //
-    //         sourceComponent: MenuView {
-    //             menu: modelData.menu
-    //             onClose: root.targetMenuOpen = false;
-    //         }
-    //     }
-    // }
-
     Loader {
         id: systrayMenuLoader
         active: root.targetMenuOpen
@@ -128,6 +96,7 @@ MouseArea {
 
             exclusiveZone: 0
             implicitWidth: systrayMenu.implicitWidth
+
             implicitHeight: systrayMenu.implicitHeight
             color: "transparent"
             WlrLayershell.namespace: `traymenu${root.modelData.id}`
@@ -136,6 +105,7 @@ MouseArea {
                 top: true
                 bottom: false
                 right: true
+
             }
 
             mask: Region {
@@ -145,9 +115,8 @@ MouseArea {
             SysTrayMenu {
                 id: systrayMenu
                 menuOpen: root.targetMenuOpen
-                trayItem: modelData.menu
+                menuHandle: modelData.menu
             }
-
         }
     }
 }
