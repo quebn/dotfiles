@@ -86,36 +86,65 @@ MouseArea {
         height: parent.height
     }
 
-    Loader {
-        id: systrayMenuLoader
-        active: root.targetMenuOpen
+    property var tooltip: TooltipItem {
+        tooltip: root.bar.tooltip
+        owner: root
 
-        sourceComponent: PanelWindow {
-            id: systrayMenuWindow
-            visible: true
+        show: root.containsMouse
 
-            exclusiveZone: 0
-            implicitWidth: systrayMenu.implicitWidth
+        Text {
+            id: tooltipText
+            text: root.modelData.tooltipTitle != "" ? root.modelData.tooltipTitle : root.modelData.id
+            color: "white"
+        }
+    }
 
-            implicitHeight: systrayMenu.implicitHeight
-            color: "transparent"
-            WlrLayershell.namespace: `traymenu${root.modelData.id}`
+    property var rightclickMenu: TooltipItem {
+        id: rightclickMenu
+        tooltip: root.bar.tooltip
+        owner: root
 
-            anchors {
-                top: true
-                bottom: false
-                right: true
+        isMenu: true
+        show: root.targetMenuOpen
+        animateSize: !(menuContentLoader?.item?.animating ?? false)
 
-            }
+        onClose: root.targetMenuOpen = false;
 
-            mask: Region {
-                item: systrayMenu
-            }
+        Loader {
+            id: menuContentLoader
+            active: root.targetMenuOpen || rightclickMenu.visible || root.containsMouse
 
-            SysTrayMenu {
-                id: systrayMenu
-                menuOpen: root.targetMenuOpen
-                menuHandle: modelData.menu
+            // sourceComponent: PanelWindow {
+            //
+            //     id: menuViewWindow
+            //     visible: true
+            //
+            //     exclusiveZone: 0
+            //     implicitWidth: menuView.implicitWidth
+            //     implicitHeight: menuView.implicitHeight
+            //     color: "transparent"
+            //     WlrLayershell.namespace: "quickshell:traymenu"
+            //
+            //     anchors {
+            //         top: true
+            //         bottom: false
+            //         left: true
+            //     }
+            //
+            //     mask: Region {
+            //         item: menuView
+            //     }
+            //
+            //     MenuView {
+            //         id: menuView
+            //         menu: root.modelData.menu
+            //         onClose: root.targetMenuOpen = false;
+            //     }
+            // }
+
+            sourceComponent: MenuView {
+                menu: root.modelData.menu
+                onClose: root.targetMenuOpen = false;
             }
         }
     }

@@ -5,6 +5,7 @@ import Quickshell
 import Quickshell.Wayland
 import Quickshell.Hyprland
 import QtQuick
+import QtQuick.Effects
 import QtQuick.Controls
 import QtQuick.Layouts
 import Qt5Compat.GraphicalEffects
@@ -13,6 +14,7 @@ Scope {
   id: root
 
   Variants {
+    id: rootVariant
     model: Quickshell.screens
 
     PanelWindow {
@@ -25,6 +27,28 @@ Scope {
 
       WlrLayershell.namespace: "quickshell:bar"
       color: "transparent"
+
+      readonly property Tooltip tooltip: tooltip;
+      Tooltip {
+        id: tooltip
+        bar: bar
+      }
+
+      readonly property real tooltipYOffset: Appearance.sizes.bar.height + Appearance.rounding.corner;
+
+      function boundedX(targetX: real, width: real): real {
+        return Math.max(
+          barContent.anchors.leftMargin + width,
+          Math.min(barContent.width + barContent.anchors.leftMargin - width, targetX)
+        );
+      }
+
+      function boundedY(targetY: real, height: real): real {
+        return Math.max(
+          barContent.anchors.topMargin + height,
+          Math.min(barContent.height + barContent.anchors.topMargin - height, targetY)
+        );
+      }
 
       anchors {
         top: true
