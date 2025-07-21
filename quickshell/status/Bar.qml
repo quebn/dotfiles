@@ -22,7 +22,6 @@ Scope {
       property ShellScreen modelData
       screen: modelData
 
-      readonly property var brightnessMonitor: Brightness.getMonitorForScreen(modelData)
       readonly property int centerSideModuleWidth: Appearance.sizes.bar.centerSideModuleWidth
 
       WlrLayershell.namespace: "quickshell:bar"
@@ -34,7 +33,7 @@ Scope {
         bar: bar
       }
 
-      readonly property real tooltipYOffset: Appearance.sizes.bar.height + Appearance.rounding.corner;
+      readonly property real tooltipYOffset: Appearance.sizes.bar.height + Appearance.sizes.compositorGaps;
 
       function boundedX(targetX: real, width: real): real {
         return Math.max(
@@ -58,10 +57,16 @@ Scope {
       }
 
       implicitHeight: Appearance.sizes.bar.height + Appearance.rounding.corner
-      exclusiveZone: Appearance.sizes.bar.baseHeight
+      exclusiveZone: Appearance.sizes.bar.height
+
       mask: Region {
         item: barContent
       }
+
+      // mask: Region {
+      //   height: root.height
+      //   width: root.exclusiveZone
+      // }
 
       Item {
         id: barContent
@@ -69,7 +74,6 @@ Scope {
           right: parent.right
           left: parent.left
           top: parent.top
-          bottom: undefined
         }
         implicitHeight: Appearance.sizes.bar.height
         height: Appearance.sizes.bar.height
@@ -84,7 +88,6 @@ Scope {
           radius: 0
 
         }
-        // MARK: left section
         MouseArea {
           id: barLeft
           anchors.left: parent.left
@@ -96,15 +99,6 @@ Scope {
             anchors.fill: parent
             implicitHeight: leftSection.implicitHeight
             implicitWidth: leftSection.implicitWidth
-
-            // ScrollHint {
-            //   reveal: barLeftSideMouseArea.hovered
-            //   icon: "light_mode"
-            //   tooltipText: qsTr("Scroll to change brightness")
-            //   side: "left"
-            //   anchors.left: parent.left
-            //   anchors.verticalCenter: parent.verticalCenter
-            // }
 
             RowLayout {
               id: leftSection
@@ -147,7 +141,6 @@ Scope {
             }
           }
         }
-        // MARK: Middle section
         RowLayout {
           id: middleSection
           anchors.centerIn: parent
@@ -178,16 +171,16 @@ Scope {
               id: workspaces
               bar: bar
               Layout.fillHeight: true
-              MouseArea {
-                anchors.fill: parent
-                acceptedButtons: Qt.RightButton
-
-                onPressed: event => {
-                  if (event.button === Qt.RightButton) {
-                    Hyprland.dispatch('global quickshell:overviewToggle');
-                  }
-                }
-              }
+              // MouseArea {
+              //   anchors.fill: parent
+              //   acceptedButtons: Qt.RightButton
+              //
+              //   onPressed: event => {
+              //     if (event.button === Qt.RightButton) {
+              //       Hyprland.dispatch('global quickshell:overviewToggle');
+              //     }
+              //   }
+              // }
             }
           }
 
@@ -197,10 +190,6 @@ Scope {
             implicitHeight: centerRightGroupContent.implicitHeight
             Layout.preferredWidth: bar.centerSideModuleWidth
             Layout.fillHeight: true
-
-            // onPressed: {
-            //   Hyprland.dispatch('global quickshell:sidebarRightToggle');
-            // }
 
             BarGroup {
               id: centerRightGroupContent
@@ -212,12 +201,6 @@ Scope {
                 Layout.fillWidth: true
               }
 
-              // UtilButtons {
-              //   visible: (Config.options.bar.verbose && barRoot.useShortenedForm === 0)
-              //   Layout.alignment: Qt.AlignVCenter
-              // }
-
-              // TODO: change to temperature
               CpuTemperature {
                 mainColor: Appearance.colors.magenta
                 visible: true
@@ -232,8 +215,7 @@ Scope {
             }
           }
         }
-        // TODO: right
-        MouseArea { // Right side | scroll to change volume
+        MouseArea {
           id: barRight
 
           anchors.right: parent.right
@@ -241,68 +223,10 @@ Scope {
           height: Appearance.sizes.bar.height
           width: (bar.width - middleSection.width) / 2
 
-          property bool hovered: false
-          // property real lastScrollX: 0
-          // property real lastScrollY: 0
-          // property bool trackingScroll: false
-          //
-          //   acceptedButtons: Qt.LeftButton
-          //   hoverEnabled: true
-          //   propagateComposedEvents: true
-          //   onEntered: event => {
-          //     barRightSideMouseArea.hovered = true;
-          //   }
-          //   onExited: event => {
-          //     barRightSideMouseArea.hovered = false;
-          //     barRightSideMouseArea.trackingScroll = false;
-          //   }
-          //   onPressed: event => {
-          //     if (event.button === Qt.LeftButton) {
-          //       Hyprland.dispatch('global quickshell:sidebarRightOpen');
-          //     } else if (event.button === Qt.RightButton) {
-          //       MprisController.activePlayer.next();
-          //     }
-          //   }
-          //   // Scroll to change volume
-          //   WheelHandler {
-          //     onWheel: event => {
-          //       const currentVolume = Audio.value;
-          //       const step = currentVolume < 0.1 ? 0.01 : 0.02 || 0.2;
-          //       if (event.angleDelta.y < 0)
-          //       Audio.sink.audio.volume -= step;
-          //       else if (event.angleDelta.y > 0)
-          //       Audio.sink.audio.volume = Math.min(1, Audio.sink.audio.volume + step);
-          //       // Store the mouse position and start tracking
-          //       barRightSideMouseArea.lastScrollX = event.x;
-          //       barRightSideMouseArea.lastScrollY = event.y;
-          //       barRightSideMouseArea.trackingScroll = true;
-          //     }
-          //     acceptedDevices: PointerDevice.Mouse | PointerDevice.TouchPad
-          //   }
-          //   onPositionChanged: mouse => {
-          //     if (barRightSideMouseArea.trackingScroll) {
-          //       const dx = mouse.x - barRightSideMouseArea.lastScrollX;
-          //       const dy = mouse.y - barRightSideMouseArea.lastScrollY;
-          //       if (Math.sqrt(dx * dx + dy * dy) > osdHideMouseMoveThreshold) {
-          //         Hyprland.dispatch('global quickshell:osdVolumeHide');
-          //         barRightSideMouseArea.trackingScroll = false;
-          //       }
-          //     }
-          //   }
-          //
           Item {
             anchors.fill: parent
             implicitHeight: rightSection.implicitHeight
             implicitWidth: rightSection.implicitWidth
-
-            // ScrollHint {
-            //   reveal: barRightSideMouseArea.hovered
-            //   icon: "volume_up"
-            //   tooltipText: qsTr("Scroll to change volume")
-            //   side: "right"
-            //   anchors.right: parent.right
-            //   anchors.verticalCenter: parent.verticalCenter
-            // }
 
             RowLayout {
               id: rightSection
@@ -310,66 +234,11 @@ Scope {
               spacing: 5
               layoutDirection: Qt.RightToLeft
 
-              // RippleButton { // Right sidebar button
-              //   id: right_button
-              //
-              //   Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
-              //   Layout.rightMargin: Appearance.rounding.corner
-              //   Layout.fillWidth: false
-              //
-              //   implicitWidth: indicatorsRowLayout.implicitWidth + 10 * 2
-              //   implicitHeight: indicatorsRowLayout.implicitHeight + 5 * 2
-              //
-              //   buttonRadius: Appearance.rounding.full
-              //   colBackground: barRightSideMouseArea.hovered ? Appearance.colors.colLayer1Hover : ColorUtils.transparentize(Appearance.colors.colLayer1Hover, 1)
-              //   colBackgroundHover: Appearance.colors.colLayer1Hover
-              //   colRipple: Appearance.colors.colLayer1Active
-              //   colBackgroundToggled: Appearance.colors.colSecondaryContainer
-              //   colBackgroundToggledHover: Appearance.colors.colSecondaryContainerHover
-              //   colRippleToggled: Appearance.colors.colSecondaryContainerActive
-              //   toggled: GlobalStates.sidebarRightOpen
-              //   property color colText: toggled ? Appearance.m3colors.m3onSecondaryContainer : Appearance.colors.colOnLayer0
-              //
-              //   Behavior on colText {
-              //     animation: Appearance.animation.elementMoveFast.colorAnimation.createObject(this)
-              //   }
-              //
-              //   onPressed: {
-              //     Hyprland.dispatch('global quickshell:sidebarRightToggle');
-              //   }
-              //
-              //     MaterialSymbol {
-              //       Layout.rightMargin: indicatorsRowLayout.realSpacing
-              //       text: Network.materialSymbol
-              //       iconSize: Appearance.font.pixelSize.larger
-              //       color: rightSidebarButton.colText
-              //     }
-              //   }
-              // }
-
-              //     Revealer {
-              //       reveal: Audio.source?.audio?.muted ?? false
-              //       Layout.fillHeight: true
-              //       Layout.rightMargin: reveal ? indicatorsRowLayout.realSpacing : 0
-              //       Behavior on Layout.rightMargin {
-              //         NumberAnimation {
-              //           duration: Appearance.animation.elementMoveFast.duration
-              //           easing.type: Appearance.animation.elementMoveFast.type
-              //           easing.bezierCurve: Appearance.animation.elementMoveFast.bezierCurve
-              //         }
-              //       }
-              //       MaterialSymbol {
-              //         text: "mic_off"
-              //         iconSize: Appearance.font.pixelSize.larger
-              //         color: rightSidebarButton.colText
-              //       }
-              //     }
-
               // TODO: add onhover color change
               BrightnessControl {
               Layout.rightMargin: Appearance.sizes.compositorGaps
                 visible: true
-                monitor: brightnessMonitor
+                monitor: Brightness.getMonitorForScreen(modelData)
                 Layout.alignment: Qt.AlignVCenter
               }
 
@@ -392,17 +261,6 @@ Scope {
                 Layout.fillHeight: true
               }
 
-
-              // Weather
-              // Loader {
-              //   Layout.leftMargin: 8
-              //   Layout.fillHeight: true
-              //   active: Config.options.bar.weather.enable
-              //   sourceComponent: BarGroup {
-              //     implicitHeight: Appearance.sizes.bar.baseHeight
-              //     WeatherBar {}
-              //   }
-              // }
             }
           }
         }
@@ -436,7 +294,6 @@ Scope {
             anchors {
               right: parent.right
               top: parent.top
-              bottom: undefined
             }
             color: Appearance.colors.background
             corner: RoundCorner.CornerEnum.TopRight

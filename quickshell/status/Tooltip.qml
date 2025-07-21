@@ -81,12 +81,12 @@ Scope {
 
 			anchor {
 				window: root.bar
-                rect.x: root.bar.tooltipYOffset
-                rect.y: tooltipItem.highestAnimY
+                rect.x: tooltipItem.highestAnimX
+                rect.y: root.bar.tooltipYOffset
 				adjustment: PopupAdjustment.None
 			}
 
-			HyprlandWindow.opacity: root.scaleMul
+			// HyprlandWindow.opacity: root.scaleMul
 
 			HyprlandWindow.visibleMask: Region {
 				id: visibleMask
@@ -103,14 +103,15 @@ Scope {
 
 			//height: bar.height
 			implicitWidth: Math.max(700, tooltipItem.largestAnimWidth) // max due to qtwayland glitches
-			implicitHeight: {
-				const h = tooltipItem.lowestAnimY - tooltipItem.highestAnimY
-				//console.log(`seth ${h} ${tooltipItem.highestAnimY} ${tooltipItem.lowestAnimY}; ${tooltipItem.y1} ${tooltipItem.y2}`)
-				return h
-			}
+			implicitHeight: 700
+			// {
+			// 	const h = tooltipItem.lowestAnimY - tooltipItem.highestAnimY
+			// 	//console.log(`seth ${h} ${tooltipItem.highestAnimY} ${tooltipItem.lowestAnimY}; ${tooltipItem.y1} ${tooltipItem.y2}`)
+			// 	return h
+			// }
 			visible: true
-			color: "transparent"
-			//color: "#20ff0000"
+			// color: "transparent"
+			color: Appearance.colors.background
 
 			mask: Region {
 				item: (shownItem?.hoverable ?? false) ? tooltipItem : null

@@ -8,7 +8,7 @@ ShellRoot {
   id: root
 
   property bool bar: true
-  property bool corners: true
+  property bool corners: false
   property bool mediaControls: true
   property bool notificationPopup: true
   property bool displayVolume: true

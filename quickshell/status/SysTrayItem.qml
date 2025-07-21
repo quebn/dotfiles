@@ -17,6 +17,7 @@ MouseArea {
     required property SystemTrayItem modelData
     readonly property bool isAlt: modelData.id == "nm-applet" || modelData.id == "blueman"
     property bool targetMenuOpen: false;
+    hoverEnabled: true
 
     acceptedButtons: Qt.LeftButton | Qt.RightButton | Qt.MiddleButton
     cursorShape: Qt.PointingHandCursor
@@ -31,9 +32,10 @@ MouseArea {
             case Qt.MiddleButton: {
                 modelData.secondaryActivate();
             } break;
-            default: {
+            case Qt.RightButton: {
                 if (!modelData.hasMenu) return;
                 root.targetMenuOpen = !root.targetMenuOpen;
+                // menu.open();
             } break;
         }
     }
@@ -66,6 +68,16 @@ MouseArea {
         }
     }
 
+    // QsMenuAnchor {
+    //     id: menu
+    //
+    //     menu: root.modelData.menu
+    //     anchor.window: bar
+    //     anchor.rect.x: root.x + bar.width
+    //     anchor.rect.y: root.y
+    //     anchor.rect.height: root.height
+    //     anchor.edges: Edges.Bottom
+    // }
 
     MaterialSymbol {
         id: trayIconAlt
@@ -86,18 +98,18 @@ MouseArea {
         height: parent.height
     }
 
-    property var tooltip: TooltipItem {
-        tooltip: root.bar.tooltip
-        owner: root
-
-        show: root.containsMouse
-
-        Text {
-            id: tooltipText
-            text: root.modelData.tooltipTitle != "" ? root.modelData.tooltipTitle : root.modelData.id
-            color: "white"
-        }
-    }
+    // property var tooltip: TooltipItem {
+    //     tooltip: root.bar.tooltip
+    //     owner: root
+    //
+    //     show: root.containsMouse
+    //
+    //     Text {
+    //         id: tooltipText
+    //         text: root.modelData.tooltipTitle != "" ? root.modelData.tooltipTitle : root.modelData.id
+    //         color: "white"
+    //     }
+    // }
 
     property var rightclickMenu: TooltipItem {
         id: rightclickMenu
@@ -112,16 +124,20 @@ MouseArea {
 
         Loader {
             id: menuContentLoader
-            active: root.targetMenuOpen || rightclickMenu.visible || root.containsMouse
+            active: root.targetMenuOpen || rightclickMenu.visible
 
+            sourceComponent: MenuView {
+                menu: root.modelData.menu
+                onClose: root.targetMenuOpen = false;
+            }
             // sourceComponent: PanelWindow {
             //
             //     id: menuViewWindow
             //     visible: true
             //
             //     exclusiveZone: 0
-            //     implicitWidth: menuView.implicitWidth
-            //     implicitHeight: menuView.implicitHeight
+            //     width: menuView.width
+            //     height: menuView.height
             //     color: "transparent"
             //     WlrLayershell.namespace: "quickshell:traymenu"
             //
@@ -142,10 +158,6 @@ MouseArea {
             //     }
             // }
 
-            sourceComponent: MenuView {
-                menu: root.modelData.menu
-                onClose: root.targetMenuOpen = false;
-            }
         }
     }
 }
