@@ -2,6 +2,7 @@ import qs
 import qs.services
 import qs.status
 import qs.components
+import qs.functions
 import QtQuick
 import QtQuick.Layouts
 import Quickshell
@@ -25,6 +26,7 @@ MouseArea {
     implicitWidth: Appearance.font.pixelSize.larger
     onClicked: (event) => {
         event.accepted = true;
+        event.toggleType
         switch (event.button) {
             case Qt.LeftButton: {
                 modelData.activate();
@@ -35,6 +37,7 @@ MouseArea {
             case Qt.RightButton: {
                 if (!modelData.hasMenu) return;
                 root.targetMenuOpen = !root.targetMenuOpen;
+
                 // menu.open();
             } break;
         }
@@ -98,6 +101,20 @@ MouseArea {
         height: parent.height
     }
 
+    // Loader {
+    //     active: !isAlt
+    //     anchors.fill: trayIcon
+    //     sourceComponent: Item {
+    //         Desaturate {
+    //             id: desaturatedIcon
+    //             visible: true
+    //             anchors.fill: parent
+    //             source: trayIcon
+    //             desaturation: 1
+    //         }
+    //     }
+    // }
+
     // property var tooltip: TooltipItem {
     //     tooltip: root.bar.tooltip
     //     owner: root
@@ -130,34 +147,6 @@ MouseArea {
                 menu: root.modelData.menu
                 onClose: root.targetMenuOpen = false;
             }
-            // sourceComponent: PanelWindow {
-            //
-            //     id: menuViewWindow
-            //     visible: true
-            //
-            //     exclusiveZone: 0
-            //     width: menuView.width
-            //     height: menuView.height
-            //     color: "transparent"
-            //     WlrLayershell.namespace: "quickshell:traymenu"
-            //
-            //     anchors {
-            //         top: true
-            //         bottom: false
-            //         left: true
-            //     }
-            //
-            //     mask: Region {
-            //         item: menuView
-            //     }
-            //
-            //     MenuView {
-            //         id: menuView
-            //         menu: root.modelData.menu
-            //         onClose: root.targetMenuOpen = false;
-            //     }
-            // }
-
         }
     }
 }

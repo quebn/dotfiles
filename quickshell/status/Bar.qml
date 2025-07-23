@@ -32,14 +32,20 @@ Scope {
         id: tooltip
         bar: bar
       }
+      // readonly property Test tooltip: tooltip;
+      // Test {
+      //   id: tooltip
+      //   bar: bar
+      // }
 
-      readonly property real tooltipYOffset: Appearance.sizes.bar.height + Appearance.sizes.compositorGaps;
+      readonly property int tooltipYOffset: Appearance.sizes.bar.baseHeight + Appearance.sizes.compositorGaps;
 
       function boundedX(targetX: real, width: real): real {
-        return Math.max(
+        const x = Math.max(
           barContent.anchors.leftMargin + width,
           Math.min(barContent.width + barContent.anchors.leftMargin - width, targetX)
         );
+        return x;
       }
 
       function boundedY(targetY: real, height: real): real {

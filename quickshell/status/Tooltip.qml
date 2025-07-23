@@ -1,289 +1,165 @@
-
 import QtQuick
 import Quickshell
 import Quickshell.Hyprland
 import qs
 
 Scope {
-	id: root
-	required property var bar;
+    id: root
+    required property var bar;
 
-	property TooltipItem activeTooltip: null;
-	property TooltipItem activeMenu: null;
+    property TooltipItem activeTooltip: null;
+    property TooltipItem activeMenu: null;
 
-	readonly property TooltipItem activeItem: activeMenu ?? activeTooltip;
-	property TooltipItem lastActiveItem: null;
-	readonly property TooltipItem shownItem: activeItem ?? lastActiveItem;
-	property real hangTime: lastActiveItem?.hangTime ?? 0;
+    readonly property TooltipItem activeItem: activeMenu ?? activeTooltip;
+    property TooltipItem lastActiveItem: null;
+    readonly property TooltipItem shownItem: activeItem ?? lastActiveItem;
+    property real hangTime: lastActiveItem?.hangTime ?? 0;
 
-	property Item tooltipItem: null;
+    property Item tooltipItem: null;
 
-	onActiveItemChanged: {
-		if (activeItem != null) {
-			hangTimer.stop();
-			activeItem.targetVisible = true;
+    onActiveItemChanged: {
+        if (activeItem != null) {
+            hangTimer.stop();
+            activeItem.targetVisible = true;
 
-			if (tooltipItem) {
-				activeItem.parent = tooltipItem;
-			}
-		}
+            if (tooltipItem) {
+                activeItem.parent = tooltipItem;
+            }
+        }
 
-		if (lastActiveItem != null && lastActiveItem != activeItem) {
-			if (activeItem != null) lastActiveItem.targetVisible = false;
-			else if (root.hangTime == 0) doLastHide();
-			else hangTimer.start();
-		}
+        if (lastActiveItem != null && lastActiveItem != activeItem) {
+            if (activeItem != null) lastActiveItem.targetVisible = false;
+            else if (root.hangTime == 0) doLastHide();
+            else hangTimer.start();
+        }
 
-		if (activeItem != null) lastActiveItem = activeItem;
-	}
+        if (activeItem != null) lastActiveItem = activeItem;
+    }
 
-	function setItem(item: TooltipItem) {
-		if (item.isMenu) {
-			activeMenu = item;
-		} else {
-			activeTooltip = item;
-		}
-	}
+    function setItem(item: TooltipItem) {
+        if (item.isMenu) {
+            activeMenu = item;
+        } else {
+            activeTooltip = item;
+        }
+    }
 
-	function removeItem(item: TooltipItem) {
-		if (item.isMenu && activeMenu == item) {
-			activeMenu = null
-		} else if (!item.isMenu && activeTooltip == item) {
-			activeTooltip = null
-		}
-	}
+    function removeItem(item: TooltipItem) {
+        if (item.isMenu && activeMenu == item) {
+            activeMenu = null
+        } else if (!item.isMenu && activeTooltip == item) {
+            activeTooltip = null
+        }
+    }
 
-	function doLastHide() {
-		lastActiveItem.targetVisible = false;
-	}
+    function doLastHide() {
+        lastActiveItem.targetVisible = false;
+    }
 
-	function onHidden(item: TooltipItem) {
-		if (item == lastActiveItem) {
-			lastActiveItem = null;
-		}
-	}
+    function onHidden(item: TooltipItem) {
+        if (item == lastActiveItem) {
+            lastActiveItem = null;
+        }
+    }
 
-	Timer {
-		id: hangTimer
-		interval: root.hangTime
-		onTriggered: doLastHide();
-	}
+    Timer {
+        id: hangTimer
+        interval: root.hangTime
+        onTriggered: doLastHide();
+    }
 
-	property real scaleMul: lastActiveItem && lastActiveItem.targetVisible ? 1 : 0;
-	Behavior on scaleMul { SmoothedAnimation { velocity: 5 } }
+    property real scaleMul: lastActiveItem && lastActiveItem.targetVisible ? 1 : 0;
 
-	LazyLoader {
-		id: popupLoader
-		activeAsync: shownItem != null
+    LazyLoader {
+        id: popupLoader
+        // active: shownItem
+        activeAsync: shownItem
 
-		PopupWindow {
-			id: popup
+        PopupWindow {
+            id: popup
 
-			anchor {
-				window: root.bar
-                rect.x: tooltipItem.highestAnimX
+            anchor {
+                window: root.bar
+                rect.x: tooltipItem.targetX
                 rect.y: root.bar.tooltipYOffset
-				adjustment: PopupAdjustment.None
-			}
+                adjustment: PopupAdjustment.None
+            }
 
-			// HyprlandWindow.opacity: root.scaleMul
+            HyprlandWindow.opacity: root.scaleMul
 
-			HyprlandWindow.visibleMask: Region {
-				id: visibleMask
-				item: tooltipItem
-			}
+            HyprlandWindow.visibleMask: Region {
+                id: visibleMask
+                item: tooltipItem
+            }
 
-			Connections {
-				target: root
+            Connections {
+                target: root
 
-				function onScaleMulChanged() {
-					visibleMask.changed();
-				}
-			}
+                function onScaleMulChanged() {
+                    visibleMask.changed();
+                }
+            }
 
-			//height: bar.height
-			implicitWidth: Math.max(700, tooltipItem.largestAnimWidth) // max due to qtwayland glitches
-			implicitHeight: 700
-			// {
-			// 	const h = tooltipItem.lowestAnimY - tooltipItem.highestAnimY
-			// 	//console.log(`seth ${h} ${tooltipItem.highestAnimY} ${tooltipItem.lowestAnimY}; ${tooltipItem.y1} ${tooltipItem.y2}`)
-			// 	return h
-			// }
-			visible: true
-			// color: "transparent"
-			color: Appearance.colors.background
+            implicitWidth: tooltipItem.targetWidth
+            // TODO: heigth is like outfoxxed because animation
+            implicitHeight: tooltipItem.targetHeight
 
-			mask: Region {
-				item: (shownItem?.hoverable ?? false) ? tooltipItem : null
-			}
+            visible: true
+            color: "transparent"
 
-			HyprlandFocusGrab {
-				active: activeItem?.isMenu ?? false
-				windows: [ popup, bar, ...(activeItem?.grabWindows ?? []) ]
-				onActiveChanged: {
-					if (!active && activeItem?.isMenu) {
-						activeMenu.close()
-					}
-				}
-			}
+            mask: Region {
+                item: (shownItem?.hoverable ?? false) ? tooltipItem : null
+            }
 
-			/*Rectangle {
-				color: "#10ff0000"
-				//y: tooltipItem.highestAnimY
-				height: tooltipItem.lowestAnimY - tooltipItem.highestAnimY
-				width: parent.width
-			}
 
-			Rectangle {
-				color: "#1000ff00"
-				//y: tooltipItem.highestAnimY
-				height: popup.height
-				width: parent.width
-			}*/
+            HyprlandFocusGrab {
+                active: activeItem?.isMenu ?? false
+                windows: [ popup, bar, ...(activeItem?.grabWindows ?? []) ]
+                onActiveChanged: {
+                    if (!active && activeItem?.isMenu) {
+                        activeMenu.close()
+                    }
+                }
+            }
 
-			Item {
-				id: tooltipItem
-				Component.onCompleted: {
-					root.tooltipItem = this;
-					if (root.shownItem) {
-						root.shownItem.parent = this;
-					}
+            Item {
+                id: tooltipItem
 
-					//highestAnimY = targetY - targetHeight / 2;
-					//lowestAnimY = targetY + targetHeight / 2;
-				}
+                Component.onCompleted: {
+                    root.tooltipItem = this;
+                    if (root.shownItem) {
+                        root.shownItem.parent = this;
+                    }
 
-				transform: Scale {
-					origin.x: 0
-					origin.y: tooltipItem.height / 2
-					xScale: 0.9 + scaleMul * 0.1
-					yScale: xScale
-				}
+                    //highestAnimY = targetY - targetHeight / 2;
+                    //lowestAnimY = targetY + targetHeight / 2;
+                }
 
-				clip: width != targetWidth || height != targetHeight
+                clip: width != targetWidth || height != targetHeight
+                // implicitWidth: parent.implicitWidth
+                // implicitHeight: parent.implicitHeight
+                anchors.fill: parent
+                opacity: root.scaleMul
 
                 Rectangle {
                     color: Appearance.colors.background
-                    radius: 5
+                    radius: Appearance.rounding.corner
                     border.color: Appearance.colors.border
-                    border.width: 1
+                    anchors.fill: parent
                 }
 
-				readonly property var targetWidth: shownItem?.implicitWidth ?? 0;
-				readonly property var targetHeight: shownItem?.implicitHeight ?? 0;
+                readonly property var targetWidth: shownItem?.implicitWidth ?? 1
+                readonly property var targetHeight: shownItem?.implicitHeight ?? 1
 
-				property var largestAnimWidth: 0;
-				property var highestAnimY: 0; // unused due to reposition timing issues
-				property var lowestAnimY: Appearance.sizes.bar.height;
+                property var largestAnimWidth: 0
+                property var largestAnimHeight: 0
 
-				// TODO: possible replacements
-				property var largestAnimHeight: 0;
-				property var highestAnimX: 0; // unused due to reposition timing issues
-				property var lowestAnimX: Appearance.sizes.bar.width;
-
-				onTargetWidthChanged: {
-					if (targetWidth > largestAnimWidth) {
-						largestAnimWidth = targetWidth;
-					}
-				}
-
-				onTargetYChanged: updateYBounds();
-				onTargetHeightChanged: updateYBounds();
-				function updateYBounds() {
-					if (targetY - targetHeight / 2 < highestAnimY) {
-						//highestAnimY = targetY - targetHeight / 2
-					}
-
-					if (targetY + targetHeight / 2 > lowestAnimY) {
-						//lowestAnimY = targetY + targetHeight / 2
-					}
-				}
-
-				// NOTE: X version
-				function updateXBounds() {
-					if (targetX - targetWidth / 2 < highestAnimX) {
-						//highestAnimX = targetX - targetWidth / 2
-					}
-
-					if (targetX + targetWidth / 2 > lowestAnimX) {
-						//lowestAnimX = targetX + targetWidth / 2
-					}
-				}
-
-				// NOTE: X version
-				readonly property real targetX: {
-					if (shownItem == null) return 0;
-					const target = bar.contentItem.mapFromItem(shownItem.owner, 0, shownItem.targetRelativeX).x;
-					return bar.boundedX(target, shownItem.implicitWidth / 2);
-				}
-
-				readonly property real targetY: {
-					if (shownItem == null) return 0;
-					const target = bar.contentItem.mapFromItem(shownItem.owner, 0, shownItem.targetRelativeY).y;
-					return bar.boundedY(target, shownItem.implicitHeight / 2);
-				}
-
-				property var w: -1
-				width: Math.max(1, w)
-
-				property var y1: -1
-				property var y2: -1
-
-				y: y1 - popup.anchor.rect.y
-				height: y2 - y1
-
-				readonly property bool anyAnimsRunning: y1Anim.running || y2Anim.running || widthAnim.running
-
-				onAnyAnimsRunningChanged: {
-					if (!anyAnimsRunning) {
-						largestAnimWidth = targetWidth
-						//highestAnimY = y1;
-						//lowestAnimY = y2;
-					}
-				}
-
-				SmoothedAnimation on y1 {
-					id: y1Anim
-					to: tooltipItem.targetY - tooltipItem.targetHeight / 2;
-					onToChanged: {
-						if (tooltipItem.y1 == -1 || !(shownItem?.animateSize ?? true)) {
-							stop();
-							tooltipItem.y1 = to;
-						} else {
-							velocity = (Math.max(tooltipItem.y1, to) - Math.min(tooltipItem.y1, to)) * 5;
-							restart();
-						}
-					}
-				}
-
-				SmoothedAnimation on y2 {
-					id: y2Anim
-					to: tooltipItem.targetY + tooltipItem.targetHeight / 2;
-					onToChanged: {
-						if (tooltipItem.y2 == -1 || !(shownItem?.animateSize ?? true)) {
-							stop();
-							tooltipItem.y2 = to;
-						} else {
-							velocity = (Math.max(tooltipItem.y2, to) - Math.min(tooltipItem.y2, to)) * 5;
-							restart();
-						}
-					}
-				}
-
-				SmoothedAnimation on w {
-					id: widthAnim
-					to: tooltipItem.targetWidth;
-					onToChanged: {
-						if (tooltipItem.w == -1 || !(shownItem?.animateSize ?? true)) {
-							stop();
-							tooltipItem.w = to;
-						} else {
-							velocity = (Math.max(tooltipItem.width, to) - Math.min(tooltipItem.width, to)) * 5;
-							restart();
-						}
-					}
-				}
-			}
-		}
-	}
+                readonly property real targetX: {
+                    if (shownItem == null) return 0;
+                    const target = bar.contentItem.mapFromItem(shownItem.owner, shownItem.targetRelativeX, 0).x;
+                    return bar.boundedX(target - (popup.implicitWidth * 0.5), popup.implicitWidth);
+                }
+            }
+        }
+    }
 }

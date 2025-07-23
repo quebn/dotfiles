@@ -21,10 +21,11 @@ MouseArea {
 
     hoverEnabled: true
     onClicked: {
-        if (entry.hasChildren) childrenRevealer.expanded = !childrenRevealer.expanded
-        else {
+        if (entry.hasChildren) {
+            childrenRevealer.expanded = !childrenRevealer.expanded
+        } else {
             entry.triggered();
-            if (entry.toggleType == ToggleButtonType.None) close();
+            close();
         }
     }
 
