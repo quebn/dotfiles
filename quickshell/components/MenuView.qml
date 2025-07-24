@@ -68,7 +68,7 @@ ColumnLayout {
                             right: parent.right
                         }
 
-                        color: Appearance.colors.border
+                        color: Appearance.colors.backgroundAlt
                         height: 1
                     }
                 }

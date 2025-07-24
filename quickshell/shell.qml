@@ -19,6 +19,6 @@ ShellRoot {
   LazyLoader { active: root.corners; component: ScreenCorners {} }
   LazyLoader { active: root.mediaControls; component: MediaControls {} }
   LazyLoader { active: notificationPopup; component: NotificationPopup {} }
-  LazyLoader { active: displayVolume; component: ScreenDisplayVolume {} }
   LazyLoader { active: displayBrightness; component: ScreenDisplayBrightness {} }
+  LazyLoader { active: displayVolume; component: ScreenDisplayVolume {} }
 }

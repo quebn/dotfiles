@@ -64,7 +64,7 @@ MouseArea {
 
             Text {
                 text: entry.text
-                color: entry.enabled ? "white" : "#bbbbbb"
+                color: entry.enabled ? root.containsMouse ? Appearance.colors.primary: Appearance.colors.foreground : Appearance.colors.hint
             }
 
             Item {
@@ -107,15 +107,5 @@ MouseArea {
                 }
             }
         }
-    }
-
-    Rectangle {
-        anchors.fill: parent
-        visible: root.containsMouse || childrenRevealer.expanded
-
-        color: Appearance.colors.background
-        border.width: 1
-        border.color: Appearance.colors.border
-        radius: 5
     }
 }
