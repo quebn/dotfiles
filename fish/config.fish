@@ -1,7 +1,7 @@
 if status is-interactive
     # MARK: settings
 
-    # set -g tide_left_prompt_items [pwd git newline]
+    set -U tide_git_icon ''
     set -U fish_autosuggestion_enabled 0
     set -x ARDUINO_CONFIG "$HOME/Programming/arduino/.arduino15"
     set -x MANPAGER "nvim +Man!"
@@ -27,9 +27,9 @@ if status is-interactive
     "
 
     # MARK: Bindings
-    bind \cf 'tmux-sessionizer'
+    bind \cs 'tmux-sessionizer; commandline -f execute'
     # NOTE: for vi mode
-    bind -M insert \cf 'tmux-sessionizer'
+    bind -M insert \cs 'tmux-sessionizer; commandline -f execute'
 
     # MARK: alias
     alias vi="nvim"
