@@ -47,12 +47,17 @@ Sqlectron/
 sqlectron/
 godot/
 qalculate/
+fish/functions/
+fish/conf.d/
+fish/themes/
+fish/completions/
 
 # Files
 *.dirs
 *.locale
 *.log
 *.list
+fish/fish_variables
 google-chrome/themes/*/*.pak
 spotify-launcher.conf
 kitty/unicode-input-favorites.conf

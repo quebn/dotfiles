@@ -15,3 +15,6 @@ export GTK_THEME=Rosepine-Night
 export DEV_DIR=$HOME/Programming
 export LOCAL_LIB=$HOME/.local/lib
 export APP2UNIT_SLICES='a=app-graphical.slice b=background-graphical.slice s=session-graphical.slice'
+export PATH=$HOME/.local/bin:$PATH
+export EDITOR=$(which nvim)
+export VISUAL=$(which nvim)
