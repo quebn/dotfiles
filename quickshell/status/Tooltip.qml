@@ -74,7 +74,7 @@ Scope {
     }
 
     property real scaleMul: lastActiveItem && lastActiveItem.targetVisible ? 1 : 0;
-	Behavior on scaleMul { SmoothedAnimation { velocity: 5 } }
+    Behavior on scaleMul { SmoothedAnimation { velocity: 5 } }
 
     LazyLoader {
         id: popupLoader
@@ -106,7 +106,8 @@ Scope {
             }
 
             implicitWidth: tooltipItem.targetWidth
-            implicitHeight: tooltipItem.targetHeight
+            implicitHeight: Math.max(700, tooltipItem.largestAnimHeight)
+
             visible: true
             color: "transparent"
 
@@ -136,15 +137,15 @@ Scope {
                 }
 
                 clip: width != targetWidth || height != targetHeight
-                anchors.fill: parent
                 opacity: root.scaleMul
 
-				// transform: Scale {
-				// 	origin.x: 0
-				// 	origin.y: tooltipItem.height / 2
-				// 	xScale: xScale
-				// 	yScale: xScale
-				// }
+                transform: Scale {
+                    origin.x: 0
+                    origin.y: 0
+                    xScale: xScale
+					yScale: scaleMul
+
+                }
 
                 Rectangle {
                     color: Appearance.colors.background
@@ -156,10 +157,8 @@ Scope {
 
                 readonly property var targetWidth: shownItem?.implicitWidth ?? 1
                 readonly property var targetHeight: shownItem?.implicitHeight ?? 1
-				// readonly property var targetHeight: shownItem?.implicitHeight ?? 0;
 
-                property var largestAnimWidth: 0
-                property var largestAnimHeight: 0
+                property var largestAnimHeight: 1
 
                 readonly property real targetX: {
                     if (shownItem == null) return 0;
@@ -167,68 +166,36 @@ Scope {
                     return bar.boundedX(target - (popup.implicitWidth * 0.5), popup.implicitWidth);
                 }
 
+                onTargetHeightChanged: {
+                    if (targetHeight > largestAnimHeight) {
+                        largestAnimHeight = targetHeight;
+                    }
+                }
+
                 property var h: -1
-                // TODO: test the animation in a Test.qml file
-                // height: Math.max(1, h)
-				// property var w: -1
-				//
-				// property var x1: -1
-				// property var x2: -1
-				//
-				// y: x1 - popup.anchor.rect.x
-				// height: y2 - y1
-				//
-				// readonly property bool anyAnimsRunning: x1Anim.running || y2Anim.running || widthAnim.running
-				//
-				// onAnyAnimsRunningChanged: {
-				// 	if (!anyAnimsRunning) {
-				// 		largestAnimWidth = targetWidth
-				// 		//highestAnimY = y1;
-				// 		//lowestAnimY = y2;
-				// 	}
-				// }
-				//
-				// SmoothedAnimation on y1 {
-				// 	id: y1Anim
-				// 	to: tooltipItem.targetY - tooltipItem.targetHeight / 2;
-				// 	onToChanged: {
-				// 		if (tooltipItem.y1 == -1 || !(shownItem?.animateSize ?? true)) {
-				// 			stop();
-				// 			tooltipItem.y1 = to;
-				// 		} else {
-				// 			velocity = (Math.max(tooltipItem.y1, to) - Math.min(tooltipItem.y1, to)) * 5;
-				// 			restart();
-				// 		}
-				// 	}
-				// }
-				//
-				// SmoothedAnimation on y2 {
-				// 	id: y2Anim
-				// 	to: tooltipItem.targetY + tooltipItem.targetHeight / 2;
-				// 	onToChanged: {
-				// 		if (tooltipItem.y2 == -1 || !(shownItem?.animateSize ?? true)) {
-				// 			stop();
-				// 			tooltipItem.y2 = to;
-				// 		} else {
-				// 			velocity = (Math.max(tooltipItem.y2, to) - Math.min(tooltipItem.y2, to)) * 5;
-				// 			restart();
-				// 		}
-				// 	}
-				// }
-				//
-				// SmoothedAnimation on w {
-				// 	id: widthAnim
-				// 	to: tooltipItem.targetWidth;
-				// 	onToChanged: {
-				// 		if (tooltipItem.w == -1 || !(shownItem?.animateSize ?? true)) {
-				// 			stop();
-				// 			tooltipItem.w = to;
-				// 		} else {
-				// 			velocity = (Math.max(tooltipItem.width, to) - Math.min(tooltipItem.width, to)) * 5;
-				// 			restart();
-				// 		}
-				// 	}
-				// }
+                height: Math.max(1, h)
+                width: targetWidth
+
+                readonly property bool anyAnimsRunning: heightAnim.running
+                onAnyAnimsRunningChanged: {
+                    if (!anyAnimsRunning) {
+                        largestAnimHeight = targetHeight;
+                    }
+                }
+
+                SmoothedAnimation on h {
+                    id: heightAnim
+                    to: tooltipItem.targetHeight;
+                    onToChanged: {
+                        if (tooltipItem.h == -1 || !(shownItem?.animateSize ?? true)) {
+                            stop();
+                            tooltipItem.h = to;
+                        } else {
+                            velocity = (Math.max(tooltipItem.height, to) - Math.min(tooltipItem.height, to)) * 5;
+                            restart();
+                        }
+                    }
+                }
             }
         }
     }

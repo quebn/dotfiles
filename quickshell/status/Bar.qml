@@ -32,8 +32,8 @@ Scope {
         id: tooltip
         bar: bar
       }
-      // readonly property Test tooltip: tooltip;
-      // Test {
+      // readonly property TooltipOld tooltip: tooltip;
+      // TooltipOld {
       //   id: tooltip
       //   bar: bar
       // }
