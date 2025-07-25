@@ -1,6 +1,8 @@
 if status is-interactive
     # MARK: settings
 
+    set -U tide_os_color 9ccfd8
+    set -U tide_context_color 9ccfd8
     set -U tide_git_icon ''
     set -U fish_autosuggestion_enabled 0
     set -x ARDUINO_CONFIG "$HOME/Programming/arduino/.arduino15"
@@ -33,19 +35,21 @@ if status is-interactive
 
     # MARK: alias
     alias vi="nvim"
+    alias vim="nvim"
     alias open="tmux-sessionizer"
     alias create="project"
     alias a="attach"
     alias ll="nvim"
     alias todoedit="$EDITOR ~/.TODO.md"
     alias grep="grep --color=auto"
+    alias ls="lsd"
 
     alias ino="arduino-cli --config-dir $ARDUINO_CONFIG"
 
     fzf --fish | source
 
-    # fish_default_key_bindings
-    fish_vi_key_bindings
+    fish_default_key_bindings
+    # fish_vi_key_bindings
     function fish_greeting
     end
     function fish_vi_cursor --description "Disable cursor shape changes"
