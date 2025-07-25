@@ -106,13 +106,7 @@ Scope {
             }
 
             implicitWidth: tooltipItem.targetWidth
-            // TODO: heigth is like outfoxxed because animation
             implicitHeight: tooltipItem.targetHeight
-			// height: {
-			// 	const h = tooltipItem.lowestAnimY - tooltipItem.highestAnimY
-			// 	//console.log(`seth ${h} ${tooltipItem.highestAnimY} ${tooltipItem.lowestAnimY}; ${tooltipItem.y1} ${tooltipItem.y2}`)
-			// 	return h
-			// }
             visible: true
             color: "transparent"
 
@@ -174,17 +168,17 @@ Scope {
                 }
 
                 property var h: -1
+                // TODO: test the animation in a Test.qml file
                 // height: Math.max(1, h)
 				// property var w: -1
-				// width: Math.max(1, w)
 				//
-				// property var y1: -1
-				// property var y2: -1
+				// property var x1: -1
+				// property var x2: -1
 				//
-				// y: y1 - popup.anchor.rect.y
+				// y: x1 - popup.anchor.rect.x
 				// height: y2 - y1
 				//
-				// readonly property bool anyAnimsRunning: y1Anim.running || y2Anim.running || widthAnim.running
+				// readonly property bool anyAnimsRunning: x1Anim.running || y2Anim.running || widthAnim.running
 				//
 				// onAnyAnimsRunningChanged: {
 				// 	if (!anyAnimsRunning) {
