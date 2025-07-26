@@ -37,8 +37,6 @@ MouseArea {
             case Qt.RightButton: {
                 if (!modelData.hasMenu) return;
                 root.targetMenuOpen = !root.targetMenuOpen;
-
-                // menu.open();
             } break;
         }
     }
@@ -71,17 +69,6 @@ MouseArea {
         }
     }
 
-    // QsMenuAnchor {
-    //     id: menu
-    //
-    //     menu: root.modelData.menu
-    //     anchor.window: bar
-    //     anchor.rect.x: root.x + bar.width
-    //     anchor.rect.y: root.y
-    //     anchor.rect.height: root.height
-    //     anchor.edges: Edges.Bottom
-    // }
-
     MaterialSymbol {
         id: trayIconAlt
         anchors.centerIn: parent
@@ -100,33 +87,6 @@ MouseArea {
         width: parent.width
         height: parent.height
     }
-
-    // Loader {
-    //     active: !isAlt
-    //     anchors.fill: trayIcon
-    //     sourceComponent: Item {
-    //         Desaturate {
-    //             id: desaturatedIcon
-    //             visible: true
-    //             anchors.fill: parent
-    //             source: trayIcon
-    //             desaturation: 1
-    //         }
-    //     }
-    // }
-
-    // property var tooltip: TooltipItem {
-    //     tooltip: root.bar.tooltip
-    //     owner: root
-    //
-    //     show: root.containsMouse
-    //
-    //     Text {
-    //         id: tooltipText
-    //         text: root.modelData.tooltipTitle != "" ? root.modelData.tooltipTitle : root.modelData.id
-    //         color: "white"
-    //     }
-    // }
 
     property var rightclickMenu: TooltipItem {
         id: rightclickMenu

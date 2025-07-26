@@ -32,11 +32,6 @@ Scope {
         id: tooltip
         bar: bar
       }
-      // readonly property TooltipOld tooltip: tooltip;
-      // TooltipOld {
-      //   id: tooltip
-      //   bar: bar
-      // }
 
       readonly property int tooltipYOffset: Appearance.sizes.bar.baseHeight + Appearance.sizes.compositorGaps;
 
@@ -237,7 +232,7 @@ Scope {
             RowLayout {
               id: rightSection
               anchors.fill: parent
-              spacing: 5
+              spacing: 0
               layoutDirection: Qt.RightToLeft
 
               // TODO: add onhover color change

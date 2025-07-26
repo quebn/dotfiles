@@ -3,6 +3,7 @@ import Quickshell
 import Quickshell.Hyprland
 import qs
 
+// TODO: improve items lingers in menu when switching items
 Scope {
     id: root
     required property var bar;
