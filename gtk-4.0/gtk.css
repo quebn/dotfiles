@@ -93,7 +93,13 @@
 
 headerbar, headerbar:backdrop, headerbar:disabled {
   background-color: @night;
+  padding: 8px;
+    min-height: 3rem;
 }
+
+/* headerbar > windowhandle > box { */
+/*   padding: 8px; */
+/* } */
 
 .nautilus-window:backdrop {
   background-color: @night;
@@ -125,14 +131,46 @@ textview border {
 /**********************
  * Navigation Sidebar *
  **********************/
-
 placessidebar, placessidebar:backdrop {
   background-color: @night;
 }
 
 .navigation-sidebar {
   background-color: @night;
+  margin: 4px;
 }
+
+.navigation-sidebar > row {
+  min-height: 32px;
+  padding: 4px;
+  /* margin: 4px; */
+  border-radius: 6px;
+}
+
+.navigation-sidebar > row:hover,
+.navigation-sidebar > row:focus-visible:focus-within {
+  background-color: @overlay;
+}
+
+.navigation-sidebar > row:selected label,
+.navigation-sidebar > row:selected image {
+  color: @night;
+  font-weight: 500;
+}
+
+.navigation-sidebar > row:selected:hover {
+  background-color:  @overlay;
+}
+
+.navigation-sidebar > row:selected:focus-visible:focus-within {
+  outline: none;
+  background-color: alpha(currentColor, 0.3);
+}
+
+.navigation-sidebar > row:disabled {
+  color: @muted;
+}
+
 
 /***************
  * Base States *
@@ -4380,6 +4418,16 @@ row {
   background-clip: padding-box;
 }
 
+row > revealer > box > image {
+  margin-left: 8px;
+  margin-right: 8px;
+}
+
+row > revealer > box > label {
+  margin-left: 8px;
+}
+
+
 row label.subtitle {
   font-size: smaller;
 }
@@ -4725,44 +4773,6 @@ separator.sidebar {
 separator.sidebar.selection-mode,
 .selection-mode separator.sidebar {
   background-color: @night;
-}
-
-/**********************
- * Navigation Sidebar *
- **********************/
-.navigation-sidebar {
-  margin: 0 4px;
-}
-
-.navigation-sidebar > row {
-  min-height: 32px;
-  padding: 2px 4px;
-  margin: 1px 0;
-  border-radius: 6px;
-}
-
-.navigation-sidebar > row:hover,
-.navigation-sidebar > row:focus-visible:focus-within {
-  background-color: @overlay;
-}
-
-.navigation-sidebar > row:selected label,
-.navigation-sidebar > row:selected image {
-  color: @night;
-  font-weight: 500;
-}
-
-.navigation-sidebar > row:selected:hover {
-  background-color:  @overlay;
-}
-
-.navigation-sidebar > row:selected:focus-visible:focus-within {
-  outline: none;
-  background-color: alpha(currentColor, 0.3);
-}
-
-.navigation-sidebar > row:disabled {
-  color: @muted;
 }
 
 /****************
