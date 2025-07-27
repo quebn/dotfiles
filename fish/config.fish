@@ -5,6 +5,11 @@ if status is-interactive
     set -U tide_context_color 9ccfd8
     set -U tide_git_icon ''
     set -U fish_autosuggestion_enabled 0
+
+    set -U fish_color_command 31748f
+    set -U fish_color_redirection c4a7e7
+
+
     set -x ARDUINO_CONFIG "$HOME/Programming/arduino/.arduino15"
     set -x MANPAGER "nvim +Man!"
     set -x CHROME_EXECUTABLE (which google-chrome-stable)
@@ -16,8 +21,8 @@ if status is-interactive
     set -x GOPATH "$HOME/Programming/.go"
     set -x DIFFPROG "nvim -d"
     set -x CGO_ENABLED 1
-    set -q C_INCLUDE_PATH; or set C_INCLUDE_PATH ''
-    set -x C_INCLUDE_PATH "$HOME/.local/include:$C_INCLUDE_PATH"
+    # set -q C_INCLUDE_PATH; or set C_INCLUDE_PATH ''
+    # set -x C_INCLUDE_PATH "$HOME/.local/include:$C_INCLUDE_PATH"
     set -x FZF_DEFAULT_OPTS "
     --pointer ''
     --prompt ' '
