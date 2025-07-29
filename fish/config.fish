@@ -1,11 +1,13 @@
 if status is-interactive
+    function fish_greeting
+    end
     # MARK: settings
 
-    set -U tide_os_color 9ccfd8
-    set -U tide_context_color 9ccfd8
-    set -U tide_git_icon ''
-    set -U fish_autosuggestion_enabled 0
+    # set -U tide_os_color 9ccfd8
+    # set -U tide_context_color 9ccfd8
+    # set -U tide_git_icon ''
 
+    set -U fish_autosuggestion_enabled 0
     set -U fish_color_command 31748f
     set -U fish_color_redirection c4a7e7
 
@@ -51,17 +53,10 @@ if status is-interactive
 
     alias ino="arduino-cli --config-dir $ARDUINO_CONFIG"
 
-    fzf --fish | source
-
     fish_default_key_bindings
     # fish_vi_key_bindings
-    function fish_greeting
-    end
-    function fish_vi_cursor --description "Disable cursor shape changes"
-        # Do nothing; this disables cursor shape switching in vi mode
-    end
 
-    function tide_pre_prompt_command --on-event fish_prompt
-        printf '\e[1 q'  # Blinking block cursor
-    end
+    fzf --fish | source
+    starship init fish | source
+    enable_transience
 end
