@@ -1,0 +1,78 @@
+[username]
+show_always = true
+style_user = "bold blue"
+style_root = "bold red"
+format = "[󰣇 $user]($style) at "
+
+[hostname]
+style = "bold green"
+ssh_only = false
+
+[directory]
+truncation_length = 1
+style = "bold cyan"
+truncate_to_repo = false
+format = "[ $path]($style) "
+
+[git_branch]
+symbol = " "  # or "", or any other icon you like
+style = "bold purple"
+
+
+[git_status]
+style = "bold yellow"
+
+[cmd_duration]
+min_time = 1_000         # Show only if command took > 1 second (in ms)
+style = "bold #524f67"
+format = "[󰔟 $duration]($style) "
+show_milliseconds = false
+
+[jobs]
+style = "white"
+
+[lua]
+symbol = " "
+disabled = true
+
+[python]
+disabled = true
+
+[nodejs]
+disabled = true
+
+[rust]
+disabled = true
+
+[golang]
+disabled = true
+
+[ruby]
+disabled = true
+
+[java]
+disabled = true
+
+[dotnet]
+disabled = true
+
+[php]
+disabled = true
+
+[perl]
+disabled = true
+
+[julia]
+disabled = true
+
+[swift]
+disabled = true
+
+[c]
+disabled = true
+
+[cmake]
+disabled = true
+
+[zig]
+disabled = true
