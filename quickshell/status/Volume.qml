@@ -8,9 +8,17 @@ import Quickshell.Io
 
 Item {
     id: root
-    property color mainColor: Appearance.colors.foreground
+    property color mainColor: root.hovered ? Appearance.colors.primary : Appearance.colors.foreground
     implicitWidth: rowLayout.implicitWidth + rowLayout.spacing * 2
     implicitHeight: 32
+    property bool hovered: false
+
+    MouseArea {
+        anchors.fill: parent
+        hoverEnabled: true
+        onEntered: root.hovered = true
+        onExited: root.hovered = false
+    }
 
     RowLayout {
         id: rowLayout

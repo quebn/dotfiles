@@ -12,11 +12,20 @@ import Quickshell.Wayland
 
 Item {
     id: root
-    property color mainColor: Appearance.colors.foreground
+    property color mainColor: root.hovered ? Appearance.colors.primary : Appearance.colors.foreground
     required property var monitor
+    property bool hovered: false
 
     implicitWidth: rowLayout.implicitWidth + rowLayout.spacing * 2
     implicitHeight: 32
+
+
+    MouseArea {
+        anchors.fill: parent
+        hoverEnabled: true
+        onEntered: root.hovered = true
+        onExited: root.hovered = false
+    }
 
     RowLayout {
         id: rowLayout
@@ -39,7 +48,7 @@ Item {
         MaterialSymbol {
             text: "brightness_6"
             iconSize: Appearance.font.pixelSize.larger
-            color: Appearance.colors.foreground
+            color: root.mainColor
         }
     }
 }

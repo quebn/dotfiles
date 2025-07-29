@@ -235,7 +235,6 @@ Scope {
               spacing: 0
               layoutDirection: Qt.RightToLeft
 
-              // TODO: add onhover color change
               BrightnessControl {
               Layout.rightMargin: Appearance.sizes.compositorGaps
                 visible: true
@@ -243,7 +242,6 @@ Scope {
                 Layout.alignment: Qt.AlignVCenter
               }
 
-              // TODO: add onhover color change
               Volume {
                 visible: true
                 Layout.alignment: Qt.AlignVCenter
