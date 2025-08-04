@@ -8,7 +8,7 @@
 	email = gonzalesquebin@gmail.com
 
 [init]
-    defaultBranch = main
+    defaultBranch = master
 
 [merge]
     conflictStyle = zdiff3

@@ -11,13 +11,15 @@ if status is-interactive
     set -U fish_color_command 31748f
     set -U fish_color_redirection c4a7e7
 
-
+    set -Ux LESS '-R'
     set -x ARDUINO_CONFIG "$HOME/Programming/arduino/.arduino15"
     set -x MANPAGER "nvim +Man!"
     set -x CHROME_EXECUTABLE (which google-chrome-stable)
     set -x ANDROID_HOME "$HOME/Apps/.tools/android_sdk"
+    set -x LOCAL_NODE "$HOME/Apps/.tools/node"
     set -x PATH "$ANDROID_HOME/cmdline-tools/latest/bin" $PATH
     set -x PATH "$ANDROID_HOME/platform-tools" $PATH
+    set -x PATH "$LOCAL_NODE/bin" $PATH
     set -x EDITOR (which nvim)
     set -x VISUAL (which nvim)
     set -x GOPATH "$HOME/Programming/.go"
