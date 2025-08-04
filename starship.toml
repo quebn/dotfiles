@@ -5,7 +5,7 @@ style_root = "bold red"
 format = "[󰣇 $user]($style) at "
 
 [hostname]
-style = "bold green"
+style = "bold purple"
 ssh_only = false
 
 [directory]
@@ -15,15 +15,15 @@ truncate_to_repo = false
 format = "[ $path]($style) "
 
 [git_branch]
-symbol = " "  # or "", or any other icon you like
-style = "bold purple"
+symbol = " "
+style = "bold green"
 
 
 [git_status]
 style = "bold yellow"
 
 [cmd_duration]
-min_time = 1_000         # Show only if command took > 1 second (in ms)
+min_time = 1_000
 style = "bold #524f67"
 format = "[󰔟 $duration]($style) "
 show_milliseconds = false
@@ -75,4 +75,7 @@ disabled = true
 disabled = true
 
 [zig]
+disabled = true
+
+[package]
 disabled = true
