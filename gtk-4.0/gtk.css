@@ -94,7 +94,8 @@
 headerbar, headerbar:backdrop, headerbar:disabled {
   background-color: @night;
   padding: 8px;
-    min-height: 3rem;
+  min-height: 3rem;
+  border: none;
 }
 
 /* headerbar > windowhandle > box { */
@@ -125,7 +126,7 @@ textview text {
 
 textview border {
   background-color: @night;
-  color: @highlight_high;
+  color: @overlay;
 }
 
 /**********************
@@ -154,12 +155,12 @@ placessidebar, placessidebar:backdrop {
 
 .navigation-sidebar > row:selected label,
 .navigation-sidebar > row:selected image {
-  color: @night;
+  color: @text;
   font-weight: 500;
 }
 
 .navigation-sidebar > row:selected:hover {
-  background-color:  @overlay;
+  background-color:  @pine;
 }
 
 .navigation-sidebar > row:selected:focus-visible:focus-within {
@@ -229,7 +230,7 @@ textview text {
 
 textview border {
   background-color: @night;
-  color: @highlight_high;
+  color: @overlay;
 }
 
 iconview:hover,
@@ -271,7 +272,7 @@ flowbox > flowboxchild:not(:only-child):last-child {
 }
 
 gridview > child:selected {
-  outline-color: @highlight_high;
+  outline-color: @overlay;
 }
 
 gridview > child box {
@@ -324,7 +325,7 @@ window.assistant .sidebar {
 window.assistant .sidebar label {
   min-height: 36px;
   padding: 0 12px;
-  color: @highlight_high;
+  color: @overlay;
   font-weight: 500;
 }
 
@@ -514,7 +515,7 @@ treeview entry:focus-within {
 
 .entry-tag {
   margin: 2px;
-  border-radius: 8px;
+  border-radius: 6px;
   box-shadow: none;
   background-color: @overlay;
   color: @text;
@@ -975,7 +976,7 @@ button.destructive-action.flat:checked {
 menubutton.pill > button,
 button.pill {
   padding: 9px 30px;
-  border-radius: 8px;
+  border-radius: 6px;
 }
 
 button.card {
@@ -1077,7 +1078,7 @@ filechooser #pathbarbox > stack > box > button,
 menubutton.circular > button,
 button.close,
 button.circular {
-  border-radius: 8px;
+  border-radius: 6px;
   min-width: 16px;
   min-height: 16px;
   padding: 6px;
@@ -2243,7 +2244,7 @@ headerbar button.destructive-action:disabled {
 
 headerbar stackswitcher {
   margin: 6px;
-  border-radius: 8px;
+  border-radius: 6px;
   border: none;
 }
 
@@ -2255,15 +2256,12 @@ headerbar
 }
 
 headerbar.selection-mode {
-  transition: background-color 0.1ms 225ms,
-    color 75ms cubic-bezier(0, 0, 0.2, 1);
-  box-shadow: inset 0 1px rgba(224, 222, 244, 0);
   background-color: @pine;
-  color: rgba(0, 0, 0, 0.87);
+  color: @night;
 }
 
 headerbar.selection-mode:backdrop {
-  color: @night;
+  color: @muted;
 }
 
 headerbar.selection-mode .subtitle:link {
@@ -2280,7 +2278,6 @@ headerbar.selection-mode .selection-menu .arrow {
 }
 
 headerbar .selection-mode {
-  box-shadow: inset 0 1px rgba(224, 222, 244, 0);
   background-color: @pine;
 }
 
@@ -2524,7 +2521,7 @@ menubar {
 }
 
 menubar:backdrop {
-  color: @night;
+  color: @muted;
 }
 
 .csd menubar {
@@ -2558,7 +2555,7 @@ menubar > item popover.menu popover.menu {
 
 menubar > item popover.menu.background popover.menu.background > contents {
   margin: 0;
-  border-radius: 8px;
+  border-radius: 6px;
 }
 
 /**********************
@@ -2622,7 +2619,7 @@ popover.background > contents {
   padding: 6px;
   background-color: @night;
   background-clip: border-box;
-  border-radius: 8px;
+  border-radius: 6px;
   color: @text;
   border: 2px solid @overlay;
 }
@@ -2779,7 +2776,7 @@ notebook.frame > header {
 notebook,
 notebook.frame {
   background-color: @night;
-  border-radius: 8px;
+  border-radius: 6px;
 }
 
 notebook.frame frame > border {
@@ -2796,7 +2793,7 @@ notebook > header {
   background-color: @night;
   padding: 3px;
   margin: 3px;
-  border-radius: 8px;
+  border-radius: 6px;
 }
 
 notebook > header.top > tabs > arrow {
@@ -2934,7 +2931,7 @@ tabbar:not(.inline) .box {
   background-color: transparent;
   padding: 0;
   margin: 3px;
-  border-radius: 12px;
+  border-radius: 6px;
   box-shadow: none;
 }
 
@@ -2988,8 +2985,6 @@ dnd tab {
   color: @text;
   margin: 24px;
   outline: none;
-  box-shadow: 0 1px 5px 1px rgba(0, 0, 0, 0.8),
-    0 2px 14px 3px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(0, 0, 0, 0.3);
 }
 
 tabbar tab,
@@ -3015,7 +3010,7 @@ dnd tab indicator {
 }
 
 tabthumbnail {
-  border-radius: 10px;
+  border-radius: 8px;
   transition: box-shadow 200ms cubic-bezier(0, 0, 0.2, 1),
     background-color cubic-bezier(0, 0, 0.2, 1);
 }
@@ -4131,7 +4126,7 @@ window.dialog.print drawing {
 
 window.dialog.print drawing paper {
   padding: 0;
-  border: 1px solid rgba(224, 222, 244, 0.3);
+  border: @overlay;
   background-color: @night;
   color: @text;
 }
@@ -4287,7 +4282,7 @@ listview.boxed-list,
 list.boxed-list,
 listview.content:not(.conversation-listbox),
 list.content:not(.conversation-listbox) {
-  border-radius: 7px;
+  border-radius: 6px;
   box-shadow: none;
   border: 2px solid @overlay;
 }
@@ -4487,7 +4482,7 @@ button row.activatable:active {
 }
 
 button:checked row.activatable {
-  color: @night;
+  color: @pine;
 }
 
 row:selected image,
@@ -4600,7 +4595,7 @@ expander-widget:not(decoration):not(window):drop(active) {
  ************/
 calendar {
   padding: 0;
-  border: 1px solid rgba(224, 222, 244, 0.3);
+  border: @overlay;
   border-radius: 6px;
   color: @text;
 }
@@ -4615,7 +4610,7 @@ calendar:selected {
 
 calendar > header {
   padding: 3px;
-  border-bottom: 1px solid rgba(224, 222, 244, 0.3);
+  border-bottom: @overlay;
 }
 
 calendar > header > button {
@@ -4706,7 +4701,7 @@ window.dialog.message.csd
 }
 
 window.background.csd.dialog > headerbar.titlebar {
-  box-shadow: inset 0 -1px rgba(224, 222, 244, 0.3);
+  box-shadow: none;
 }
 
 window.aboutdialog.background.csd scrolledwindow.frame,
@@ -4717,11 +4712,11 @@ window.aboutdialog.background.csd scrolledwindow.frame > textview.view > text {
 }
 
 filechooser .dialog-action-box {
-  border-top: 1px solid rgba(224, 222, 244, 0.3);
+  border-top: 1px solid @overlay;
 }
 
 filechooser #pathbarbox {
-  border-bottom: 1px solid rgba(224, 222, 244, 0.3);
+  border-bottom: 1px solid @overlay;
   background-color: @night;
 }
 
@@ -4910,7 +4905,7 @@ infobar.action > revealer > box *:link,
 infobar.action:backdrop > revealer > box *:link,
 infobar.question > revealer > box *:link,
 infobar.question:backdrop > revealer > box *:link {
-  color: rgba(0, 0, 0, 0.87);
+  color: @magenta;
 }
 
 infobar.action:hover > revealer > box,
@@ -4938,12 +4933,12 @@ infobar.warning:backdrop > revealer > box button:focus,
 infobar.warning:backdrop > revealer > box button:active,
 infobar.warning:backdrop > revealer > box button:checked,
 infobar.warning:backdrop > revealer > box button.text-button:not(:disabled) {
-  color: rgba(0, 0, 0, 0.87);
+  color: @muted;
 }
 
 infobar.warning > revealer > box *:link,
 infobar.warning:backdrop > revealer > box *:link {
-  color: rgba(0, 0, 0, 0.87);
+  color: @magenta;
 }
 
 infobar.warning:hover > revealer > box {
@@ -4968,12 +4963,12 @@ infobar.error:backdrop > revealer > box button:focus,
 infobar.error:backdrop > revealer > box button:active,
 infobar.error:backdrop > revealer > box button:checked,
 infobar.error:backdrop > revealer > box button.text-button:not(:disabled) {
-  color: rgba(0, 0, 0, 0.87);
+  color: @love;
 }
 
 infobar.error > revealer > box *:link,
 infobar.error:backdrop > revealer > box *:link {
-  color: rgba(0, 0, 0, 0.87);
+  color: @love;
 }
 
 infobar.error:hover > revealer > box {
@@ -5055,16 +5050,16 @@ colorswatch.dark {
 }
 
 colorswatch.light {
-  color: rgba(0, 0, 0, 0.87);
+  color: @text;
 }
 
 colorswatch#add-color-button {
-  border-radius: 12px 12px 0 0;
+  border-radius: 8px 8px 0 0;
   color: @text;
 }
 
 colorswatch#add-color-button:only-child {
-  border-radius: 12px;
+  border-radius: 8px;
 }
 
 colorswatch#add-color-button overlay {
@@ -5080,11 +5075,11 @@ colorswatch:disabled overlay {
 }
 
 colorswatch#editor-color-sample {
-  border-radius: 12px;
+  border-radius: 8px;
 }
 
 colorswatch#editor-color-sample overlay {
-  border-radius: 12px;
+  border-radius: 8px;
 }
 
 colorchooser .popover.osd {
@@ -5114,14 +5109,14 @@ colorchooser .popover.osd:backdrop {
  **********************/
 window {
   transition: box-shadow 75ms cubic-bezier(0, 0, 0.2, 1);
-  border-radius: 8px;
+  border-radius: 6px;
   box-shadow: 0 2px 2.4px -1px rgba(0, 0, 0, 0.2),
     0 4px 3px 0 rgba(0, 0, 0, 0.14), 0 1px 6px 0 rgba(0, 0, 0, 0.3),
     0 0 0 2px @rose, 0 0 16px transparent;
 }
 
 window.csd {
-  border-radius: 12px;
+  border-radius: 8px;
 }
 
 window:backdrop {
@@ -5129,12 +5124,12 @@ window:backdrop {
 }
 
 window.popup {
-  border-radius: 8px;
+  border-radius: 6px;
   box-shadow: none;
 }
 
 window.dialog.message {
-  border-radius: 8px;
+  border-radius: 6px;
 }
 
 window.solid-csd {
@@ -5232,7 +5227,7 @@ shortcut > .keycap {
   padding-left: 8px;
   padding-right: 8px;
   border: solid 2px @overlay;
-  border-radius: 7px;
+  border-radius: 6px;
   box-shadow: none;
   background-color: @overlay;
   color: @text;
@@ -5245,7 +5240,7 @@ shortcut > .keycap {
 
 stackswitcher {
   min-height: 0;
-  border-radius: 8px;
+  border-radius: 6px;
   background-color: transparent;
   border: none;
 }
@@ -6003,7 +5998,7 @@ statuspage.compact > scrolledwindow > viewport > box > clamp > box > .title {
 toast {
   margin: 12px;
   margin-bottom: 24px;
-  border-radius: 8px;
+  border-radius: 6px;
   border-spacing: 6px;
   padding: 6px;
   box-shadow: 0 7px 4.8px -4px rgba(0, 0, 0, 0.2),
@@ -6043,7 +6038,7 @@ viewswitcher.wide button.toggle.flat:checked {
 
 viewswitcher.wide button.toggle:checked:backdrop,
 viewswitcher.wide button.toggle.flat:checked:backdrop {
-  color: @night;
+  color: @muted;
 }
 
 viewswitcher.wide
@@ -6098,7 +6093,7 @@ headerbar viewswitcher.narrow button.toggle:checked indicator > label {
 }
 
 headerbar viewswitcher.narrow button.toggle:checked:backdrop {
-  color: @night;
+  color: @muted;
 }
 
 headerbar viewswitcher.narrow button.toggle:focus {
@@ -6168,5 +6163,5 @@ indicatorbin.needs-attention > indicator {
 }
 
 indicatorbin.needs-attention > indicator > label {
-  color: @night;
+  color: @text;
 }
