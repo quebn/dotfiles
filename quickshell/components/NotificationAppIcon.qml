@@ -2,8 +2,6 @@ import qs
 import "root:/functions/notification_utils.js" as NotificationUtils
 import Qt5Compat.GraphicalEffects
 import QtQuick
-import QtQuick.Controls
-import QtQuick.Layouts
 import Quickshell
 import Quickshell.Widgets
 import Quickshell.Services.Notifications
@@ -39,9 +37,7 @@ Rectangle { // App icon
                     "release_alert" : guessedIcon
             }
             anchors.fill: parent
-            color: (root.urgency == NotificationUrgency.Critical) ?
-                Appearance.colors.yellow :
-                Appearance.colors.cyan
+            color: (root.urgency == NotificationUrgency.Critical) ? Appearance.colors.yellow : Appearance.colors.cyan
             iconSize: root.materialIconSize
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter

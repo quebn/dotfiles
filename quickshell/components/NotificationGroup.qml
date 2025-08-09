@@ -3,15 +3,9 @@ import qs.services
 import qs.components
 import qs.functions
 import "root:/functions/notification_utils.js" as NotificationUtils
-import Qt5Compat.GraphicalEffects
 import QtQuick
-import QtQuick.Controls
-import QtQuick.Effects
 import QtQuick.Layouts
 import Quickshell
-import Quickshell.Widgets
-import Quickshell.Hyprland
-import Quickshell.Services.Notifications
 
 /**
  * A group of notifications from the same app.
@@ -60,7 +54,7 @@ Item { // Notification group area
         onFinished: () => {
             root.notifications.forEach((notif) => {
                 Qt.callLater(() => {
-                    Notifications.discardNotification(notif.id);
+                    Notifications.discardNotification(notif.notificationId);
                 });
             });
         }
@@ -104,9 +98,12 @@ Item { // Notification group area
         }
     }
 
+    StyledRectangularShadow {
+        target: background
+        visible: popup
+    }
     Rectangle { // Background of the notification
         id: background
-
         anchors.left: parent.left
         width: parent.width
         color: Appearance.colors.background

@@ -3,14 +3,9 @@ import qs.services
 import qs.components
 import qs.functions
 import "root:/functions/notification_utils.js" as NotificationUtils
-import Qt5Compat.GraphicalEffects
 import QtQuick
-import QtQuick.Controls
-import QtQuick.Effects
 import QtQuick.Layouts
 import Quickshell
-import Quickshell.Io
-import Quickshell.Widgets
 import Quickshell.Hyprland
 import Quickshell.Services.Notifications
 
@@ -76,7 +71,7 @@ Item { // Notification item area
             easing.bezierCurve: Appearance.animation.elementMove.bezierCurve
         }
         onFinished: () => {
-            Notifications.discardNotification(notificationObject.id);
+            Notifications.discardNotification(notificationObject.notificationId);
         }
     }
 
@@ -183,6 +178,7 @@ Item { // Notification item area
                     font.pixelSize: root.fontSize
                     color: Appearance.colors.foreground
                     elide: Text.ElideRight
+                    wrapMode: Text.Wrap // Needed for proper eliding????
                     maximumLineCount: 1
                     textFormat: Text.StyledText
                     text: {
@@ -215,13 +211,14 @@ Item { // Notification item area
 
                     onLinkActivated: (link) => {
                         Qt.openUrlExternally(link)
-                        // Hyprland.dispatch("global quickshell:sidebarRightClose")
+                        // GlobalStates.sidebarRightOpen = false
                     }
 
                     PointingHandLinkHover {}
                 }
 
-                Flickable { // Notification actions
+                // Notification actions
+                StyledFlickable {
                     id: actionsFlickable
                     Layout.fillWidth: true
                     implicitHeight: actionRowLayout.implicitHeight
@@ -256,7 +253,8 @@ Item { // Notification item area
                             contentItem: MaterialSymbol {
                                 iconSize: Appearance.font.pixelSize.large
                                 horizontalAlignment: Text.AlignHCenter
-                                color: Appearance.colors.foreground
+                                color: (notificationObject.urgency == NotificationUrgency.Critical) ?
+                                    Appearance.colors.red : Appearance.colors.foreground
                                 text: "close"
                             }
                         }
@@ -269,7 +267,7 @@ Item { // Notification item area
                                 buttonText: modelData.text
                                 urgency: notificationObject.urgency
                                 onClicked: {
-                                    Notifications.attemptInvokeAction(notificationObject.id, modelData.identifier);
+                                    Notifications.attemptInvokeAction(notificationObject.notificationId, modelData.identifier);
                                 }
                             }
                         }
@@ -299,7 +297,8 @@ Item { // Notification item area
                                 id: copyIcon
                                 iconSize: Appearance.font.pixelSize.large
                                 horizontalAlignment: Text.AlignHCenter
-                                color: Appearance.colors.foreground
+                                color: (notificationObject.urgency == NotificationUrgency.Critical) ?
+                                    Appearance.colors.red : Appearance.colors.foreground
                                 text: "content_copy"
                             }
                         }
