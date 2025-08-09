@@ -18,8 +18,12 @@ MouseArea {
     required property SystemTrayItem modelData
     readonly property bool isAlt: modelData.id == "nm-applet" || modelData.id == "blueman"
     property bool targetMenuOpen: false;
-    hoverEnabled: true
+    property bool hovered: false
 
+
+    hoverEnabled: true
+    onEntered: root.hovered = true
+    onExited: root.hovered = false
     acceptedButtons: Qt.LeftButton | Qt.RightButton | Qt.MiddleButton
     cursorShape: Qt.PointingHandCursor
     Layout.fillHeight: true
@@ -56,6 +60,9 @@ MouseArea {
     }
 
     function altColor() {
+        if (root.hovered) {
+            return Appearance.colors.primary
+        }
         switch (modelData.id) {
             case "nm-applet": {
                 return Network.mainColor
