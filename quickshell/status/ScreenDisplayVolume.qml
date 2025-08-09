@@ -73,7 +73,7 @@ Scope {
             }
 
             exclusionMode: ExclusionMode.Normal
-            WlrLayershell.namespace: "quickshell:onScreenDisplay"
+            WlrLayershell.namespace: "quickshell:volumeDisplay"
             WlrLayershell.layer: WlrLayer.Overlay
             color: "transparent"
 
@@ -94,7 +94,6 @@ Scope {
                 anchors.horizontalCenter: parent.horizontalCenter
                 Item {
                     id: osdValuesWrapper
-                    // Extra space for shadow
                     implicitHeight: contentColumnLayout.implicitHeight + Appearance.sizes.elevationMargin * 2
                     implicitWidth: contentColumnLayout.implicitWidth
                     clip: true
@@ -103,6 +102,13 @@ Scope {
                         anchors.fill: parent
                         hoverEnabled: true
                         onEntered: root.showOsdValues = false
+                    }
+
+                    Behavior on implicitHeight {
+                        NumberAnimation {
+                            duration: Appearance.animation.menuDecel.duration
+                            easing.type: Appearance.animation.menuDecel.type
+                        }
                     }
 
                     ColumnLayout {
@@ -122,42 +128,6 @@ Scope {
                             value: Audio.sink?.audio.volume ?? 0
                             icon: Audio.sink?.audio.muted ? "volume_off" : "volume_up"
                             name: qsTr("Volume")
-                        }
-
-                        Item {
-                            id: protectionMessageWrapper
-                            implicitHeight: protectionMessageBackground.implicitHeight
-                            implicitWidth: protectionMessageBackground.implicitWidth
-                            Layout.alignment: Qt.AlignHCenter
-                            opacity: root.protectionMessage !== "" ? 1 : 0
-
-                            Rectangle {
-                                id: protectionMessageBackground
-                                anchors.centerIn: parent
-                                color: Appearance.colors.error
-                                property real padding: 10
-                                implicitHeight: protectionMessageRowLayout.implicitHeight + padding * 2
-                                implicitWidth: protectionMessageRowLayout.implicitWidth + padding * 2
-                                radius: Appearance.rounding.corner
-
-                                RowLayout {
-                                    id: protectionMessageRowLayout
-                                    anchors.centerIn: parent
-                                    MaterialSymbol {
-                                        id: protectionMessageIcon
-                                        text: "dangerous"
-                                        iconSize: Appearance.font.pixelSize.hugeass
-                                        color: Appearance.colors.error
-                                    }
-                                    StyledText {
-                                        id: protectionMessageTextWidget
-                                        horizontalAlignment: Text.AlignHCenter
-                                        color: Appearance.colors.error
-                                        wrapMode: Text.Wrap
-                                        text: root.protectionMessage
-                                    }
-                                }
-                            }
                         }
                     }
                 }

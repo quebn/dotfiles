@@ -22,7 +22,7 @@ Item {
     property real valueIndicatorRightPadding: 20 // An icon is circle ish, a column isn't, hence the extra padding
 
 
-    Layout.margins: Appearance.sizes.elevationMargin
+    Layout.margins: Appearance.sizes.elevationMargin * 2
     implicitWidth: Appearance.sizes.osdWidth
     implicitHeight: valueIndicator.implicitHeight
 

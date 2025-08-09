@@ -25,8 +25,8 @@ Item { // Notification group area
     property real dragConfirmThreshold: 70 // Drag further to discard notification
     property real dismissOvershoot: 20 // Account for gaps and bouncy animations
     property var qmlParent: root?.parent?.parent // There's something between this and the parent ListView
-    property var parentDragIndex: qmlParent.dragIndex
-    property var parentDragDistance: qmlParent.dragDistance
+    property var parentDragIndex: qmlParent?.dragIndex ?? -1
+    property var parentDragDistance: qmlParent?.dragDistance ?? 0
     property var dragIndexDiff: Math.abs(parentDragIndex - index)
     property real xOffset: dragIndexDiff == 0 ? Math.max(0, parentDragDistance) :
         parentDragDistance > dragConfirmThreshold ? 0 :
