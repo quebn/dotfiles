@@ -21,6 +21,7 @@ if status is-interactive
     set -x PATH "$ANDROID_HOME/platform-tools" $PATH
     set -x PATH "$LOCAL_NODE/bin" $PATH
     set -x EDITOR (which nvim)
+    set -x editor (which nvim)
     set -x VISUAL (which nvim)
     set -x GOPATH "$HOME/Programming/.go"
     set -x DIFFPROG "nvim -d"
