@@ -12,9 +12,7 @@ Item {
     property bool show: false;
     property bool preloadBackground: root.visible;
 
-    // TODO: should be relativeX
     property real targetRelativeX: owner.width / 2;
-    property real targetRelativeY: owner.height / 2;
     property real hangTime: isMenu ? 0 : 200;
 
     signal close();

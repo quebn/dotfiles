@@ -27,7 +27,7 @@ Rectangle { // App icon
     color: Appearance.colors.background
     Loader {
         id: materialSymbolLoader
-        active: root.appIcon == ""
+        active: root.appIcon == "" && root.image == ""
         anchors.fill: parent
         sourceComponent: MaterialSymbol {
             text: {

@@ -34,6 +34,7 @@ MouseArea {
         switch (event.button) {
             case Qt.LeftButton: {
                 modelData.activate();
+                bar.tooltip.doLastHide();
             } break;
             case Qt.MiddleButton: {
                 modelData.secondaryActivate();
