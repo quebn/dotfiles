@@ -1,6 +1,6 @@
-import "root:/"
-import "root:/components"
-import "root:/services"
+import qs
+import qs.components
+import qs.services
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
@@ -12,11 +12,20 @@ import Quickshell.Wayland
 
 Item {
     id: root
-    property color mainColor: Appearance.colors.foreground
+    property color mainColor: root.hovered ? Appearance.colors.primary : Appearance.colors.foreground
     required property var monitor
+    property bool hovered: false
 
     implicitWidth: rowLayout.implicitWidth + rowLayout.spacing * 2
     implicitHeight: 32
+
+
+    MouseArea {
+        anchors.fill: parent
+        hoverEnabled: true
+        onEntered: root.hovered = true
+        onExited: root.hovered = false
+    }
 
     RowLayout {
         id: rowLayout
@@ -29,7 +38,8 @@ Item {
                 if (event.angleDelta.y < 0) {
                     monitor.setBrightness(monitor.brightness - 0.05);
                 } else if (event.angleDelta.y > 0) {
-                    monitor.setBrightness(monitor.brightness + 0.05);
+                    let value = monitor.brightness === 0.01 ?  0.04 : 0.05
+                    monitor.setBrightness(monitor.brightness + value);
                 }
             }
             acceptedDevices: PointerDevice.Mouse | PointerDevice.TouchPad
@@ -38,7 +48,7 @@ Item {
         MaterialSymbol {
             text: "brightness_6"
             iconSize: Appearance.font.pixelSize.larger
-            color: Appearance.colors.foreground
+            color: root.mainColor
         }
     }
 }

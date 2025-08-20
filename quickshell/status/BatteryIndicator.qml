@@ -1,6 +1,6 @@
-import "root:/"
-import "root:/components"
-import "root:/services"
+import qs
+import qs.components
+import qs.services
 import QtQuick
 import QtQuick.Layouts
 import Quickshell
@@ -10,7 +10,7 @@ import Quickshell.Services.UPower
 Item {
     id: root
     property bool borderless: Config.options.bar.borderless
-    property color mainColor: Appearance.colors.yellow
+    property color mainColor: Appearance.colors.foreground
     readonly property var chargeState: Battery.chargeState
     readonly property bool isCharging: Battery.isCharging
     readonly property bool isPluggedIn: Battery.isPluggedIn
@@ -34,32 +34,11 @@ Item {
             }
         }
 
-
-        CircularProgress {
-            Layout.alignment: Qt.AlignVCenter
-            lineWidth: 2
-            value: percentage
-            size: 26
-            secondaryColor: Appearance.colors.gutter
-            primaryColor: mainColor
-            fill: !isCharging
-
-            // battery_0_bar
-            // battery_3_bar
-            // battery_charging_90
-            MaterialSymbol {
-                anchors.centerIn: parent
-                fill: 1
-                text: "battery_full"
-                iconSize: Appearance.font.pixelSize.normal
-                color: mainColor
-            }
-
-        }
-        StyledText {
-            Layout.alignment: Qt.AlignVCenter
-            color: mainColor
-            text: `${String(Math.round(percentage * 100)).padStart(2, "0")}%`
+        Resource {
+            iconName: "battery_full"
+            percentage: root.percentage
+            mainColor: root.mainColor
+            shown: true
         }
 
     }

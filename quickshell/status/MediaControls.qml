@@ -1,8 +1,7 @@
-import "root:/"
-import "root:/components"
-import "root:/services"
-import "root:/functions/string_utils.js" as StringUtils
-import "root:/functions/file_utils.js" as FileUtils
+import qs
+import qs.components
+import qs.services
+import qs.functions
 import Qt5Compat.GraphicalEffects
 import QtQuick
 import QtQuick.Layouts
@@ -33,12 +32,12 @@ Scope {
         // return true
         return (
             // Remove unecessary native buses from browsers if there's plasma integration
-            !(hasPlasmaIntegration && player.dbusName.startsWith('org.mpris.MediaPlayer2.firefox')) &&
-            !(hasPlasmaIntegration && player.dbusName.startsWith('org.mpris.MediaPlayer2.chromium')) &&
+            !(hasPlasmaIntegration && player.dbusName.startsWith("org.mpris.MediaPlayer2.firefox")) &&
+            !(hasPlasmaIntegration && player.dbusName.startsWith("org.mpris.MediaPlayer2.chromium")) &&
             // playerctld just copies other buses and we don't need duplicates
-            !player.dbusName?.startsWith('org.mpris.MediaPlayer2.playerctld') &&
+            !player.dbusName?.startsWith("org.mpris.MediaPlayer2.playerctld") &&
             // Non-instance mpd bus
-            !(player.dbusName?.endsWith('.mpd') && !player.dbusName.endsWith('MediaPlayer2.mpd'))
+            !(player.dbusName?.endsWith(".mpd") && !player.dbusName.endsWith("MediaPlayer2.mpd"))
         );
     }
     function filterDuplicatePlayers(players) {
@@ -98,6 +97,7 @@ Scope {
             visible: true
 
             exclusiveZone: 0
+            exclusionMode: ExclusionMode.Ignore
             implicitWidth: (
                 (mediaControlsRoot.screen.width / 2) // Middle of screen
                     - (osdWidth / 2)                 // Dodge OSD
@@ -112,12 +112,14 @@ Scope {
                 bottom: false
                 left: true
             }
+
             mask: Region {
                 item: playerColumnLayout
             }
 
             ColumnLayout {
                 id: playerColumnLayout
+                anchors.topMargin: Appearance.sizes.compositorGaps
                 anchors.top: parent.top
                 anchors.bottom: parent.bottom
                 x: (mediaControlsRoot.screen.width / 2)  // Middle of screen
@@ -145,7 +147,6 @@ Scope {
 
         function toggle(): void {
             mediaControlsLoader.active = !mediaControlsLoader.active;
-            if(mediaControlsLoader.active) Notifications.timeoutAll();
         }
 
         function close(): void {
@@ -154,7 +155,6 @@ Scope {
 
         function open(): void {
             mediaControlsLoader.active = true;
-            Notifications.timeoutAll();
         }
     }
 
@@ -167,7 +167,6 @@ Scope {
                 return;
             }
             mediaControlsLoader.active = !mediaControlsLoader.active;
-            if(mediaControlsLoader.active) Notifications.timeoutAll();
         }
     }
     GlobalShortcut {
@@ -176,7 +175,6 @@ Scope {
 
         onPressed: {
             mediaControlsLoader.active = true;
-            Notifications.timeoutAll();
         }
     }
     GlobalShortcut {

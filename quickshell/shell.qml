@@ -1,3 +1,4 @@
+//@ pragma RespectSystemStyle
 //@ pragma UseQApplication
 //@ pragma Env QT_QUICK_CONTROLS_STYLE=Basic
 import "./status/"
@@ -8,7 +9,7 @@ ShellRoot {
   id: root
 
   property bool bar: true
-  property bool corners: true
+  property bool corners: false
   property bool mediaControls: true
   property bool notificationPopup: true
   property bool displayVolume: true
@@ -19,6 +20,6 @@ ShellRoot {
   LazyLoader { active: root.corners; component: ScreenCorners {} }
   LazyLoader { active: root.mediaControls; component: MediaControls {} }
   LazyLoader { active: notificationPopup; component: NotificationPopup {} }
-  LazyLoader { active: displayVolume; component: ScreenDisplayVolume {} }
   LazyLoader { active: displayBrightness; component: ScreenDisplayBrightness {} }
+  LazyLoader { active: displayVolume; component: ScreenDisplayVolume {} }
 }

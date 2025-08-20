@@ -1,16 +1,20 @@
-import "root:/"
-import "root:/components"
+import qs
+import qs.components
 import QtQuick
 import QtQuick.Layouts
 import Quickshell
 import Quickshell.Io
 
 Item {
+    id: root
+
     required property string iconName
     required property double percentage
     property color mainColor
     property int iconSize: Appearance.font.pixelSize.normal
     property bool shown: true
+    property string suffix: "%"
+
     clip: true
     visible: true
     implicitWidth: childrenRect.width
@@ -43,7 +47,7 @@ Item {
             Layout.alignment: Qt.AlignVCenter
             color: mainColor
             // text: `${Math.round(percentage * 100)}%`
-            text: `${String(Math.round(percentage * 100)).padStart(2, "0")}%`
+            text: `${String(Math.round(percentage * 100)).padStart(2, "0")}${suffix}`
         }
 
         Behavior on x {

@@ -1,6 +1,7 @@
 pragma Singleton
 pragma ComponentBehavior: Bound
 
+import qs
 import Quickshell
 import Quickshell.Io
 import QtQuick
@@ -24,6 +25,8 @@ Singleton {
         Network.networkStrength > 20 ? "network_wifi_1_bar" :
         "signal_wifi_0_bar"
     ) : "signal_wifi_off"
+    readonly property color mainColor: networkStrength === 0 ? Appearance.colors.hintAlt : Appearance.colors.foreground
+
     function update() {
         updateConnectionType.startCheck();
         updateNetworkName.running = true;

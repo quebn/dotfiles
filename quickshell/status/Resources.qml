@@ -1,6 +1,6 @@
-import "root:/"
-import "root:/components"
-import "root:/services"
+import qs
+import qs.components
+import qs.services
 
 import QtQuick
 import QtQuick.Layouts
@@ -21,7 +21,7 @@ Item {
         cursorShape: Qt.PointingHandCursor
         acceptedButtons: Qt.LeftButton
         onPressed: (event) => {
-            Hyprland.dispatch("exec kitty --start-as=fullscreen --title btop sh -c 'btop'")
+            Hyprland.dispatch("exec app2unit kitty --start-as=fullscreen --title btop sh -c 'btop'")
         }
     }
     RowLayout {

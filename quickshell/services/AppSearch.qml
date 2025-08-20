@@ -1,6 +1,6 @@
 pragma Singleton
 
-import "root:/"
+import qs
 import "root:/functions/fuzzysort.js" as Fuzzy
 import "root:/functions/levendist.js" as Levendist
 import Quickshell

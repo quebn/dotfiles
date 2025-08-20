@@ -1,6 +1,6 @@
-import "root:/"
-import "root:/services"
-import "root:/components"
+import qs
+import qs.services
+import qs.components
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Effects
@@ -22,7 +22,7 @@ Item {
     property real valueIndicatorRightPadding: 20 // An icon is circle ish, a column isn't, hence the extra padding
 
 
-    Layout.margins: Appearance.sizes.elevationMargin
+    Layout.margins: Appearance.sizes.elevationMargin * 2
     implicitWidth: Appearance.sizes.osdWidth
     implicitHeight: valueIndicator.implicitHeight
 
@@ -49,7 +49,10 @@ Item {
                 Layout.topMargin: valueIndicatorVerticalPadding
                 Layout.bottomMargin: valueIndicatorVerticalPadding
                 MaterialSymbol { // Icon
-                    anchors.centerIn: parent
+                    anchors {
+                        centerIn: parent
+                        alignWhenCentered: !root.rotateIcon
+                    }
                     color: Appearance.colors.foreground
                     renderType: Text.QtRendering
 

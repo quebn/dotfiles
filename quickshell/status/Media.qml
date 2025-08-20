@@ -1,7 +1,7 @@
-import "root:/"
-import "root:/components"
-import "root:/services"
-import "root:/functions/string_utils.js" as StringUtils
+import qs
+import qs.components
+import qs.services
+import qs.functions
 import QtQuick
 import QtQuick.Layouts
 import Quickshell
@@ -11,9 +11,10 @@ import Quickshell.Hyprland
 
 Item {
     id: root
-    property bool borderless: false
+
     readonly property MprisPlayer activePlayer: MprisController.activePlayer
     readonly property string cleanedTitle: StringUtils.cleanMusicTitle(activePlayer?.trackTitle) || qsTr("No media")
+    property color mainColor: activePlayer ? Appearance.colors.red : Appearance.colors.hint
 
     Layout.fillHeight: true
     // Layout.fillWidth: true
@@ -56,14 +57,14 @@ Item {
             value: activePlayer?.position / activePlayer?.length
             size: 26
             secondaryColor: Appearance.colors.gutter
-            primaryColor: Appearance.colors.foreground
+            primaryColor: mainColor
 
             MaterialSymbol {
                 anchors.centerIn: parent
                 fill: 1
                 text: activePlayer ? activePlayer.isPlaying ? "music_note" : "pause" : "music_note"
                 iconSize: Appearance.font.pixelSize.normal
-                color: Appearance.colors.foreground
+                color: mainColor
             }
 
         }
@@ -75,7 +76,7 @@ Item {
             Layout.rightMargin: rowLayout.spacing
             horizontalAlignment: Text.AlignHCenter
             elide: Text.ElideRight // Truncates the text on the right
-            color: Appearance.colors.foreground
+            color: mainColor
             text: `${cleanedTitle}${activePlayer?.trackArtist ? ' • ' + activePlayer.trackArtist : ''}`
         }
 

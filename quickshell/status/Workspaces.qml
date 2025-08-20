@@ -1,6 +1,6 @@
-import "root:/"
-import "root:/services"
-import "root:/components"
+import qs
+import qs.services
+import qs.components
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
@@ -12,8 +12,9 @@ import Quickshell.Widgets
 import Qt5Compat.GraphicalEffects
 
 Item {
+    property bool borderless: false
+    property color mainColor: Appearance.colors.tertiary
     required property var bar
-    property bool borderless: Config.options.bar.borderless
     readonly property HyprlandMonitor monitor: Hyprland.monitorFor(bar.screen)
     readonly property Toplevel activeWindow: ToplevelManager.activeToplevel
 
@@ -127,7 +128,7 @@ Item {
         property real activeWorkspaceMargin: 2
         implicitHeight: workspaceButtonWidth - activeWorkspaceMargin * 2
         radius: Appearance.rounding.full
-        color: Appearance.colors.blue
+        color: mainColor
         anchors.verticalCenter: parent.verticalCenter
 
         property real idx1: workspaceIndexInGroup
@@ -209,7 +210,7 @@ Item {
                         radius: width / 2
                         color: (monitor.activeWorkspace?.id == button.workspaceValue) ?
                             Appearance.colors.black :
-                            (workspaceOccupied[index] ? Appearance.colors.blue :
+                            (workspaceOccupied[index] ? mainColor :
                                 Appearance.colors.gutter)
 
                         Behavior on opacity {

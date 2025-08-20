@@ -1,63 +1,120 @@
-import "root:/"
+import qs
+import qs.services
+import qs.status
+import qs.components
+import qs.functions
 import QtQuick
 import QtQuick.Layouts
 import Quickshell
 import Quickshell.Services.SystemTray
 import Quickshell.Widgets
+import Quickshell.Wayland
 import Qt5Compat.GraphicalEffects
 
 MouseArea {
     id: root
 
     required property var bar
-    required property SystemTrayItem item
-    property bool targetMenuOpen: false
-    property int trayItemWidth: Appearance.font.pixelSize.larger
+    required property SystemTrayItem modelData
+    readonly property bool isAlt: modelData.id == "nm-applet" || modelData.id == "blueman"
+    property bool targetMenuOpen: false;
+    property bool hovered: false
 
-    acceptedButtons: Qt.LeftButton | Qt.RightButton
+
+    hoverEnabled: true
+    onEntered: root.hovered = true
+    onExited: root.hovered = false
+    acceptedButtons: Qt.LeftButton | Qt.RightButton | Qt.MiddleButton
+    cursorShape: Qt.PointingHandCursor
     Layout.fillHeight: true
-    implicitWidth: trayItemWidth
+    implicitWidth: Appearance.font.pixelSize.larger
     onClicked: (event) => {
+        event.accepted = true;
+        event.toggleType
         switch (event.button) {
             case Qt.LeftButton: {
-                item.activate();
+                modelData.activate();
+                bar.tooltip.doLastHide();
+            } break;
+            case Qt.MiddleButton: {
+                modelData.secondaryActivate();
             } break;
             case Qt.RightButton: {
-                if (item.hasMenu) menu.open();
+                if (!modelData.hasMenu) return;
+                root.targetMenuOpen = !root.targetMenuOpen;
             } break;
         }
-        event.accepted = true;
     }
 
-    QsMenuAnchor {
-        id: menu
-
-
-        // menu: root.item.menu
-        // anchor.window: this.QsWindow.window
-        //
-        menu: root.item.menu
-        anchor.window: bar
-        anchor.rect.x: root.x + bar.width
-        anchor.rect.y: root.y
-        anchor.rect.height: root.height
-        anchor.edges: Edges.Bottom
+    function altSymbol() {
+        switch (modelData.id) {
+            case "nm-applet": {
+                return Network.materialSymbol
+            } break;
+            case "blueman": {
+                return Bluetooth.materialSymbol
+            } break;
+            default: {
+                return "question_mark"
+            } break;
+        }
     }
 
-    // QsMenuHandle {
-    //     id: trayHandle
-    // }
+    function altColor() {
+        if (root.hovered) {
+            return Appearance.colors.primary
+        }
+        switch (modelData.id) {
+            case "nm-applet": {
+                return Network.mainColor
+            } break;
+            case "blueman": {
+                return Bluetooth.mainColor
+            } break;
+            default: {
+                return Appearance.colors.hint
+            } break;
+        }
+    }
+
+    MaterialSymbol {
+        id: trayIconAlt
+        anchors.centerIn: parent
+        visible: isAlt
+        fill: 1
+        text: altSymbol()
+        iconSize: Appearance.font.pixelSize.larger
+        color: altColor()
+    }
 
     IconImage {
         id: trayIcon
-        visible: true
-        source: root.item.icon
+        visible: !isAlt
+        source: modelData.icon
         anchors.centerIn: parent
         width: parent.width
         height: parent.height
     }
 
-    // SysTrayMenu {
-    //     trayItem: root.item.menu
-    // }
+    property var rightclickMenu: TooltipItem {
+        id: rightclickMenu
+        tooltip: root.bar.tooltip
+        owner: root
+
+        isMenu: true
+        show: root.targetMenuOpen
+        animateSize: !(menuContentLoader?.item?.animating ?? false)
+
+        onClose: root.targetMenuOpen = false;
+
+        Loader {
+            id: menuContentLoader
+            active: root.targetMenuOpen || rightclickMenu.visible
+
+            sourceComponent: MenuView {
+                menu: root.modelData.menu
+                onClose: root.targetMenuOpen = false;
+            }
+        }
+    }
 }

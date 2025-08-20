@@ -1,5 +1,5 @@
-import "root:/"
-import "root:/components"
+import qs
+import qs.components
 
 import QtQuick
 import QtQuick.Layouts
@@ -8,7 +8,6 @@ import Quickshell.Services.SystemTray
 import Quickshell.Wayland
 import Quickshell.Widgets
 
-// TODO: More fancy animation
 Item {
     id: root
 
@@ -22,14 +21,13 @@ Item {
         id: rowLayout
 
         anchors.fill: parent
-        spacing: 15
+        spacing: 10
 
         Repeater {
             model: SystemTray.items
             SysTrayItem {
-                required property SystemTrayItem modelData
+                id: trayItem
                 bar: root.bar
-                item: modelData
             }
 
         }

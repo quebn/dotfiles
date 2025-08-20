@@ -1,7 +1,6 @@
-import "root:/"
-import "root:/services"
-import "root:/components"
-import "root:/functions/color_utils.js" as ColorUtils
+import qs
+import qs.services
+import qs.components
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Effects

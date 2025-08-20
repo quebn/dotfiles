@@ -1,16 +1,30 @@
-import "root:/"
-import "root:/components"
-import "root:/services"
+import qs
+import qs.components
+import qs.services
 import QtQuick
 import QtQuick.Layouts
 import Quickshell
 import Quickshell.Io
+import Quickshell.Hyprland
 
 Item {
     id: root
-    property color mainColor: Appearance.colors.foreground
+    property color mainColor: root.hovered ? Appearance.colors.primary : Appearance.colors.foreground
     implicitWidth: rowLayout.implicitWidth + rowLayout.spacing * 2
     implicitHeight: 32
+    property bool hovered: false
+
+    MouseArea {
+        anchors.fill: parent
+        hoverEnabled: true
+        onEntered: root.hovered = true
+        onExited: root.hovered = false
+        cursorShape: Qt.PointingHandCursor
+        acceptedButtons: Qt.LeftButton
+        onPressed: (event) => {
+            Hyprland.dispatch("exec app2unit pavucontrol")
+        }
+    }
 
     RowLayout {
         id: rowLayout
@@ -25,10 +39,6 @@ Item {
                 Audio.sink.audio.volume -= step;
                 else if (event.angleDelta.y > 0)
                 Audio.sink.audio.volume = Math.min(1, Audio.sink.audio.volume + step);
-                // Store the mouse position and start tracking
-                // barRightSideMouseArea.lastScrollX = event.x;
-                // barRightSideMouseArea.lastScrollY = event.y;
-                // barRightSideMouseArea.trackingScroll = true;
             }
             acceptedDevices: PointerDevice.Mouse | PointerDevice.TouchPad
         }
@@ -36,7 +46,7 @@ Item {
         MaterialSymbol {
             text: "graphic_eq"
             iconSize: Appearance.font.pixelSize.larger
-            color: mainColor
+            color: Audio.sink?.audio.volume > 0 ? mainColor : Appearance.colors.hint
         }
     }
 }

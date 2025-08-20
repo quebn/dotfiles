@@ -1,24 +1,17 @@
-import "root:/"
-import "root:/components"
-import "root:/services"
-import "root:/functions/string_utils.js" as StringUtils
+import qs
+import qs.services
+import qs.components
+import qs.functions
 import "root:/functions/notification_utils.js" as NotificationUtils
-import Qt5Compat.GraphicalEffects
 import QtQuick
-import QtQuick.Controls
-import QtQuick.Effects
 import QtQuick.Layouts
 import Quickshell
-import Quickshell.Io
-import Quickshell.Widgets
-import Quickshell.Hyprland
-import Quickshell.Services.Notifications
 
 /**
  * A group of notifications from the same app.
  * Similar to Android's notifications
  */
-Item { // Notification group area
+MouseArea { // Notification group area
     id: root
     property var notificationGroup
     property var notifications: notificationGroup?.notifications ?? []
@@ -31,9 +24,9 @@ Item { // Notification group area
 
     property real dragConfirmThreshold: 70 // Drag further to discard notification
     property real dismissOvershoot: 20 // Account for gaps and bouncy animations
-    property var qmlParent: root.parent?.parent // There's something between this and the parent ListView
-    property var parentDragIndex: qmlParent.dragIndex
-    property var parentDragDistance: qmlParent.dragDistance
+    property var qmlParent: root?.parent?.parent // There's something between this and the parent ListView
+    property var parentDragIndex: qmlParent?.dragIndex ?? -1
+    property var parentDragDistance: qmlParent?.dragDistance ?? 0
     property var dragIndexDiff: Math.abs(parentDragIndex - index)
     property real xOffset: dragIndexDiff == 0 ? Math.max(0, parentDragDistance) :
         parentDragDistance > dragConfirmThreshold ? 0 :
@@ -44,6 +37,20 @@ Item { // Notification group area
         root.qmlParent.resetDrag()
         background.anchors.leftMargin = background.anchors.leftMargin; // Break binding
         destroyAnimation.running = true;
+    }
+
+    hoverEnabled: true
+    onContainsMouseChanged: {
+        if (!root.popup) return;
+        if (root.containsMouse) {
+            root.notifications.forEach(notif => {
+                Notifications.cancelTimeout(notif.notificationId);
+            });
+        } else {
+            root.notifications.forEach(notif => {
+                Notifications.restartTimeout(notif.notificationId);
+            });
+        }
     }
 
     SequentialAnimation { // Drag finish animation
@@ -61,7 +68,7 @@ Item { // Notification group area
         onFinished: () => {
             root.notifications.forEach((notif) => {
                 Qt.callLater(() => {
-                    Notifications.discardNotification(notif.id);
+                    Notifications.discardNotification(notif.notificationId);
                 });
             });
         }
@@ -105,9 +112,12 @@ Item { // Notification group area
         }
     }
 
+    StyledRectangularShadow {
+        target: background
+        visible: popup
+    }
     Rectangle { // Background of the notification
         id: background
-
         anchors.left: parent.left
         width: parent.width
         color: Appearance.colors.background

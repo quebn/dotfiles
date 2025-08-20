@@ -1,6 +1,7 @@
 # Directories
 .*/
 freerdp/
+session/
 kdeconnect/
 filezilla/
 lazysql/
@@ -46,12 +47,19 @@ Sqlectron/
 sqlectron/
 godot/
 qalculate/
+aseprite/
+fish/functions/
+fish/conf.d/
+fish/themes/
+fish/completions/
+inkscape/
 
 # Files
 *.dirs
 *.locale
 *.log
 *.list
+fish/fish_variables
 google-chrome/themes/*/*.pak
 spotify-launcher.conf
 kitty/unicode-input-favorites.conf

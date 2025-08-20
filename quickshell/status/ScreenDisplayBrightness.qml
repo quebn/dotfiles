@@ -1,6 +1,6 @@
-import "root:/"
-import "root:/services"
-import "root:/components"
+import qs
+import qs.services
+import qs.components
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
@@ -61,7 +61,7 @@ Scope {
             }
 
             exclusionMode: ExclusionMode.Normal
-            WlrLayershell.namespace: "quickshell:onScreenDisplay"
+            WlrLayershell.namespace: "quickshell:brightnessDisplay"
             WlrLayershell.layer: WlrLayer.Overlay
             color: "transparent"
 
@@ -82,9 +82,8 @@ Scope {
                 anchors.horizontalCenter: parent.horizontalCenter
                 Item {
                     id: osdValuesWrapper
-                    // Extra space for shadow
-                    implicitHeight: osdValues.implicitHeight + Appearance.sizes.elevationMargin * 2
-                    implicitWidth: osdValues.implicitWidth
+                    implicitHeight: contentColumnLayout.implicitHeight + Appearance.sizes.elevationMargin * 2
+                    implicitWidth: contentColumnLayout.implicitWidth
                     clip: true
 
                     MouseArea {
@@ -100,19 +99,30 @@ Scope {
                         }
                     }
 
-                    OsdValueIndicator {
-                        id: osdValues
-                        anchors.fill: parent
-                        anchors.margins: Appearance.sizes.elevationMargin
-                        value: root.brightnessMonitor?.brightness ?? 50
-                        icon: "light_mode"
-                        rotateIcon: true
-                        scaleIcon: true
-                        name: qsTr("Brightness")
+                    ColumnLayout {
+                        id: contentColumnLayout
+                        anchors {
+                            top: parent.top
+                            left: parent.left
+                            right: parent.right
+                            leftMargin: Appearance.sizes.elevationMargin
+                            rightMargin: Appearance.sizes.elevationMargin
+                        }
+                        spacing: 0
+
+                        OsdValueIndicator {
+                            id: osdValues
+                            Layout.fillWidth: true
+                            // anchors.margins: Appearance.sizes.elevationMargin * 2
+                            value: root.brightnessMonitor?.brightness ?? 50
+                            icon: "light_mode"
+                            rotateIcon: true
+                            scaleIcon: true
+                            name: qsTr("Brightness")
+                        }
                     }
                 }
             }
-
         }
     }
 
