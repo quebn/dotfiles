@@ -34,6 +34,17 @@ zen/
 cava/shaders/
 GIMP/
 nextjs-nodejs/
+aseprite/
+autostart/
+filezilla/
+fish/
+freerdp/
+godot/
+inkscape/
+kdeconnect/
+openvpn/
+quickshell/
+remmina/
 
 # Files
 *.dirs
