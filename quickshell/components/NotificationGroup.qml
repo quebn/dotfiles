@@ -42,12 +42,15 @@ MouseArea { // Notification group area
     hoverEnabled: true
     onContainsMouseChanged: {
         if (!root.popup) return;
-        if (root.containsMouse) root.notifications.forEach(notif => {
-            Notifications.cancelTimeout(notif.notificationId);
-        });
-        else root.notifications.forEach(notif => {
-            Notifications.timeoutNotification(notif.notificationId);
-        });
+        if (root.containsMouse) {
+            root.notifications.forEach(notif => {
+                Notifications.cancelTimeout(notif.notificationId);
+            });
+        } else {
+            root.notifications.forEach(notif => {
+                Notifications.restartTimeout(notif.notificationId);
+            });
+        }
     }
 
     SequentialAnimation { // Drag finish animation

@@ -154,7 +154,6 @@ Singleton {
         persistenceSupported: true
 
         onNotification: (notification) => {
-            console.log("Notification invoked!");
             notification.tracked = true
             const newNotifObject = notifComponent.createObject(root, {
                 "notificationId": notification.id + root.idOffset,
@@ -175,13 +174,11 @@ Singleton {
             }
 
             root.notify(newNotifObject);
-            // console.log(notifToString(newNotifObject));
             notifFileView.setText(stringifyList(root.list));
         }
     }
 
     function discardNotification(id) {
-        console.log("[Notifications] Discarding notification with ID: " + id);
         const index = root.list.findIndex((notif) => notif.notificationId === id);
         const notifServerIndex = notifServer.trackedNotifications.values.findIndex((notif) => notif.id + root.idOffset === id);
         if (index !== -1) {
@@ -196,6 +193,7 @@ Singleton {
     }
 
     function discardAllNotifications() {
+        // console.log("[Notifications] Discarding all notifications");
         root.list = []
         triggerListChange()
         notifFileView.setText(stringifyList(root.list));
@@ -207,24 +205,39 @@ Singleton {
 
     function cancelTimeout(id) {
         const index = root.list.findIndex((notif) => notif.notificationId === id);
-        if (root.list[index] != null)
-        root.list[index].timer.stop();
+        if (root.list[index] != null) {
+            root.list[index].timer.stop();
+        }
+    }
+
+    function restartTimeout(id) {
+        const index = root.list.findIndex((notif) => notif.notificationId === id);
+        if (root.list[index] != null) {
+            root.list[index].timer.interval = 2500;
+            root.list[index].timer.restart();
+        }
     }
 
     function timeoutNotification(id) {
         const index = root.list.findIndex((notif) => notif.notificationId === id);
-        if (root.list[index] != null)
-            root.list[index].popup = false;
+        if (root.list[index] != null) {
+            const notifServerIndex = notifServer.trackedNotifications.values.findIndex((notif) => notif.id + root.idOffset === id);
+            if (notifServerIndex !== -1) {
+                notifServer.trackedNotifications.values[notifServerIndex].dismiss();
+            }
+        }
         root.timeout(id);
     }
 
     function timeoutAll() {
         root.popupList.forEach((notif) => {
-            root.timeout(notif.notificationId);
+            const id = notif.notificationId;
+            const notifServerIndex = notifServer.trackedNotifications.values.findIndex((n) => n.id + root.idOffset === id);
+            if (notifServerIndex !== -1) {
+                notifServer.trackedNotifications.values[notifServerIndex].dismiss();
+            }
+            root.timeout(id);
         })
-        root.popupList.forEach((notif) => {
-            notif.popup = false;
-        });
     }
 
     function attemptInvokeAction(id, notifIdentifier) {
@@ -236,8 +249,7 @@ Singleton {
             const action = notifServerNotif.actions.find((action) => action.identifier === notifIdentifier);
             console.log("Action found: " + JSON.stringify(action));
             action.invoke()
-        }
-        else {
+        } else {
             console.log("Notification not found in server: " + id)
         }
         root.discardNotification(id);
