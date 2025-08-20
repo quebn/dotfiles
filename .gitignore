@@ -52,6 +52,7 @@ fish/functions/
 fish/conf.d/
 fish/themes/
 fish/completions/
+inkscape/
 
 # Files
 *.dirs
