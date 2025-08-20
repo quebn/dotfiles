@@ -21,6 +21,7 @@ Scope {
       id: bar
       property ShellScreen modelData
       screen: modelData
+      // aboveWindows: false
 
       readonly property int centerSideModuleWidth: Appearance.sizes.bar.centerSideModuleWidth
 

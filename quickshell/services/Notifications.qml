@@ -7,6 +7,7 @@ import Quickshell
 import Quickshell.Io
 import Quickshell.Services.Notifications
 
+// TODO: figure out why spotify next songs are not notified
 /**
  * Provides extra features not in Quickshell.Services.Notifications:
  *  - Persistent storage
@@ -153,6 +154,7 @@ Singleton {
         persistenceSupported: true
 
         onNotification: (notification) => {
+            console.log("Notification invoked!");
             notification.tracked = true
             const newNotifObject = notifComponent.createObject(root, {
                 "notificationId": notification.id + root.idOffset,
@@ -201,6 +203,12 @@ Singleton {
             notif.dismiss()
         })
         root.discardAll();
+    }
+
+    function cancelTimeout(id) {
+        const index = root.list.findIndex((notif) => notif.notificationId === id);
+        if (root.list[index] != null)
+        root.list[index].timer.stop();
     }
 
     function timeoutNotification(id) {
