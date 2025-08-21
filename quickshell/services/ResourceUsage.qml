@@ -57,7 +57,7 @@ Singleton {
 
                 prevCpuStats = { total, idle }
             }
-            interval = 10000 // 10 secs
+            interval = 5000 // 5 secs
         }
 	}
 
