@@ -60,7 +60,7 @@ Item {
             text: "bolt"
             iconSize: Appearance.font.pixelSize.large
             color: mainColor
-            visible: isCharging
+            visible: root.isCharging
             onVisibleChanged: {
                 if (!visible) boltIconLoader.active = false
             }
