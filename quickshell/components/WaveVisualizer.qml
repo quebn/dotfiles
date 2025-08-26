@@ -1,13 +1,8 @@
-
 import qs
-import qs.components
 import qs.services
+import qs.components
 import QtQuick
 import QtQuick.Effects
-import QtQuick.Layouts
-import QtQuick.Controls
-import Quickshell
-import Quickshell.Io
 
 Canvas { // Visualizer
     id: root
