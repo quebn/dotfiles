@@ -173,16 +173,6 @@ Scope {
               id: workspaces
               bar: bar
               Layout.fillHeight: true
-              // MouseArea {
-              //   anchors.fill: parent
-              //   acceptedButtons: Qt.RightButton
-              //
-              //   onPressed: event => {
-              //     if (event.button === Qt.RightButton) {
-              //       Hyprland.dispatch('global quickshell:overviewToggle');
-              //     }
-              //   }
-              // }
             }
           }
 

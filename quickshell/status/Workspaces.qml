@@ -49,21 +49,9 @@ Item {
     implicitWidth: rowLayout.implicitWidth + rowLayout.spacing * 2
     implicitHeight: Appearance.sizes.bar.height
 
-    MouseArea {
-        anchors.fill: parent
-        acceptedButtons: Qt.BackButton
-        cursorShape: Qt.PointingHandCursor
-        // cursorShape: Qt.PointingHandCursor
-        onPressed: (event) => {
-            if (event.button === Qt.BackButton) {
-                Hyprland.dispatch(`togglespecialworkspace`);
-            }
-        }
-    }
-
     // Scroll to switch workspaces
     WheelHandler {
-        // cursorShape: Qt.PointingHandCursor
+        cursorShape: Qt.PointingHandCursor
         onWheel: (event) => {
             if (event.angleDelta.y < 0)
                 Hyprland.dispatch(`workspace r+1`);
@@ -167,43 +155,19 @@ Item {
 
             Button {
                 id: button
+                // cursorShape: Qt.PointingHandCursor
                 property int workspaceValue: workspaceGroup * Config.options.bar.workspaces.shown + index + 1
                 Layout.fillHeight: true
                 onPressed: Hyprland.dispatch(`workspace ${workspaceValue}`)
                 width: workspaceButtonWidth
-
                 background: Item {
                     id: workspaceButtonBackground
                     implicitWidth: workspaceButtonWidth
                     implicitHeight: workspaceButtonWidth
-                    property var biggestWindow: HyprlandData.biggestWindowForWorkspace(button.workspaceValue)
-                    property var mainAppIconSource: Quickshell.iconPath(AppSearch.guessIcon(biggestWindow?.class), "image-missing")
 
-                    StyledText { // Workspace number text
-                        visible: false
-                        z: 3
-                        anchors.centerIn: parent
-                        horizontalAlignment: Text.AlignHCenter
-                        verticalAlignment: Text.AlignVCenter
-                        font.pixelSize: Appearance.font.pixelSize.small - ((text.length - 1) * (text !== "10") * 2)
-                        text: `${button.workspaceValue}`
-                        elide: Text.ElideRight
-                        color: (monitor.activeWorkspace?.id == button.workspaceValue) ?
-                            Appearance.colors.foreground :
-                            (workspaceOccupied[index] ? Appearance.colors.primary :
-                                Appearance.colors.gutter)
-
-                        Behavior on opacity {
-                            animation: Appearance.animation.elementMoveFast.numberAnimation.createObject(this)
-                        }
-                    }
                     Rectangle { // Dot instead of ws number
                         id: wsDot
-                        opacity: (Config.options?.bar.workspaces.alwaysShowNumbers
-                            || GlobalStates.workspaceShowNumbers
-                            || (Config.options?.bar.workspaces.showAppIcons && workspaceButtonBackground.biggestWindow)
-                            ) ? 0 : 1
-                        visible: opacity > 0
+                        visible: true
                         anchors.centerIn: parent
                         width: workspaceButtonWidth * 0.20
                         height: width
@@ -215,59 +179,6 @@ Item {
 
                         Behavior on opacity {
                             animation: Appearance.animation.elementMoveFast.numberAnimation.createObject(this)
-                        }
-                    }
-                    Item { // Main app icon
-                        anchors.centerIn: parent
-                        width: workspaceButtonWidth
-                        height: workspaceButtonWidth
-                        opacity: !Config.options?.bar.workspaces.showAppIcons ? 0 :
-                            (workspaceButtonBackground.biggestWindow && !GlobalStates.workspaceShowNumbers && Config.options?.bar.workspaces.showAppIcons) ?
-                            1 : workspaceButtonBackground.biggestWindow ? workspaceIconOpacityShrinked : 0
-                            visible: opacity > 0
-                        IconImage {
-                            id: mainAppIcon
-                            anchors.bottom: parent.bottom
-                            anchors.right: parent.right
-                            anchors.bottomMargin: (!GlobalStates.workspaceShowNumbers && Config.options?.bar.workspaces.showAppIcons) ?
-                                (workspaceButtonWidth - workspaceIconSize) / 2 : workspaceIconMarginShrinked
-                            anchors.rightMargin: (!GlobalStates.workspaceShowNumbers && Config.options?.bar.workspaces.showAppIcons) ?
-                                (workspaceButtonWidth - workspaceIconSize) / 2 : workspaceIconMarginShrinked
-
-                            source: workspaceButtonBackground.mainAppIconSource
-                            implicitSize: (!GlobalStates.workspaceShowNumbers && Config.options?.bar.workspaces.showAppIcons) ? workspaceIconSize : workspaceIconSizeShrinked
-
-                            Behavior on opacity {
-                                animation: Appearance.animation.elementMoveFast.numberAnimation.createObject(this)
-                            }
-                            Behavior on anchors.bottomMargin {
-                                animation: Appearance.animation.elementMoveFast.numberAnimation.createObject(this)
-                            }
-                            Behavior on anchors.rightMargin {
-                                animation: Appearance.animation.elementMoveFast.numberAnimation.createObject(this)
-                            }
-                            Behavior on implicitSize {
-                                animation: Appearance.animation.elementMoveFast.numberAnimation.createObject(this)
-                            }
-                        }
-
-                        Loader {
-                            active: Config.options.bar.workspaces.monochromeIcons
-                            anchors.fill: mainAppIcon
-                            sourceComponent: Item {
-                                Desaturate {
-                                    id: desaturatedIcon
-                                    visible: false // There's already color overlay
-                                    anchors.fill: parent
-                                    source: mainAppIcon
-                                    desaturation: 0.8
-                                }
-                                ColorOverlay {
-                                    anchors.fill: desaturatedIcon
-                                    source: desaturatedIcon
-                                    color: wsDot.color
-                                }
-                            }
                         }
                     }
                 }
