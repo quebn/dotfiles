@@ -35,40 +35,40 @@ Item {
         }
 
         Resource {
-            iconName: "battery_full"
+            iconFont: "Symbols Nerd Font"
+            iconName: isCharging ? "󰚥" : "󱊣"
             percentage: root.percentage
             mainColor: root.mainColor
             shown: true
         }
 
     }
-    Loader {
-        id: boltIconLoader
-        active: true
-        anchors.left: rowLayout.left
-        anchors.verticalCenter: rowLayout.verticalCenter
-
-        Connections {
-            target: root
-            function onIsChargingChanged() {
-                if (isCharging) boltIconLoader.active = true
-            }
-        }
-
-        sourceComponent: MaterialSymbol {
-            id: boltIcon
-            text: "bolt"
-            iconSize: Appearance.font.pixelSize.large
-            color: mainColor
-            visible: root.isCharging
-            onVisibleChanged: {
-                if (!visible) boltIconLoader.active = false
-            }
-
-            Behavior on opacity {
-                animation: Appearance.animation.elementMove.numberAnimation.createObject(this)
-            }
-
-        }
-    }
+    // Loader {
+    //     id: boltIconLoader
+    //     active: true
+    //     anchors.left: rowLayout.left
+    //     anchors.verticalCenter: rowLayout.verticalCenter
+    //
+    //     Connections {
+    //         target: root
+    //         function onIsChargingChanged() {
+    //             if (isCharging) boltIconLoader.active = true
+    //         }
+    //     }
+    //
+    //     sourceComponent: MaterialSymbol {
+    //         id: boltIcon
+    //         text: "bolt"
+    //         iconSize: Appearance.font.pixelSize.large
+    //         color: mainColor
+    //         visible: root.isCharging
+    //         onVisibleChanged: {
+    //             if (!visible) boltIconLoader.active = false
+    //         }
+    //
+    //         Behavior on opacity {
+    //             animation: Appearance.animation.elementMove.numberAnimation.createObject(this)
+    //         }
+    //     }
+    // }
 }

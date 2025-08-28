@@ -33,7 +33,6 @@ Singleton {
     property string shellConfig: FileUtils.trimFileProtocol(`${Directories.config}/quickshell`)
     property string shellConfigName: "config.json"
     property string shellConfigPath: `${Directories.shellConfig}/${Directories.shellConfigName}`
-    property string notificationsPath: FileUtils.trimFileProtocol(`${Directories.cache}/notifications/notifications.json`)
     property string assetsPath: FileUtils.trimFileProtocol(`${Directories.config}/assets`)
     property string scriptPath: FileUtils.trimFileProtocol(`${Directories.config}/scripts`)
     // Cleanup on init

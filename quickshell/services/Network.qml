@@ -7,6 +7,7 @@ import Quickshell.Io
 import QtQuick
 
 /**
+ * TODO: have a vpn status checker
  * Simple polled network state service.
  */
 Singleton {

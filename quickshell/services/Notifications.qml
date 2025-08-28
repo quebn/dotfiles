@@ -9,7 +9,6 @@ import Quickshell.Services.Notifications
 
 /**
  * Provides extra features not in Quickshell.Services.Notifications:
- *  - Persistent storage
  *  - Popup notifications, with timeout
  *  - Notification groups by app
  */
@@ -40,23 +39,6 @@ Singleton {
         }
     }
 
-    function notifToJSON(notif) {
-        return {
-            "notificationId": notif.notificationId,
-            "actions": notif.actions,
-            "appIcon": notif.appIcon,
-            "appName": notif.appName,
-            "body": notif.body,
-            "image": notif.image,
-            "summary": notif.summary,
-            "time": notif.time,
-            "urgency": notif.urgency,
-        }
-    }
-    function notifToString(notif) {
-        return JSON.stringify(notifToJSON(notif), null, 2);
-    }
-
     component NotifTimer: Timer {
         required property int notificationId
         interval: 5000
@@ -68,7 +50,6 @@ Singleton {
     }
 
     property bool silent: false
-    property var filePath: Directories.notificationsPath
     property list<Notif> list: []
     property bool popupInhibited: silent
     property var popupList: list.filter((notif) => notif.popup);
@@ -142,7 +123,6 @@ Singleton {
 
 	NotificationServer {
         id: notifServer
-        // actionIconsSupported: true
         actionsSupported: true
         bodyHyperlinksSupported: true
         bodyImagesSupported: true
@@ -173,7 +153,6 @@ Singleton {
             }
 
             root.notify(newNotifObject);
-            notifFileView.setText(stringifyList(root.list));
         }
     }
 
@@ -182,8 +161,7 @@ Singleton {
         const notifServerIndex = notifServer.trackedNotifications.values.findIndex((notif) => notif.id + root.idOffset === id);
         if (index !== -1) {
             root.list.splice(index, 1);
-            notifFileView.setText(stringifyList(root.list));
-            triggerListChange()
+            triggerListChange();
         }
         if (notifServerIndex !== -1) {
             notifServer.trackedNotifications.values[notifServerIndex].dismiss()
@@ -192,10 +170,8 @@ Singleton {
     }
 
     function discardAllNotifications() {
-        // console.log("[Notifications] Discarding all notifications");
-        root.list = []
-        triggerListChange()
-        notifFileView.setText(stringifyList(root.list));
+        root.list = [];
+        triggerListChange();
         notifServer.trackedNotifications.values.forEach((notif) => {
             notif.dismiss()
         })
@@ -219,6 +195,10 @@ Singleton {
 
     function timeoutNotification(id) {
         const index = root.list.findIndex((notif) => notif.notificationId === id);
+        if (index !== -1) {
+            root.list.splice(index, 1);
+            triggerListChange();
+        }
         if (root.list[index] != null) {
             const notifServerIndex = notifServer.trackedNotifications.values.findIndex((notif) => notif.id + root.idOffset === id);
             if (notifServerIndex !== -1) {
@@ -229,6 +209,8 @@ Singleton {
     }
 
     function timeoutAll() {
+        root.list = [];
+        triggerListChange();
         root.popupList.forEach((notif) => {
             const id = notif.notificationId;
             const notifServerIndex = notifServer.trackedNotifications.values.findIndex((n) => n.id + root.idOffset === id);
@@ -258,50 +240,4 @@ Singleton {
         root.list = root.list.slice(0)
     }
 
-    function refresh() {
-        notifFileView.reload()
-    }
-
-    Component.onCompleted: {
-        refresh()
-    }
-
-    FileView {
-        id: notifFileView
-        path: Qt.resolvedUrl(filePath)
-        onLoaded: {
-            const fileContents = notifFileView.text()
-            root.list = JSON.parse(fileContents).map((notif) => {
-                return notifComponent.createObject(root, {
-                    "notificationId": notif.notificationId,
-                    "actions": [], // Notification actions are meaningless if they're not tracked by the server or the sender is dead
-                    "appIcon": notif.appIcon,
-                    "appName": notif.appName,
-                    "body": notif.body,
-                    "image": notif.image,
-                    "summary": notif.summary,
-                    "time": notif.time,
-                    "urgency": notif.urgency,
-                });
-            });
-            // Find largest notificationId
-            let maxId = 0
-            root.list.forEach((notif) => {
-                maxId = Math.max(maxId, notif.notificationId)
-            })
-
-            console.log("[Notifications] File loaded")
-            root.idOffset = maxId
-            root.initDone()
-        }
-        onLoadFailed: (error) => {
-            if(error == FileViewError.FileNotFound) {
-                console.log("[Notifications] File not found, creating new file.")
-                root.list = []
-                notifFileView.setText(stringifyList(root.list));
-            } else {
-                console.log("[Notifications] Error loading file: " + error)
-            }
-        }
-    }
 }

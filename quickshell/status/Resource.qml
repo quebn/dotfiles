@@ -12,6 +12,7 @@ Item {
     required property double percentage
     property color mainColor
     property int iconSize: Appearance.font.pixelSize.normal
+    property string iconFont: "Material Symbols Rounded"
     property bool shown: true
     property string suffix: "%"
 
@@ -36,8 +37,9 @@ Item {
             MaterialSymbol {
                 anchors.centerIn: parent
                 fill: 1
-                text: iconName
-                iconSize: iconSize
+                iconFont: root.iconFont
+                text: root.iconName
+                iconSize: root.iconSize
                 color: mainColor
             }
 

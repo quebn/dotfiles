@@ -7,10 +7,11 @@ Text {
     property real iconSize: Appearance?.font.pixelSize.small ?? 16
     property real fill: 0
     property real truncatedFill: Math.round(fill * 100) / 100 // Reduce memory consumption spikes from constant font remapping
+    property string iconFont: "Material Symbols Rounded"
     renderType: Text.NativeRendering
     font {
         hintingPreference: Font.PreferFullHinting
-        family: Appearance?.font.family.iconMaterial ?? "Material Symbols Rounded"
+        family: root.iconFont
         pixelSize: iconSize
         weight: Font.Normal + (Font.DemiBold - Font.Normal) * fill
         variableAxes: {
@@ -22,12 +23,4 @@ Text {
     }
     verticalAlignment: Text.AlignVCenter
     color: Appearance.colors.foreground
-
-    // Behavior on fill {
-    //     NumberAnimation {
-    //         duration: Appearance?.animation.elementMoveFast.duration ?? 200
-    //         easing.type: Appearance?.animation.elementMoveFast.type ?? Easing.BezierSpline
-    //         easing.bezierCurve: Appearance?.animation.elementMoveFast.bezierCurve ?? [0.34, 0.80, 0.34, 1.00, 1, 1]
-    //     }
-    // }
 }
