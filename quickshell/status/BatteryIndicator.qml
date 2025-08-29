@@ -36,7 +36,7 @@ Item {
 
         Resource {
             iconFont: "Symbols Nerd Font"
-            iconName: isCharging ? "󰚥" : "󱊣"
+            iconName: Battery.nerdSymbol
             percentage: root.percentage
             mainColor: root.mainColor
             shown: true
