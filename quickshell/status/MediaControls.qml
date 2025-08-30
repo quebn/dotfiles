@@ -103,7 +103,7 @@ Scope {
                     - (osdWidth / 2)                 // Dodge OSD
                     - (widgetWidth / 2)              // Account for widget width
             ) * 2
-            implicitHeight: playerColumnLayout.implicitHeight
+            implicitHeight: playerColumnLayout.implicitHeight + Appearance.sizes.compositorGaps
             color: "transparent"
             WlrLayershell.namespace: "quickshell:mediaControls"
 
