@@ -13,20 +13,20 @@ import Qt5Compat.GraphicalEffects
 
 Item {
     property bool borderless: false
-    property color mainColor: Appearance.colors.tertiary
+    property color mainColor: Appearance.colors.primary
     required property var bar
     readonly property HyprlandMonitor monitor: Hyprland.monitorFor(bar.screen)
     readonly property Toplevel activeWindow: ToplevelManager.activeToplevel
 
-    readonly property int workspaceGroup: Math.floor((monitor.activeWorkspace?.id - 1) / Config.options.bar.workspaces.shown)
+    readonly property int currentWorkspace: monitor.activeWorkspace?.id - 1
+    readonly property int workspaceGroup: Math.floor(currentWorkspace / Config.options.bar.workspaces.shown)
     property list<bool> workspaceOccupied: []
-    property int widgetPadding: 4
     property int workspaceButtonWidth: 26
     property real workspaceIconSize: workspaceButtonWidth * 0.69
     property real workspaceIconSizeShrinked: workspaceButtonWidth * 0.55
     property real workspaceIconOpacityShrinked: 1
     property real workspaceIconMarginShrinked: -4
-    property int workspaceIndexInGroup: (monitor.activeWorkspace?.id - 1) % 10
+    property int workspaceIndexInGroup: currentWorkspace % 10
 
     // Function to update workspaceOccupied
     function updateWorkspaceOccupied() {
@@ -53,10 +53,12 @@ Item {
     WheelHandler {
         cursorShape: Qt.PointingHandCursor
         onWheel: (event) => {
-            if (event.angleDelta.y < 0)
+            if (event.angleDelta.y > 0) {
+                // TODO: prevent scrollup of workspace number is 10
                 Hyprland.dispatch(`workspace r+1`);
-            else if (event.angleDelta.y > 0)
+            } else if (event.angleDelta.y < 0) {
                 Hyprland.dispatch(`workspace r-1`);
+            }
         }
         acceptedDevices: PointerDevice.Mouse | PointerDevice.TouchPad
     }
@@ -157,6 +159,7 @@ Item {
                 id: button
                 // cursorShape: Qt.PointingHandCursor
                 property int workspaceValue: workspaceGroup * Config.options.bar.workspaces.shown + index + 1
+                property bool isHovered: false
                 Layout.fillHeight: true
                 onPressed: Hyprland.dispatch(`workspace ${workspaceValue}`)
                 width: workspaceButtonWidth
@@ -165,6 +168,15 @@ Item {
                     implicitWidth: workspaceButtonWidth
                     implicitHeight: workspaceButtonWidth
 
+                    MouseArea {
+                        anchors.fill: parent
+                        hoverEnabled: true
+                        // TODO: track the id of the hovered workspace.
+                        onEntered: button.isHovered = true
+                        onExited: button.isHovered = false
+                        cursorShape: workspaceOccupied[index] && currentWorkspace !== index ? Qt.PointingHandCursor : Qt.Pointing
+                    }
+
                     Rectangle { // Dot instead of ws number
                         id: wsDot
                         visible: true
@@ -172,10 +184,10 @@ Item {
                         width: workspaceButtonWidth * 0.20
                         height: width
                         radius: width / 2
-                        color: (monitor.activeWorkspace?.id == button.workspaceValue) ?
-                            Appearance.colors.black :
-                            (workspaceOccupied[index] ? mainColor :
-                                Appearance.colors.gutter)
+                        color: monitor.activeWorkspace?.id == button.workspaceValue ? Appearance.colors.black :
+                            button.isHovered ? Appearance.colors.blue :
+                            workspaceOccupied[index] ? Appearance.colors.secondary :
+                            Appearance.colors.gutter
 
                         Behavior on opacity {
                             animation: Appearance.animation.elementMoveFast.numberAnimation.createObject(this)

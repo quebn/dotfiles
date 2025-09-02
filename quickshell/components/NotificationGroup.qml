@@ -199,12 +199,11 @@ MouseArea { // Notification group area
                         }
                         StyledText {
                             id: timeText
-                            // Layout.fillWidth: true
-                            Layout.rightMargin: 10
+                            Layout.rightMargin: 8
                             horizontalAlignment: Text.AlignLeft
                             text: NotificationUtils.getFriendlyNotifTimeString(notificationGroup?.time)
                             font.pixelSize: topRow.fontSize
-                            color: Appearance.colors.foreground
+                            color: Appearance.colors.hint
                         }
                     }
                     NotificationGroupExpandButton {

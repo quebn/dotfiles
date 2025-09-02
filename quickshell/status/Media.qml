@@ -14,7 +14,7 @@ Item {
 
     readonly property MprisPlayer activePlayer: MprisController.activePlayer
     readonly property string cleanedTitle: StringUtils.cleanMusicTitle(activePlayer?.trackTitle) || qsTr("No media")
-    property color mainColor: activePlayer ? Appearance.colors.red : Appearance.colors.hint
+    property color mainColor: activePlayer ? Appearance.colors.blue : Appearance.colors.hint
 
     Layout.fillHeight: true
     // Layout.fillWidth: true
