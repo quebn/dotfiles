@@ -59,6 +59,7 @@ inkscape/
 *.locale
 *.log
 *.list
+kdenlive*
 fish/fish_variables
 google-chrome/themes/*/*.pak
 spotify-launcher.conf
