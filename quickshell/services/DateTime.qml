@@ -11,7 +11,7 @@ pragma ComponentBehavior: Bound
  */
 Singleton {
     property string time: Qt.locale().toString(clock.date, "HH:mm")
-    property string date: Qt.locale().toString(clock.date, "dddd, MM/dd")
+    property string date: Qt.locale().toString(clock.date, "dddd MM/dd")
     property string collapsedCalendarFormat: Qt.locale().toString(clock.date, "dd MMMM yyyy")
     property string uptime: "0h, 0m"
 
