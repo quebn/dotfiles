@@ -90,7 +90,7 @@ Item {
                 topRightRadius: radiusRight
                 bottomRightRadius: radiusRight
 
-                color: Appearance.colors.layer2Alt
+                color: Appearance.colors.layer1Alt
                 opacity: (workspaceOccupied[index] && !(!activeWindow?.activated && monitor.activeWorkspace?.id === index+1)) ? 1 : 0
 
                 Behavior on opacity {
