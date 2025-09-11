@@ -196,7 +196,6 @@ Singleton {
     function timeoutNotification(id) {
         const index = root.list.findIndex((notif) => notif.notificationId === id);
         if (index !== -1) {
-            root.list.splice(index, 1);
             triggerListChange();
         }
         if (root.list[index] != null) {

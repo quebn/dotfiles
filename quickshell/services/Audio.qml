@@ -14,11 +14,26 @@ Singleton {
     property bool ready: Pipewire.defaultAudioSink?.ready ?? false
     property PwNode sink: Pipewire.defaultAudioSink
     property PwNode source: Pipewire.defaultAudioSource
+    readonly property list<PwNode> sinks: nodes.sinks
+    readonly property list<PwNode> sources: nodes.sources
 
     signal sinkProtectionTriggered(string reason);
 
+    readonly property var nodes: Pipewire.nodes.values.reduce((acc, node) => {
+        if (!node.isStream) {
+            if (node.isSink)
+                acc.sinks.push(node);
+            else if (node.audio)
+                acc.sources.push(node);
+        }
+        return acc;
+    }, {
+        sources: [],
+        sinks: []
+    })
+
     PwObjectTracker {
-        objects: [sink, source]
+        objects: [...root.sinks, ...root.sources]
     }
 
     Connections { // Protection against sudden volume changes

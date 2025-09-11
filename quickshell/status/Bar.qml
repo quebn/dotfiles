@@ -166,7 +166,7 @@ Scope {
 
           BarGroup {
             id: centerMiddleGroup
-            padding: workspaces.widgetPadding
+            padding: 4
             Layout.fillHeight: true
 
             Workspaces {
