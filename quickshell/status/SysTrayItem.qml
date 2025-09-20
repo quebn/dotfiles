@@ -34,7 +34,6 @@ MouseArea {
         switch (event.button) {
             case Qt.LeftButton: {
                 modelData.activate();
-                bar.tooltip.doLastHide();
             } break;
             case Qt.MiddleButton: {
                 modelData.secondaryActivate();
@@ -94,6 +93,25 @@ MouseArea {
         anchors.centerIn: parent
         width: parent.width
         height: parent.height
+    }
+
+    Loader {
+        active: !isAlt && !root.hovered
+        anchors.fill: trayIcon
+        sourceComponent: Item {
+            Desaturate {
+                id: desaturatedIcon
+                visible: false
+                anchors.fill: parent
+                source: trayIcon
+                desaturation: 1
+            }
+            ColorOverlay {
+                anchors.fill: desaturatedIcon
+                source: desaturatedIcon
+                color: ColorUtils.transparentize(Appearance.colors.foreground, 0.9)
+            }
+        }
     }
 
     property var rightclickMenu: TooltipItem {

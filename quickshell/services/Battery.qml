@@ -24,20 +24,4 @@ Singleton {
     property bool isLowAndNotCharging: isLow && !isCharging
     property bool isCriticalAndNotCharging: isCritical && !isCharging
     property bool isSuspendingAndNotCharging: allowAutomaticSuspend && isSuspending && !isCharging
-
-    onIsLowAndNotChargingChanged: {
-        if (available && isLowAndNotCharging)
-            Quickshell.execDetached(["bash", "-c", `notify-send "Low battery" "Consider plugging in your device" -u critical -a "Shell"`]);
-    }
-
-    onIsCriticalAndNotChargingChanged: {
-        if (available && isCriticalAndNotCharging)
-            Quickshell.execDetached(["bash", "-c", `notify-send "Critically low battery" "🙏 I beg for please charge\nAutomatic suspend triggers at ${Config.options.battery.suspend}%" -u critical -a "Shell"`]);
-    }
-
-    onIsSuspendingAndNotChargingChanged: {
-        if (available && isSuspendingAndNotCharging) {
-            Quickshell.execDetached(["bash", "-c", `systemctl suspend || loginctl suspend`]);
-        }
-    }
 }
