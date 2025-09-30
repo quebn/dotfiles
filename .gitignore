@@ -20,7 +20,7 @@ alacritty/
 pulse/
 libreoffice/
 spotify/
-systemd/
+systemd/user/**/
 vlc/
 obs-studio/
 xfce4/
