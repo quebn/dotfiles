@@ -96,7 +96,7 @@ MouseArea {
     }
 
     Loader {
-        active: !isAlt && !root.hovered
+        active: false //!isAlt && !root.hovered
         anchors.fill: trayIcon
         sourceComponent: Item {
             Desaturate {
