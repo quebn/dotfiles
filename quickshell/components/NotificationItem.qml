@@ -5,6 +5,7 @@ import qs.functions
 import "root:/functions/notification_utils.js" as NotificationUtils
 import QtQuick
 import QtQuick.Layouts
+import Qt5Compat.GraphicalEffects
 import Quickshell
 import Quickshell.Hyprland
 import Quickshell.Services.Notifications
