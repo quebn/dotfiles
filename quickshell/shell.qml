@@ -1,8 +1,8 @@
 //@ pragma RespectSystemStyle
 //@ pragma UseQApplication
 //@ pragma Env QT_QUICK_CONTROLS_STYLE=Basic
-import "./status/"
-import "./decorations/"
+import qs.status
+import qs.decorations
 import Quickshell
 
 ShellRoot {
