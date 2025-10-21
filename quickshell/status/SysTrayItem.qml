@@ -95,24 +95,24 @@ MouseArea {
         height: parent.height
     }
 
-    Loader {
-        active: false //!isAlt && !root.hovered
-        anchors.fill: trayIcon
-        sourceComponent: Item {
-            Desaturate {
-                id: desaturatedIcon
-                visible: false
-                anchors.fill: parent
-                source: trayIcon
-                desaturation: 1
-            }
-            ColorOverlay {
-                anchors.fill: desaturatedIcon
-                source: desaturatedIcon
-                color: ColorUtils.transparentize(Appearance.colors.foreground, 0.9)
-            }
-        }
-    }
+    // Loader {
+    //     active: false //!isAlt && !root.hovered
+    //     anchors.fill: trayIcon
+    //     sourceComponent: Item {
+    //         Desaturate {
+    //             id: desaturatedIcon
+    //             visible: false
+    //             anchors.fill: parent
+    //             source: trayIcon
+    //             desaturation: 1
+    //         }
+    //         ColorOverlay {
+    //             anchors.fill: desaturatedIcon
+    //             source: desaturatedIcon
+    //             color: ColorUtils.transparentize(Appearance.colors.foreground, 0.9)
+    //         }
+    //     }
+    // }
 
     property var rightclickMenu: TooltipItem {
         id: rightclickMenu

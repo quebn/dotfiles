@@ -24,11 +24,11 @@ Scope {
       // aboveWindows: false
 
       readonly property int centerSideModuleWidth: Appearance.sizes.bar.centerSideModuleWidth
+      readonly property Tooltip tooltip: tooltip;
 
       WlrLayershell.namespace: "quickshell:bar"
       color: "transparent"
 
-      readonly property Tooltip tooltip: tooltip;
       Tooltip {
         id: tooltip
         bar: bar

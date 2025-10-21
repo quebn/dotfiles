@@ -27,7 +27,7 @@ Item {
         anchors.centerIn: parent
 
         Rectangle {
-            implicitWidth: (isCharging ? (boltIconLoader?.item?.width ?? 0) : 0)
+            implicitWidth: 0
 
             Behavior on implicitWidth {
                 animation: Appearance.animation.elementMove.numberAnimation.createObject(this)

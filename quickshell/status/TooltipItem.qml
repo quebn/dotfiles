@@ -23,8 +23,11 @@ Item {
     property Component backgroundComponent: null
 
     onShowChanged: {
-        if (show) root.tooltip.setItem(this);
-        else tooltip.removeItem(this);
+        if (show) {
+            root.tooltip.setItem(this);
+        } else {
+            root.tooltip.removeItem(this);
+        }
     }
 
     property bool targetVisible: false
@@ -47,8 +50,8 @@ Item {
             visible = true;
             targetOpacity = 1;
         } else {
-            close()
             targetOpacity = 0;
+            close()
         }
     }
 
@@ -56,13 +59,15 @@ Item {
         if (!targetVisible && targetOpacity == 0) {
             visible = false;
             this.parent = null;
-            if (tooltip) tooltip.onHidden(this);
+            if (tooltip) {
+                tooltip.onHidden(this);
+            }
         }
     }
 
     anchors.fill: parent
     visible: false
-    //clip: true
+    clip: true
     implicitHeight: contentItem.implicitHeight + contentItem.anchors.leftMargin + contentItem.anchors.rightMargin
     implicitWidth: contentItem.implicitWidth + contentItem.anchors.leftMargin + contentItem.anchors.rightMargin
 

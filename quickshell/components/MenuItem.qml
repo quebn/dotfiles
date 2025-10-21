@@ -62,8 +62,9 @@ MouseArea {
                 }
             }
 
-            Text {
+            StyledText {
                 text: entry.text
+                font.pixelSize: Appearance.font.pixelSize.small
                 color: entry.enabled ? root.containsMouse ? Appearance.colors.primary: Appearance.colors.foreground : Appearance.colors.hint
             }
 

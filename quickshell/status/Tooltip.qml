@@ -9,16 +9,15 @@ Scope {
 
     property TooltipItem activeTooltip: null;
     property TooltipItem activeMenu: null;
+    property TooltipItem lastActiveItem: null;
 
     readonly property TooltipItem activeItem: activeMenu ?? activeTooltip;
-    property TooltipItem lastActiveItem: null;
     readonly property TooltipItem shownItem: activeItem ?? lastActiveItem;
     property real hangTime: lastActiveItem?.hangTime ?? 0;
 
     property Item tooltipItem: null;
 
     onActiveItemChanged: {
-        console.log("changing target item");
         if (activeItem != null) {
             hangTimer.stop();
             activeItem.targetVisible = true;
@@ -38,7 +37,9 @@ Scope {
             }
         }
 
-        if (activeItem != null) lastActiveItem = activeItem;
+        if (activeItem != null) {
+            lastActiveItem = activeItem;
+        }
     }
 
     function setItem(item: TooltipItem) {
@@ -161,7 +162,9 @@ Scope {
                 property var largestAnimHeight: 1
 
                 readonly property real targetX: {
-                    if (shownItem == null) return 0;
+                    if (shownItem == null) {
+                        return 0;
+                    }
                     const target = bar.contentItem.mapFromItem(shownItem.owner, shownItem.targetRelativeX, 0).x;
                     return bar.boundedX(target - (popup.implicitWidth * 0.5), popup.implicitWidth);
                 }
@@ -177,6 +180,7 @@ Scope {
                 width: targetWidth
 
                 readonly property bool anyAnimsRunning: heightAnim.running
+
                 onAnyAnimsRunningChanged: {
                     if (!anyAnimsRunning) {
                         largestAnimHeight = targetHeight;
