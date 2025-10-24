@@ -34,21 +34,14 @@ Scope {
         bar: bar
       }
 
-      readonly property int tooltipYOffset: Appearance.sizes.bar.baseHeight + Appearance.sizes.compositorGaps;
+      readonly property int tooltipYOffset: Appearance.sizes.bar.baseHeight + (Appearance.sizes.compositorGaps * 0.5)
 
       function boundedX(targetX: real, width: real): real {
         const x = Math.max(
           barContent.anchors.leftMargin + width,
           Math.min(barContent.width + barContent.anchors.leftMargin - width, targetX)
         );
-        return x;
-      }
-
-      function boundedY(targetY: real, height: real): real {
-        return Math.max(
-          barContent.anchors.topMargin + height,
-          Math.min(barContent.height + barContent.anchors.topMargin - height, targetY)
-        );
+        return x - (Appearance.sizes.compositorGaps * 0.5);
       }
 
       anchors {

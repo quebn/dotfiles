@@ -22,12 +22,7 @@ MouseArea {
 
 
     hoverEnabled: true
-    onEntered: {
-        // if (bar.tooltip.lastActiveItem && root.bar.tooltip.activeItem.parent != root) {
-        //     bar.tooltip.doLastHide();
-        // }
-        root.hovered = true;
-    }
+    onEntered: root.hovered = true;
     onExited: root.hovered = false
     acceptedButtons: Qt.LeftButton | Qt.RightButton | Qt.MiddleButton
     cursorShape: Qt.PointingHandCursor
@@ -35,7 +30,6 @@ MouseArea {
     implicitWidth: Appearance.font.pixelSize.larger
     onClicked: (event) => {
         event.accepted = true;
-        // event.toggleType
         switch (event.button) {
             case Qt.LeftButton: {
                 modelData.activate();
@@ -100,25 +94,6 @@ MouseArea {
         width: parent.width
         height: parent.height
     }
-
-    // Loader {
-    //     active: false //!isAlt && !root.hovered
-    //     anchors.fill: trayIcon
-    //     sourceComponent: Item {
-    //         Desaturate {
-    //             id: desaturatedIcon
-    //             visible: false
-    //             anchors.fill: parent
-    //             source: trayIcon
-    //             desaturation: 1
-    //         }
-    //         ColorOverlay {
-    //             anchors.fill: desaturatedIcon
-    //             source: desaturatedIcon
-    //             color: ColorUtils.transparentize(Appearance.colors.foreground, 0.9)
-    //         }
-    //     }
-    // }
 
     property var rightclickMenu: TooltipItem {
         id: rightclickMenu
