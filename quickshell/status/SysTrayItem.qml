@@ -22,7 +22,12 @@ MouseArea {
 
 
     hoverEnabled: true
-    onEntered: root.hovered = true
+    onEntered: {
+        // if (bar.tooltip.lastActiveItem && root.bar.tooltip.activeItem.parent != root) {
+        //     bar.tooltip.doLastHide();
+        // }
+        root.hovered = true;
+    }
     onExited: root.hovered = false
     acceptedButtons: Qt.LeftButton | Qt.RightButton | Qt.MiddleButton
     cursorShape: Qt.PointingHandCursor
@@ -30,7 +35,7 @@ MouseArea {
     implicitWidth: Appearance.font.pixelSize.larger
     onClicked: (event) => {
         event.accepted = true;
-        event.toggleType
+        // event.toggleType
         switch (event.button) {
             case Qt.LeftButton: {
                 modelData.activate();
@@ -39,8 +44,9 @@ MouseArea {
                 modelData.secondaryActivate();
             } break;
             case Qt.RightButton: {
-                if (!modelData.hasMenu) return;
-                root.targetMenuOpen = !root.targetMenuOpen;
+                if (modelData.hasMenu) {
+                    root.targetMenuOpen = !root.targetMenuOpen;
+                }
             } break;
         }
     }

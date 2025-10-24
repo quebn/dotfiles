@@ -39,8 +39,8 @@ MouseArea {
             id: innerRow
 
             Item {
-                implicitWidth: 22
-                implicitHeight: 22
+                implicitWidth: 18
+                implicitHeight: 18
 
                 MenuCheckBox {
                     anchors.centerIn: parent
@@ -70,8 +70,8 @@ MouseArea {
 
             Item {
                 Layout.fillWidth: true
-                implicitWidth: 22
-                implicitHeight: 22
+                implicitWidth: 18
+                implicitHeight: 18
 
                 IconImage {
                     anchors.right: parent.right

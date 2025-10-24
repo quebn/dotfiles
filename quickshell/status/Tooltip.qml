@@ -59,7 +59,9 @@ Scope {
     }
 
     function doLastHide() {
-        lastActiveItem.targetVisible = false;
+        if (lastActiveItem != null) {
+            lastActiveItem.targetVisible = false;
+        }
     }
 
     function onHidden(item: TooltipItem) {
@@ -85,11 +87,12 @@ Scope {
             id: popup
 
             anchor {
-                window: root.bar
-                rect.x: tooltipItem.targetX
-                rect.y: root.bar.tooltipYOffset
+                window: bar
+                rect.x: tooltipItem.highestAnimX
+                rect.y: bar.tooltipYOffset
                 adjustment: PopupAdjustment.None
             }
+
 
             HyprlandWindow.opacity: root.scaleMul
 
@@ -106,8 +109,11 @@ Scope {
                 }
             }
 
-            implicitWidth: tooltipItem.targetWidth
             implicitHeight: Math.max(700, tooltipItem.largestAnimHeight)
+            implicitWidth:  {
+                const w = tooltipItem.lowestAnimX - tooltipItem.highestAnimX;
+                return w;
+            }
 
             visible: true
             color: "transparent"
@@ -141,10 +147,10 @@ Scope {
                 opacity: root.scaleMul
 
                 transform: Scale {
-                    origin.x: 0
+                    origin.x: tooltipItem.width / 2
                     origin.y: 0
-                    xScale: xScale
-					yScale: scaleMul
+                    xScale: scaleMul
+					yScale: 0.9 + scaleMul * 0.1
 
                 }
 
@@ -156,17 +162,19 @@ Scope {
                     opacity: root.scaleMul
                 }
 
-                readonly property var targetWidth: shownItem?.implicitWidth ?? 1
-                readonly property var targetHeight: shownItem?.implicitHeight ?? 1
+                readonly property var targetWidth: shownItem?.implicitWidth ?? 0
+                readonly property var targetHeight: shownItem?.implicitHeight ?? 0
 
                 property var largestAnimHeight: 1
+				property var highestAnimX: 1; // unused due to reposition timing issues
+				property var lowestAnimX: bar.width;
 
                 readonly property real targetX: {
                     if (shownItem == null) {
                         return 0;
                     }
-                    const target = bar.contentItem.mapFromItem(shownItem.owner, shownItem.targetRelativeX, 0).x;
-                    return bar.boundedX(target - (popup.implicitWidth * 0.5), popup.implicitWidth);
+                    const target = bar.contentItem.mapFromItem(shownItem.owner, 0,shownItem.targetRelativeX).x;
+                    return bar.boundedX(target, shownItem.implicitWidth / 2);
                 }
 
                 onTargetHeightChanged: {
@@ -177,13 +185,48 @@ Scope {
 
                 property var h: -1
                 height: Math.max(1, h)
-                width: targetWidth
 
-                readonly property bool anyAnimsRunning: heightAnim.running
+                property var x1: -1
+                property var x2: -1
+
+                x: x1 - popup.anchor.rect.x
+                width: x2 - x1
+
+
+                readonly property bool anyAnimsRunning: x1Anim.running || x2Anim.running || heightAnim.running
 
                 onAnyAnimsRunningChanged: {
                     if (!anyAnimsRunning) {
                         largestAnimHeight = targetHeight;
+                    }
+
+                }
+
+                SmoothedAnimation on x1 {
+                    id: x1Anim
+                    to: tooltipItem.targetX - tooltipItem.targetWidth / 2;
+                    onToChanged: {
+                        if (tooltipItem.x1 == -1 || !(shownItem?.animateSize ?? true)) {
+                            stop();
+                            tooltipItem.x1 = to;
+                        } else {
+                            velocity = (Math.max(tooltipItem.x1, to) - Math.min(tooltipItem.x1, to)) * 5;
+                            restart();
+                        }
+                    }
+                }
+
+                SmoothedAnimation on x2 {
+                    id: x2Anim
+                    to: tooltipItem.targetX + tooltipItem.targetWidth / 2;
+                    onToChanged: {
+                        if (tooltipItem.x2 == -1 || !(shownItem?.animateSize ?? true)) {
+                            stop();
+                            tooltipItem.x2 = to;
+                        } else {
+                            velocity = (Math.max(tooltipItem.x2, to) - Math.min(tooltipItem.x2, to)) * 5;
+                            restart();
+                        }
                     }
                 }
 
