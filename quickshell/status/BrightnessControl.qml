@@ -12,6 +12,7 @@ import Quickshell.Wayland
 
 Item {
     id: root
+    property var bar
     property color mainColor: root.hovered ? Appearance.colors.primary : Appearance.colors.foreground
     required property var monitor
     property bool hovered: false
@@ -35,6 +36,7 @@ Item {
 
         WheelHandler {
             onWheel: event => {
+                hovered = false;
                 if (event.angleDelta.y < 0) {
                     monitor.setBrightness(monitor.brightness - 0.05);
                 } else if (event.angleDelta.y > 0) {
@@ -49,6 +51,20 @@ Item {
             text: "brightness_6"
             iconSize: Appearance.font.pixelSize.larger
             color: root.mainColor
+        }
+    }
+
+    property var tooltip: TooltipItem {
+        tooltip: root.bar.tooltip
+        owner: root
+
+        show: root.hovered
+        hangTime: 0
+        StyledText {
+            id: tooltipText
+            text: `Brightness: ${Math.round((monitor.brightness ?? 0) * 100)}%`
+            font.pixelSize: Appearance?.font.pixelSize.small
+            color: Appearance.colors.foreground
         }
     }
 }

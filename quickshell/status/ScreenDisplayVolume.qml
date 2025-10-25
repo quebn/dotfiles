@@ -16,8 +16,8 @@ Scope {
     property var focusedScreen: Quickshell.screens.find(s => s.name === Hyprland.focusedMonitor?.name)
 
     function triggerOsd() {
-        showOsdValues = true
-        osdTimeout.restart()
+        showOsdValues = true;
+        osdTimeout.restart();
     }
 
     Timer {
@@ -139,15 +139,15 @@ Scope {
 		target: "osdVolume"
 
 		function trigger() {
-            root.triggerOsd()
+            root.triggerOsd();
         }
 
         function hide() {
-            showOsdValues = false
+            showOsdValues = false;
         }
 
         function toggle() {
-            showOsdValues = !showOsdValues
+            showOsdValues = !showOsdValues;
         }
 	}
     GlobalShortcut {
@@ -155,7 +155,7 @@ Scope {
         description: qsTr("Triggers volume OSD on press")
 
         onPressed: {
-            root.triggerOsd()
+            root.triggerOsd();
         }
     }
     GlobalShortcut {
@@ -163,7 +163,7 @@ Scope {
         description: qsTr("Hides volume OSD on press")
 
         onPressed: {
-            root.showOsdValues = false
+            root.showOsdValues = false;
         }
     }
 

@@ -220,7 +220,8 @@ Scope {
               layoutDirection: Qt.RightToLeft
 
               BrightnessControl {
-              Layout.rightMargin: Appearance.sizes.compositorGaps
+                bar: bar
+                Layout.rightMargin: Appearance.sizes.compositorGaps
                 visible: true
                 monitor: Brightness.getMonitorForScreen(modelData)
                 Layout.alignment: Qt.AlignVCenter
@@ -228,6 +229,7 @@ Scope {
 
               Volume {
                 visible: true
+                bar: bar
                 Layout.alignment: Qt.AlignVCenter
               }
 

@@ -9,6 +9,7 @@ import Quickshell.Hyprland
 
 Item {
     id: root
+    required property var bar
     property color mainColor: root.hovered ? Appearance.colors.primary : Appearance.colors.foreground
     implicitWidth: rowLayout.implicitWidth + rowLayout.spacing * 2
     implicitHeight: 32
@@ -34,19 +35,37 @@ Item {
 
         WheelHandler {
             onWheel: event => {
+                hovered = false;
                 const step = 0.05;
-                if (event.angleDelta.y < 0)
-                Audio.sink.audio.volume -= step;
-                else if (event.angleDelta.y > 0)
-                Audio.sink.audio.volume = Math.min(1, Audio.sink.audio.volume + step);
+                if (event.angleDelta.y < 0) {
+                    Audio.sink.audio.volume -= step;
+                } else if (event.angleDelta.y > 0) {
+                    Audio.sink.audio.volume = Math.min(1, Audio.sink.audio.volume + step);
+                }
             }
             acceptedDevices: PointerDevice.Mouse | PointerDevice.TouchPad
         }
 
         MaterialSymbol {
+            id: symbol
             text: "graphic_eq"
             iconSize: Appearance.font.pixelSize.larger
             color: Audio.sink?.audio.volume > 0 ? mainColor : Appearance.colors.hint
+        }
+    }
+
+    property var tooltip: TooltipItem {
+        tooltip: root.bar.tooltip
+        owner: root
+
+        show: root.hovered
+        hangTime: 0
+
+        StyledText {
+            id: tooltipText
+            text: `Volume: ${Math.round((Audio.sink?.audio.volume ?? 0) * 100)}%`
+            font.pixelSize: Appearance?.font.pixelSize.small
+            color: Appearance.colors.foreground
         }
     }
 }

@@ -95,6 +95,21 @@ MouseArea {
         height: parent.height
     }
 
+
+    property var tooltip: TooltipItem {
+        tooltip: root.bar.tooltip
+        owner: root
+
+        show: root.hovered
+        hangTime: 0
+        StyledText {
+            id: tooltipText
+            text: root.modelData.tooltipTitle != "" ? root.modelData.tooltipTitle : root.modelData.id
+            font.pixelSize: Appearance?.font.pixelSize.small
+            color: Appearance.colors.foreground
+        }
+    }
+
     property var rightclickMenu: TooltipItem {
         id: rightclickMenu
         tooltip: root.bar.tooltip

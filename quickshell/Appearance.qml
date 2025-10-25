@@ -67,10 +67,10 @@ Singleton {
     }
 
     rounding: QtObject {
-        property int unsharpen: 2
+        property int unsharpen: 6
         property int corner: 12
         property int full: 9999
-        property int button: 6
+        property int button: 8
     }
 
     font: QtObject {
