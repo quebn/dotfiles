@@ -156,7 +156,7 @@ Scope {
 
                 Rectangle {
                     color: Appearance.colors.background
-                    radius: root.activeItem.isMenu ? Appearance.rounding.corner : Appearance.rounding.unsharpen
+                    radius: root.activeItem?.isMenu ? Appearance.rounding.corner : Appearance.rounding.unsharpen
                     border.color: Appearance.colors.border
                     anchors.fill: parent
                     opacity: root.scaleMul

@@ -53,6 +53,7 @@ fish/conf.d/
 fish/themes/
 fish/completions/
 inkscape/
+Necesse/
 
 # Files
 *.dirs
