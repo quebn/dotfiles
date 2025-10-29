@@ -101,7 +101,7 @@ MouseArea {
         owner: root
 
         show: root.hovered
-        hangTime: 0
+
         StyledText {
             id: tooltipText
             text: root.modelData.tooltipTitle != "" ? root.modelData.tooltipTitle : root.modelData.id
