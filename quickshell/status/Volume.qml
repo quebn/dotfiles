@@ -13,17 +13,33 @@ Item {
     property color mainColor: root.hovered ? Appearance.colors.primary : Appearance.colors.foreground
     implicitWidth: rowLayout.implicitWidth + rowLayout.spacing * 2
     implicitHeight: 32
+    property bool showValue: false
     property bool hovered: false
+    readonly property string tooltipTextValue: {
+        if (showValue) {
+            return `Volume: ${Math.round((Audio.sink?.audio.volume ?? 0) * 100)}%`;
+        }
+        return "Volume";
+    }
 
     MouseArea {
         anchors.fill: parent
         hoverEnabled: true
-        onEntered: root.hovered = true
-        onExited: root.hovered = false
+        onEntered: {
+            root.showValue = false
+            root.hovered = true
+        }
+        onExited: {
+            root.hovered = false
+        }
         cursorShape: Qt.PointingHandCursor
-        acceptedButtons: Qt.LeftButton
+        acceptedButtons: Qt.LeftButton | Qt.RightButton
         onPressed: (event) => {
-            Hyprland.dispatch("exec app2unit pavucontrol")
+            if (event.button === Qt.LeftButton) {
+                Hyprland.dispatch("exec app2unit pavucontrol");
+            } else {
+                root.showValue = !root.showValue;
+            }
         }
     }
 
@@ -57,13 +73,11 @@ Item {
     property var tooltip: TooltipItem {
         tooltip: root.bar.tooltip
         owner: root
-
         show: root.hovered
-        hangTime: 0
 
         StyledText {
             id: tooltipText
-            text: `Volume: ${Math.round((Audio.sink?.audio.volume ?? 0) * 100)}%`
+            text: root.tooltipTextValue
             font.pixelSize: Appearance?.font.pixelSize.small
             color: Appearance.colors.foreground
         }

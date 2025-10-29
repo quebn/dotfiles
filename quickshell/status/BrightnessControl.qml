@@ -16,6 +16,15 @@ Item {
     property color mainColor: root.hovered ? Appearance.colors.primary : Appearance.colors.foreground
     required property var monitor
     property bool hovered: false
+    property bool showValue: false
+
+    readonly property string tooltipTextValue: {
+
+        if (showValue) {
+            return `Brightness: ${Math.round((monitor.brightness ?? 0) * 100)}%`;
+        }
+        return "Brightness";
+    }
 
     implicitWidth: rowLayout.implicitWidth + rowLayout.spacing * 2
     implicitHeight: 32
@@ -24,8 +33,19 @@ Item {
     MouseArea {
         anchors.fill: parent
         hoverEnabled: true
-        onEntered: root.hovered = true
-        onExited: root.hovered = false
+        onEntered: {
+            root.showValue = false
+            root.hovered = true
+        }
+        onExited: {
+            root.hovered = false
+        }
+        acceptedButtons: Qt.RightButton
+        onPressed: (event) => {
+            if (event.button === Qt.RightButton) {
+                root.showValue = !root.showValue;
+            }
+        }
     }
 
     RowLayout {
@@ -57,12 +77,11 @@ Item {
     property var tooltip: TooltipItem {
         tooltip: root.bar.tooltip
         owner: root
-
         show: root.hovered
-        hangTime: 0
+
         StyledText {
             id: tooltipText
-            text: `Brightness: ${Math.round((monitor.brightness ?? 0) * 100)}%`
+            text: root.tooltipTextValue
             font.pixelSize: Appearance?.font.pixelSize.small
             color: Appearance.colors.foreground
         }
