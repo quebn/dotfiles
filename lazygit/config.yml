@@ -9,17 +9,16 @@ gui:
   statusPanelView: allBranchesLog
   spinner:
     frames:
-    - "⣼"
-    - "⣹"
-    - "⢻"
-    - "⠿"
-    - "⡟"
-    - "⣏"
-    - "⣧"
-    - "⣶"
-
+      - "⣼"
+      - "⣹"
+      - "⢻"
+      - "⠿"
+      - "⡟"
+      - "⣏"
+      - "⣧"
+      - "⣶"
 git:
-  paging:
-    colorArg: always
-    pager: "delta --dark --paging=never --line-numbers --hyperlinks"
+  pagers:
+    - colorArg: always
+      pager: "delta --dark --paging=never --line-numbers --hyperlinks"
   autoFetch: false

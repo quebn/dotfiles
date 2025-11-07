@@ -54,6 +54,7 @@ fish/themes/
 fish/completions/
 inkscape/
 Necesse/
+oomox/
 
 # Files
 *.dirs
@@ -65,6 +66,7 @@ fish/fish_variables
 google-chrome/themes/*/*.pak
 spotify-launcher.conf
 kitty/unicode-input-favorites.conf
+tool_state
 
 #symlinks
 nvim
