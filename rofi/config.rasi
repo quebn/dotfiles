@@ -8,7 +8,7 @@
     urgent:         #EB6F92FF;
     rose:           #EBBCBAFF;
     foam:           #9CCFD8FF;
-    font: "0xProto Bold 13";
+    font: "ZxGamut Bold 13";
     terminal: "kitty";
 }
 
@@ -25,7 +25,7 @@ window {
     location:                    center;
     anchor:                      center;
     fullscreen:                  false;
-    width:                       700px;
+    width:                       600px;
     x-offset:                    0px;
     y-offset:                    0px;
 
