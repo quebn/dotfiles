@@ -1,16 +1,10 @@
 /*****----- Configuration -----*****/
 * {
-    background:     #000000E6;
-    background-alt: #26233AFF;
-    foreground:     #E0DEF4FF;
-    selected:       #31748FFF;
-    active:         #31748FFF;
-    urgent:         #EB6F92FF;
-    rose:           #EBBCBAFF;
-    foam:           #9CCFD8FF;
     font: "ZxGamut Bold 13";
     terminal: "kitty";
 }
+
+@import                          "./colors.rasi"
 
 configuration {
 	modi:                       "drun";
@@ -47,7 +41,7 @@ mainbox {
     padding:                     20px;
     border:                      2px solid;
     border-radius:               6px;
-    border-color:                #191724FF;
+    border-color:                @highlight-high;
     background-color:            transparent;
     children:                    [ "inputbar", "listview" ];
 }

@@ -1,0 +1,13 @@
+* {
+    background:     #000000E6;
+    background-alt: #191724FF;
+    foreground:     #E0DEF4FF;
+    selected:       #31748FFF;
+    active:         #31748FFF;
+    urgent:         #EB6F92FF;
+    rose:           #EBBCBAFF;
+    foam:           #9CCFD8FF;
+    highlight-low:  #21202eFF;
+    highlight-med:  #403d52FF;
+    highlight-high: #524f67FF;
+}
