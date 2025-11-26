@@ -10,8 +10,6 @@ host=`hostname`
 # Options
 shutdown=""
 reboot=""
-# lock=''
-# suspend=''
 logout=""
 yes=""
 no=""
@@ -33,13 +31,13 @@ confirm_cmd() {
 		-theme-str 'textbox {horizontal-align: 0.5;}' \
 		-dmenu \
 		-p 'Confirmation' \
-		-mesg 'Are you Sure?' \
+		-mesg "Confirm $1?" \
 		-theme ${dir}/${theme}.rasi
 }
 
 # Ask for confirmation
 confirm_exit() {
-	echo -e "$yes\n$no" | confirm_cmd
+	echo -e "$yes\n$no" | confirm_cmd $1
 }
 
 # Pass variables to rofi dmenu
@@ -49,13 +47,13 @@ run_rofi() {
 
 # Execute Command
 run_cmd() {
-	selected="$(confirm_exit)"
+	selected="$(confirm_exit $1)"
 	if [[ "$selected" == "$yes" ]]; then
-		if [[ $1 == '--shutdown' ]]; then
+		if [[ $1 == 'Shutdown' ]]; then
 			systemctl poweroff
-		elif [[ $1 == '--reboot' ]]; then
+		elif [[ $1 == 'Reboot' ]]; then
 			systemctl reboot
-		elif [[ $1 == '--logout' ]]; then
+		elif [[ $1 == 'Logout' ]]; then
 			uwsm stop
 		fi
 	else
@@ -67,12 +65,12 @@ run_cmd() {
 chosen="$(run_rofi)"
 case ${chosen} in
     $shutdown)
-		run_cmd --shutdown
+		run_cmd Shutdown
         ;;
     $reboot)
-		run_cmd --reboot
+		run_cmd Reboot
         ;;
     $logout)
-		run_cmd --logout
+		run_cmd Logout
         ;;
 esac

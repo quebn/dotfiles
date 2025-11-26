@@ -1,10 +1,10 @@
-/*****----- Configuration -----*****/
+@import                         "./colors.rasi"
+
 * {
-    font: "ZxGamut Bold 13";
-    terminal: "kitty";
+    font:                       "ZxGamut Bold 13";
+    terminal:                   "kitty";
 }
 
-@import                          "./colors.rasi"
 
 configuration {
 	modi:                       "drun";
@@ -19,7 +19,7 @@ window {
     location:                    center;
     anchor:                      center;
     fullscreen:                  false;
-    width:                       600px;
+    width:                       550px;
     x-offset:                    0px;
     y-offset:                    0px;
 
@@ -30,7 +30,7 @@ window {
     border-radius:               6px;
     border-color:                @selected;
     background-color:            @background;
-    cursor:                      "default";
+    cursor:                      default;
 }
 
 /*****----- Main Box -----*****/
@@ -41,7 +41,7 @@ mainbox {
     padding:                     20px;
     border:                      2px solid;
     border-radius:               6px;
-    border-color:                @highlight-high;
+    border-color:                @overlay;
     background-color:            transparent;
     children:                    [ "inputbar", "listview" ];
 }
@@ -90,7 +90,7 @@ entry {
 listview {
     enabled:                     true;
     columns:                     1;
-    lines:                       7;
+    lines:                       6;
     cycle:                       true;
     dynamic:                     true;
     scrollbar:                   true;
@@ -107,13 +107,13 @@ listview {
     border-color:                @selected;
     background-color:            transparent;
     text-color:                  @foreground;
-    cursor:                      "default";
+    cursor:                      default;
 }
 
 scrollbar {
-    handle-width:                5px;
+    handle-width:                6px;
     handle-color:                @foam;
-    border-radius:               0px;
+    border-radius:               6px;
     background-color:            transparent;
 }
 

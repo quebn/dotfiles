@@ -1,18 +1,12 @@
+@import "./colors.rasi"
+
 * {
     font: "ZxGamut Bold 13";
 }
 
-/*****----- Configuration -----*****/
 configuration {
     show-icons:                 false;
 }
-
-/*****----- Global Properties -----*****/
-@import                          "./colors.rasi"
-
-/*
-USE_BUTTONS=YES
-*/
 
 /*****----- Main Window -----*****/
 window {
@@ -44,7 +38,7 @@ mainbox {
     padding:                     15px;
     border:                      2px solid;
     border-radius:               12px;
-    border-color:                @highlight-high;
+    border-color:                @overlay;
     background-color:            transparent;
     children:                    [ "listview" ];
 }
@@ -90,10 +84,10 @@ message {
     margin:                      0px;
     padding:                     12px;
     border:                      0px solid;
-    border-radius:               100%;
+    border-radius:               12px;
     border-color:                @selected;
     background-color:            @background-alt;
-    text-color:                  @foreground;
+    text-color:                  @gold;
 }
 textbox {
     background-color:            inherit;
@@ -110,7 +104,7 @@ error-message {
     border-radius:               0px;
     border-color:                @selected;
     background-color:            @background;
-    text-color:                  @foreground;
+    text-color:                  @love;
 }
 
 /*****----- Listview -----*****/
@@ -142,12 +136,12 @@ element {
     enabled:                     true;
     spacing:                     0px;
     margin:                      0px;
-    padding:                     20px 0px;
+    padding:                     20px 0px 30px;
     border:                      0px solid;
-    border-radius:               100%;
+    border-radius:               12px;
     border-color:                @selected;
     background-color:            @background-alt;
-    text-color:                  @foreground;
+    text-color:                  @rose;
     cursor:                      pointer;
 }
 element-text {
@@ -158,6 +152,7 @@ element-text {
     vertical-align:              0.5;
     horizontal-align:            0.5;
 }
+
 element selected.normal {
     background-color:            var(selected);
     text-color:                  var(background);
