@@ -4,15 +4,13 @@ dir="$HOME/Pictures/screenshots/"
 filename="grim-$(date +%s).png"
 filepath="$dir/$filename"
 
-grim "$filepath" && notify-send \
+action="$(grim "$filepath" && notify-send \
     "Screenshot saved" \
     "~/Pictures/screenshots/$filename" \
     -i "$filepath" \
     -a "Grim"\
-    --action=default,"Open Image"
+    --action=open="Open Image")"
 
-ACTION=$(dunstctl action)
-echo "$ACTION"
-if [[ "$ACTION" = "default" ]]; then
-    xdg-open "$filepath"
+if [[ "$action" == "open" ]]; then
+    satty --filename $filepath
 fi
