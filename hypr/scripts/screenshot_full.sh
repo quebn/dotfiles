@@ -1,7 +1,7 @@
 #!/usr/bin/bash
 
 dir="$HOME/Pictures/screenshots/"
-filename="grim-$(date +%s).png"
+filename="screenshot-$(date +%s).png"
 filepath="$dir/$filename"
 
 action="$(grim "$filepath" && notify-send \
