@@ -31,7 +31,7 @@ actions-on-right-click = []
 actions-on-enter = ["save-to-clipboard", "save-to-file", "exit"]
 # Actions to trigger on Escape key (order is important)
 # [possible values: save-to-clipboard, save-to-file, exit]
-actions-on-escape = ["exit"]
+actions-on-escape = ["save-to-file", "exit"]
 # Action to perform when the Enter key is pressed [possible values: save-to-clipboard, save-to-file]
 # Deprecated: use actions-on-enter instead
 action-on-enter = "save-to-clipboard"
