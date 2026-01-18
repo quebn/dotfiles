@@ -41,7 +41,7 @@ mainbox {
     padding:                     20px;
     border:                      2px solid;
     border-radius:               6px;
-    border-color:                @overlay;
+    border-color:                @highlight-high;
     background-color:            transparent;
     children:                    [ "inputbar", "listview" ];
 }

@@ -4,10 +4,12 @@
     base:           #000000FF;
     surface:        #110D12FF;
     overlay:        #121212FF;
+    overlay-alt:    #26233AFF;
     foreground:     #E0DEF4FF;
     selected:       #31748FFF;
     active:         #31748FFF;
     urgent:         #EB6F92FF;
+    pine:           #31748FFF;
     rose:           #EBBCBAFF;
     foam:           #9CCFD8FF;
     gold:           #F6C177FF;

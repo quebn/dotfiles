@@ -38,7 +38,7 @@ mainbox {
     padding:                     15px;
     border:                      2px solid;
     border-radius:               12px;
-    border-color:                @overlay;
+    border-color:                @highlight-high;
     background-color:            transparent;
     children:                    [ "listview" ];
 }
