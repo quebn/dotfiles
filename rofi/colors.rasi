@@ -2,6 +2,7 @@
     background:     #000000E6;
     background-alt: #191724FF;
     base:           #000000FF;
+    base-alt:       #191724FF;
     surface:        #110D12FF;
     overlay:        #121212FF;
     overlay-alt:    #26233AFF;
@@ -14,7 +15,11 @@
     foam:           #9CCFD8FF;
     gold:           #F6C177FF;
     love:           #EB6F92FF;
-    highlight-low:  #21202eFF;
-    highlight-med:  #403d52FF;
-    highlight-high: #524f67FF;
+    highlight-low:  #21202EFF;
+    highlight-med:  #403D52FF;
+    highlight-high: #191724FF;
+    // highlight-high: #8F8BA8FF;
+    // highlight-high: #121212FF;
+    highlight-high-alt: #524f67FF;
+    // #8F8BA8
 }

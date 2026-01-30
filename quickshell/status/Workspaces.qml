@@ -13,7 +13,7 @@ import Qt5Compat.GraphicalEffects
 
 Item {
     property bool borderless: false
-    property color mainColor: Appearance.colors.primary
+    property color mainColor: Appearance.colors.blue
     required property var bar
     readonly property HyprlandMonitor monitor: Hyprland.monitorFor(bar.screen)
     readonly property Toplevel activeWindow: ToplevelManager.activeToplevel
@@ -186,7 +186,7 @@ Item {
                         radius: width / 2
                         color: monitor.activeWorkspace?.id == button.workspaceValue ? Appearance.colors.black :
                             button.isHovered ? Appearance.colors.blue :
-                            workspaceOccupied[index] ? Appearance.colors.secondary :
+                            workspaceOccupied[index] ? Appearance.colors.blue :
                             Appearance.colors.gutter
 
                         Behavior on opacity {

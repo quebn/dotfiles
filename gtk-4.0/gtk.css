@@ -5109,14 +5109,16 @@ colorchooser .popover.osd:backdrop {
  **********************/
 window {
   transition: box-shadow 75ms cubic-bezier(0, 0, 0.2, 1);
-  border-radius: 4px;
-  box-shadow: 0 2px 2.4px -1px rgba(0, 0, 0, 0.2),
-    0 4px 3px 0 rgba(0, 0, 0, 0.14), 0 1px 6px 0 rgba(0, 0, 0, 0.3),
-    0 0 0 2px @rose, 0 0 16px transparent;
+  border-radius: 8px;
+  box-shadow: none;
+  /* box-shadow: 0 2px 2.4px -1px rgba(0, 0, 0, 0.2), */
+  /*   0 4px 3px 0 rgba(0, 0, 0, 0.14), 0 1px 6px 0 rgba(0, 0, 0, 0.3), */
+  /*   0 0 0 2px @rose, 0 0 16px transparent; */
 }
 
 window.csd {
-  border-radius: 4px;
+  border-radius: 8px;
+  border: none;
 }
 
 window:backdrop {
@@ -5124,20 +5126,21 @@ window:backdrop {
 }
 
 window.popup {
-  border-radius: 4px;
+  border-radius: 8px;
   box-shadow: none;
 }
 
 window.dialog.message {
-  border-radius: 4px;
+  border-radius: 8px;
 }
 
 window.solid-csd {
   margin: 0;
   padding: 2px;
-  border-radius: 0;
+  border-radius: 8px;
   background-color: @night;
-  border: 2px solid @overlay;
+  border: none;
+  /* border: 2px solid @overlay; */
 }
 
 window.solid-csd:backdrop {
