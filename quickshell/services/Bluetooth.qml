@@ -1,76 +1,41 @@
+import qs
 pragma Singleton
 pragma ComponentBehavior: Bound
 
-import qs
-import Quickshell;
-import Quickshell.Io;
-import QtQuick;
+import Quickshell
+import Quickshell.Bluetooth
+import Quickshell.Io
+import QtQuick
 
-/**
- * Basic polled Bluetooth state.
- */
 Singleton {
     id: root
 
-    property int updateInterval: 5000
-    property string bluetoothDeviceName: ""
-    property string bluetoothDeviceAddress: ""
-    property bool bluetoothEnabled: false
-    property bool bluetoothConnected: false
-    readonly property string materialSymbol: bluetoothConnected ? "bluetooth_connected" : bluetoothEnabled ? "bluetooth" : "bluetooth_disabled"
-    readonly property color mainColor: bluetoothEnabled ? Appearance.colors.foreground : Appearance.colors.hintAlt
+    readonly property bool available: Bluetooth.adapters.values.length > 0
+    readonly property bool enabled: Bluetooth.defaultAdapter?.enabled ?? false
+    readonly property BluetoothDevice firstActiveDevice: Bluetooth.defaultAdapter?.devices.values.find(device => device.connected) ?? null
+    readonly property int activeDeviceCount: Bluetooth.defaultAdapter?.devices.values.filter(device => device.connected).length ?? 0
+    readonly property bool connected: Bluetooth.devices.values.some(d => d.connected)
+    readonly property string materialSymbol: connected ? "bluetooth_connected" : enabled ? "bluetooth" : "bluetooth_disabled"
+    readonly property color mainColor: enabled ? Appearance.colors.foreground : Appearance.colors.hintAlt
 
-    function update() {
-        updateBluetoothDevice.running = true
-        updateBluetoothStatus.running = true
-        updateBluetoothEnabled.running = true
-    }
 
-    Timer {
-        interval: 5000
-        running: true
-        repeat: true
-        onTriggered: {
-            update()
-            interval = root.updateInterval
-        }
-    }
+    function sortFunction(a, b) {
+        // Ones with meaningful names before MAC addresses
+        const macRegex = /^([0-9A-Fa-f]{2}-){5}[0-9A-Fa-f]{2}$/;
+        const aIsMac = macRegex.test(a.name);
+        const bIsMac = macRegex.test(b.name);
+        if (aIsMac !== bIsMac)
+            return aIsMac ? 1 : -1;
 
-    // Check if Bluetooth is enabled (controller powered on)
-    Process {
-        id: updateBluetoothEnabled
-        command: ["sh", "-c", "bluetoothctl show | grep -q 'Powered: yes' && echo 1 || echo 0"]
-        running: true
-        stdout: SplitParser {
-            onRead: data => {
-                root.bluetoothEnabled = (parseInt(data) === 1)
-            }
-        }
+        // Alphabetical by name
+        return a.name.localeCompare(b.name);
     }
-
-    // Get the name and address of the first connected Bluetooth device
-    Process {
-        id: updateBluetoothDevice
-        command: ["sh", "-c", "bluetoothctl info | awk -F': ' '/Name: /{name=$2} /Device /{addr=$2} END{print name \":\" addr}'"]
-        running: true
-        stdout: SplitParser {
-            onRead: data => {
-                let parts = data.split(":")
-                root.bluetoothDeviceName = parts[0] || ""
-                root.bluetoothDeviceAddress = parts[1] || ""
-            }
-        }
-    }
-
-    // Check if any device is connected
-    Process {
-        id: updateBluetoothStatus
-        command: ["sh", "-c", "bluetoothctl info | grep -q 'Connected: yes' && echo 1 || echo 0"]
-        running: true
-        stdout: SplitParser {
-            onRead: data => {
-                root.bluetoothConnected = (parseInt(data) === 1)
-            }
-        }
-    }
+    property list<var> connectedDevices: Bluetooth.devices.values.filter(d => d.connected).sort(sortFunction)
+    property list<var> pairedButNotConnectedDevices: Bluetooth.devices.values.filter(d => d.paired && !d.connected).sort(sortFunction)
+    property list<var> unpairedDevices: Bluetooth.devices.values.filter(d => !d.paired && !d.connected).sort(sortFunction)
+    property list<var> friendlyDeviceList: [
+        ...connectedDevices,
+        ...pairedButNotConnectedDevices,
+        ...unpairedDevices
+    ]
 }
