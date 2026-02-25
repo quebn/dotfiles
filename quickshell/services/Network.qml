@@ -7,7 +7,6 @@ import Quickshell.Io
 import QtQuick
 
 /**
- * TODO: have a vpn status checker
  * Simple polled network state service.
  */
 Singleton {
@@ -19,11 +18,11 @@ Singleton {
     property string networkName: ""
     property int networkStrength
     property string materialSymbol: ethernet ? "lan" :
-        (Network.networkName.length > 0 && Network.networkName != "lo") ? (
-        Network.networkStrength > 80 ? "signal_wifi_4_bar" :
-        Network.networkStrength > 60 ? "network_wifi_3_bar" :
-        Network.networkStrength > 40 ? "network_wifi_2_bar" :
-        Network.networkStrength > 20 ? "network_wifi_1_bar" :
+        root.wifi ? (
+        root.networkStrength > 80 ? "signal_wifi_4_bar" :
+        root.networkStrength > 60 ? "network_wifi_3_bar" :
+        root.networkStrength > 40 ? "network_wifi_2_bar" :
+        root.networkStrength > 20 ? "network_wifi_1_bar" :
         "signal_wifi_0_bar"
     ) : "signal_wifi_off"
     readonly property color mainColor: networkStrength === 0 ? Appearance.colors.hintAlt : Appearance.colors.foreground
@@ -78,7 +77,7 @@ Singleton {
         command: ["sh", "-c", "nmcli -t -f NAME c show --active | head -1"]
         running: true
         stdout: SplitParser {
-            onRead: data => {
+            onRead: (data) => {
                 root.networkName = data;
             }
         }
@@ -89,7 +88,10 @@ Singleton {
         running: true
         command: ["sh", "-c", "nmcli -f IN-USE,SIGNAL,SSID device wifi | awk '/^\*/{if (NR!=1) {print $2}}'"]
         stdout: SplitParser {
-            onRead: data => {
+            onRead: (data) => {
+                if (isNaN(data)) {
+                    return;
+                }
                 root.networkStrength = parseInt(data);
             }
         }

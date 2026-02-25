@@ -76,6 +76,23 @@ MouseArea {
         }
     }
 
+    function altTooltip() {
+        if (root.modelData.tooltipTitle != "") {
+            return root.modelData.tooltipTitle;
+        }
+        switch (modelData.id) {
+            case "nm-applet": {
+                return Network.networkName;
+            } break;
+            case "blueman": {
+                return Bluetooth.mainColor;
+            } break;
+            default: {
+                return Appearance.colors.hint;
+            } break;
+        }
+    }
+
     MaterialSymbol {
         id: trayIconAlt
         anchors.centerIn: parent
@@ -104,7 +121,7 @@ MouseArea {
 
         StyledText {
             id: tooltipText
-            text: root.modelData.tooltipTitle != "" ? root.modelData.tooltipTitle : root.modelData.id
+            text: altTooltip()
             font.pixelSize: Appearance?.font.pixelSize.small
             color: Appearance.colors.foreground
         }
