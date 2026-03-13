@@ -88,7 +88,7 @@ MouseArea {
                 return Bluetooth.mainColor;
             } break;
             default: {
-                return Appearance.colors.hint;
+                return modelData.id;
             } break;
         }
     }
