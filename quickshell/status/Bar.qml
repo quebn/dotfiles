@@ -38,7 +38,7 @@ Scope {
 
       function boundedX(targetX: real, width: real): real {
         const x = Math.max(
-          barContent.anchors.leftMargin + width,
+          barContent.anchors.leftMargin + width + Appearance.sizes.compositorGaps,
           Math.min(barContent.width + barContent.anchors.leftMargin - width, targetX)
         );
         return x - (Appearance.sizes.compositorGaps * 0.5);
@@ -131,7 +131,7 @@ Scope {
                 Layout.rightMargin: Appearance.rounding.corners
                 Layout.fillWidth: true
                 Layout.fillHeight: true
-                statusbar: bar
+                bar: bar
               }
             }
           }
