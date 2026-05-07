@@ -173,7 +173,7 @@ Scope {
                     if (shownItem == null) {
                         return 0;
                     }
-                    const target = bar.contentItem.mapFromItem(shownItem.owner, 0,shownItem.targetRelativeX).x;
+                    const target = bar.contentItem.mapFromItem(shownItem.owner, 0, shownItem.targetRelativeX).x;
                     return bar.boundedX(target, shownItem.implicitWidth / 2);
                 }
 

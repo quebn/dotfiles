@@ -112,7 +112,7 @@ Scope {
                 toggled: true
 
                 onPressed: {
-                  Hyprland.dispatch('exec rofi -show drun -run-command "app2unit {cmd}"');
+                  Hyprland.dispatch('exec $HOME/.config/hypr/scripts/powermenu.sh');
                 }
 
                 CustomIcon {
