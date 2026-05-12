@@ -23,7 +23,7 @@ hl.on("hyprland.start", function()
     hl.exec_cmd("systemctl --user start plasma-polkit-agent")
 end)
 
-local colors = {
+local themes = {
     rose_pine = {
         night           = "rgba(000000ff)",
         base            = "rgba(000000ff)",
@@ -43,10 +43,15 @@ local colors = {
         iris            = "rgba(c4a7e7ff)",
         highlight_low   = "rgba(21202eff)",
         highlight_med   = "rgba(403d52ff)",
-        highlight_high  = "rgba(110d12ff)",
+        highlight_high  = "rgba(524f67ff)",
         highlight_high_alt = "rgba(6e6a85ff)",
     }
 }
+
+-- local colors = {
+--     black = 
+-- }
+
 
 
 hl.config({
@@ -54,42 +59,41 @@ hl.config({
         force_zero_scaling = true
     },
     general = {
-        gaps_in  = 5,
-        gaps_out = 10,
-        border_size = 2,
+        gaps_in          = 5,
+        gaps_out         = 10,
+        border_size      = 2,
         resize_on_border = false,
-        allow_tearing = false,
-        layout = "dwindle",
+        allow_tearing    = false,
+        layout           = "dwindle",
         snap = {
             enabled = true,
             respect_gaps = true,
         },
         col = {
-            active_border = colors.rose_pine.highlight_high,
-            inactive_border = colors.rose_pine.surface,
+            active_border = themes.rose_pine.night,
+            inactive_border = themes.rose_pine.surface,
         },
     },
 
     decoration = {
-        rounding       = 12,
-        rounding_power = 4.0,
-        dim_strength   = .2,
-        -- Change transparency of focused and unfocused windows
-        active_opacity   = 1.0,
-        inactive_opacity = 1.0,
+        rounding         = 12,
+        rounding_power   = 4.0,
+        dim_strength     = .2,
+        -- active_opacity   = 1.0,
+        -- inactive_opacity = 1.0,
         shadow = {
             enabled = false,
-            color = colors.rose_pine.highlight_high,
+            color   = themes.rose_pine.highlight_high,
         },
         blur = {
             enabled = false,
-            size = 2,
-            passes = 2,
+            size    = 2,
+            passes  = 2,
         },
     },
     dwindle = {
-        force_split = 2,
-        preserve_split = true, -- You probably want this
+        force_split    = 2,
+        preserve_split = true,
     },
     binds = {
         scroll_event_delay = 0
@@ -234,9 +238,9 @@ hl.bind("XF86MonBrightnessDown",hl.dsp.exec_cmd("brightnessctl -e4 -n2 set 5%-")
 hl.window_rule({
     name  = "Border Highlight on 2 or more windows",
     match = {
-        workspace = "w[t2-10]",
+        workspace = "w[v2-10]",
     },
-    border_color = colors.rose_pine.text
+    border_color = themes.rose_pine.highlight_high_alt,
     -- suppress_event = "maximize",
 })
 
@@ -374,7 +378,7 @@ hl.window_rule({
     match = {
         class = "^(discord)$"
     },
-    workspace = "4 silent"
+    workspace = "4"
 })
 
 hl.window_rule({
@@ -418,7 +422,7 @@ hl.window_rule({
     float = true,
     pin   = true,
     move = {"(monitor_w-window_w-20)", "(monitor_h-window_h-20)"},
-    border_color = colors.rose_pine.highlight_high_alt,
+    border_color = themes.rose_pine.highlight_high_alt,
     border_size = 0,
 })
 
@@ -429,7 +433,7 @@ hl.window_rule({
     },
     border_size = 2,
     size  = {"(window_w*1)", "(window_h*1)"},
-    border_color = colors.rose_pine.surface_alt,
+    border_color = themes.rose_pine.hightlight_high_alt,
 })
 
 hl.window_rule({
@@ -446,16 +450,29 @@ hl.window_rule({
         class = "^(steam)$",
         float = true,
     },
+    rounding = 0,
     center = false,
-    border_size = 2,
+    border_size = 0,
     size  = {"(window_w*1)", "(window_h*1)"},
-    workspace = "5 silent",
 })
 
 hl.window_rule({
-    name = "Steam Tiled",
+    name = "Steam",
     match = {
-        title = "^(Steam)$",
+        class = "^(steam)$",
+        workspace = "w[t1]",
     },
-    tile = true,
+    border_color = themes.rose_pine.night,
+    workspace = "5",
+})
+
+hl.window_rule({
+    name = "Steam Windows",
+    match = {
+        class = "^(steam)$",
+        title = "Friends List|Steam Settings"
+    },
+    float = true,
+    center = true,
+    size  = {"(window_w*1)", "(window_h*1)"},
 })
