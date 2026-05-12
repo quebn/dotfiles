@@ -35,7 +35,6 @@ Item {
         spacing: -4
 
         MouseArea {
-            anchors.fill: parent
             hoverEnabled: true
             // TODO: track the id of the hovered workspace.
             onEntered: root.hovered = true

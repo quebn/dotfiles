@@ -55,9 +55,9 @@ Item {
         onWheel: (event) => {
             if (event.angleDelta.y > 0) {
                 // TODO: prevent scrollup of workspace number is 10
-                Hyprland.dispatch(`workspace r+1`);
+                Hyprland.dispatch(`hl.dsp.focus({workspace = "r+1"})`);
             } else if (event.angleDelta.y < 0) {
-                Hyprland.dispatch(`workspace r-1`);
+                Hyprland.dispatch(`hl.dsp.focus({workspace = "r-1"})`);
             }
         }
         acceptedDevices: PointerDevice.Mouse | PointerDevice.TouchPad
@@ -161,7 +161,7 @@ Item {
                 property int workspaceValue: workspaceGroup * Config.options.bar.workspaces.shown + index + 1
                 property bool isHovered: false
                 Layout.fillHeight: true
-                onPressed: Hyprland.dispatch(`workspace ${workspaceValue}`)
+                onPressed: Hyprland.dispatch(`hl.dsp.focus({ workspace = ${workspaceValue}})`)
                 width: workspaceButtonWidth
                 background: Item {
                     id: workspaceButtonBackground

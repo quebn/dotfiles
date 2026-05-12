@@ -38,7 +38,7 @@ Item {
             } else if (event.button === Qt.BackButton) {
                 activePlayer?.previous();
             } else if (event.button === Qt.ForwardButton || event.button === Qt.RightButton) {
-                Hyprland.dispatch("global quickshell:mediaControlsToggle")
+                Hyprland.dispatch(`hl.dsp.global("quickshell:mediaControlsToggle")`)
             } else if (event.button === Qt.LeftButton) {
                 activePlayer?.togglePlaying();
             }

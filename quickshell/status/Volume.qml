@@ -36,7 +36,7 @@ Item {
         acceptedButtons: Qt.LeftButton | Qt.RightButton
         onPressed: (event) => {
             if (event.button === Qt.LeftButton) {
-                Hyprland.dispatch("exec app2unit pavucontrol");
+                Hyprland.dispatch(`hl.dsp.exec_cmd("runapp pavucontrol")`)
             } else {
                 root.showValue = !root.showValue;
             }
