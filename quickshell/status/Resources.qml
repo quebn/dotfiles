@@ -21,7 +21,7 @@ Item {
         cursorShape: Qt.PointingHandCursor
         acceptedButtons: Qt.LeftButton
         onPressed: (event) => {
-            Hyprland.dispatch(`hl.dsp.exec_cmd("runapp kitty --start-as=fullscreen --title btop sh -c 'btop'")`)
+            Hyprland.dispatch(`hl.dsp.exec_cmd("$APPRUNNER kitty --start-as=fullscreen --title btop sh -c 'btop'")`)
         }
     }
     RowLayout {

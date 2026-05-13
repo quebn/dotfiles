@@ -5,7 +5,7 @@ hl.monitor({
     scale    = "1.2",
 })
 
-local app_runner  = "runapp"
+local app_runner  = "$APPRUNNER"
 local terminal    = app_runner.." kitty"
 local browser     = app_runner.." zen-browser"
 local google      = app_runner.." chromium"
@@ -25,35 +25,44 @@ end)
 
 local themes = {
     rose_pine = {
-        night           = "rgba(000000ff)",
-        base            = "rgba(000000ff)",
-        base_alt        = "rgba(191724ff)",
-        surface         = "rgba(110d12ff)",
-        overlay         = "rgba(121212ff)",
-        surface_alt     = "rgba(1f1d2eff)",
-        overlay_alt     = "rgba(26233aff)",
-        muted           = "rgba(6e6a86ff)",
-        subtle          = "rgba(908caaff)",
-        text            = "rgba(e0def4ff)",
-        love            = "rgba(eb6f92ff)",
-        gold            = "rgba(f6c177ff)",
-        rose            = "rgba(ebbcbaff)",
-        pine            = "rgba(31748fff)",
-        foam            = "rgba(9ccfd8ff)",
-        iris            = "rgba(c4a7e7ff)",
-        highlight_low   = "rgba(21202eff)",
-        highlight_med   = "rgba(403d52ff)",
-        highlight_high  = "rgba(524f67ff)",
+        night              = "rgba(000000ff)",
+        base               = "rgba(000000ff)",
+        base_alt           = "rgba(191724ff)",
+        surface            = "rgba(110d12ff)",
+        overlay            = "rgba(121212ff)",
+        surface_alt        = "rgba(1f1d2eff)",
+        overlay_alt        = "rgba(26233aff)",
+        muted              = "rgba(6e6a86ff)",
+        subtle             = "rgba(908caaff)",
+        text               = "rgba(e0def4ff)",
+        love               = "rgba(eb6f92ff)",
+        gold               = "rgba(f6c177ff)",
+        rose               = "rgba(ebbcbaff)",
+        pine               = "rgba(31748fff)",
+        foam               = "rgba(9ccfd8ff)",
+        iris               = "rgba(c4a7e7ff)",
+        highlight_low      = "rgba(21202eff)",
+        highlight_med      = "rgba(403d52ff)",
+        highlight_high     = "rgba(524f67ff)",
         highlight_high_alt = "rgba(6e6a85ff)",
     }
 }
 
 -- local colors = {
---     black = 
+--     black =
 -- }
 
 
 
+-- local border_color = themes.rose_pine.highlight_high_alt
+local border_color = {
+    colors = {
+        themes.rose_pine.rose,
+        themes.rose_pine.pine,
+        -- themes.rose_pine.rose,
+    },
+    angle = 225
+}
 hl.config({
     xwayland = {
         force_zero_scaling = true
@@ -144,21 +153,22 @@ hl.curve("quick",          { type = "bezier", points = { {0.15, 0},    {0.1, 1} 
 
 -- hl.curve("easy",           { type = "spring", mass = 1, stiffness = 71.2633, dampening = 15.8273644 })
 
-hl.animation({ leaf = "global",        enabled = true,  speed = 5,    bezier = "default" })
-hl.animation({ leaf = "border",        enabled = true,  speed = 2.39, bezier = "linear" })
-hl.animation({ leaf = "windows",       enabled = true,  speed = 1.5,  bezier = "easeOutQuint" })
-hl.animation({ leaf = "windowsIn",     enabled = true,  speed = 1.5,  bezier = "easeOutQuint", style = "popin 87%" })
-hl.animation({ leaf = "windowsOut",    enabled = true,  speed = 1.5,  bezier = "linear",       style = "popin 87%" })
-hl.animation({ leaf = "fadeIn",        enabled = true,  speed = 1.73, bezier = "almostLinear" })
-hl.animation({ leaf = "fadeOut",       enabled = true,  speed = 1.46, bezier = "almostLinear" })
-hl.animation({ leaf = "fade",          enabled = true,  speed = 2.03, bezier = "quick" })
-hl.animation({ leaf = "layers",        enabled = true,  speed = 2.81, bezier = "easeOutQuint" })
-hl.animation({ leaf = "layersIn",      enabled = true,  speed = 3,    bezier = "easeOutQuint", style = "fade" })
-hl.animation({ leaf = "layersOut",     enabled = true,  speed = 1.5,  bezier = "linear",       style = "fade" })
-hl.animation({ leaf = "fadeLayersIn",  enabled = true,  speed = 1.79, bezier = "almostLinear" })
-hl.animation({ leaf = "fadeLayersOut", enabled = true,  speed = 1.39, bezier = "almostLinear" })
-hl.animation({ leaf = "workspaces",    enabled = true,  speed = 1,    bezier = "quick", style = "slide" })
-hl.animation({ leaf = "zoomFactor",    enabled = true,  speed = 2,    bezier = "quick" })
+hl.animation({ leaf = "global",           enabled = true,  speed = 5,    bezier = "default" })
+hl.animation({ leaf = "border",           enabled = true,  speed = 1.25, bezier = "linear" })
+hl.animation({ leaf = "windows",          enabled = true,  speed = 1.5,  bezier = "easeOutQuint" })
+hl.animation({ leaf = "windowsIn",        enabled = true,  speed = 1.5,  bezier = "easeOutQuint", style = "popin 87%" })
+hl.animation({ leaf = "windowsOut",       enabled = true,  speed = 1.5,  bezier = "linear",       style = "popin 87%" })
+hl.animation({ leaf = "fadeIn",           enabled = true,  speed = 1.73, bezier = "almostLinear" })
+hl.animation({ leaf = "fadeOut",          enabled = true,  speed = 1.46, bezier = "almostLinear" })
+hl.animation({ leaf = "fade",             enabled = true,  speed = 2.03, bezier = "quick" })
+hl.animation({ leaf = "layers",           enabled = true,  speed = 2.81, bezier = "easeOutQuint" })
+hl.animation({ leaf = "layersIn",         enabled = true,  speed = 3,    bezier = "easeOutQuint", style = "fade" })
+hl.animation({ leaf = "layersOut",        enabled = true,  speed = 1.5,  bezier = "linear",       style = "fade" })
+hl.animation({ leaf = "fadeLayersIn",     enabled = true,  speed = 1.79, bezier = "almostLinear" })
+hl.animation({ leaf = "fadeLayersOut",    enabled = true,  speed = 1.39, bezier = "almostLinear" })
+hl.animation({ leaf = "workspaces",       enabled = true,  speed = 1,    bezier = "quick", style = "slide" })
+hl.animation({ leaf = "zoomFactor",       enabled = true,  speed = 2,    bezier = "quick" })
+hl.animation({ leaf = "specialWorkspace", enabled = true,  speed = 2,    bezier = "quick" , style = "fade"})
 -- hl.animation({ leaf = "workspacesIn",  enabled = true,  speed = 1.21, bezier = "almostLinear", style = "fade" })
 -- hl.animation({ leaf = "workspacesOut", enabled = true,  speed = 1.94, bezier = "almostLinear", style = "fade" })
 
@@ -190,11 +200,11 @@ hl.bind(mod.." + semicolon", hl.dsp.layout("togglesplit"))    -- dwindle only
 
 hl.bind("F11", hl.dsp.window.fullscreen())    -- dwindle only
 hl.bind(mod.. " + SHIFT + P", hl.dsp.focus({ window = "title:^(Picture-in-Picture)", }))
-hl.bind(mod.." + h", hl.dsp.focus({ direction = "left" }))
-hl.bind(mod.." + l", hl.dsp.focus({ direction = "right" }))
-hl.bind(mod.." + k", hl.dsp.focus({ direction = "up" }))
-hl.bind(mod.." + j", hl.dsp.focus({ direction = "down" }))
-
+hl.bind(mod.." + H", hl.dsp.focus({ direction = "left" }))
+hl.bind(mod.." + L", hl.dsp.focus({ direction = "right" }))
+hl.bind(mod.." + K", hl.dsp.focus({ direction = "up" }))
+hl.bind(mod.." + J", hl.dsp.focus({ direction = "down" }))
+-- hl.bind(mod.." + SHIFT + semicolon", hl.dsp.exec_cmd("grim - | wayland-boomer -ms 1.2"))
 
 for i = 1, 10 do
     local key = i % 10 -- 10 maps to key 0
@@ -238,9 +248,10 @@ hl.bind("XF86MonBrightnessDown",hl.dsp.exec_cmd("brightnessctl -e4 -n2 set 5%-")
 hl.window_rule({
     name  = "Border Highlight on 2 or more windows",
     match = {
-        workspace = "w[v2-10]",
+        workspace = "w[t2-10]",
     },
-    border_color = themes.rose_pine.highlight_high_alt,
+    -- border_color = themes.rose_pine.highlight_high_alt,
+    border_color = border_color,
     -- suppress_event = "maximize",
 })
 
@@ -255,7 +266,7 @@ hl.window_rule({
 hl.window_rule({
     name = "Modal",
     match = {
-        modal = true
+        modal = true,
     },
     float = true,
     center = true,
@@ -417,12 +428,12 @@ hl.window_rule({
 hl.window_rule({
     name = "Picture-in-Picture",
     match = {
-        title = "^(Picture-in-Picture)$"
+        title = "^(Picture-in-Picture)$",
     },
     float = true,
     pin   = true,
     move = {"(monitor_w-window_w-20)", "(monitor_h-window_h-20)"},
-    border_color = themes.rose_pine.highlight_high_alt,
+    border_color = border_color,
     border_size = 0,
 })
 
@@ -430,10 +441,11 @@ hl.window_rule({
     name = "Floating",
     match = {
         float = true,
+        focus = true,
     },
+    border_color = border_color, -- themes.rose_pine.hightlight_high_alt,
     border_size = 2,
     size  = {"(window_w*1)", "(window_h*1)"},
-    border_color = themes.rose_pine.hightlight_high_alt,
 })
 
 hl.window_rule({
@@ -475,4 +487,17 @@ hl.window_rule({
     float = true,
     center = true,
     size  = {"(window_w*1)", "(window_h*1)"},
+})
+
+hl.window_rule({
+    name = "Boomer",
+    match = {
+        title = "^(wayland-boomer)$"
+    },
+    fullscreen = true,
+    monitor = 1,
+    enabled = false,
+    move   = { 0, 0 },
+    no_anim = true,
+    -- size  = {"(window_w*1)", "(window_h*1)"},
 })
