@@ -1,0 +1,12 @@
+include "/usr/share/nano/*.nanorc"
+set autoindent
+set boldtext
+set linenumbers
+set numbercolor black,normal
+set nonewlines
+set nohelp
+set titlecolor green,normal
+set constantshow
+set statuscolor cyan,normal
+bind ^F right main
+bind ^B left main
