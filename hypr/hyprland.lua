@@ -13,10 +13,6 @@ local menu        = "rofi -show drun -run-command \""..app_runner.." {cmd}\""
 local colorpicker = "hyprpicker -a"
 local webapp      = google .. " --new-window --app="
 
--- hl.on("hyprland.start", function()
---   hl.exec_cmd("dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP")
--- end)
-
 hl.on("hyprland.start", function()
     hl.exec_cmd(terminal)
     hl.exec_cmd(browser)
@@ -96,8 +92,9 @@ hl.config({
         },
         blur = {
             enabled = false,
-            size    = 2,
-            passes  = 2,
+            size    = 0,
+            passes  = 0,
+            noise   = 0,
         },
     },
     dwindle = {
@@ -143,14 +140,11 @@ hl.config({
     }
 })
 
--- Default curves and animations, see https://wiki.hypr.land/Configuring/Advanced-and-Cool/Animations/
-
 hl.curve("easeOutQuint",   { type = "bezier", points = { {0.23, 1  },  {0.32, 1}    } })
 hl.curve("easeInOutCubic", { type = "bezier", points = { {0.65, 0.05}, {0.36, 1}    } })
 hl.curve("linear",         { type = "bezier", points = { {0, 0},       {1, 1}       } })
 hl.curve("almostLinear",   { type = "bezier", points = { {0.5, 0.5},   {0.75, 1}    } })
 hl.curve("quick",          { type = "bezier", points = { {0.15, 0},    {0.1, 1}     } })
-
 -- hl.curve("easy",           { type = "spring", mass = 1, stiffness = 71.2633, dampening = 15.8273644 })
 
 hl.animation({ leaf = "global",           enabled = true,  speed = 5,    bezier = "default" })
@@ -204,6 +198,13 @@ hl.bind(mod.." + H", hl.dsp.focus({ direction = "left" }))
 hl.bind(mod.." + L", hl.dsp.focus({ direction = "right" }))
 hl.bind(mod.." + K", hl.dsp.focus({ direction = "up" }))
 hl.bind(mod.." + J", hl.dsp.focus({ direction = "down" }))
+hl.bind(mod.." + tab", hl.dsp.window.cycle_next())
+
+hl.bind(mod.." + SHIFT + H", hl.dsp.window.resize({ x = -50, y =   0,  relative = 0 }))
+hl.bind(mod.." + SHIFT + L", hl.dsp.window.resize({ x =  50, y =   0,  relative = 0 }))
+hl.bind(mod.." + SHIFT + K", hl.dsp.window.resize({ x =   0, y = -50,  relative = 0 }))
+hl.bind(mod.." + SHIFT + J", hl.dsp.window.resize({ x =   0, y =  50,  relative = 0 }))
+
 -- hl.bind(mod.." + SHIFT + semicolon", hl.dsp.exec_cmd("grim - | wayland-boomer -ms 1.2"))
 
 for i = 1, 10 do
@@ -487,6 +488,18 @@ hl.window_rule({
     float = true,
     center = true,
     size  = {"(window_w*1)", "(window_h*1)"},
+})
+
+hl.window_rule({
+    name = "Terminal on Special Workspace",
+    match = {
+        class = "^(kitty)$",
+        workspace = "s[true]",
+    },
+    enabled = false,
+    xray    = true,
+    -- blur    = true,
+    -- size  = {"(window_w*1)", "(window_h*1)"},
 })
 
 hl.window_rule({
