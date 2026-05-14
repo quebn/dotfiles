@@ -15,14 +15,38 @@ import Quickshell.Services.Mpris
  */
 Singleton {
 	id: root;
+	property list<MprisPlayer> players: Mpris.players.values.filter(player => isRealPlayer(player));
 	property MprisPlayer trackedPlayer: null;
-	property MprisPlayer activePlayer: trackedPlayer ?? Mpris.players.values[0] ?? null;
+	property MprisPlayer activePlayer: isRealActivePlayer(trackedPlayer ?? Mpris.players.values[0]) ?? null;
 	signal trackChanged(reverse: bool);
 
 	property bool __reverse: false;
 
 	property var activeTrack;
 
+	readonly property bool hasActivePlasmaIntegration: Mpris.players.values.some(
+		p => p.dbusName?.startsWith('org.mpris.MediaPlayer2.plasma-browser-integration')
+	)
+
+	function isRealActivePlayer(player) {
+		if (player.length != 0 && player.identity.startsWith("Mozilla")) {
+			return player
+		}
+	}
+
+	function isRealPlayer(player) {
+        return (
+			(player.length != 0 && player.identity.startsWith("Mozilla")) &&
+			!(player.trackTitle != "Unknown" && player.identity == "Chromium") &&
+            // Remove native browser buses only if plasma-browser-integration is actually active on D-Bus
+            !(hasActivePlasmaIntegration && player.dbusName.startsWith("org.mpris.MediaPlayer2.firefox")) && !(hasActivePlasmaIntegration && player.dbusName.startsWith("org.mpris.MediaPlayer2.chromium")) &&
+            // playerctld just copies other buses and we don't need duplicates
+            !player.dbusName?.startsWith("org.mpris.MediaPlayer2.playerctld") &&
+            // Non-instance mpd bus
+            !(player.dbusName?.endsWith(".mpd") && !player.dbusName.endsWith("MediaPlayer2.mpd")));
+    }
+
+	// Original stuff from fox below
 	Instantiator {
 		model: Mpris.players;
 
