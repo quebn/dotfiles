@@ -15,40 +15,11 @@ local webapp      = google .. " --new-window --app="
 
 hl.on("hyprland.start", function()
     hl.exec_cmd(terminal)
-    hl.exec_cmd(browser)
+    hl.exec_cmd(browser, { workspace = "2 silent" })
     hl.exec_cmd("systemctl --user start plasma-polkit-agent")
 end)
 
-local themes = {
-    rose_pine = {
-        night              = "rgba(000000ff)",
-        base               = "rgba(000000ff)",
-        base_alt           = "rgba(191724ff)",
-        surface            = "rgba(110d12ff)",
-        overlay            = "rgba(121212ff)",
-        surface_alt        = "rgba(1f1d2eff)",
-        overlay_alt        = "rgba(26233aff)",
-        muted              = "rgba(6e6a86ff)",
-        subtle             = "rgba(908caaff)",
-        text               = "rgba(e0def4ff)",
-        love               = "rgba(eb6f92ff)",
-        gold               = "rgba(f6c177ff)",
-        rose               = "rgba(ebbcbaff)",
-        pine               = "rgba(31748fff)",
-        foam               = "rgba(9ccfd8ff)",
-        iris               = "rgba(c4a7e7ff)",
-        highlight_low      = "rgba(21202eff)",
-        highlight_med      = "rgba(403d52ff)",
-        highlight_high     = "rgba(524f67ff)",
-        highlight_high_alt = "rgba(6e6a85ff)",
-    }
-}
-
--- local colors = {
---     black =
--- }
-
-
+local themes = require("colorscheme").themes
 
 -- local border_color = themes.rose_pine.highlight_high_alt
 local border_color = {
@@ -62,6 +33,11 @@ local border_color = {
 hl.config({
     xwayland = {
         force_zero_scaling = true
+    },
+    cursor = {
+        zoom_disable_aa  = true,
+        zoom_rigid = true,
+        -- zoom_detached_camera = false,
     },
     general = {
         gaps_in          = 5,
@@ -163,14 +139,6 @@ hl.animation({ leaf = "fadeLayersOut",    enabled = true,  speed = 1.39, bezier 
 hl.animation({ leaf = "workspaces",       enabled = true,  speed = 1,    bezier = "quick", style = "slide" })
 hl.animation({ leaf = "zoomFactor",       enabled = true,  speed = 2,    bezier = "quick" })
 hl.animation({ leaf = "specialWorkspace", enabled = true,  speed = 2,    bezier = "quick" , style = "fade"})
--- hl.animation({ leaf = "workspacesIn",  enabled = true,  speed = 1.21, bezier = "almostLinear", style = "fade" })
--- hl.animation({ leaf = "workspacesOut", enabled = true,  speed = 1.94, bezier = "almostLinear", style = "fade" })
-
-
--- hl.device({
---     name        = "epic-mouse-v1",
---     sensitivity = -0.5,
--- })
 
 local screenshot_edit = "$HOME/.config/hypr/scripts/screenshot_edit.sh"
 local screenshot_full = "$HOME/.config/hypr/scripts/screenshot_full.sh"
@@ -183,6 +151,7 @@ hl.bind(mod.." + return", hl.dsp.exec_cmd(terminal))
 hl.bind(mod.." + space", hl.dsp.exec_cmd(menu))
 hl.bind(mod.." + SHIFT + Q", hl.dsp.exec_cmd(powermenu))
 hl.bind(mod.." + SHIFT + X", hl.dsp.window.close())
+hl.bind(mod.." + SHIFT + ALT + X", hl.dsp.window.kill())
 hl.bind(mod.." + SHIFT + F", hl.dsp.window.fullscreen())
 hl.bind(mod.." + F", hl.dsp.window.float({ action = "toggle" }))
 hl.bind(mod.." + E", hl.dsp.window.move({ workspace = "empty" }))
@@ -224,9 +193,27 @@ hl.bind(mod.." + bracketright", hl.dsp.focus({ workspace = "e+1" }))
 hl.bind(mod.." + bracketleft",  hl.dsp.focus({ workspace = "e-1" }))
 hl.bind(mod.." + SHIFT + bracketright", hl.dsp.window.move({ workspace = "e+1" }))
 hl.bind(mod.." + SHIFT + bracketleft",  hl.dsp.window.move({ workspace = "e-1" }))
--- hl.bind(mod.." + mouse_down",   hl.dsp.exec_cmd("hyprctl -q eval cursor:zoom_factor $(hyprctl getoption cursor:zoom_factor -j | jq '(.float * 1.5) | if . > 5 then 5 else . end')"))
--- hl.bind(mod.." + mouse_up", hl.dsp.exec_cmd("hyprctl -q eval cursor:zoom_factor 1"))
--- hl.bind(mod.." + escape",   hl.dsp.exec_cmd("hyprctl -q eval cursor:zoom_factor 1"))
+
+local max_zoom    = 6
+local zoom_factor = 1.5
+hl.bind(mod.." + mouse_down", function()
+    local zoom = hl.get_config("cursor.zoom_factor") * zoom_factor
+    if zoom > max_zoom then
+        zoom = max_zoom
+    end
+    hl.config({
+        cursor = {
+            zoom_factor = zoom
+        }
+    })
+end)
+hl.bind(mod.." + mouse_up", function()
+    hl.config({
+        cursor = {
+            zoom_factor = 1
+        }
+    })
+end)
 
 -- Move/resize windows with mainMod + LMB/RMB and dragging
 hl.bind(mod.." + mouse:272", hl.dsp.window.drag(),   { mouse = true })
@@ -483,7 +470,7 @@ hl.window_rule({
     name = "Steam Windows",
     match = {
         class = "^(steam)$",
-        title = "Friends List|Steam Settings"
+        title = "Friends List|Steam Settings|Sign in to Steam"
     },
     float = true,
     center = true,
