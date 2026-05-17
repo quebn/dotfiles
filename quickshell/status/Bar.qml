@@ -11,280 +11,280 @@ import QtQuick.Layouts
 import Qt5Compat.GraphicalEffects
 
 Scope {
-  id: root
+    id: root
 
-  Variants {
-    id: rootVariant
-    model: Quickshell.screens
+    Variants {
+        id: rootVariant
+        model: Quickshell.screens
 
-    PanelWindow {
-      id: bar
-      property ShellScreen modelData
-      screen: modelData
-      // aboveWindows: false
+        PanelWindow {
+            id: bar
+            property ShellScreen modelData
+            screen: modelData
+            // aboveWindows: false
 
-      readonly property int centerSideModuleWidth: Appearance.sizes.bar.centerSideModuleWidth
-      readonly property Tooltip tooltip: tooltip;
+            readonly property int centerSideModuleWidth: Appearance.sizes.bar.centerSideModuleWidth
+            readonly property Tooltip tooltip: tooltip;
 
-      WlrLayershell.namespace: "quickshell:bar"
-      color: "transparent"
+            WlrLayershell.namespace: "quickshell:bar"
+            color: "transparent"
 
-      Tooltip {
-        id: tooltip
-        bar: bar
-      }
-
-      readonly property int tooltipYOffset: Appearance.sizes.bar.baseHeight + (Appearance.sizes.compositorGaps * 0.5)
-
-      function boundedX(targetX: real, width: real): real {
-        const x = Math.max(
-          barContent.anchors.leftMargin + width + Appearance.sizes.compositorGaps,
-          Math.min(barContent.width + barContent.anchors.leftMargin - width, targetX)
-        );
-        return x - (Appearance.sizes.compositorGaps * 0.5);
-      }
-
-      anchors {
-        top: true
-        bottom: false
-        left: true
-        right: true
-      }
-
-      implicitHeight: Appearance.sizes.bar.height + Appearance.rounding.corner
-      exclusiveZone: Appearance.sizes.bar.height
-
-      mask: Region {
-        item: barContent
-      }
-
-      // mask: Region {
-      //   height: root.height
-      //   width: root.exclusiveZone
-      // }
-
-      Item {
-        id: barContent
-        anchors {
-          right: parent.right
-          left: parent.left
-          top: parent.top
-        }
-        implicitHeight: Appearance.sizes.bar.height
-        height: Appearance.sizes.bar.height
-
-        Rectangle {
-          id: background
-          anchors {
-            fill: parent
-            margins: 0
-          }
-          color: Appearance.colors.background
-          radius: 0
-
-        }
-        MouseArea {
-          id: barLeft
-          anchors.left: parent.left
-          implicitHeight: Appearance.sizes.bar.baseHeight
-          height: Appearance.sizes.bar.height
-          width: (bar.width - middleSection.width) / 2
-
-          Item {
-            anchors.fill: parent
-            implicitHeight: leftSection.implicitHeight
-            implicitWidth: leftSection.implicitWidth
-
-            RowLayout {
-              id: leftSection
-              anchors.fill: parent
-              spacing: 10
-
-              RippleButton {
-                Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
-                Layout.leftMargin: 10
-                Layout.fillWidth: false
-                property real buttonPadding: 5
-                implicitWidth: distroIcon.width + buttonPadding * 2
-                implicitHeight: distroIcon.height + buttonPadding * 2
-
-                radius: Appearance.rounding.full
-                toggled: true
-
-                onPressed: {
-                  Hyprland.dispatch('exec $HOME/.config/hypr/scripts/powermenu.sh');
-                }
-
-                CustomIcon {
-                  id: distroIcon
-                  anchors.centerIn: parent
-                  width: 18
-                  height: 18
-                  source: SystemInfo.distroIcon
-                  colorize: true
-                  color: Appearance.colors.blue
-                }
-              }
-
-              ActiveWindow {
-                visible: true
-                Layout.rightMargin: Appearance.rounding.corners
-                Layout.fillWidth: true
-                Layout.fillHeight: true
+            Tooltip {
+                id: tooltip
                 bar: bar
-              }
-            }
-          }
-        }
-        RowLayout {
-          id: middleSection
-          anchors.centerIn: parent
-          spacing: 8
-
-          BarGroup {
-            id: centerLeftGroup
-            Layout.preferredWidth: bar.centerSideModuleWidth
-            Layout.fillHeight: true
-
-            Resources {
-              alwaysShowAllResources: true
-              Layout.fillWidth: true
             }
 
-            Media {
-              visible: true
-              Layout.fillWidth: true
+            readonly property int tooltipYOffset: Appearance.sizes.bar.baseHeight + (Appearance.sizes.compositorGaps * 0.5)
+
+            function boundedX(targetX: real, width: real): real {
+                const x = Math.max(
+                    barContent.anchors.leftMargin + width + Appearance.sizes.compositorGaps,
+                    Math.min(barContent.width + barContent.anchors.leftMargin - width, targetX)
+                );
+                return x - (Appearance.sizes.compositorGaps * 0.5);
             }
-          }
 
-          BarGroup {
-            id: centerMiddleGroup
-            padding: 4
-            Layout.fillHeight: true
-
-            Workspaces {
-              id: workspaces
-              bar: bar
-              Layout.fillHeight: true
-            }
-          }
-
-          MouseArea {
-            id: centerRightGroup
-            implicitWidth: centerRightGroupContent.implicitWidth
-            implicitHeight: centerRightGroupContent.implicitHeight
-            Layout.preferredWidth: bar.centerSideModuleWidth
-            Layout.fillHeight: true
-
-            BarGroup {
-              id: centerRightGroupContent
-              anchors.fill: parent
-
-              ClockWidget {
-                showDate: (Config.options.bar.verbose && bar.useShortenedForm < 2)
-                Layout.alignment: Qt.AlignVCenter
-                Layout.fillWidth: true
-              }
-
-              CpuTemperature {
-                mainColor: Appearance.colors.magenta
-                visible: true
-                Layout.alignment: Qt.AlignVCenter
-              }
-
-              BatteryIndicator {
-                mainColor: Appearance.colors.yellow
-                visible: true
-                Layout.alignment: Qt.AlignVCenter
-              }
-            }
-          }
-        }
-        MouseArea {
-          id: barRight
-
-          anchors.right: parent.right
-          implicitHeight: Appearance.sizes.bar.baseHeight
-          height: Appearance.sizes.bar.height
-          width: (bar.width - middleSection.width) / 2
-
-          Item {
-            anchors.fill: parent
-            implicitHeight: rightSection.implicitHeight
-            implicitWidth: rightSection.implicitWidth
-
-            RowLayout {
-              id: rightSection
-              anchors.fill: parent
-              spacing: 0
-              layoutDirection: Qt.RightToLeft
-
-              BrightnessControl {
-                bar: bar
-                Layout.rightMargin: Appearance.sizes.compositorGaps
-                visible: true
-                monitor: Brightness.getMonitorForScreen(modelData)
-                Layout.alignment: Qt.AlignVCenter
-              }
-
-              Volume {
-                visible: true
-                bar: bar
-                Layout.alignment: Qt.AlignVCenter
-              }
-
-              SysTray {
-                bar: bar
-                visible: true
-                Layout.fillWidth: false
-                Layout.fillHeight: true
-              }
-
-
-              Item {
-                Layout.fillWidth: true
-                Layout.fillHeight: true
-              }
-
-            }
-          }
-        }
-      }
-
-      Loader {
-        id: roundDecorators
-        anchors {
-          left: parent.left
-          right: parent.right
-        }
-        y: Appearance.sizes.bar.height
-        width: parent.width
-        height: Appearance.rounding.corner
-        active: true
-
-        sourceComponent: Item {
-          implicitHeight: Appearance.rounding.corner
-          RoundCorner {
-            id: cornerLeft
             anchors {
-              top: parent.top
-              bottom: parent.bottom
-              left: parent.left
+                top: true
+                bottom: false
+                left: true
+                right: true
             }
-            color: Appearance.colors.background
-            corner: RoundCorner.CornerEnum.TopLeft
-          }
-          RoundCorner {
-            id: cornerRight
-            anchors {
-              right: parent.right
-              top: parent.top
+
+            implicitHeight: Appearance.sizes.bar.height + Appearance.rounding.corner
+            exclusiveZone: Appearance.sizes.bar.height
+
+            mask: Region {
+                item: barContent
             }
-            color: Appearance.colors.background
-            corner: RoundCorner.CornerEnum.TopRight
-          }
+
+            // mask: Region {
+            //     height: root.height
+            //     width: root.exclusiveZone
+            // }
+
+            Item {
+                id: barContent
+                anchors {
+                    right: parent.right
+                    left: parent.left
+                    top: parent.top
+                }
+                implicitHeight: Appearance.sizes.bar.height
+                height: Appearance.sizes.bar.height
+
+                Rectangle {
+                    id: background
+                    anchors {
+                        fill: parent
+                        margins: 0
+                    }
+                    color: Appearance.colors.background
+                    radius: 0
+
+                }
+                MouseArea {
+                    id: barLeft
+                    anchors.left: parent.left
+                    implicitHeight: Appearance.sizes.bar.baseHeight
+                    height: Appearance.sizes.bar.height
+                    width: (bar.width - middleSection.width) / 2
+
+                    Item {
+                        anchors.fill: parent
+                        implicitHeight: leftSection.implicitHeight
+                        implicitWidth: leftSection.implicitWidth
+
+                        RowLayout {
+                            id: leftSection
+                            anchors.fill: parent
+                            spacing: 10
+
+                            RippleButton {
+                                Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
+                                Layout.leftMargin: 10
+                                Layout.fillWidth: false
+                                property real buttonPadding: 5
+                                implicitWidth: distroIcon.width + buttonPadding * 2
+                                implicitHeight: distroIcon.height + buttonPadding * 2
+
+                                radius: Appearance.rounding.full
+                                toggled: true
+
+                                onPressed: {
+                                    Hyprland.dispatch('hl.dsp.exec_cmd("$HOME/.config/hypr/scripts/powermenu.sh")');
+                                }
+
+                                CustomIcon {
+                                    id: distroIcon
+                                    anchors.centerIn: parent
+                                    width: 18
+                                    height: 18
+                                    source: SystemInfo.distroIcon
+                                    colorize: true
+                                    color: Appearance.colors.blue
+                                }
+                            }
+
+                            ActiveWindow {
+                                visible: true
+                                Layout.rightMargin: Appearance.rounding.corners
+                                Layout.fillWidth: true
+                                Layout.fillHeight: true
+                                bar: bar
+                            }
+                        }
+                    }
+                }
+                RowLayout {
+                    id: middleSection
+                    anchors.centerIn: parent
+                    spacing: 8
+
+                    BarGroup {
+                        id: centerLeftGroup
+                        Layout.preferredWidth: bar.centerSideModuleWidth
+                        Layout.fillHeight: true
+
+                        Resources {
+                            alwaysShowAllResources: true
+                            Layout.fillWidth: true
+                        }
+
+                        Media {
+                            visible: true
+                            Layout.fillWidth: true
+                        }
+                    }
+
+                    BarGroup {
+                        id: centerMiddleGroup
+                        padding: 4
+                        Layout.fillHeight: true
+
+                        Workspaces {
+                            id: workspaces
+                            bar: bar
+                            Layout.fillHeight: true
+                        }
+                    }
+
+                    MouseArea {
+                        id: centerRightGroup
+                        implicitWidth: centerRightGroupContent.implicitWidth
+                        implicitHeight: centerRightGroupContent.implicitHeight
+                        Layout.preferredWidth: bar.centerSideModuleWidth
+                        Layout.fillHeight: true
+
+                        BarGroup {
+                            id: centerRightGroupContent
+                            anchors.fill: parent
+
+                            ClockWidget {
+                                showDate: (Config.options.bar.verbose && bar.useShortenedForm < 2)
+                                Layout.alignment: Qt.AlignVCenter
+                                Layout.fillWidth: true
+                            }
+
+                            CpuTemperature {
+                                mainColor: Appearance.colors.magenta
+                                visible: true
+                                Layout.alignment: Qt.AlignVCenter
+                            }
+
+                            BatteryIndicator {
+                                mainColor: Appearance.colors.yellow
+                                visible: true
+                                Layout.alignment: Qt.AlignVCenter
+                            }
+                        }
+                    }
+                }
+                MouseArea {
+                    id: barRight
+
+                    anchors.right: parent.right
+                    implicitHeight: Appearance.sizes.bar.baseHeight
+                    height: Appearance.sizes.bar.height
+                    width: (bar.width - middleSection.width) / 2
+
+                    Item {
+                        anchors.fill: parent
+                        implicitHeight: rightSection.implicitHeight
+                        implicitWidth: rightSection.implicitWidth
+
+                        RowLayout {
+                            id: rightSection
+                            anchors.fill: parent
+                            spacing: 0
+                            layoutDirection: Qt.RightToLeft
+
+                            BrightnessControl {
+                                bar: bar
+                                Layout.rightMargin: Appearance.sizes.compositorGaps
+                                visible: true
+                                monitor: Brightness.getMonitorForScreen(modelData)
+                                Layout.alignment: Qt.AlignVCenter
+                            }
+
+                            Volume {
+                                visible: true
+                                bar: bar
+                                Layout.alignment: Qt.AlignVCenter
+                            }
+
+                            SysTray {
+                                bar: bar
+                                visible: true
+                                Layout.fillWidth: false
+                                Layout.fillHeight: true
+                            }
+
+
+                            Item {
+                                Layout.fillWidth: true
+                                Layout.fillHeight: true
+                            }
+
+                        }
+                    }
+                }
+            }
+
+            Loader {
+                id: roundDecorators
+                anchors {
+                    left: parent.left
+                    right: parent.right
+                }
+                y: Appearance.sizes.bar.height
+                width: parent.width
+                height: Appearance.rounding.corner
+                active: true
+
+                sourceComponent: Item {
+                    implicitHeight: Appearance.rounding.corner
+                    RoundCorner {
+                        id: cornerLeft
+                        anchors {
+                            top: parent.top
+                            bottom: parent.bottom
+                            left: parent.left
+                        }
+                        color: Appearance.colors.background
+                        corner: RoundCorner.CornerEnum.TopLeft
+                    }
+                    RoundCorner {
+                        id: cornerRight
+                        anchors {
+                            right: parent.right
+                            top: parent.top
+                        }
+                        color: Appearance.colors.background
+                        corner: RoundCorner.CornerEnum.TopRight
+                    }
+                }
+            }
         }
-      }
     }
-  }
 }
