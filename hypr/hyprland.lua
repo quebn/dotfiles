@@ -454,7 +454,6 @@ hl.window_rule({
         focus = true,
     },
     border_color = border_color, -- themes.rose_pine.hightlight_high_alt,
-    border_size = 2,
     size  = {"(window_w*1)", "(window_h*1)"},
 })
 
@@ -471,13 +470,22 @@ hl.window_rule({
 })
 
 hl.window_rule({
-    name = "Steam",
+    name = "Steam Workspace",
+    match = {
+        class = "^(steam)$",
+        title = "Steam",
+        float = false,
+    },
+    workspace = "5",
+})
+
+hl.window_rule({
+    name = "Steam Tile Border",
     match = {
         class = "^(steam)$",
         workspace = "w[t1]",
     },
     border_color = themes.rose_pine.night,
-    workspace = "5",
 })
 
 hl.window_rule({
@@ -488,7 +496,8 @@ hl.window_rule({
     },
     float = true,
     center = true,
-    size  = {"(window_w*1)", "(window_h*1)"},
+    persistent_size = true,
+    -- size  = {"(window_w*1)", "(window_h*1)"},
 })
 
 hl.window_rule({
