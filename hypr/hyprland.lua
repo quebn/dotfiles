@@ -12,6 +12,7 @@ local google      = app_runner.." chromium"
 local menu        = "rofi -show drun -run-command \""..app_runner.." {cmd}\""
 local colorpicker = "hyprpicker -a"
 local webapp      = google .. " --new-window --app="
+local zen_silent = true
 
 hl.on("hyprland.start", function()
     hl.exec_cmd(terminal)
@@ -36,7 +37,7 @@ hl.config({
     },
     cursor = {
         zoom_disable_aa  = true,
-        zoom_rigid = true,
+        -- zoom_rigid = true,
         -- zoom_detached_camera = false,
     },
     general = {
@@ -194,7 +195,8 @@ hl.bind(mod.." + bracketleft",  hl.dsp.focus({ workspace = "e-1" }))
 hl.bind(mod.." + SHIFT + bracketright", hl.dsp.window.move({ workspace = "e+1" }))
 hl.bind(mod.." + SHIFT + bracketleft",  hl.dsp.window.move({ workspace = "e-1" }))
 
-local max_zoom    = 6
+local max_zoom = 6
+local min_zoom = 1
 local zoom_factor = 1.5
 hl.bind(mod.." + mouse_down", function()
     local zoom = hl.get_config("cursor.zoom_factor") * zoom_factor
@@ -207,13 +209,32 @@ hl.bind(mod.." + mouse_down", function()
         }
     })
 end)
+
 hl.bind(mod.." + mouse_up", function()
+    local zoom = hl.get_config("cursor.zoom_factor") / zoom_factor
+    if zoom < min_zoom then
+        zoom = min_zoom
+    end
     hl.config({
         cursor = {
-            zoom_factor = 1
+            zoom_factor = zoom
         }
     })
 end)
+
+local function set_zoom_factor(zf)
+    return function()
+        hl.config({
+            cursor = {
+                zoom_factor = zf
+            }
+        })
+    end
+end
+
+hl.bind(mod.." + SHIFT + mouse_down", set_zoom_factor(max_zoom))
+hl.bind(mod.." + SHIFT + mouse_up",   set_zoom_factor(min_zoom))
+hl.bind(mod.." + SHIFT + escape",     set_zoom_factor(min_zoom))
 
 -- Move/resize windows with mainMod + LMB/RMB and dragging
 hl.bind(mod.." + mouse:272", hl.dsp.window.drag(),   { mouse = true })
@@ -421,6 +442,7 @@ hl.window_rule({
     float = true,
     pin   = true,
     move = {"(monitor_w-window_w-20)", "(monitor_h-window_h-20)"},
+    no_initial_focus = true,
     border_color = border_color,
     border_size = 0,
 })
@@ -434,14 +456,6 @@ hl.window_rule({
     border_color = border_color, -- themes.rose_pine.hightlight_high_alt,
     border_size = 2,
     size  = {"(window_w*1)", "(window_h*1)"},
-})
-
-hl.window_rule({
-    name = "Zen Browser",
-    match = {
-        class = "^(zen)$",
-    },
-    workspace = "2 silent",
 })
 
 hl.window_rule({
@@ -501,3 +515,17 @@ hl.window_rule({
     no_anim = true,
     -- size  = {"(window_w*1)", "(window_h*1)"},
 })
+
+local wr_zen = hl.window_rule({
+    name = "Zen Browser",
+    match = {
+        class = "^(zen)$",
+    },
+    workspace = "2 silent",
+})
+
+hl.on("window.open", function(w)
+    if w.class == "zen" then
+        wr_zen:set_enabled(false)
+    end
+end)
