@@ -6,8 +6,13 @@ import QtQuick.Layouts
 import Quickshell.Wayland
 import Quickshell.Hyprland
 
-Item {
+MouseArea {
     id: root
+    hoverEnabled: true
+    onEntered: root.hovered = true
+    onExited:  root.hovered  = false
+    cursorShape: Qt.PointingHandCursor
+
     required property var bar
     readonly property HyprlandMonitor monitor: Hyprland.monitorFor(bar.screen)
     readonly property Toplevel activeWindow: ToplevelManager.activeToplevel
@@ -34,22 +39,14 @@ Item {
         anchors.right: parent.right
         spacing: -4
 
-        MouseArea {
-            hoverEnabled: true
-            // TODO: track the id of the hovered workspace.
-            onEntered: root.hovered = true
-            onExited: root.hovered = false
-            cursorShape: Qt.PointingHandCursor
-        }
-
         StyledText {
             Layout.fillWidth: true
             font.pixelSize: Appearance.font.pixelSize.smaller
             color: Appearance.colors.hint
             elide: Text.ElideRight
-            text: root.isMonitorFocus && root.activeWindow?.activated && root.largestWindow ?
-                root.activeWindow?.appId :
-                (root.largestWindow?.class) ?? qsTr("Desktop")
+            text: root.isMonitorFocus && root.activeWindow?.activated && root.largestWindow
+                ? root.activeWindow?.appId
+                : (root.largestWindow?.class) ?? qsTr("Desktop")
 
         }
 
@@ -61,7 +58,9 @@ Item {
             text: activeWindowTitle()
         }
 
+
     }
+
 
     property var tooltip: TooltipItem {
         tooltip: root.bar.tooltip

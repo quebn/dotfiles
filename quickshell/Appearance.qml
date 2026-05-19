@@ -37,6 +37,7 @@ Singleton {
     }
 
     colors: QtObject {
+        property color transparent: Qt.rgba(0, 0, 0, 0)
         property color background: root.transparent ? Qt.rgba(0, 0, 0, .9) : colortheme.base
         property color foreground: colortheme.text
         property color gutter: colortheme.highlightMedium

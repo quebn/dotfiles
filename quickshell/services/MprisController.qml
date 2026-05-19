@@ -25,15 +25,11 @@ Singleton {
     property var activeTrack;
 
     readonly property bool hasActivePlasmaIntegration: Mpris.players.values.some(
-        p => p.dbusName?.startsWith('org.mpris.MediaPlayer2.plasma-browser-integration')
+        p => p.dbusName?.startsWith("org.mpris.MediaPlayer2.plasma-browser-integration")
     )
 
     function isRealActivePlayer(player) {
         if (player === undefined || ((player.identity.startsWith("Mozilla") && !player.lengthSupported && player.length ==  0))) {
-            // console.log("Identity: ", player.identity);
-            // console.log("Title: ", player.trackTitle);
-            // console.log("Length: ", player.length);
-            // console.log("Length Supported: ",player.lengthSupported);
             return null;
         }
     return player;
@@ -49,13 +45,6 @@ Singleton {
             && !player.dbusName?.startsWith("org.mpris.MediaPlayer2.playerctld")
             && !(player.dbusName?.endsWith(".mpd") && !player.dbusName.endsWith("MediaPlayer2.mpd")) // Non-instance mpd bus
         );
-        if (isReal) {
-            console.log("--------")
-            console.log("TrackTitle: ", player.trackTitle);
-            console.log("Indentity: ", player.identity);
-            console.log("DbusName: ", player.dbusName);
-            console.log("--------")
-        }
         return isReal;
     }
 
