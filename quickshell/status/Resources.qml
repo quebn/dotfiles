@@ -29,8 +29,8 @@ Item {
 
         spacing: 0
         anchors.fill: parent
-        anchors.leftMargin: 4
-        anchors.rightMargin: 4
+        anchors.leftMargin: 2
+        // anchors.rightMargin: 2
 
         Resource {
             // icon_name: "memory_alt"

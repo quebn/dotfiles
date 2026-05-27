@@ -32,15 +32,15 @@ Singleton {
         if (player === undefined || ((player.identity.startsWith("Mozilla") && !player.lengthSupported && player.length ==  0))) {
             return null;
         }
-    return player;
-}
+        return player;
+    }
 
     function isRealPlayer(player) {
         const isReal = (
             !(player.length == 0 && player.identity.startsWith("Mozilla"))
             && !(player.trackTitle == "Unknown" && player.identity == "Chromium")
             // Remove native browser buses only if plasma-browser-integration is actually active on D-Bus
-            && !(hasActivePlasmaIntegration && player.dbusName.startsWith("org.mpris.MediaPlayer2.firefox")) && !(hasActivePlasmaIntegration && player.dbusName.startsWith("org.mpris.MediaPlayer2.chromium"))
+            // && !(hasActivePlasmaIntegration && player.dbusName.startsWith("org.mpris.MediaPlayer2.firefox")) && !(hasActivePlasmaIntegration && player.dbusName.startsWith("org.mpris.MediaPlayer2.chromium"))
             // playerctld just copies other buses and we don't need duplicates
             && !player.dbusName?.startsWith("org.mpris.MediaPlayer2.playerctld")
             && !(player.dbusName?.endsWith(".mpd") && !player.dbusName.endsWith("MediaPlayer2.mpd")) // Non-instance mpd bus
@@ -92,7 +92,7 @@ Singleton {
 
         function onTrackArtUrlChanged() {
             // console.log("arturl:", activePlayer.trackArtUrl)
-            // root.updateTrack();
+            root.updateTrack();
             if (root.activePlayer.uniqueId == root.activeTrack.uniqueId && root.activePlayer.trackArtUrl != root.activeTrack.artUrl) {
                 // cantata likes to send cover updates *BEFORE* updating the track info.
                 // as such, art url changes shouldn't be able to break the reverse animation

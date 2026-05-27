@@ -48,7 +48,7 @@ Item {
     RowLayout { // Real content
         id: rowLayout
 
-        spacing: 4
+        spacing: 2
         anchors.fill: parent
 
         CircularProgress {
@@ -62,7 +62,7 @@ Item {
             MaterialSymbol {
                 anchors.centerIn: parent
                 fill: 1
-                text: activePlayer ? activePlayer.isPlaying ? "music_note" : "pause" : "music_note"
+                text: activePlayer ? (activePlayer.isPlaying ? "music_note" : "pause") : "music_note"
                 iconSize: Appearance.font.pixelSize.normal
                 color: mainColor
             }
@@ -75,6 +75,7 @@ Item {
             Layout.fillWidth: true // Ensures the text takes up available space
             Layout.rightMargin: rowLayout.spacing
             horizontalAlignment: Text.AlignHCenter
+            font.pixelSize: Appearance.font.pixelSize.small
             elide: Text.ElideRight // Truncates the text on the right
             color: mainColor
             text: `${cleanedTitle}${activePlayer?.trackArtist ? ' • ' + activePlayer.trackArtist : ''}`
