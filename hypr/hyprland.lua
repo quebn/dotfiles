@@ -308,8 +308,9 @@ hl.window_rule({
         class = "^(blueman-manager)$"
     },
     float = true,
+    persistent_size = true,
     center = true,
-    size  = {"(window_w*0.5)", "(window_h*0.5)"},
+    -- size  = {"(window_w*0.5)", "(window_h*0.5)"},
 })
 
 hl.window_rule({
@@ -441,10 +442,10 @@ hl.window_rule({
     },
     float = true,
     pin   = true,
-    move = {"(monitor_w-window_w-20)", "(monitor_h-window_h-20)"},
+    move = { "(monitor_w-window_w-20)", "(monitor_h-window_h-20)" },
     no_initial_focus = true,
     border_color = border_color,
-    border_size = 0,
+    border_size = 2,
 })
 
 hl.window_rule({
