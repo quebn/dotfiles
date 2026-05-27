@@ -2,8 +2,9 @@ name:
   .trash: 
   .cargo: 
   .emacs.d: 
-  a.out:  
+  a.out: 
 extension:
+  odin: 󰟢
   go: 
   hs: 
   rs: 
@@ -11,7 +12,7 @@ filetype:
   dir: 
   file: 󰈔
   pipe: 󰟥
-  socket: 󰆨 
+  socket: 󰆨
   executable: 
   symlink-dir: 
   symlink-file: 
