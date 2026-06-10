@@ -21,7 +21,6 @@ Scope {
             id: bar
             property ShellScreen modelData
             screen: modelData
-            // aboveWindows: false
 
             readonly property int centerSideModuleWidth: Appearance.sizes.bar.centerSideModuleWidth
             readonly property Tooltip tooltip: tooltip;
@@ -57,11 +56,6 @@ Scope {
             mask: Region {
                 item: barContent
             }
-
-            // mask: Region {
-            //     height: root.height
-            //     width: root.exclusiveZone
-            // }
 
             Item {
                 id: barContent
