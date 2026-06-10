@@ -198,7 +198,9 @@ hl.bind(mod.." + SHIFT + bracketleft",  hl.dsp.window.move({ workspace = "e-1" }
 local max_zoom = 6
 local min_zoom = 1
 local zoom_factor = 1.5
+-- local acceleration = 0
 hl.bind(mod.." + mouse_down", function()
+    -- TODO: add acceleration for zooming
     local zoom = hl.get_config("cursor.zoom_factor") * zoom_factor
     if zoom > max_zoom then
         zoom = max_zoom
@@ -247,6 +249,17 @@ hl.bind("XF86AudioMute",        hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_S
 hl.bind("XF86AudioMicMute",     hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"),   { locked = true, repeating = true })
 hl.bind("XF86MonBrightnessUp",  hl.dsp.exec_cmd("brightnessctl -e4 -n2 set 5%+"),                  { locked = true, repeating = true })
 hl.bind("XF86MonBrightnessDown",hl.dsp.exec_cmd("brightnessctl -e4 -n2 set 5%-"),                  { locked = true, repeating = true })
+local nops = {
+    "XF86AudioPause",
+    "XF86AudioPlay",
+    "XF86AudioPrev",
+    "XF86AudioNext",
+}
+
+local do_nothing = function() end
+for _, nop in pairs(nops) do
+    hl.bind(nop, do_nothing)
+end
 
 -- Requires playerctl
 -- hl.bind("XF86AudioNext",  hl.dsp.exec_cmd("playerctl next"),       { locked = true })
@@ -474,6 +487,14 @@ hl.window_rule({
     name = "Steam Workspace",
     match = {
         class = "^(steam)$",
+        float = false,
+    },
+    workspace = "5",
+})
+
+hl.window_rule({
+    name = "Steam Workspace Title",
+    match = {
         title = "Steam",
         float = false,
     },
@@ -511,6 +532,16 @@ hl.window_rule({
     xray    = true,
     -- blur    = true,
     -- size  = {"(window_w*1)", "(window_h*1)"},
+})
+
+hl.window_rule({
+    name = "Share Picker",
+    match = {
+        class = "^(hyprland-share-picker)$"
+    },
+    float = true,
+    center = true,
+    persistent_size = true,
 })
 
 hl.window_rule({
