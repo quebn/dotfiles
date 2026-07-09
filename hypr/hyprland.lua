@@ -89,19 +89,20 @@ hl.config({
     },
     misc = {
         disable_splash_rendering = true,
-        disable_hyprland_logo   = true,
-        force_default_wallpaper = 0,
-        splash_font_family = "ZxProto, Sans",
-        font_family = "ZxProto, Sans",
-        focus_on_activate = false,
+        disable_hyprland_logo    = true,
+        force_default_wallpaper  = 0,
+        splash_font_family       = "ZxProto, Sans",
+        font_family              = "ZxProto, Sans",
+        focus_on_activate        = false,
         vrr = 1,
     },
     input = {
-        kb_layout  = "us",
-        kb_options = "caps:escape",
+        repeat_delay = 200,
+        kb_layout    = "us",
+        kb_options   = "caps:escape",
         follow_mouse = 1,
-        sensitivity = 0,
-        touchpad = {
+        sensitivity  = 0,
+        touchpad     = {
             natural_scroll = false,
         },
     },
@@ -286,37 +287,37 @@ hl.window_rule({
 })
 
 hl.window_rule({
-    name = "Modal",
+    name  = "Modal",
     match = {
         modal = true,
     },
-    float = true,
+    float  = true,
     center = true,
-    size  = {"(monitor_w*0.5)", "(monitor_h*0.5)"}
+    size   = {"(monitor_w*0.5)", "(monitor_h*0.5)"}
 })
 
 hl.window_rule({
-    name = "Dialogs",
+    name  = "Dialogs",
     match = {
         class = "^(file_progress|dialogs|confirm|xdg-desktop-portal-gtk)$"
     },
-    float = true,
+    float  = true,
     center = true,
-    size  = {"(monitor_w*0.5)", "(monitor_h*0.5)"}
+    size   = {"(monitor_w*0.5)", "(monitor_h*0.5)"}
 })
 
 hl.window_rule({
-    name = "nm Connection Editor",
+    name  = "nm Connection Editor",
     match = {
         class = "^(nm-connection-editor)$"
     },
-    float = true,
+    float  = true,
     center = true,
-    size  = {"(monitor_w*0.5)", "(monitor_h*0.5)"},
+    size   = {"(monitor_w*0.5)", "(monitor_h*0.5)"},
 })
 
 hl.window_rule({
-    name = "Blueman Manager",
+    name  = "Blueman Manager",
     match = {
         class = "^(blueman-manager)$"
     },
@@ -327,22 +328,22 @@ hl.window_rule({
 })
 
 hl.window_rule({
-    name = "Please Confirm",
+    name  = "Please Confirm",
     match = {
         class = "^(Please Confirm...)$"
     },
     center = true,
-    size  = {"(window_w*0.5)", "(window_h*0.5)"},
+    size   = {"(window_w*0.5)", "(window_h*0.5)"},
 })
 
 hl.window_rule({
-    name = "Pavucontrol",
+    name  = "Pavucontrol",
     match = {
         class = "^(org.pulseaudio.pavucontrol)$"
     },
-    float = true,
-    center = true,
-    size  = {"(monitor_w*0.5)", "(monitor_h*0.5)"},
+    float   = true,
+    center  = true,
+    size    = {"(monitor_w*0.5)", "(monitor_h*0.5)"},
     opacity = "0.9 override",
 })
 
