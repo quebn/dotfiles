@@ -1,35 +1,27 @@
 pragma Singleton
 pragma ComponentBehavior: Bound
 
-// From https://git.outfoxxed.me/outfoxxed/nixnew
-// It does not have a license, but the author is okay with redistribution.
-
 import QtQml.Models
 import QtQuick
 import Quickshell
 import Quickshell.Io
 import Quickshell.Services.Mpris
 
-/**
- * A service that provides easy access to the active Mpris player.
- */
 Singleton {
     id: root;
-    property list<MprisPlayer> players: Mpris.players.values.filter(player => isRealPlayer(player));
     property MprisPlayer trackedPlayer: null;
-    property MprisPlayer activePlayer: isRealActivePlayer(trackedPlayer ?? Mpris.players.values[0]) ?? null;
+    property list<MprisPlayer> players: Mpris.players.values.filter(player => isRealPlayer(player));
+    readonly property MprisPlayer activePlayer: trackedPlayer ?? Mpris.players.values[0] ?? null;
     signal trackChanged(reverse: bool);
 
     property bool __reverse: false;
 
     property var activeTrack;
 
-    readonly property bool hasActivePlasmaIntegration: Mpris.players.values.some(
-        p => p.dbusName?.startsWith("org.mpris.MediaPlayer2.plasma-browser-integration")
-    )
-
-    function isRealActivePlayer(player) {
-        if (player === undefined || ((player.identity.startsWith("Mozilla") && !player.lengthSupported && player.length ==  0))) {
+    function isActivePlayer(player) {
+        const isInvalid = (player.identity.startsWith("Mozilla") && !player.lengthSupported && player.length == 0);
+        const isOnlyOne = !player.isPlaying && players.length > 0;
+        if (player === undefined || isInvalid || isOnlyOne) {
             return null;
         }
         return player;
@@ -48,7 +40,6 @@ Singleton {
         return isReal;
     }
 
-    // Original stuff from fox below
     Instantiator {
         model: Mpris.players;
 
@@ -91,8 +82,8 @@ Singleton {
         }
 
         function onTrackArtUrlChanged() {
-            // console.log("arturl:", activePlayer.trackArtUrl)
-            root.updateTrack();
+            console.log("arturl:", activePlayer.trackArtUrl)
+            //root.updateTrack();
             if (root.activePlayer.uniqueId == root.activeTrack.uniqueId && root.activePlayer.trackArtUrl != root.activeTrack.artUrl) {
                 // cantata likes to send cover updates *BEFORE* updating the track info.
                 // as such, art url changes shouldn't be able to break the reverse animation
@@ -104,74 +95,90 @@ Singleton {
         }
     }
 
-    onActivePlayerChanged: this.updateTrack();
+    onActivePlayerChanged: root.updateTrack();
+
+    function updateTrackedPlayer() {
+        console.log(`Updating Tracked Player!! ${root.trackedPlayer.isPlaying}`);
+        if (root.activePlayer?.isPlaying) {
+            return;
+        }
+
+        for (const player of Mpris.players.values) {
+            if (player.playbackState.isPlaying) {
+                root.trackedPlayer = player;
+                break;
+            }
+        }
+    }
 
     function updateTrack() {
         //console.log(`update: ${this.activePlayer?.trackTitle ?? ""} : ${this.activePlayer?.trackArtists}`)
-        this.activeTrack = {
-            uniqueId: this.activePlayer?.uniqueId ?? 0,
-            artUrl: this.activePlayer?.trackArtUrl ?? "",
-            title: this.activePlayer?.trackTitle || qsTr("Unknown Title"),
-            artist: this.activePlayer?.trackArtist || qsTr("Unknown Artist"),
-            album: this.activePlayer?.trackAlbum || qsTr("Unknown Album"),
+        root.activeTrack = {
+            uniqueId: root.activePlayer?.uniqueId ?? 0,
+            artUrl: root.activePlayer?.trackArtUrl ?? "",
+            title: root.activePlayer?.trackTitle || "Unknown Title",
+            artist: root.activePlayer?.trackArtist || "Unknown Artist",
+            album: root.activePlayer?.trackAlbum || "Unknown Album",
         };
 
-        this.trackChanged(__reverse);
-        this.__reverse = false;
+        root.trackChanged(__reverse);
+        root.__reverse = false;
     }
 
-    property bool isPlaying: this.activePlayer && this.activePlayer.isPlaying;
-    property bool canTogglePlaying: this.activePlayer?.canTogglePlaying ?? false;
+    property bool isPlaying: root.activePlayer && root.activePlayer.isPlaying;
+    property bool canTogglePlaying: root.activePlayer?.canTogglePlaying ?? false;
     function togglePlaying() {
-        if (this.canTogglePlaying) this.activePlayer.togglePlaying();
+        if (root.canTogglePlaying) {
+            root.activePlayer.togglePlaying();
+        }
     }
 
-    property bool canGoPrevious: this.activePlayer?.canGoPrevious ?? false;
+    property bool canGoPrevious: root.activePlayer?.canGoPrevious ?? false;
     function previous() {
-        if (this.canGoPrevious) {
-            this.__reverse = true;
-            this.activePlayer.previous();
+        if (root.canGoPrevious) {
+            root.__reverse = true;
+            root.activePlayer.previous();
         }
     }
 
-    property bool canGoNext: this.activePlayer?.canGoNext ?? false;
+    property bool canGoNext: root.activePlayer?.canGoNext ?? false;
     function next() {
-        if (this.canGoNext) {
-            this.__reverse = false;
-            this.activePlayer.next();
+        if (root.canGoNext) {
+            root.__reverse = false;
+            root.activePlayer.next();
         }
     }
 
-    property bool canChangeVolume: this.activePlayer && this.activePlayer.volumeSupported && this.activePlayer.canControl;
+    property bool canChangeVolume: root.activePlayer && root.activePlayer.volumeSupported && root.activePlayer.canControl;
 
-    property bool loopSupported: this.activePlayer && this.activePlayer.loopSupported && this.activePlayer.canControl;
-    property var loopState: this.activePlayer?.loopState ?? MprisLoopState.None;
+    property bool loopSupported: root.activePlayer && root.activePlayer.loopSupported && root.activePlayer.canControl;
+    property var loopState: root.activePlayer?.loopState ?? MprisLoopState.None;
     function setLoopState(loopState: var) {
-        if (this.loopSupported) {
-            this.activePlayer.loopState = loopState;
+        if (root.loopSupported) {
+            root.activePlayer.loopState = loopState;
         }
     }
 
-    property bool shuffleSupported: this.activePlayer && this.activePlayer.shuffleSupported && this.activePlayer.canControl;
-    property bool hasShuffle: this.activePlayer?.shuffle ?? false;
+    property bool shuffleSupported: root.activePlayer && root.activePlayer.shuffleSupported && root.activePlayer.canControl;
+    property bool hasShuffle: root.activePlayer?.shuffle ?? false;
     function setShuffle(shuffle: bool) {
-        if (this.shuffleSupported) {
-            this.activePlayer.shuffle = shuffle;
+        if (root.shuffleSupported) {
+            root.activePlayer.shuffle = shuffle;
         }
     }
 
     function setActivePlayer(player: MprisPlayer) {
         const targetPlayer = player ?? Mpris.players[0];
-        console.log(`[Mpris] Active player ${targetPlayer} << ${activePlayer}`)
+        console.log(`setactive: ${targetPlayer} from ${activePlayer}`)
 
-        if (targetPlayer && this.activePlayer) {
-            this.__reverse = Mpris.players.indexOf(targetPlayer) < Mpris.players.indexOf(this.activePlayer);
+        if (targetPlayer && root.activePlayer) {
+            root.__reverse = Mpris.players.indexOf(targetPlayer) < Mpris.players.indexOf(root.activePlayer);
         } else {
             // always animate forward if going to null
-            this.__reverse = false;
+            root.__reverse = false;
         }
 
-        this.trackedPlayer = targetPlayer;
+        root.trackedPlayer = targetPlayer;
     }
 
     IpcHandler {

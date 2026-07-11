@@ -138,11 +138,13 @@ MouseArea {
 
         onClose: root.targetMenuOpen = false;
 
+
         Loader {
             id: menuContentLoader
             active: root.targetMenuOpen || rightclickMenu.visible
 
             sourceComponent: MenuView {
+
                 menu: root.modelData.menu
                 onClose: root.targetMenuOpen = false;
             }

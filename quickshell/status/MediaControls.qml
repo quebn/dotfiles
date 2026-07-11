@@ -16,7 +16,7 @@ import Quickshell.Hyprland
 Scope {
     id: root
     property bool visible: false
-    readonly property MprisPlayer activePlayer: MprisController.activePlayer
+    readonly property MprisPlayer trackedPlayer: MprisController.trackedPlayer
     readonly property var realPlayers: MprisController.players
     readonly property var meaningfulPlayers: filterDuplicatePlayers(realPlayers)
     readonly property real osdWidth: Appearance.sizes.osdWidth

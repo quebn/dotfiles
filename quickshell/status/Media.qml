@@ -12,9 +12,9 @@ import Quickshell.Hyprland
 Item {
     id: root
 
-    readonly property MprisPlayer activePlayer: MprisController.activePlayer
-    readonly property string cleanedTitle: StringUtils.cleanMusicTitle(activePlayer?.trackTitle) || qsTr("No media")
-    property color mainColor: activePlayer ? Appearance.colors.red : Appearance.colors.hint
+    readonly property MprisPlayer trackedPlayer: MprisController.trackedPlayer
+    readonly property string cleanedTitle: StringUtils.cleanMusicTitle(trackedPlayer?.trackTitle) || qsTr("No media")
+    property color mainColor: trackedPlayer ? Appearance.colors.red : Appearance.colors.hint
 
     Layout.fillHeight: true
     // Layout.fillWidth: true
@@ -22,10 +22,10 @@ Item {
     implicitHeight: Appearance.sizes.bar.height
 
     Timer {
-        running: activePlayer?.playbackState == MprisPlaybackState.Playing
+        running: trackedPlayer?.playbackState == MprisPlaybackState.Playing
         interval: 5000
         repeat: true
-        onTriggered: activePlayer.positionChanged()
+        onTriggered: trackedPlayer.positionChanged()
     }
 
     MouseArea {
@@ -34,13 +34,14 @@ Item {
         acceptedButtons: Qt.MiddleButton | Qt.BackButton | Qt.ForwardButton | Qt.RightButton | Qt.LeftButton
         onPressed: (event) => {
             if (event.button === Qt.MiddleButton) {
-                activePlayer?.next();
+                trackedPlayer?.next();
             } else if (event.button === Qt.BackButton) {
-                activePlayer?.previous();
+                trackedPlayer?.previous();
             } else if (event.button === Qt.ForwardButton || event.button === Qt.RightButton) {
                 Hyprland.dispatch(`hl.dsp.global("quickshell:mediaControlsToggle")`)
             } else if (event.button === Qt.LeftButton) {
-                activePlayer?.togglePlaying();
+                trackedPlayer?.togglePlaying();
+                MprisController.updateTrackedPlayer();
             }
         }
     }
@@ -54,7 +55,7 @@ Item {
         CircularProgress {
             Layout.alignment: Qt.AlignVCenter
             lineWidth: 2
-            value: activePlayer?.position / activePlayer?.length
+            value: trackedPlayer?.position / trackedPlayer?.length
             size: 26
             secondaryColor: Appearance.colors.gutter
             primaryColor: mainColor
@@ -62,7 +63,7 @@ Item {
             MaterialSymbol {
                 anchors.centerIn: parent
                 fill: 1
-                text: activePlayer ? (activePlayer.isPlaying ? "music_note" : "pause") : "music_note"
+                text: trackedPlayer ? (trackedPlayer.isPlaying ? "music_note" : "pause") : "music_note"
                 iconSize: Appearance.font.pixelSize.normal
                 color: mainColor
             }
@@ -78,7 +79,7 @@ Item {
             font.pixelSize: Appearance.font.pixelSize.small
             elide: Text.ElideRight // Truncates the text on the right
             color: mainColor
-            text: `${cleanedTitle}${activePlayer?.trackArtist ? ' • ' + activePlayer.trackArtist : ''}`
+            text: `${cleanedTitle}${trackedPlayer?.trackArtist ? ' • ' + trackedPlayer.trackArtist : ''}`
         }
 
     }

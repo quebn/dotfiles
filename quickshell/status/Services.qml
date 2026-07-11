@@ -32,7 +32,7 @@ Item {
             iconName: "swap_horiz"
             percentage: ResourceUsage.swapUsedPercentage
             shown: (Config.options.bar.resources.alwaysShowSwap && percentage > 0) || 
-                (MprisController.activePlayer?.trackTitle == null) ||
+                (MprisController.trackedPlayer?.trackTitle == null) ||
                 root.alwaysShowAllResources
             Layout.leftMargin: shown ? 4 : 0
         }
@@ -41,7 +41,7 @@ Item {
             iconName: "settings_slow_motion"
             percentage: ResourceUsage.cpuUsage
             shown: Config.options.bar.resources.alwaysShowCpu || 
-                !(MprisController.activePlayer?.trackTitle?.length > 0) ||
+                !(MprisController.trackedPlayer?.trackTitle?.length > 0) ||
                 root.alwaysShowAllResources
             Layout.leftMargin: shown ? 4 : 0
         }
