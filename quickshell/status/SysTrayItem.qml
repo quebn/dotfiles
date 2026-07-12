@@ -9,6 +9,7 @@ import Quickshell
 import Quickshell.Services.SystemTray
 import Quickshell.Widgets
 import Quickshell.Wayland
+import Quickshell.Hyprland
 import Qt5Compat.GraphicalEffects
 
 MouseArea {
@@ -136,17 +137,22 @@ MouseArea {
         show: root.targetMenuOpen
         animateSize: !(menuContentLoader?.item?.animating ?? false)
 
-        onClose: root.targetMenuOpen = false;
+        onClose: root.targetMenuOpen = false
+        focus: rightclickMenu.visible || root.targetMenuOpen
 
+        Keys.onEscapePressed: (event) => {
+            rightclickMenu.visible = false
+            root.targetMenuOpen = false
+            event.accepted = true
+        }
 
         Loader {
             id: menuContentLoader
             active: root.targetMenuOpen || rightclickMenu.visible
 
             sourceComponent: MenuView {
-
                 menu: root.modelData.menu
-                onClose: root.targetMenuOpen = false;
+                onClose: root.targetMenuOpen = false
             }
         }
     }

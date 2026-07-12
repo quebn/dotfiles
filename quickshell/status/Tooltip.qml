@@ -1,5 +1,6 @@
 import QtQuick
 import Quickshell
+import Quickshell.Wayland
 import Quickshell.Hyprland
 import qs
 
@@ -94,7 +95,8 @@ Scope {
             }
 
 
-            HyprlandWindow.opacity: root.scaleMul
+            HyprlandWindow.opacity: root.scaleMul;
+            // WlrLayershell.keyboardFocus: WlrKeyboardFocus.Exclusive;
 
             HyprlandWindow.visibleMask: Region {
                 id: visibleMask
@@ -131,6 +133,7 @@ Scope {
                         activeMenu.close()
                     }
                 }
+
             }
 
             Item {
