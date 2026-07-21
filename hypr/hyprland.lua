@@ -200,7 +200,7 @@ local max_zoom = 6
 local min_zoom = 1
 local zoom_factor = 1.5
 -- local acceleration = 0
-hl.bind(mod.." + mouse_down", function()
+hl.bind(mod.." + mouse_up", function()
     -- TODO: add acceleration for zooming
     local zoom = hl.get_config("cursor.zoom_factor") * zoom_factor
     if zoom > max_zoom then
@@ -213,7 +213,7 @@ hl.bind(mod.." + mouse_down", function()
     })
 end)
 
-hl.bind(mod.." + mouse_up", function()
+hl.bind(mod.." + mouse_down", function()
     local zoom = hl.get_config("cursor.zoom_factor") / zoom_factor
     if zoom < min_zoom then
         zoom = min_zoom
@@ -235,8 +235,8 @@ local function set_zoom_factor(zf)
     end
 end
 
-hl.bind(mod.." + SHIFT + mouse_down", set_zoom_factor(max_zoom))
-hl.bind(mod.." + SHIFT + mouse_up",   set_zoom_factor(min_zoom))
+hl.bind(mod.." + SHIFT + mouse_up", set_zoom_factor(max_zoom))
+hl.bind(mod.." + SHIFT + mouse_down",   set_zoom_factor(min_zoom))
 hl.bind(mod.." + SHIFT + escape",     set_zoom_factor(min_zoom))
 
 -- Move/resize windows with mainMod + LMB/RMB and dragging
