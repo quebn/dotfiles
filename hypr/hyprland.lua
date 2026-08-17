@@ -1,8 +1,21 @@
+---@type string[]
+local monitors = { "eDP-1" }
+local hdmis = { "HDMI-A-1" }
+
 hl.monitor({
-    output   = "eDP-1",
+    output   = monitors[1],
     mode     = "preferred",
     position = "auto",
     scale    = "1.2",
+    -- mirror   =  hdmis[1],
+})
+
+hl.monitor({
+    output   = hdmis[1],
+    mode     = "preferred",
+    position = "auto",
+    -- mirror   = monitors[1],
+    scale    = "1",
 })
 
 local app_runner  = "$APPRUNNER"
@@ -146,6 +159,8 @@ local screenshot_edit = "$HOME/.config/hypr/scripts/screenshot_edit.sh"
 local screenshot_full = "$HOME/.config/hypr/scripts/screenshot_full.sh"
 local powermenu       = "$HOME/.config/hypr/scripts/powermenu.sh"
 
+-- Gestures
+hl.gesture({ fingers = 2, direction = "pinch", action = "cursorZoom", zoom_level = 1, mode = "live" })
 local mod = "SUPER"
 -- Example binds, see https://wiki.hypr.land/Configuring/Basics/Binds/ for more
 hl.bind(mod.." + B", hl.dsp.exec_cmd(browser))
@@ -157,6 +172,7 @@ hl.bind(mod.." + SHIFT + ALT + X", hl.dsp.window.kill())
 hl.bind(mod.." + SHIFT + F", hl.dsp.window.fullscreen())
 hl.bind(mod.." + F", hl.dsp.window.float({ action = "toggle" }))
 hl.bind(mod.." + E", hl.dsp.window.move({ workspace = "empty" }))
+hl.bind(mod.." + SHIFT + O", hl.dsp.window.move({ workspace = "special" }))
 hl.bind(mod.." + I", hl.dsp.exec_cmd(colorpicker))
 hl.bind(mod.." + A", hl.dsp.exec_cmd(webapp.."https://chatgpt.com"))
 hl.bind(mod.." + D", hl.dsp.exec_cmd(webapp.."https://excalidraw.com"))
@@ -543,6 +559,15 @@ hl.window_rule({
     float = true,
     center = true,
     persistent_size = true,
+})
+
+hl.window_rule({
+    name = "Code-OSS",
+    match = {
+        class = "^(code-oss)$"
+    },
+    opacity = ".9 override",
+    -- size  = {"(window_w*1)", "(window_h*1)"},
 })
 
 hl.window_rule({
