@@ -17,6 +17,7 @@ gui:
       - "⣏"
       - "⣧"
       - "⣶"
+    rate: 80
 git:
   diffRenderers:
     - colorArg: always
