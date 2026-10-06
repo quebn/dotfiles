@@ -574,16 +574,12 @@ hl.window_rule({
 })
 
 hl.window_rule({
-    name = "Boomer",
+    name = "RadDebugger",
     match = {
-        title = "^(wayland-boomer)$"
+        class = "^(RADDBG)$"
     },
     fullscreen = true,
-    monitor = 1,
-    enabled = false,
-    move   = { 0, 0 },
-    no_anim = true,
-    -- size  = {"(window_w*1)", "(window_h*1)"},
+    workspace = "special",
 })
 
 local wr_zen = hl.window_rule({
