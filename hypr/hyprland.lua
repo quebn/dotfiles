@@ -12,11 +12,15 @@ hl.monitor({
 
 hl.monitor({
     output   = hdmis[1],
-    mode     = "preferred",
     position = "auto",
-    -- mirror   = monitors[1],
+    mode     = "preferred",
     scale    = "1",
 })
+
+-- 1920x1200
+-- 1920x1200
+-- 1920x1080
+-- 1600x1200
 
 local app_runner  = "$APPRUNNER"
 local terminal    = app_runner.." kitty"
@@ -25,7 +29,6 @@ local google      = app_runner.." chromium"
 local menu        = "rofi -show drun -run-command \""..app_runner.." {cmd}\""
 local colorpicker = "hyprpicker -a"
 local webapp      = google .. " --new-window --app="
-local zen_silent = true
 
 hl.on("hyprland.start", function()
     hl.exec_cmd(terminal)

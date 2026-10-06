@@ -85,14 +85,15 @@ Singleton {
         }
 
         property QtObject pixelSize: QtObject {
-            property int smallest: 10
-            property int smaller: 12
-            property int small: 14
-            property int normal: 16
-            property int large: 18
-            property int larger: 20
-            property int huge: 22
-            property int hugeass: 24
+            property int value: 10
+            property int smallest: value + 0
+            property int smaller: value + 2
+            property int small: value + 4
+            property int normal: value + 6
+            property int large: value + 8
+            property int larger: value + 10
+            property int huge: value + 12
+            property int hugeass: value + 14
             property int title: huge
         }
     }

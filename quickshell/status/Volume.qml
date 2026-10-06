@@ -37,6 +37,7 @@ Item {
         onPressed: (event) => {
             if (event.button === Qt.LeftButton) {
                 Hyprland.dispatch(`hl.dsp.exec_cmd("$APPRUNNER pavucontrol")`)
+            // } else if (event.button === Qt.MiddleButton){
             } else {
                 root.showValue = !root.showValue;
             }

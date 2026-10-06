@@ -20,6 +20,8 @@ style = "bold green"
 
 
 [git_status]
+ahead = ""
+behind = ""
 style = "bold yellow"
 
 [cmd_duration]
@@ -36,7 +38,10 @@ symbol = " "
 disabled = true
 
 [python]
+symbol = " "
 disabled = true
+detect_extensions = []
+detect_folders = [".venv"]
 
 [nodejs]
 disabled = true
@@ -79,3 +84,17 @@ disabled = true
 
 [package]
 disabled = true
+
+[odin]
+disabled = true
+
+[custom.python]
+command = "printf '%s %s'\"$(python --version | sed 's/Python /v/')\" \"$(basename \"$VIRTUAL_ENV\")\""
+when = "test -n \"$VIRTUAL_ENV\""
+format = "via [ $output]($style) "
+
+
+[custom.tmux_sessions]
+command = "tmux list-sessions 2>/dev/null | wc -l"
+when = "test \"$(tmux list-sessions 2>/dev/null | wc -l)\" -ne 0"
+format = "with [ $output](bold red) "

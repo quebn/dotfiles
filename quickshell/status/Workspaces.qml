@@ -18,20 +18,23 @@ Item {
     readonly property HyprlandMonitor monitor: Hyprland.monitorFor(bar.screen)
     readonly property Toplevel activeWindow: ToplevelManager.activeToplevel
 
+    // TODO: tweak this ------------------------------------|
+    //                                                      v
+    readonly property int maxVisibleWorkspace: bar.width > 500 ? 10 : 5
     readonly property int currentWorkspace: monitor.activeWorkspace?.id - 1
-    readonly property int workspaceGroup: Math.floor(currentWorkspace / Config.options.bar.workspaces.shown)
+    readonly property int workspaceGroup: Math.floor(currentWorkspace / maxVisibleWorkspace)
     property list<bool> workspaceOccupied: []
     property int workspaceButtonWidth: 26
     property real workspaceIconSize: workspaceButtonWidth * 0.69
     property real workspaceIconSizeShrinked: workspaceButtonWidth * 0.55
     property real workspaceIconOpacityShrinked: 1
     property real workspaceIconMarginShrinked: -4
-    property int workspaceIndexInGroup: currentWorkspace % 10
+    property int workspaceIndexInGroup: currentWorkspace % maxVisibleWorkspace
 
     // Function to update workspaceOccupied
     function updateWorkspaceOccupied() {
-        workspaceOccupied = Array.from({ length: Config.options.bar.workspaces.shown }, (_, i) => {
-            return Hyprland.workspaces.values.some(ws => ws.id === workspaceGroup * Config.options.bar.workspaces.shown + i + 1);
+        workspaceOccupied = Array.from({ length: maxVisibleWorkspace }, (_, i) => {
+            return Hyprland.workspaces.values.some(ws => ws.id === workspaceGroup * maxVisibleWorkspace + i + 1);
         })
     }
 
@@ -73,7 +76,7 @@ Item {
         implicitHeight: Appearance.sizes.bar.height
 
         Repeater {
-            model: Config.options.bar.workspaces.shown
+            model: maxVisibleWorkspace
 
             Rectangle {
                 z: 1
@@ -153,12 +156,12 @@ Item {
         implicitHeight: Appearance.sizes.bar.height
 
         Repeater {
-            model: Config.options.bar.workspaces.shown
+            model: maxVisibleWorkspace
 
             Button {
                 id: button
                 // cursorShape: Qt.PointingHandCursor
-                property int workspaceValue: workspaceGroup * Config.options.bar.workspaces.shown + index + 1
+                property int workspaceValue: workspaceGroup * maxVisibleWorkspace + index + 1
                 property bool isHovered: false
                 Layout.fillHeight: true
                 onPressed: Hyprland.dispatch(`hl.dsp.focus({ workspace = ${workspaceValue}})`)

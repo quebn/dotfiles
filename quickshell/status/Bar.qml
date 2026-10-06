@@ -21,6 +21,7 @@ Scope {
             id: bar
             property ShellScreen modelData
             screen: modelData
+            visible: modelData.name !== "HDMI-A-1"
 
             readonly property int centerSideModuleWidth: Appearance.sizes.bar.centerSideModuleWidth
             readonly property Tooltip tooltip: tooltip;

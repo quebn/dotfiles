@@ -1,0 +1,1182 @@
+// raddbg 0.9.29 user file
+
+window:
+{
+  size: 937 1123
+  pos: 968 62
+  monitor
+  panels:
+  {
+    0.767232:
+    {
+      selected
+      text:
+      {
+        selected
+        expression: "file:\"/home/quebn/Programming/personal/surtr/src/main.c\".data"
+        auto: 1
+        project: ""
+        query:
+        {
+          input: ""
+          cmd: search
+        }
+        cursor: 0x13973
+        mark: 0x13973
+        font_size: 12
+        show_line_numbers: 1
+        line_wrapping: 1
+      }
+      disasm: query: input: ""
+    }
+    0.232768:
+    {
+      0.25: text:
+      {
+        selected
+        expression: ""
+        cursor: 0x0
+        mark: 0x0
+      }
+      0.50:
+      {
+        watch: selected expression: ""
+        text:
+        {
+          expression: "query:output"
+          query: input: ""
+          cursor: 0x0
+          mark: 0x0
+        }
+      }
+      0.25:
+      {
+        watch: selected expression: "query:call_stack"
+        watch: expression: "query:threads"
+      }
+    }
+  }
+  split_x
+  font_size: 12
+  smooth_code_text: 1
+  tab_height: 3.000000
+}
+keybindings:
+{
+  { kill_all f5 shift }
+  { step_into_inst f11 alt }
+  { step_over_inst f10 alt }
+  { step_out f11 shift }
+  { halt x ctrl shift }
+  { halt pause }
+  { run f5 }
+  { restart f5 ctrl shift }
+  { step_into f11 }
+  { step_over f10 }
+  { run_to_line f10 ctrl }
+  { set_next_statement f10 ctrl shift }
+  { inc_window_font_size equal alt }
+  { dec_window_font_size minus alt }
+  { toggle_fullscreen return ctrl }
+  { new_panel_right p ctrl }
+  { new_panel_down minus ctrl }
+  { rotate_panel_columns 2 ctrl }
+  { next_panel comma ctrl }
+  { prev_panel comma ctrl shift }
+  { focus_panel_right right ctrl alt }
+  { focus_panel_left left ctrl alt }
+  { focus_panel_up up ctrl alt }
+  { focus_panel_down down ctrl alt }
+  { undo z ctrl }
+  { redo y ctrl }
+  { go_back left alt }
+  { go_forward right alt }
+  { close_panel p ctrl shift alt }
+  { next_tab page_down ctrl }
+  { prev_tab page_up ctrl }
+  { next_tab tab ctrl }
+  { prev_tab tab ctrl shift }
+  { move_tab_right page_down ctrl shift }
+  { move_tab_left page_up ctrl shift }
+  { close_tab w ctrl }
+  { tab_bar_top up ctrl shift alt }
+  { tab_bar_bottom down ctrl shift alt }
+  { open_tab t ctrl }
+  { tab_settings t ctrl alt }
+  { open o ctrl }
+  { open_source_file_from_debug_info i ctrl }
+  { switch_to_partner_file o alt }
+  { new_project n ctrl shift }
+  { open_project o ctrl shift }
+  { save_project s ctrl shift }
+  { edit f2 }
+  { accept return }
+  { accept space }
+  { cancel esc }
+  { focus_menu d alt }
+  { toggle_lock l ctrl }
+  { move_left left }
+  { move_right right }
+  { move_up up }
+  { move_down down }
+  { move_left_select left shift }
+  { move_right_select right shift }
+  { move_up_select up shift }
+  { move_down_select down shift }
+  { move_left_chunk left ctrl }
+  { move_right_chunk right ctrl }
+  { move_up_chunk up ctrl }
+  { move_down_chunk down ctrl }
+  { move_up_page page_up }
+  { move_down_page page_down }
+  { move_up_whole home ctrl }
+  { move_down_whole end ctrl }
+  { move_left_chunk_select left ctrl shift }
+  { move_right_chunk_select right ctrl shift }
+  { move_up_chunk_select up ctrl shift }
+  { move_down_chunk_select down ctrl shift }
+  { move_up_page_select page_up shift }
+  { move_down_page_select page_down shift }
+  { move_up_whole_select home ctrl shift }
+  { move_down_whole_select end ctrl shift }
+  { move_up_reorder up alt }
+  { move_down_reorder down alt }
+  { move_home home }
+  { move_end end }
+  { move_home_select home shift }
+  { move_end_select end shift }
+  { select_all a ctrl }
+  { delete_single delete }
+  { delete_chunk delete ctrl }
+  { backspace_single backspace }
+  { backspace_chunk backspace ctrl }
+  { copy c ctrl }
+  { copy insert ctrl }
+  { cut x ctrl }
+  { paste v ctrl }
+  { paste insert shift }
+  { insert_text null }
+  { move_next tab }
+  { move_prev tab shift }
+  { goto_line g ctrl }
+  { goto_address g alt }
+  { search f ctrl }
+  { search slash }
+  { search_backwards r ctrl }
+  { search_backwards slash ctrl }
+  { find_next f3 }
+  { find_prev f3 ctrl }
+  { find_selected_thread f4 }
+  { goto_name j ctrl }
+  { goto_name_at_cursor f12 }
+  { toggle_watch_expr_at_cursor w alt }
+  { toggle_watch_expr_at_mouse d ctrl }
+  { toggle_watch_pin f9 ctrl }
+  { toggle_breakpoint f9 }
+  { add_address_breakpoint f9 shift }
+  { add_function_breakpoint f9 ctrl shift }
+  { attach f6 shift }
+  { open_palette f1 }
+  { open_palette p ctrl shift }
+  { log_marker m ctrl shift alt }
+  { toggle_dev_menu d ctrl shift alt }
+}
+current_path: "/home/quebn/Programming/personal/surtr/build"
+main_font: "/home/quebn/.local/share/fonts/ZxGamut-SemiBold.ttf"
+theme_color:
+{
+  tags: background
+  value: 0x000000ff
+}
+theme_color:
+{
+  tags: "alt background"
+  value: 0xff
+}
+theme_color:
+{
+  tags: "pop background"
+  value: 0x191724ff
+}
+theme_color:
+{
+  tags: "fresh background"
+  value: 0x1f1d2eff
+}
+theme_color:
+{
+  tags: "match background"
+  value: 0x26233aff
+}
+theme_color:
+{
+  tags: border
+  value: 0x524f67ff
+}
+theme_color:
+{
+  tags: text
+  value: 0xe0def4ff
+}
+theme_color:
+{
+  tags: "weak text"
+  value: 0x908caaff
+}
+theme_color:
+{
+  tags: "good text"
+  value: 0x31748fff
+}
+theme_color:
+{
+  tags: "neutral text"
+  value: 0xebbcbaff
+}
+theme_color:
+{
+  tags: "bad text"
+  value: 0xeb6f92ff
+}
+theme_color:
+{
+  tags: hover
+  value: 0xe0def4ff
+}
+theme_color:
+{
+  tags: "focus overlay"
+  value: 0x31748f14
+}
+theme_color:
+{
+  tags: "focus border"
+  value: 0x524f67ff
+}
+theme_color:
+{
+  tags: cursor
+  value: 0xffffffff
+}
+theme_color:
+{
+  tags: selection
+  value: 0xc4a7e70f
+}
+theme_color:
+{
+  tags: "inactive background"
+  value: 0x16
+}
+theme_color:
+{
+  tags: drop_shadow
+  value: 0x0000007f
+}
+theme_color:
+{
+  tags: "good_pop background"
+  value: 0xff
+}
+theme_color:
+{
+  tags: "good_pop border"
+  value: 0x31648ff0
+}
+theme_color:
+{
+  tags: "good_pop hover"
+  value: 0x31648fff
+}
+theme_color:
+{
+  tags: "good_pop weak text"
+  value: 0x908caaff
+}
+theme_color:
+{
+  tags: "bad_pop background"
+  value: 0xff
+}
+theme_color:
+{
+  tags: "bad_pop hover"
+  value: 0xeb6f92ff
+}
+theme_color:
+{
+  tags: code_default
+  value: 0xe0deffff
+}
+theme_color:
+{
+  tags: code_symbol
+  value: 0xf6c177ff
+}
+theme_color:
+{
+  tags: code_type
+  value: 0x9ccfd8ff
+}
+theme_color:
+{
+  tags: code_local
+  value: 0xa7dae8ff
+}
+theme_color:
+{
+  tags: code_register
+  value: 0xb7afd5ff
+}
+theme_color:
+{
+  tags: code_keyword
+  value: 0x31748fff
+}
+theme_color:
+{
+  tags: code_delimiter_or_operator
+  value: 0x838b8fff
+}
+theme_color:
+{
+  tags: code_numeric
+  value: 0xf6c177ff
+}
+theme_color:
+{
+  tags: code_numeric_alt_digit_group
+  value: 0x31748fff
+}
+theme_color:
+{
+  tags: code_string
+  value: 0xf6c177ff
+}
+theme_color:
+{
+  tags: code_meta
+  value: 0xebbcbaff
+}
+theme_color:
+{
+  tags: code_comment
+  value: 0x908caaff
+}
+theme_color:
+{
+  tags: line_info_0
+  value: 0xebbcba1f
+}
+theme_color:
+{
+  tags: line_info_1
+  value: 0x31748f1f
+}
+theme_color:
+{
+  tags: line_info_2
+  value: 0x9ccfd81f
+}
+theme_color:
+{
+  tags: line_info_3
+  value: 0xf6c1771f
+}
+theme_color:
+{
+  tags: line_info_4
+  value: 0xc4a6e71f
+}
+theme_color:
+{
+  tags: line_info_5
+  value: 0xeb6f921f
+}
+theme_color:
+{
+  tags: line_info_6
+  value: 0xe0def41f
+}
+theme_color:
+{
+  tags: line_info_7
+  value: 0x908caa1f
+}
+theme_color:
+{
+  tags: thread_0
+  value: 0xf6c177ff
+}
+theme_color:
+{
+  tags: thread_1
+  value: 0x9ccfd8ff
+}
+theme_color:
+{
+  tags: thread_unwound
+  value: 0xb2ccd8ff
+}
+theme_color:
+{
+  tags: thread_error
+  value: 0xeb6f92ff
+}
+theme_color:
+{
+  tags: breakpoint
+  value: 0xeb6f92ff
+}
+theme_color:
+{
+  tags: "floating background"
+  value: 0xef
+}
+theme_color:
+{
+  tags: "floating background alt"
+  value: 0xef
+}
+theme_color:
+{
+  tags: "floating background fresh"
+  value: 0xef
+}
+theme_color:
+{
+  tags: "floating border"
+  value: 0x524f67ff
+}
+theme_color:
+{
+  tags: "floating scroll_bar background"
+  value: 0x26233abf
+}
+theme_color:
+{
+  tags: "floating scroll_bar border"
+  value: 0x0
+}
+theme_color:
+{
+  tags: "scroll_bar background"
+  value: 0x1f1d2eaf
+}
+theme_color:
+{
+  tags: "scroll_bar border"
+  value: 0x21202eff
+}
+theme_color:
+{
+  tags: "implicit background"
+  value: 0x0
+}
+theme_color:
+{
+  tags: "implicit border"
+  value: 0x0
+}
+theme_color:
+{
+  tags: "hollow background"
+  value: d
+}
+theme_color:
+{
+  tags: "hollow border"
+  value: 0x524f67ff
+}
+theme_color:
+{
+  tags: "tab background"
+  value: 0x191724ff
+}
+theme_color:
+{
+  tags: "tab border"
+  value: 0x524f67ff
+}
+theme_color:
+{
+  tags: "tab inactive background"
+  value: 0
+}
+theme_color:
+{
+  tags: "tab inactive border"
+  value: 0x
+}
+theme_color:
+{
+  tags: "tab auto background"
+  value: 0x3e4d6eff
+}
+theme_color:
+{
+  tags: "tab auto inactive background"
+  value: 0x3e4d6e39
+}
+theme_color:
+{
+  tags: "drop_site background"
+  value: 0x0
+}
+theme_color:
+{
+  tags: "drop_site border"
+  value: 0x403d52ff
+}
+theme_color:
+{
+  tags: ""
+  value: 0xffffffff
+}
+theme_color:
+{
+  tags: ""
+  value: 0xffffffff
+}
+theme_color:
+{
+  tags: ""
+  value: 0xffffffff
+}
+theme_color:
+{
+  tags: ""
+  value: 0xffffffff
+}
+theme_color:
+{
+  tags: ""
+  value: 0xffffffff
+}
+theme_color:
+{
+  tags: ""
+  value: 0xffffffff
+}
+background_blur: 0
+theme: "Default (Dark)"
+theme_color: tags value: 0xffffffff
+cursor_trail: 0
+code_font: "/home/quebn/.local/share/fonts/0xProto-Regular.ttf"
+opaque_backgrounds: 0
+drop_shadows: 0
+breakpoint_glow: 1
+thread_glow: 0
+thread_lines: 1
+install_to_system: 0
+scrolling_animations: 1
+tab_width: 4
+rounded_corner_amount: 1.000000
+theme_color: tags value: 0xffffffff
+theme_color: tags value: 0xffffffff
+debug_info:
+{
+  path: "/home/quebn/Programming/personal/surtr/build/surtr"
+  timestamp: 66227576696216
+  project: ""
+}
+debug_info:
+{
+  path: "/usr/lib/libvulkan.so.1"
+  timestamp: 66226824328000
+  project: ""
+}
+debug_info:
+{
+  path: "/usr/lib/libm.so.6"
+  timestamp: 66226677382000
+  project: ""
+}
+debug_info:
+{
+  path: "/usr/lib/libc.so.6"
+  timestamp: 66226677382000
+  project: ""
+}
+debug_info:
+{
+  path: "/lib64/ld-linux-x86-64.so.2"
+  timestamp: 66226677382000
+  project: ""
+}
+debug_info:
+{
+  path: "/usr/lib/libwayland-client.so.0"
+  timestamp: 66222386661000
+  project: ""
+}
+debug_info:
+{
+  path: "/usr/lib/libffi.so.8"
+  timestamp: 66222343526000
+  project: ""
+}
+debug_info:
+{
+  path: "/usr/lib/libwayland-cursor.so.0"
+  timestamp: 66222386661000
+  project: ""
+}
+debug_info:
+{
+  path: "/usr/lib/libwayland-egl.so.1"
+  timestamp: 66222386661000
+  project: ""
+}
+debug_info:
+{
+  path: "/usr/lib/libxkbcommon.so.0"
+  timestamp: 66216091266000
+  project: ""
+}
+debug_info:
+{
+  path: "/usr/lib/libdecor-0.so.0"
+  timestamp: 66201193574000
+  project: ""
+}
+debug_info:
+{
+  path: "/usr/lib/libdecor/plugins-1/libdecor-gtk.so"
+  timestamp: 66201193574000
+  project: ""
+}
+debug_info:
+{
+  path: "/usr/lib/libcairo.so.2"
+  timestamp: 66226317201000
+  project: ""
+}
+debug_info:
+{
+  path: "/usr/lib/libdbus-1.so.3"
+  timestamp: 66175412997000
+  project: ""
+}
+debug_info:
+{
+  path: "/usr/lib/libgtk-3.so.0"
+  timestamp: 66209942808000
+  project: ""
+}
+debug_info:
+{
+  path: "/usr/lib/libgdk-3.so.0"
+  timestamp: 66209942808000
+  project: ""
+}
+debug_info:
+{
+  path: "/usr/lib/libgobject-2.0.so.0"
+  timestamp: 66221400973000
+  project: ""
+}
+debug_info:
+{
+  path: "/usr/lib/libglib-2.0.so.0"
+  timestamp: 66221400973000
+  project: ""
+}
+debug_info:
+{
+  path: "/usr/lib/libz.so.1"
+  timestamp: 66208667019000
+  project: ""
+}
+debug_info:
+{
+  path: "/usr/lib/libpng16.so.16"
+  timestamp: 66226809708000
+  project: ""
+}
+debug_info:
+{
+  path: "/usr/lib/libfontconfig.so.1"
+  timestamp: 66223597464000
+  project: ""
+}
+debug_info:
+{
+  path: "/usr/lib/libfreetype.so.6"
+  timestamp: 66209910972000
+  project: ""
+}
+debug_info:
+{
+  path: "/usr/lib/libX11.so.6"
+  timestamp: 66205917348000
+  project: ""
+}
+debug_info:
+{
+  path: "/usr/lib/libXext.so.6"
+  timestamp: 66204798290000
+  project: ""
+}
+debug_info:
+{
+  path: "/usr/lib/libXrender.so.1"
+  timestamp: 66168320488000
+  project: ""
+}
+debug_info:
+{
+  path: "/usr/lib/libxcb.so.1"
+  timestamp: 66146664704000
+  project: ""
+}
+debug_info:
+{
+  path: "/usr/lib/libxcb-render.so.0"
+  timestamp: 66146664704000
+  project: ""
+}
+debug_info:
+{
+  path: "/usr/lib/libxcb-shm.so.0"
+  timestamp: 66146664704000
+  project: ""
+}
+debug_info:
+{
+  path: "/usr/lib/libpixman-1.so.0"
+  timestamp: 66187941091000
+  project: ""
+}
+debug_info:
+{
+  path: "/usr/lib/libsystemd.so.0"
+  timestamp: 66226225854000
+  project: ""
+}
+debug_info:
+{
+  path: "/usr/lib/libgmodule-2.0.so.0"
+  timestamp: 66221400973000
+  project: ""
+}
+debug_info:
+{
+  path: "/usr/lib/libgio-2.0.so.0"
+  timestamp: 66221400973000
+  project: ""
+}
+debug_info:
+{
+  path: "/usr/lib/libpangocairo-1.0.so.0"
+  timestamp: 66222088234000
+  project: ""
+}
+debug_info:
+{
+  path: "/usr/lib/libpango-1.0.so.0"
+  timestamp: 66222088234000
+  project: ""
+}
+debug_info:
+{
+  path: "/usr/lib/libharfbuzz.so.0"
+  timestamp: 66227525692000
+  project: ""
+}
+debug_info:
+{
+  path: "/usr/lib/libpangoft2-1.0.so.0"
+  timestamp: 66222088234000
+  project: ""
+}
+debug_info:
+{
+  path: "/usr/lib/libfribidi.so.0"
+  timestamp: 66226183083000
+  project: ""
+}
+debug_info:
+{
+  path: "/usr/lib/libcairo-gobject.so.2"
+  timestamp: 66226317201000
+  project: ""
+}
+debug_info:
+{
+  path: "/usr/lib/libgdk_pixbuf-2.0.so.0"
+  timestamp: 66218511876000
+  project: ""
+}
+debug_info:
+{
+  path: "/usr/lib/libatk-1.0.so.0"
+  timestamp: 66225707609000
+  project: ""
+}
+debug_info:
+{
+  path: "/usr/lib/libepoxy.so.0"
+  timestamp: 66154573791000
+  project: ""
+}
+debug_info:
+{
+  path: "/usr/lib/libXi.so.6"
+  timestamp: 66214982992000
+  project: ""
+}
+debug_info:
+{
+  path: "/usr/lib/libatk-bridge-2.0.so.0"
+  timestamp: 66225707609000
+  project: ""
+}
+debug_info:
+{
+  path: "/usr/lib/libcloudproviders.so.0"
+  timestamp: 66224038983000
+  project: ""
+}
+debug_info:
+{
+  path: "/usr/lib/libtinysparql-3.0.so.0"
+  timestamp: 66211961338000
+  project: ""
+}
+debug_info:
+{
+  path: "/usr/lib/libXfixes.so.3"
+  timestamp: 66191811818000
+  project: ""
+}
+debug_info:
+{
+  path: "/usr/lib/libXcursor.so.1"
+  timestamp: 66164892929000
+  project: ""
+}
+debug_info:
+{
+  path: "/usr/lib/libXdamage.so.1"
+  timestamp: 66204798157000
+  project: ""
+}
+debug_info:
+{
+  path: "/usr/lib/libXcomposite.so.1"
+  timestamp: 66204797901000
+  project: ""
+}
+debug_info:
+{
+  path: "/usr/lib/libXrandr.so.2"
+  timestamp: 66204798928000
+  project: ""
+}
+debug_info:
+{
+  path: "/usr/lib/libXinerama.so.1"
+  timestamp: 66204798394000
+  project: ""
+}
+debug_info:
+{
+  path: "/usr/lib/libpcre2-8.so.0"
+  timestamp: 66226760580000
+  project: ""
+}
+debug_info:
+{
+  path: "/usr/lib/libexpat.so.1"
+  timestamp: 66226220172000
+  project: ""
+}
+debug_info:
+{
+  path: "/usr/lib/libbz2.so.1.0"
+  timestamp: 66144129342000
+  project: ""
+}
+debug_info:
+{
+  path: "/usr/lib/libbrotlidec.so.1"
+  timestamp: 66202791885000
+  project: ""
+}
+debug_info:
+{
+  path: "/usr/lib/libXau.so.6"
+  timestamp: 66168321532000
+  project: ""
+}
+debug_info:
+{
+  path: "/usr/lib/libXdmcp.so.6"
+  timestamp: 66211465957000
+  project: ""
+}
+debug_info:
+{
+  path: "/usr/lib/libgcc_s.so.1"
+  timestamp: 66222473810000
+  project: ""
+}
+debug_info:
+{
+  path: "/usr/lib/libmount.so.1"
+  timestamp: 66226133184000
+  project: ""
+}
+debug_info:
+{
+  path: "/usr/lib/libthai.so.0"
+  timestamp: 66203476091000
+  project: ""
+}
+debug_info:
+{
+  path: "/usr/lib/libgraphite2.so.3"
+  timestamp: 66216324798000
+  project: ""
+}
+debug_info:
+{
+  path: "/usr/lib/libglycin-2.so.0"
+  timestamp: 66219388109000
+  project: ""
+}
+debug_info:
+{
+  path: "/usr/lib/libatspi.so.0"
+  timestamp: 66225707609000
+  project: ""
+}
+debug_info:
+{
+  path: "/usr/lib/libjson-glib-1.0.so.0"
+  timestamp: 66192777082000
+  project: ""
+}
+debug_info:
+{
+  path: "/usr/lib/libxml2.so.16"
+  timestamp: 66224660347000
+  project: ""
+}
+debug_info:
+{
+  path: "/usr/lib/libsqlite3.so.0"
+  timestamp: 66221019941000
+  project: ""
+}
+debug_info:
+{
+  path: "/usr/lib/libbrotlicommon.so.1"
+  timestamp: 66202791885000
+  project: ""
+}
+debug_info:
+{
+  path: "/usr/lib/libblkid.so.1"
+  timestamp: 66226133184000
+  project: ""
+}
+debug_info:
+{
+  path: "/usr/lib/libdatrie.so.1"
+  timestamp: 66199254144000
+  project: ""
+}
+debug_info:
+{
+  path: "/usr/lib/liblcms2.so.2"
+  timestamp: 66213914757000
+  project: ""
+}
+debug_info:
+{
+  path: "/usr/lib/libseccomp.so.2"
+  timestamp: 66203227913000
+  project: ""
+}
+debug_info:
+{
+  path: "/usr/lib/libicuuc.so.78"
+  timestamp: 66209476284000
+  project: ""
+}
+debug_info:
+{
+  path: "/usr/lib/libicudata.so.78"
+  timestamp: 66209476284000
+  project: ""
+}
+debug_info:
+{
+  path: "/usr/lib/libstdc++.so.6"
+  timestamp: 66222473810000
+  project: ""
+}
+debug_info:
+{
+  path: "/usr/lib/libdecor/plugins-1/libdecor-cairo.so"
+  timestamp: 66201193574000
+  project: ""
+}
+debug_info:
+{
+  path: "/usr/lib/gio/modules/libdconfsettings.so"
+  timestamp: 66192945846000
+  project: ""
+}
+debug_info:
+{
+  path: "/usr/lib/gio/modules/libgvfsdbus.so"
+  timestamp: 66225693091000
+  project: ""
+}
+debug_info:
+{
+  path: "/usr/lib/gvfs/libgvfscommon.so"
+  timestamp: 66225693091000
+  project: ""
+}
+debug_info:
+{
+  path: "/usr/lib/libnss_systemd.so.2"
+  timestamp: 66226225854000
+  project: ""
+}
+debug_info:
+{
+  path: "/usr/lib/libvulkan_radeon.so"
+  timestamp: 66227195972000
+  project: ""
+}
+debug_info:
+{
+  path: "/usr/lib/libLLVM.so.23.1"
+  timestamp: 66225614620000
+  project: ""
+}
+debug_info:
+{
+  path: "/usr/lib/libdrm_amdgpu.so.1"
+  timestamp: 66216101390000
+  project: ""
+}
+debug_info:
+{
+  path: "/usr/lib/libelf.so.1"
+  timestamp: 66222875913000
+  project: ""
+}
+debug_info:
+{
+  path: "/usr/lib/libxcb-dri3.so.0"
+  timestamp: 66146664704000
+  project: ""
+}
+debug_info:
+{
+  path: "/usr/lib/libzstd.so.1"
+  timestamp: 66206562474000
+  project: ""
+}
+debug_info:
+{
+  path: "/usr/lib/libdrm.so.2"
+  timestamp: 66216101390000
+  project: ""
+}
+debug_info:
+{
+  path: "/usr/lib/libX11-xcb.so.1"
+  timestamp: 66205917348000
+  project: ""
+}
+debug_info:
+{
+  path: "/usr/lib/libxcb-present.so.0"
+  timestamp: 66146664704000
+  project: ""
+}
+debug_info:
+{
+  path: "/usr/lib/libxcb-xfixes.so.0"
+  timestamp: 66146664704000
+  project: ""
+}
+debug_info:
+{
+  path: "/usr/lib/libxcb-sync.so.1"
+  timestamp: 66146664704000
+  project: ""
+}
+debug_info:
+{
+  path: "/usr/lib/libxcb-randr.so.0"
+  timestamp: 66146664704000
+  project: ""
+}
+debug_info:
+{
+  path: "/usr/lib/libxshmfence.so.1"
+  timestamp: 66168321854000
+  project: ""
+}
+debug_info:
+{
+  path: "/usr/lib/libxcb-keysyms.so.1"
+  timestamp: 66154395533000
+  project: ""
+}
+debug_info:
+{
+  path: "/usr/lib/libdisplay-info.so.3"
+  timestamp: 66189963822000
+  project: ""
+}
+debug_info:
+{
+  path: "/usr/lib/libudev.so.1"
+  timestamp: 66226225854000
+  project: ""
+}
+debug_info:
+{
+  path: "/usr/lib/libSPIRV-Tools.so"
+  timestamp: 66226822389000
+  project: ""
+}
+debug_info:
+{
+  path: "/usr/lib/libedit.so.0"
+  timestamp: 66214842579000
+  project: ""
+}
+debug_info:
+{
+  path: "/usr/lib/libncursesw.so.6"
+  timestamp: 66209875845000
+  project: ""
+}
+debug_info:
+{
+  path: "/usr/lib/libVkLayer_khronos_validation.so"
+  timestamp: 66226828610000
+  project: ""
+}
+debug_info:
+{
+  path: "/usr/lib/libVkLayer_MESA_device_select.so"
+  timestamp: 66227195972000
+  project: ""
+}
+breakpoint:
+{
+  project: ""
+  source_location: "../../Programming/personal/surtr/src/main.c:1870:6"
+  hit_count: 1
+}
