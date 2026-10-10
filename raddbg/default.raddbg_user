@@ -2,17 +2,19 @@
 
 window:
 {
-  size: 937 1123
-  pos: 0 0
+  size: 1891 1123
+  pos: 14 62
   monitor
+  split_x
+  font_size: 12
+  smooth_code_text: 1
   panels:
   {
-    0.767232:
+    0.70:
     {
       selected
       text:
       {
-        selected
         expression: "file:\"/home/quebn/Programming/personal/surtr/src/main.c\".data"
         auto: 1
         project: ""
@@ -21,26 +23,39 @@ window:
           input: ""
           cmd: search
         }
-        cursor: 0x13973
-        mark: 0x13973
+        cursor: 0x14799
+        mark: 0x14799
         font_size: 12
         show_line_numbers: 1
         line_wrapping: 1
+        scroll_to_bottom_on_change: 0
       }
-      disasm: query: input: ""
-    }
-    0.232768:
-    {
-      0.25: text:
+      disasm:
       {
         selected
-        expression: ""
-        cursor: 0x0
-        mark: 0x0
+        query: input: ""
+        show_code_bytes: 1
+      }
+    }
+    0.30:
+    {
+      0.25: watch:
+      {
+        expression: "query:targets"
+        selected
       }
       0.50:
       {
-        watch: selected expression: ""
+        watch:
+        {
+          selected
+          expression: ""
+          watch_expression:
+          {
+            project: ""
+            expression: window
+          }
+        }
         text:
         {
           expression: "query:output"
@@ -48,6 +63,7 @@ window:
           cursor: 0x0
           mark: 0x0
         }
+        watch: expression: "query:breakpoints"
       }
       0.25:
       {
@@ -56,11 +72,8 @@ window:
       }
     }
   }
-  split_x
-  font_size: 12
-  smooth_code_text: 1
-  tab_height: 3.000000
-  fullscreen
+  use_project_theme: 0
+  tab_height: 2.5
 }
 keybindings:
 {
@@ -572,13 +585,19 @@ thread_lines: 1
 install_to_system: 0
 scrolling_animations: 1
 tab_width: 4
-rounded_corner_amount: 1.000000
+rounded_corner_amount: 0.75
 theme_color: tags value: 0xffffffff
 theme_color: tags value: 0xffffffff
+breakpoint:
+{
+  project: ""
+  source_location: "../../Programming/personal/surtr/src/main.c:1935:1"
+  hit_count: 0
+}
 debug_info:
 {
   path: "/home/quebn/Programming/personal/surtr/build/surtr"
-  timestamp: 66227576696216
+  timestamp: 66227826656347
   project: ""
 }
 debug_info:
@@ -662,25 +681,25 @@ debug_info:
 debug_info:
 {
   path: "/usr/lib/libgtk-3.so.0"
-  timestamp: 66209942808000
+  timestamp: 66227204630000
   project: ""
 }
 debug_info:
 {
   path: "/usr/lib/libgdk-3.so.0"
-  timestamp: 66209942808000
+  timestamp: 66227204630000
   project: ""
 }
 debug_info:
 {
   path: "/usr/lib/libgobject-2.0.so.0"
-  timestamp: 66221400973000
+  timestamp: 66227554771000
   project: ""
 }
 debug_info:
 {
   path: "/usr/lib/libglib-2.0.so.0"
-  timestamp: 66221400973000
+  timestamp: 66227554771000
   project: ""
 }
 debug_info:
@@ -710,7 +729,7 @@ debug_info:
 debug_info:
 {
   path: "/usr/lib/libX11.so.6"
-  timestamp: 66205917348000
+  timestamp: 66227305485000
   project: ""
 }
 debug_info:
@@ -758,13 +777,13 @@ debug_info:
 debug_info:
 {
   path: "/usr/lib/libgmodule-2.0.so.0"
-  timestamp: 66221400973000
+  timestamp: 66227554771000
   project: ""
 }
 debug_info:
 {
   path: "/usr/lib/libgio-2.0.so.0"
-  timestamp: 66221400973000
+  timestamp: 66227554771000
   project: ""
 }
 debug_info:
@@ -806,13 +825,13 @@ debug_info:
 debug_info:
 {
   path: "/usr/lib/libgdk_pixbuf-2.0.so.0"
-  timestamp: 66218511876000
+  timestamp: 66225331945000
   project: ""
 }
 debug_info:
 {
   path: "/usr/lib/libatk-1.0.so.0"
-  timestamp: 66225707609000
+  timestamp: 66225813858000
   project: ""
 }
 debug_info:
@@ -830,7 +849,7 @@ debug_info:
 debug_info:
 {
   path: "/usr/lib/libatk-bridge-2.0.so.0"
-  timestamp: 66225707609000
+  timestamp: 66225813858000
   project: ""
 }
 debug_info:
@@ -842,7 +861,7 @@ debug_info:
 debug_info:
 {
   path: "/usr/lib/libtinysparql-3.0.so.0"
-  timestamp: 66211961338000
+  timestamp: 66225636961000
   project: ""
 }
 debug_info:
@@ -890,7 +909,7 @@ debug_info:
 debug_info:
 {
   path: "/usr/lib/libexpat.so.1"
-  timestamp: 66226220172000
+  timestamp: 66227471037000
   project: ""
 }
 debug_info:
@@ -944,13 +963,13 @@ debug_info:
 debug_info:
 {
   path: "/usr/lib/libglycin-2.so.0"
-  timestamp: 66219388109000
+  timestamp: 66227561705000
   project: ""
 }
 debug_info:
 {
   path: "/usr/lib/libatspi.so.0"
-  timestamp: 66225707609000
+  timestamp: 66225813858000
   project: ""
 }
 debug_info:
@@ -991,12 +1010,6 @@ debug_info:
 }
 debug_info:
 {
-  path: "/usr/lib/liblcms2.so.2"
-  timestamp: 66213914757000
-  project: ""
-}
-debug_info:
-{
   path: "/usr/lib/libseccomp.so.2"
   timestamp: 66203227913000
   project: ""
@@ -1028,19 +1041,19 @@ debug_info:
 debug_info:
 {
   path: "/usr/lib/gio/modules/libdconfsettings.so"
-  timestamp: 66192945846000
+  timestamp: 66225638467000
   project: ""
 }
 debug_info:
 {
   path: "/usr/lib/gio/modules/libgvfsdbus.so"
-  timestamp: 66225693091000
+  timestamp: 66225713030000
   project: ""
 }
 debug_info:
 {
   path: "/usr/lib/gvfs/libgvfscommon.so"
-  timestamp: 66225693091000
+  timestamp: 66225713030000
   project: ""
 }
 debug_info:
@@ -1094,7 +1107,7 @@ debug_info:
 debug_info:
 {
   path: "/usr/lib/libX11-xcb.so.1"
-  timestamp: 66205917348000
+  timestamp: 66227305485000
   project: ""
 }
 debug_info:
@@ -1174,10 +1187,4 @@ debug_info:
   path: "/usr/lib/libVkLayer_MESA_device_select.so"
   timestamp: 66227195972000
   project: ""
-}
-breakpoint:
-{
-  project: ""
-  source_location: "../../Programming/personal/surtr/src/main.c:1870:6"
-  hit_count: 1
 }
