@@ -578,7 +578,7 @@ hl.window_rule({
     match = {
         class = "^(RADDBG)$"
     },
-    fullscreen = true,
+    -- fullscreen = true,
     workspace = "special",
 })
 
