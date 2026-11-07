@@ -11,6 +11,8 @@ Singleton {
     id: root;
     property MprisPlayer trackedPlayer: null;
     property list<MprisPlayer> players: Mpris.players.values.filter(player => isRealPlayer(player));
+    // Re-evaluate who should be tracked whenever players appear or disappear
+    onPlayersChanged: root.updateTrackedPlayer();
     readonly property MprisPlayer activePlayer: trackedPlayer ?? Mpris.players.values[0] ?? null;
     signal trackChanged(reverse: bool);
 
@@ -48,34 +50,22 @@ Singleton {
             target: modelData;
 
             Component.onCompleted: {
-                if (root.trackedPlayer == null || modelData.isPlaying) {
-                    root.trackedPlayer = modelData;
-                }
+                root.updateTrackedPlayer();
             }
 
             Component.onDestruction: {
-                if (root.trackedPlayer == null || !root.trackedPlayer.isPlaying) {
-                    for (const player of Mpris.players.values) {
-                        if (player.playbackState.isPlaying) {
-                            root.trackedPlayer = player;
-                            break;
-                        }
-                    }
-
-                    if (trackedPlayer == null && Mpris.players.values.length != 0) {
-                        trackedPlayer = Mpris.players.values[0];
-                    }
+                root.updateTrackedPlayer();
+                if (root.trackedPlayer == null && Mpris.players.values.length != 0) {
+                    root.trackedPlayer = Mpris.players.values[0];
                 }
             }
 
             function onPlaybackStateChanged() {
-                if (modelData.isPlaying) {
-                    // A player started playing: follow it
-                    if (root.trackedPlayer !== modelData) root.trackedPlayer = modelData;
-                } else if (root.trackedPlayer === modelData) {
-                    // The tracked player stopped/paused: fall back to one that is playing
-                    root.updateTrackedPlayer();
-                }
+                root.updateTrackedPlayer();
+            }
+
+            function onTrackTitleChanged() {
+                root.updateTrackedPlayer();
             }
         }
     }
@@ -103,17 +93,39 @@ Singleton {
 
     onActivePlayerChanged: root.updateTrack();
 
+    function hasUsableTitle(player) {
+        const title = player?.trackTitle ?? "";
+        return title.length > 0 && title !== "Unknown";
+    }
+
     function updateTrackedPlayer() {
-        console.log(`Updating Tracked Player!! ${root.trackedPlayer.isPlaying}`);
-        if (root.activePlayer?.isPlaying) {
+        const players = Mpris.players.values;
+        // Drop a tracked player that no longer exists
+        const current = players.includes(root.trackedPlayer) ? root.trackedPlayer : null;
+
+        // 1. A playing player with a real title always wins
+        const playingTitled = players.find(p => p.isPlaying && root.hasUsableTitle(p));
+        if (playingTitled) {
+            if (root.trackedPlayer !== playingTitled) root.trackedPlayer = playingTitled;
             return;
         }
-
-        for (const player of Mpris.players.values) {
-            if (player.playbackState.isPlaying) {
-                root.trackedPlayer = player;
-                break;
-            }
+        // 2. Nothing playing with a title: keep showing a player that has one (paused is still media)
+        if (current && root.hasUsableTitle(current)) {
+            return;
+        }
+        // 3. Current player has no title: show any player that has one
+        const titled = players.find(p => root.hasUsableTitle(p));
+        if (titled) {
+            root.trackedPlayer = titled;
+            return;
+        }
+        // 4. No titles anywhere: follow whatever is playing, else keep the current one
+        const playingAny = players.find(p => p.isPlaying);
+        if (playingAny) {
+            root.trackedPlayer = playingAny;
+        }
+        else if (current) {
+            root.trackedPlayer = current;
         }
     }
 
