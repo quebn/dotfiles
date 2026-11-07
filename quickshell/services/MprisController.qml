@@ -69,7 +69,13 @@ Singleton {
             }
 
             function onPlaybackStateChanged() {
-                if (root.trackedPlayer !== modelData) root.trackedPlayer = modelData;
+                if (modelData.isPlaying) {
+                    // A player started playing: follow it
+                    if (root.trackedPlayer !== modelData) root.trackedPlayer = modelData;
+                } else if (root.trackedPlayer === modelData) {
+                    // The tracked player stopped/paused: fall back to one that is playing
+                    root.updateTrackedPlayer();
+                }
             }
         }
     }
