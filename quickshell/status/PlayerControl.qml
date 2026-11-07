@@ -17,6 +17,9 @@ import Quickshell.Hyprland
 Item { // Player instance
     id: playerController
     required property MprisPlayer player
+    // Hide the whole card when the player has no usable track title
+    readonly property string cleanedTrackTitle: StringUtils.cleanMusicTitle(player?.trackTitle)
+    visible: cleanedTrackTitle.length > 0
     property var artUrl: player?.trackArtUrl
     property string artDownloadLocation: Directories.coverArt
     property string artFileName: Qt.md5(artUrl) + ".jpg"
