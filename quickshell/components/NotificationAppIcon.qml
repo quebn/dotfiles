@@ -25,22 +25,17 @@ Rectangle { // App icon
     implicitHeight: size
     radius: Appearance.rounding.corner
     color: Appearance.colors.background
-    Loader {
-        id: materialSymbolLoader
+    Loader { // Default icon, used when the notification has no image and no app icon
+        id: defaultIconLoader
         active: root.appIcon == "" && root.image == ""
         anchors.fill: parent
-        sourceComponent: MaterialSymbol {
-            text: {
-                const defaultIcon = NotificationUtils.findSuitableMaterialSymbol("")
-                const guessedIcon = NotificationUtils.findSuitableMaterialSymbol(root.summary)
-                return (root.urgency == NotificationUrgency.Critical && guessedIcon === defaultIcon) ?
-                    "release_alert" : guessedIcon
-            }
+        sourceComponent: Image {
             anchors.fill: parent
-            color: (root.urgency == NotificationUrgency.Critical) ? Appearance.colors.yellow : Appearance.colors.cyan
-            iconSize: root.materialIconSize
-            horizontalAlignment: Text.AlignHCenter
-            verticalAlignment: Text.AlignVCenter
+            source: "file://" + Directories.shellConfig + "/assets/icons/notification_icon.png"
+            fillMode: Image.PreserveAspectFit
+            asynchronous: true
+            sourceSize.width: root.size
+            sourceSize.height: root.size
         }
     }
     Loader {

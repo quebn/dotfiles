@@ -6,46 +6,49 @@ window:
   pos: 14 62
   monitor
   split_x
-  font_size: 12
+  font_size: 14
   smooth_code_text: 1
   panels:
   {
-    0.70:
+    0.619897:
     {
-      selected
-      text:
+      0.5: text:
       {
+        selected
         expression: "file:\"/home/quebn/Programming/personal/surtr/src/main.c\".data"
         auto: 1
         project: ""
         query:
         {
-          input: ""
+          input: mmap_file
           cmd: search
         }
-        cursor: 0x14799
-        mark: 0x14799
-        font_size: 12
-        show_line_numbers: 1
-        line_wrapping: 1
-        scroll_to_bottom_on_change: 0
+        cursor: 0x13ca9
+        mark: 0x13ca9
+        cursor_line: 1
+        cursor_column: 1
+        mark_line: 1
+        mark_column: 1
       }
-      disasm:
+      0.5: memory:
       {
         selected
-        query: input: ""
-        show_code_bytes: 1
+        expression: ""
+        zoom: 1.000000f
+        cursor: buffer
+        mark: 0x0
       }
     }
-    0.30:
+    0.380103:
     {
-      0.25: watch:
+      0.406280: watch:
       {
         expression: "query:targets"
         selected
       }
-      0.50:
+      0.343720:
       {
+        selected
         watch:
         {
           selected
@@ -53,22 +56,42 @@ window:
           watch_expression:
           {
             project: ""
-            expression: window
+            expression: material_count
+          }
+          watch_expression:
+          {
+            project: ""
+            expression: shape_count
+          }
+          watch_expression:
+          {
+            project: ""
+            expression: attrib
+          }
+          watch_expression:
+          {
+            project: ""
+            expression: filename
+          }
+          watch_expression:
+          {
+            project: ""
+            expression: obj_filename
           }
         }
         text:
         {
           expression: "query:output"
           query: input: ""
-          cursor: 0x0
-          mark: 0x0
+          cursor: 0x5
+          mark: 0x5
         }
         watch: expression: "query:breakpoints"
       }
       0.25:
       {
-        watch: selected expression: "query:call_stack"
-        watch: expression: "query:threads"
+        watch: expression: "query:call_stack"
+        watch: selected expression: "query:threads"
       }
     }
   }
@@ -194,8 +217,14 @@ keybindings:
   { open_palette p ctrl shift }
   { log_marker m ctrl shift alt }
   { toggle_dev_menu d ctrl shift alt }
+  { step_into right ctrl }
+  { step_over down ctrl }
+  { step_out up ctrl }
+  { restart r ctrl }
+  { run d ctrl }
+  { kill_all q ctrl }
 }
-current_path: "/home/quebn/Programming/personal/surtr/build"
+current_path: "/home/quebn/Programming/personal/surtr/src"
 main_font: "/home/quebn/.local/share/fonts/ZxGamut-SemiBold.ttf"
 theme_color:
 {
@@ -325,7 +354,7 @@ theme_color:
 theme_color:
 {
   tags: code_symbol
-  value: 0xf6c177ff
+  value: 0xebbcbaff
 }
 theme_color:
 {
@@ -580,24 +609,28 @@ code_font: "/home/quebn/.local/share/fonts/0xProto-Regular.ttf"
 opaque_backgrounds: 0
 drop_shadows: 0
 breakpoint_glow: 1
-thread_glow: 0
-thread_lines: 1
+thread_glow: 1
+thread_lines: 0
 install_to_system: 0
 scrolling_animations: 1
 tab_width: 4
 rounded_corner_amount: 0.75
 theme_color: tags value: 0xffffffff
 theme_color: tags value: 0xffffffff
+cursor_scope_end_annotations: 1
+cursor_scope_lines: 0
+lock_new_breakpoints_to_selected_thread: 1
 breakpoint:
 {
   project: ""
-  source_location: "../../Programming/personal/surtr/src/main.c:1935:1"
-  hit_count: 0
+  break_selected_thread_only: 1
+  source_location: "../../Programming/personal/surtr/src/main.c:1916:1"
+  hit_count: 1
 }
 debug_info:
 {
   path: "/home/quebn/Programming/personal/surtr/build/surtr"
-  timestamp: 66227826656347
+  timestamp: 66228083337662
   project: ""
 }
 debug_info:
@@ -831,7 +864,7 @@ debug_info:
 debug_info:
 {
   path: "/usr/lib/libatk-1.0.so.0"
-  timestamp: 66225813858000
+  timestamp: 66227933547000
   project: ""
 }
 debug_info:
@@ -849,7 +882,7 @@ debug_info:
 debug_info:
 {
   path: "/usr/lib/libatk-bridge-2.0.so.0"
-  timestamp: 66225813858000
+  timestamp: 66227933547000
   project: ""
 }
 debug_info:
@@ -969,7 +1002,7 @@ debug_info:
 debug_info:
 {
   path: "/usr/lib/libatspi.so.0"
-  timestamp: 66225813858000
+  timestamp: 66227933547000
   project: ""
 }
 debug_info:
@@ -987,7 +1020,7 @@ debug_info:
 debug_info:
 {
   path: "/usr/lib/libsqlite3.so.0"
-  timestamp: 66221019941000
+  timestamp: 66227835667000
   project: ""
 }
 debug_info:

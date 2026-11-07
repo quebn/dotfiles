@@ -34,6 +34,7 @@ Scope {
 
         for (let i = 0; i < players.length; ++i) {
             if (used.has(i)) {
+                console.warn("Duplicate!");
                 continue;
             }
             let p1 = players[i];

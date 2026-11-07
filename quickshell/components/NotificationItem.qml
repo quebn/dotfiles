@@ -111,7 +111,7 @@ Item { // Notification item area
     NotificationAppIcon { // App icon
         id: notificationIcon
         opacity: (!onlyNotification && notificationObject.image != "" && expanded) ? 1 : 0
-        visible: opacity > 0
+        visible: true
 
         Behavior on opacity {
             animation: Appearance.animation.elementMoveFast.numberAnimation.createObject(this)

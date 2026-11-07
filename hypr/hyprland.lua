@@ -492,6 +492,18 @@ hl.window_rule({
 })
 
 hl.window_rule({
+    name = "Blender File View",
+    match = {
+        title = "^(Blender File View)$"
+    },
+    -- fullscreen = true,
+    size  = {"(monitor_w*0.5)", "(monitor_h*0.5)"},
+    -- workspace = "special",
+})
+
+
+
+hl.window_rule({
     name = "Steam Floating",
     match = {
         class = "^(steam)$",

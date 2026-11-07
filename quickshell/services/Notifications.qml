@@ -26,7 +26,11 @@ Singleton {
         property string appIcon: notification?.appIcon ?? ""
         property string appName: notification?.appName ?? ""
         property string body: notification?.body ?? ""
-        property string image: notification?.image ?? ""
+        // Spotify sends no image hint at all, so fall back to the matching
+        // media player's MPRIS art when the notification itself has none.
+        property string image: (notification?.image ?? "") ||
+            (MprisController.players.find(p =>
+                p.identity.toLowerCase() === (appName ?? "").toLowerCase())?.trackArtUrl ?? "")
         property string summary: notification?.summary ?? ""
         property double time
         property string urgency: notification?.urgency.toString() ?? "normal"
